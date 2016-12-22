@@ -6,7 +6,6 @@ const Home = React.createClass({
   render(){
     return (
       <div className='homeContainer'>
-        <HeaderContainer />
         <MainContainer />
       </div>
     )
