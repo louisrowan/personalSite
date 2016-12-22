@@ -22,6 +22,7 @@ p {
   );
   box-shadow: inset 0 0 0 30px black, inset 0px 0px 0px 50px #830ba8, inset 0 0 0 52px black;
   padding: 60px;
+  color: orange;
 }
 
 .headerContainer {
@@ -32,9 +33,9 @@ p {
   color: white;
 }
 
-.mainContainer {
+.contentContainer {
   width: 90%;
-  min-height: 1200px;
+  min-height: 200px;
   text-align: center;
   background: white;
   margin: 20px auto;
