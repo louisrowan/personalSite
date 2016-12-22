@@ -1,4 +1,5 @@
 const React = require('react')
+const { Link } = require('react-router')
 const HeaderContainer = require('./HeaderContainer')
 const MainContainer = require('./MainContainer')
 const SkillsContainer = require('./SkillsContainer')
@@ -11,6 +12,7 @@ const Home = React.createClass({
     }
   },
   handleClick(e) {
+    console.log(e)
     this.setState({ content: e })
   },
   render(){
@@ -27,9 +29,12 @@ const Home = React.createClass({
     return (
       <div className='homeContainer'>
         <div id='homeContentDiv'>
-          <p onClick={() => this.handleClick('main') }>Main</p>
-          <p onClick={() => this.handleClick('skills') }>Skills</p>
-          <p onClick={() => this.handleClick('project') }>Project</p>
+          <Link onClick={() => this.handleClick('main') }>
+            <p>Main</p></Link>
+          <Link onClick={() => this.handleClick('skills') }>
+            <p>Skills</p></Link>
+          <Link onClick={() => this.handleClick('project') }>
+            <p>Projects</p></Link>
 
           {currentComponent}
         </div>

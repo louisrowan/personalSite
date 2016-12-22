@@ -39,4 +39,44 @@ p {
   text-align: center;
   background: white;
   margin: 20px auto;
+  color: black;
+  position: relative;
+}
+
+.emp {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.projectDiv {
+  width: 75%;
+  margin: auto;
+}
+
+.arrowDiv {
+  box-sizing: none;
+  height: 0;
+  width: 0;
+  border: 20px solid transparent;
+  position: absolute;
+  top: 45%;
+  bottom: 45%;
+}
+
+.leftArrowDiv {
+  border-right: 20px solid red;
+  left: 10px;
+}
+
+.leftArrowDiv:hover {
+  border-right: 20px solid pink;
+}
+
+.rightArrowDiv {
+  border-left: 20px solid red;
+  right: 10px;
+}
+
+.rightArrowDiv:hover {
+  border-left: 20px solid pink;
 }

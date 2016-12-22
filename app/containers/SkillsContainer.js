@@ -5,9 +5,13 @@ const SkillsContainer = React.createClass({
     return (
       <div className='contentContainer'>
         <p>skills</p>
-        <h1>speling</h1>
-        <h1>running fast</h1>
-        <p>html</p>
+        <p>Ruby</p>
+        <p>Rails</p>
+        <p>React</p>
+
+        <p>*d3 bubble chart*</p>
+
+
       </div>
     )
   }
