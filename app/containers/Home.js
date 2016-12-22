@@ -12,7 +12,6 @@ const Home = React.createClass({
     }
   },
   handleClick(e) {
-    console.log(e)
     this.setState({ content: e })
   },
   render(){
@@ -29,12 +28,21 @@ const Home = React.createClass({
     return (
       <div className='homeContainer'>
         <div id='homeContentDiv'>
-          <Link onClick={() => this.handleClick('main') }>
-            <p>Main</p></Link>
-          <Link onClick={() => this.handleClick('skills') }>
-            <p>Skills</p></Link>
-          <Link onClick={() => this.handleClick('project') }>
-            <p>Projects</p></Link>
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  <Link onClick={() => this.handleClick('main') }>Main</Link>
+                </td>
+                <td>
+                  <Link onClick={() => this.handleClick('skills') }>Skills</Link>
+                </td>
+                <td>
+                  <Link onClick={() => this.handleClick('project') }>Projects</Link>
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
           {currentComponent}
         </div>
