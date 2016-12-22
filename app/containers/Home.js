@@ -1,9 +1,14 @@
 const React = require('react')
+const HeaderContainer = require('./HeaderContainer')
+const MainContainer = require('./MainContainer')
 
 const Home = React.createClass({
   render(){
     return (
-      <p>In home</p>
+      <div className='homeContainer'>
+        <HeaderContainer />
+        <MainContainer />
+      </div>
     )
   }
 })

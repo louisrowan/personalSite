@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  padding: 20px;
+}
+
+p {
+  padding: 10px;
+}
+
+.homeContainer {
+  width: 100%;
+  min-height: 1200px;
+  background: linear-gradient(to bottom right,
+    rgba(45, 6, 56, 1),
+    rgba(131, 11, 168, 1)
+  );
+  box-shadow: inset 0 0 0 30px black, inset 0px 0px 0px 50px #830ba8, inset 0 0 0 52px black;
+  padding: 60px;
+}
+
+.headerContainer {
+  width: 100%;
+  min-height: 1200px;
+  text-align: center;
+  border-bottom: 10px solid white;
+  color: white;
+}
+
+.mainContainer {
+  width: 90%;
+  min-height: 1200px;
+  text-align: center;
+  background: white;
+  margin: 20px auto;
+}
