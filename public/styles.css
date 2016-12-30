@@ -80,3 +80,9 @@ p {
 .rightArrowDiv:hover {
   border-left: 20px solid pink;
 }
+
+#homeContentDiv td:hover {
+  cursor: pointer;
+  color: blue;
+  transition: color 200ms linear;
+}
