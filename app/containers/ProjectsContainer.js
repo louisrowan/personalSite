@@ -1,10 +1,11 @@
 const React = require('react')
+const data = require('json!../../public/data.json').projects
 
 const ProjectsContainer = React.createClass({
   getInitialState() {
     return {
       projectIndex: 0,
-      projects: ['first', 'second']
+      projects: data
     }
   },
   handleClick(val) {
@@ -17,20 +18,18 @@ const ProjectsContainer = React.createClass({
     this.setState({ projectIndex: index})
   },
   render(){
-    let shownProject;
-    let project = this.state.projects[this.state.projectIndex]
-    if (project === 'second') {
-      shownProject = 'my second project'
-    } else {
-      shownProject = 'my first'
-    }
+    let shownProject = this.state.projects[this.state.projectIndex]
+
     return (
       <div>
         <p>projects</p>
         <div className='leftArrowDiv arrowDiv' onClick={() => this.handleClick(-1)}></div>
-        <div className='projectDiv'>
-        {shownProject}
-        </div>
+          <div className='projectDiv'>
+            <ul>
+            <li>{shownProject.name}</li>
+            <li>{shownProject.description}</li>
+            </ul>
+          </div>
         <div className='rightArrowDiv arrowDiv' onClick={() => this.handleClick(1)}></div>
       </div>
     )

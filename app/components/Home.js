@@ -3,6 +3,7 @@ const HeaderContainer = require('../containers/HeaderContainer')
 const MainContainer = require('../containers/MainContainer')
 const SkillsContainer = require('../containers/SkillsContainer')
 const ProjectsContainer = require('../containers/ProjectsContainer')
+const ContactContainer = require('../containers/ContactContainer')
 const ReactCSSTransitionGroup = require('react-addons-css-transition-group')
 
 const Home = React.createClass({
@@ -18,6 +19,11 @@ const Home = React.createClass({
       currentComponent = 
       <div className='contentContainer' key='skills'>
         <SkillsContainer />
+      </div>
+    } else if (content==='contact'){
+      currentComponent =
+      <div className='contentContainer' key='contact'>
+        <ContactContainer />
       </div>
     } else {
       currentComponent =

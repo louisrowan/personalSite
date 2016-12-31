@@ -62,6 +62,10 @@ p {
   bottom: 45%;
 }
 
+.arrowDiv:hover {
+  cursor: pointer;
+}
+
 .leftArrowDiv {
   border-right: 20px solid red;
   left: 10px;
@@ -115,7 +119,7 @@ nav table {
 }
 
 nav td {
-  width: 33%;
+  width: 25%;
   text-align: center;
   height: 50px;
 }

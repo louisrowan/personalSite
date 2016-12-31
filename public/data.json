@@ -1,0 +1,12 @@
+{
+  "projects": [
+    {
+      "name": "Event Tracker",
+      "description": "This is a site that does some stuff"
+    },
+    {
+      "name": "Mathio Party",
+      "description": "Play your games"
+    }
+  ]
+}
