@@ -3,7 +3,7 @@ const React = require('react')
 const MainContainer = React.createClass({
   render(){
     return (
-      <div className='contentContainer'>
+      <div>
         <h1>Hi,</h1>
 
         <p>*insert pic here*</p>

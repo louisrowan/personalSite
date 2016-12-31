@@ -3,7 +3,7 @@ const React = require('react')
 const SkillsContainer = React.createClass({
   render(){
     return (
-      <div className='contentContainer'>
+      <div>
         <p>skills</p>
         <p>Ruby</p>
         <p>Rails</p>

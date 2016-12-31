@@ -4,6 +4,7 @@ const HeaderContainer = require('./HeaderContainer')
 const MainContainer = require('./MainContainer')
 const SkillsContainer = require('./SkillsContainer')
 const ProjectsContainer = require('./ProjectsContainer')
+const ReactCSSTransitionGroup = require('react-addons-css-transition-group')
 
 const Home = React.createClass({
   getInitialState() {
@@ -18,11 +19,20 @@ const Home = React.createClass({
     let currentComponent;
     let content = this.state.content
     if (content === 'project'){
-      currentComponent = <ProjectsContainer />
+      currentComponent =
+      <div className='contentContainer' key='project'>
+        <ProjectsContainer />
+      </div>
     } else if (content === 'skills'){
-      currentComponent = <SkillsContainer />
+      currentComponent = 
+      <div className='contentContainer' key='skills'>
+        <SkillsContainer />
+      </div>
     } else {
-      currentComponent = <MainContainer />
+      currentComponent =
+      <div className='contentContainer' key='main'>
+        <MainContainer />
+      </div>
     }
 
     return (
@@ -43,8 +53,14 @@ const Home = React.createClass({
               </tr>
             </tbody>
           </table>
-
+          <div id='contentSpace'>
+          <ReactCSSTransitionGroup
+          transitionName="component"
+          transitionEnterTimeout={600}
+          transitionLeaveTimeout={300}>
           {currentComponent}
+          </ReactCSSTransitionGroup>
+          </div>
         </div>
       </div>
     )

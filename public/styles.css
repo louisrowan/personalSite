@@ -15,32 +15,30 @@ p {
 
 .homeContainer {
   width: 100%;
-  min-height: 1200px;
+  min-height: 1000px;
   background: linear-gradient(to bottom right,
     rgba(45, 6, 56, 1),
     rgba(131, 11, 168, 1)
   );
-  box-shadow: inset 0 0 0 30px black, inset 0px 0px 0px 50px #830ba8, inset 0 0 0 52px black;
   padding: 60px;
   color: orange;
 }
 
 .headerContainer {
   width: 100%;
-  min-height: 1200px;
+  min-height: 1000px;
   text-align: center;
   border-bottom: 10px solid white;
   color: white;
 }
 
 .contentContainer {
-  width: 90%;
-  min-height: 200px;
-  text-align: center;
+  position: absolute;
   background: white;
-  margin: 20px auto;
-  color: black;
-  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .emp {
@@ -85,4 +83,32 @@ p {
   cursor: pointer;
   color: blue;
   transition: color 200ms linear;
+}
+
+.component-enter {
+  transform: rotateY(90deg) rotateX(90deg);
+}
+
+.component-enter-active {
+  transform: rotateY(0deg) rotateX(0deg);
+  transition: transform 300ms ease-out 300ms;
+}
+
+.component-leave {
+  transform: rotateY(0deg) rotateX(0deg);
+}
+
+.component-leave-active {
+  transform: rotateY(90deg) rotateX(-90deg);
+  transition: transform 300ms ease-in;
+}
+
+#contentSpace {
+  width: 90%;
+  max-width: 1000px;
+  min-height: 600px;
+  text-align: center;
+  margin: 20px auto;
+  color: black;
+  position: relative;
 }

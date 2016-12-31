@@ -25,7 +25,7 @@ const ProjectsContainer = React.createClass({
       shownProject = 'my first'
     }
     return (
-      <div className='contentContainer'>
+      <div>
         <p>projects</p>
         <div className='leftArrowDiv arrowDiv' onClick={() => this.handleClick(-1)}></div>
         <div className='projectDiv'>
