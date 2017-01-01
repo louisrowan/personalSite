@@ -12,6 +12,7 @@ const ProjectsThumb = React.createClass({
       <section className='projectsThumb'>
         <h1>{data.name}</h1>
         <p>{data.description}</p>
+        <p onClick={() => this.props.expand() }>Show</p>
         <p>
           <a href={data.github}>Code</a>
         </p>

@@ -6,10 +6,11 @@ const ProjectsContainer = React.createClass({
   getInitialState() {
     return {
       projectIndex: 0,
-      projects: data
+      projects: data,
+      fullscreen: false
     }
   },
-  handleClick(val) {
+  handleScroll(val) {
     let index = this.state.projectIndex + 1
     if (index < 0 ) {
       index = this.state.projects.length - 1
@@ -18,19 +19,34 @@ const ProjectsContainer = React.createClass({
     }
     this.setState({ projectIndex: index})
   },
+  showFullscreen() {
+    this.setState({ fullscreen: true })
+  },
+  hideFullscreen() {
+    this.setState({ fullscreen: false })
+  },
   render(){
     let shownProject = this.state.projects[this.state.projectIndex]
 
+    if (!this.state.fullscreen){
     return (
       <div>
         <h1>Projects</h1>
-        <div className='leftArrowDiv arrowDiv' onClick={() => this.handleClick(-1)}></div>
+        <div className='leftArrowDiv arrowDiv' onClick={() => this.handleScroll(-1)}></div>
           <div className='projectDiv'>
-            <ProjectsThumb data={shownProject} />
+            <ProjectsThumb expand={this.showFullscreen} data={shownProject} />
           </div>
-        <div className='rightArrowDiv arrowDiv' onClick={() => this.handleClick(1)}></div>
+        <div className='rightArrowDiv arrowDiv' onClick={() => this.handleScroll(1)}></div>
       </div>
-    )
+    )}
+
+    else {
+    return (
+      <div>
+        <h1>{shownProject.name}</h1>
+        <p onClick={() => this.hideFullscreen()}>Back to list</p>
+      </div>
+    ) }
   }
 })
 
