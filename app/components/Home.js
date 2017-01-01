@@ -34,15 +34,13 @@ const Home = React.createClass({
 
     return (
       <div className='homeContainer'>
-        <div id='homeContentDiv'>
-          <div id='contentSpace'>
+        <div id='contentSpace'>
           <ReactCSSTransitionGroup
           transitionName="component"
           transitionEnterTimeout={600}
           transitionLeaveTimeout={300}>
-          {currentComponent}
+            {currentComponent}
           </ReactCSSTransitionGroup>
-          </div>
         </div>
       </div>
     )

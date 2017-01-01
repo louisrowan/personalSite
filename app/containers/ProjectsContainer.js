@@ -1,5 +1,6 @@
 const React = require('react')
 const data = require('json!../../public/data.json').projects
+const ProjectsThumb = require('../components/ProjectsThumb')
 
 const ProjectsContainer = React.createClass({
   getInitialState() {
@@ -22,13 +23,10 @@ const ProjectsContainer = React.createClass({
 
     return (
       <div>
-        <p>projects</p>
+        <h1>Projects</h1>
         <div className='leftArrowDiv arrowDiv' onClick={() => this.handleClick(-1)}></div>
           <div className='projectDiv'>
-            <ul>
-            <li>{shownProject.name}</li>
-            <li>{shownProject.description}</li>
-            </ul>
+            <ProjectsThumb data={shownProject} />
           </div>
         <div className='rightArrowDiv arrowDiv' onClick={() => this.handleClick(1)}></div>
       </div>
