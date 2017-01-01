@@ -12,13 +12,19 @@
     {
       "name": "Mathio Party",
       "description": "Play your games",
-      "image": "/public/images/mathio.jpg"
+      "image": "/public/images/mathio.jpg",
+      "technologies": [
+        "Rails", "Ruby", "JQuery", "Phaser"
+      ]
     },
     {
       "name": "Rainy Day Science",
       "description": "Award winning project at the 2016 San Francisco 'Science Hack Day'.",
       "github": "https://github.com/louisrowan/science-hack-react",
-      "image": "/public/images/science.jpg"
+      "image": "/public/images/science.jpg",
+      "technologies": [
+        "React", "Rails"
+      ]
     }
   ]
 }
