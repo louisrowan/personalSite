@@ -18,12 +18,8 @@ const ProjectsFullscreen = React.createClass({
           })}
         </ul>
         <a href={data.github}>See the code</a>
-        <h2>What I learned:</h2>
-        <h1>test</h1>
-        <h1>test</h1>
-        <h1>test</h1>
-        <h1>test</h1>
-        <h1>test</h1>
+        <h4>What I learned:</h4>
+        <p>{data.learned}</p>
 
 
 
