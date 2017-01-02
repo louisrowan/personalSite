@@ -47,8 +47,10 @@ p {
 }
 
 .projectDiv {
-  width: 75%;
+  width: 50%;
+  height: 400px;
   margin: auto;
+  position: relative;
 }
 
 .arrowDiv {
@@ -134,19 +136,21 @@ nav td:hover {
   border: 5px solid black;
   overflow: hidden;
   height: 400px;
-  width: 60%;
+  width: 100%;
   margin: auto;
-  position: relative;
+  position: absolute;
+  box-shadow: 0px 0px 10px 5px black;
 }
 
 .hoverProjectsThumb {
   border: 5px solid black;
   overflow: hidden;
   height: 400px;
-  width: 60%;
+  width: 100%;
   margin: auto;
   position: relative;
   box-shadow: 0px 0px 10px 5px purple;
+  position: absolute;
 }
 
 .thumbImgDiv {
@@ -180,4 +184,35 @@ nav td:hover {
 
 .hidden {
   display: none;
+}
+
+/*.nextProjectThumb {
+  height: 400px;
+  width: 20%;
+  background: purple;
+  overflow: hidden;
+  transform: scale(.5);
+  position: absolute;
+  left: 50px;
+}
+*/
+
+
+
+.projectFlip-enter {
+  transform: rotateY(-90deg);
+}
+
+.projectFlip-enter-active {
+  transform: rotateY(0deg);
+  transition: transform 400ms ease-out 200ms;
+}
+
+.projectFlip-leave {
+  transform: rotateY(0deg);
+}
+
+.projectFlip-leave-active {
+  transform: rotateY(90deg);
+  transition: transform 200ms ease-in;
 }

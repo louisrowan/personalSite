@@ -1,6 +1,8 @@
 const React = require('react')
 const data = require('json!../../public/data.json').projects
 const ProjectsThumb = require('../components/ProjectsThumb')
+const ReactCSSTransitionGroup = require('react-addons-css-transition-group')
+
 
 const ProjectsContainer = React.createClass({
   getInitialState() {
@@ -11,7 +13,7 @@ const ProjectsContainer = React.createClass({
     }
   },
   handleScroll(val) {
-    let index = this.state.projectIndex + 1
+    let index = this.state.projectIndex + val
     if (index < 0 ) {
       index = this.state.projects.length - 1
     } else if (index >= this.state.projects.length) {
@@ -34,7 +36,14 @@ const ProjectsContainer = React.createClass({
         <h1>Projects</h1>
         <div className='leftArrowDiv arrowDiv' onClick={() => this.handleScroll(-1)}></div>
           <div className='projectDiv'>
-            <ProjectsThumb expand={this.showFullscreen} data={shownProject} />
+
+            <ReactCSSTransitionGroup
+            transitionName='projectFlip'
+            transitionEnterTimeout={400}
+            transitionLeaveTimeout={200}>
+              <ProjectsThumb key={shownProject.name} expand={this.showFullscreen} data={shownProject} />
+            </ReactCSSTransitionGroup>
+            
           </div>
         <div className='rightArrowDiv arrowDiv' onClick={() => this.handleScroll(1)}></div>
       </div>

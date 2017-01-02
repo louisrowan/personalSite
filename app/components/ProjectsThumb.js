@@ -29,8 +29,8 @@ const ProjectsThumb = React.createClass({
       onMouseEnter={() => this.mouseIn()}
       onMouseLeave ={() => this.mouseOut()}
       className={sectionClass}>
-        <div className={hiddenDivClass}>
-          <h2 onClick={()=> this.props.expand()}>View Project</h2>
+        <div onClick={()=> this.props.expand()} className={hiddenDivClass}>
+          <h2>View Project</h2>
         </div>
         <h1>{data.name}</h1>
         <p>{data.description}</p>
