@@ -5,6 +5,7 @@
       "description": "This is a site that does some stuff",
       "github": "https://github.com/louisrowan/event-tracker",
       "image": "/public/images/event.jpg",
+      "learned": "stuff",
       "technologies": [
         "Ruby", "Sinatra", "JQuery"
       ]

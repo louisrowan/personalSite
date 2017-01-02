@@ -1,6 +1,7 @@
 const React = require('react')
 const data = require('json!../../public/data.json').projects
 const ProjectsThumb = require('../components/ProjectsThumb')
+const ProjectsFullscreen = require('../components/ProjectsFullscreen')
 const ReactCSSTransitionGroup = require('react-addons-css-transition-group')
 
 
@@ -51,10 +52,14 @@ const ProjectsContainer = React.createClass({
 
     else {
     return (
-      <div>
-        <h1>{shownProject.name}</h1>
-        <p onClick={() => this.hideFullscreen()}>Back to list</p>
-      </div>
+      <ReactCSSTransitionGroup
+      transitionName='projectShow'
+      transitionEnterTimeout={400}
+      transitionLeaveTimeout={400}
+      transitionAppear={true}
+      transitionAppearTimeout={300}>
+        <ProjectsFullscreen key={shownProject.name} data={shownProject} hide={this.hideFullscreen} />
+      </ReactCSSTransitionGroup>
     ) }
   }
 })
