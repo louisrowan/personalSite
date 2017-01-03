@@ -347,7 +347,7 @@ nav td:hover {
 }
 */
 .contactEmail:before {
-
+  content: "\2709";
 }
 
 
@@ -359,4 +359,13 @@ nav td:hover {
 
 .showForm-enter-active {
   transform: scale(1);
+}
+
+.showForm-leave {
+  transform: scale(1);
+  transition: transform 500ms ease-in;
+}
+
+.showForm-leave-active {
+  transform: scale(0);
 }

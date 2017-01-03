@@ -6,6 +6,7 @@ const ContactForm = React.createClass({
     this.props.submitted ? formClass = 'formSubmit' : formClass = ''
     return (
       <form className={'contactForm ' + formClass} onSubmit={ (e) => this.props.handleSubmit(e)} >
+      <p onClick={() => this.props.handleShowForm()}>Hide</p>
         <input className='contactInput'
           onChange={(email)=> this.props.handleEmailChange(email)}
           type="email"

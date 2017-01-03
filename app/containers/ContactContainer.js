@@ -26,7 +26,7 @@ const ContactContainer = React.createClass({
     this.setState({ phone })
   },
   handleShowForm () {
-    this.setState({ showForm: true })
+    this.setState({ showForm: !this.state.showForm })
   },
   handleSubmit (e) {
     e.preventDefault()
@@ -66,6 +66,7 @@ const ContactContainer = React.createClass({
           handlePhoneChange = {this.handlePhoneChange}
           handleMessageChange = {this.handleMessageChange}
           handleSubmit = {this.handleSubmit}
+          handleShowForm = {this.handleShowForm}
           submitted = {this.state.submitted}
           />
     } else {
@@ -100,7 +101,7 @@ const ContactContainer = React.createClass({
         <ReactCSSTransitionGroup
           transitionName='showForm'
           transitionEnterTimeout={500}
-          transitionLeaveTimeout={0}>
+          transitionLeaveTimeout={500}>
         {form}
         </ReactCSSTransitionGroup>
 
