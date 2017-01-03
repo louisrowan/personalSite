@@ -298,8 +298,16 @@ nav td:hover {
   }
 }
 
+.contactContainer {
+  position: relative;
+}
+
 .formSuccess {
   color: green;
+  position: absolute;
+  top: 250px;
+  width: 100%;
+  text-align: center;
   animation: formSuccess 2s forwards;
 }
 
@@ -312,4 +320,43 @@ nav td:hover {
   }
   100% {
     opacity: 1;
+  }
+}
+
+.contactTable {
+  margin: auto;
+  font-size: 1.5em;
+}
+
+.contactTable td {
+  padding: 5px;
+  text-align: left;
+  border: 1px solid red;
+}
+
+.contactPhone:before {
+  content: "\260E";
+}
+
+.contactLinkedIn:before {
+
+}
+
+/*.contactGithub:before {
+  content: url('https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png')
+}
+*/
+.contactEmail:before {
+
+}
+
+
+
+.showForm-enter {
+  transform: scale(0);
+  transition: transform 500ms ease-in;
+}
+
+.showForm-enter-active {
+  transform: scale(1);
 }

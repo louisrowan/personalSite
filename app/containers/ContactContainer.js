@@ -1,10 +1,13 @@
 const React = require('react')
+const ContactForm = require('../components/ContactForm')
 const $ = require('jquery')
+const ReactCSSTransitionGroup = require('react-addons-css-transition-group')
 
 const ContactContainer = React.createClass({
   getInitialState () {
     return {
       submitted: false,
+      showForm: false,
       email: '',
       message: '',
       phone: ''
@@ -21,6 +24,9 @@ const ContactContainer = React.createClass({
   handlePhoneChange (phone) {
     phone = phone.target.value
     this.setState({ phone })
+  },
+  handleShowForm () {
+    this.setState({ showForm: true })
   },
   handleSubmit (e) {
     e.preventDefault()
@@ -44,38 +50,60 @@ const ContactContainer = React.createClass({
     })
   },
   render(){
-    console.log(this.state.submitted)
-    let formClass;
-    this.state.submitted ? formClass = 'formSubmit' : formClass = ''
+ 
     let success;
     if (this.state.submitted) {
-      success = <h1 className='formSuccess'>Success!</h1>
+      success = <div className='formSuccess'><h1>Success!</h1></div>
     } else {
       success = ''
     }
+
+    let form;
+    if (this.state.showForm) {
+      form = 
+        <ContactForm
+          handleEmailChange = {this.handleEmailChange}
+          handlePhoneChange = {this.handlePhoneChange}
+          handleMessageChange = {this.handleMessageChange}
+          handleSubmit = {this.handleSubmit}
+          submitted = {this.state.submitted}
+          />
+    } else {
+      form = ''
+    }
+
     return (
       <div className='contactContainer'>
         <h1>Contact Me</h1>
+
+        <div>
+          <table className='contactTable'>
+           <tbody>
+             <tr>
+                <td><div className='contactPhone'></div></td><td>Phone</td>
+             </tr>
+              <tr>
+                <td><div className='contactLinkedIn'></div></td><td>LinkedIn</td>
+             </tr>
+             <tr>
+                <td><div className='contactGithub'></div></td><td>Github</td>
+              </tr>
+             <tr>
+                <td><div className='contactEmail'></div></td><td onClick={()=> this.handleShowForm()}>Email</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         {success}
-        <form className={'contactForm ' + formClass} onSubmit={ (e) => this.handleSubmit(e)} >
-          <input className='contactInput'
-            onChange={(email)=> this.handleEmailChange(email)}
-            type="email"
-            name="email"
-            placeholder="Your email" />
-          <input className='contactInput'
-            onChange={(phone)=> this.handlePhoneChange(phone)}
-            type="text"
-            name="phone"
-            placeholder="Your phone number" />
-          <br />
-          <textarea className='contactTextarea'
-            onChange={(message)=> this.handleMessageChange(message)}
-            name="message"
-            placeholder="Your message"></textarea>
-          <br />
-          <button className='contactSubmit' type="submit">Submit</button>
-        </form>
+        
+        <ReactCSSTransitionGroup
+          transitionName='showForm'
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={0}>
+        {form}
+        </ReactCSSTransitionGroup>
+
       </div>
     )
   }
