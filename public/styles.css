@@ -249,3 +249,67 @@ nav td:hover {
   max-height: 300px;
   overflow: hidden;
 }
+
+
+/*contact page*/
+
+.contactInput {
+  width: 245px;
+  padding: 10px;
+  margin: 5px;
+  background: #fbefff;
+  border: 1px solid black;
+  box-shadow: 0px 0px 5px .5px black inset;
+  font-size: 1.2em;
+}
+
+.contactTextarea {
+  width: 500px;
+  height: 200px;
+  padding: 10px;
+  background: #fbefff;
+  border: 1px solid black;
+  box-shadow: 0px 0px 5px .5px black inset;
+  font-size: 1.1em;
+}
+
+.contactSubmit {
+  width: 200px;
+  padding: 10px;
+  font-size: 1.2em;
+}
+
+.contactSubmit:hover {
+  box-shadow: 2px 2px 1px 1px black;
+  font-weight: bold;
+}
+
+.formSubmit {
+  animation: formFlip 1s forwards;
+}
+
+@keyframes formFlip {
+  0% {
+    transform: rotateX(0);
+  }
+
+  100% {
+    transform: rotateX(90deg);
+  }
+}
+
+.formSuccess {
+  color: green;
+  animation: formSuccess 2s forwards;
+}
+
+@keyframes formSuccess {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+}
