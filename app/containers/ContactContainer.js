@@ -2,6 +2,8 @@ const React = require('react')
 const ContactForm = require('../components/ContactForm')
 const $ = require('jquery')
 const ReactCSSTransitionGroup = require('react-addons-css-transition-group')
+const data = require('json!../../public/data.json').images
+
 
 const ContactContainer = React.createClass({
   getInitialState () {
@@ -81,16 +83,16 @@ const ContactContainer = React.createClass({
           <table className='contactTable'>
            <tbody>
              <tr>
-                <td><div className='contactPhone'></div></td><td>Phone</td>
+                <td><div className='contactPhone contactIMG'></div></td><td>617-365-3595</td>
              </tr>
               <tr>
-                <td><div className='contactLinkedIn'></div></td><td>LinkedIn</td>
+                <td><div className='contactIMG'><img src={data.linkedin} /></div></td><td><a target="_blank" href="https://www.linkedin.com/in/louis-rowan-54869986">LinkedIn</a></td>
              </tr>
              <tr>
-                <td><div className='contactGithub'></div></td><td>Github</td>
+                <td><div className='contactIMG'><img src={data.github} /></div></td><td><a target="_blank" href="https://github.com/louisrowan">Github</a></td>
               </tr>
-             <tr>
-                <td><div className='contactEmail'></div></td><td onClick={()=> this.handleShowForm()}>Email</td>
+             <tr onClick={()=> this.handleShowForm()}>
+                <td><div className='contactEmail contactIMG'></div></td><td><span id='emailMeLink'>Email me</span> - louis.rowan@icloud.com</td>
               </tr>
             </tbody>
           </table>
@@ -111,5 +113,3 @@ const ContactContainer = React.createClass({
 })
 
 module.exports = ContactContainer
-
-// <form method="POST" action="http://formspree.io/louis.rowan@icloud.com">

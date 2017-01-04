@@ -29,5 +29,9 @@
         "React", "Rails"
       ]
     }
-  ]
+  ],
+  "images": {
+    "linkedin": "/public/images/linkedin.png",
+    "github": "/public/images/github.png"
+  }
 }
