@@ -22,7 +22,6 @@ const ProjectsFullscreen = React.createClass({
         <p>{data.learned}</p>
 
 
-
         <p onClick={()=> this.props.hide()}>Back</p>
       </div>
     )
