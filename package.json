@@ -6,7 +6,9 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server",
-    "test": ""
+    "test": "",
+    "postinstall": "webpack -p",
+    "start": "node server.js"
   },
   "author": "louis rowan",
   "license": "ISC",
@@ -15,9 +17,11 @@
     "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
+    "express": "^4.14.0",
     "html-webpack-plugin": "^2.24.1",
     "jquery": "^3.1.1",
     "json-loader": "^0.5.4",
+    "path": "^0.12.7",
     "react": "^15.4.1",
     "react-addons-css-transition-group": "^15.4.1",
     "react-dom": "^15.4.1",
