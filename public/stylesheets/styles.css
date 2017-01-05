@@ -410,4 +410,22 @@ nav td:hover {
   width: 90%;
   margin: auto;
   border: 2px solid blue;
+  position: relative;
+}
+
+.tooltipDiv {
+  width: 150px;
+  text-align: center;
+}
+
+.tooltipDiv:after {
+  content: '';
+  width: 0px;
+  height: 0px;
+  border: 10px solid transparent;
+  border-top: 10px solid black;
+  position: relative;
+  top: 38px;
+  right: 80px;
+
 }

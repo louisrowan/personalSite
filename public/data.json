@@ -43,12 +43,17 @@
     {
       "name": "Rails",
       "type": "back",
-      "image": "/public/images/react.png"
+      "image": "/public/images/rails.png"
     },
     {
       "name": "JavaScript",
       "type": "front",
-      "image": "/public/images/react.png"
+      "image": "/public/images/javascript.jpg"
+    },
+    {
+      "name": "Redux",
+      "type": "front",
+      "image": "/public/images/redux.png"
     }
   ] 
 }

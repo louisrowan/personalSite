@@ -13,12 +13,55 @@ const SkillsD3 = React.createClass({
 
     const height = parseInt(svg.style('height'))
     const width = parseInt(svg.style('width'))
+    const radius = width/15
 
-    const circles = svg.selectAll('circle')
+    const tooltip = d3.select('#d3SkillsContainer')
+      .append('div')
+      .style('position', 'absolute')
+      .style('z-index', '10')
+      .style('visibility', 'hidden')
+      .classed('tooltipDiv', 'true')
+      .text('')
+      .style('background', 'black')
+      .style('color', 'white')
+      .style('padding', '10px')
+
+    const nodes = svg.selectAll('circle')
       .data(data)
       .enter()
-      .append('circle')
-      .attr('r', width/15)
+      .append('g')
+
+    const patterns = nodes.append('pattern')
+      .attr('id', (d) => d.name )
+      .attr('height', '100%')
+      .attr('width', '100%')
+      .attr('patternContentUnits', 'objectBoundingBox')
+      .append('image')
+      .attr('height', '1')
+      .attr('width', '1')
+      .attr('preserveAspectRatio', 'none')
+      .attr('xmlns:xlink', 'http://www.w3.org/1999/xLink')
+      .attr('xlink:href', (d) => d.image)
+
+    const circles = nodes.append('circle')
+      .attr('r', radius)
+      .style('fill', (d) => `url(#${d.name})`)
+      .style('stroke', 'black')
+      .style('stroke-width', '2px')
+
+    circles.on('mouseover', function(){
+      tooltip
+        .style('visibility', 'visible')
+
+    }).on('mousemove', function(){
+      const left = d3.select(this).attr('cx')
+      const top = d3.select(this).attr('cy')
+      console.log(top)
+      const name = d3.select(this)[0][0].__data__.name
+      tooltip.style('top', top - radius - 20 + 'px')
+        .style('left',  left +"px")
+        .text(name)
+    })
 
     const forceXNormal = d3Force.forceX((d) => {
       return width/2
