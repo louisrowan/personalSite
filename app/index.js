@@ -2,6 +2,7 @@ const React = require('react')
 const ReactDOM = require('react-dom')
 const { Router, Route, hashHistory } = require('react-router')
 const HomeContainer = require('./containers/HomeContainer')
+require('../public/stylesheets/styles.css')
 
 const App = React.createClass({
   render(){
