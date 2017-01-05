@@ -38,22 +38,22 @@
     {
       "name": "React",
       "type": "front",
-      "image": "/public/images/react.png"
+      "image": "./images/react.png"
     },
     {
       "name": "Rails",
       "type": "back",
-      "image": "/public/images/rails.png"
+      "image": "./images/rails.png"
     },
     {
       "name": "JavaScript",
       "type": "front",
-      "image": "/public/images/javascript.jpg"
+      "image": "./images/javascript.jpg"
     },
     {
       "name": "Redux",
       "type": "front",
-      "image": "/public/images/redux.png"
+      "image": "./images/redux.png"
     }
   ] 
 }
