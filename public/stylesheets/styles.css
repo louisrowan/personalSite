@@ -392,3 +392,22 @@ nav td:hover {
 #emailMeLink {
   color: blue;
 }
+
+
+
+
+
+/*skills chart*/
+
+.skillsContainer {
+  width: 100%;
+  min-height: 800px;
+  border: 2px solid purple;
+}
+
+#d3SkillsContainer {
+  height: 600px;
+  width: 90%;
+  margin: auto;
+  border: 2px solid blue;
+}

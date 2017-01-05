@@ -1,19 +1,14 @@
 const React = require('react')
+const SkillsD3 = require('../components/SkillsD3')
 
 const SkillsContainer = React.createClass({
   render(){
     return (
-      <div>
+      <div className='skillsContainer'>
         <p>skills</p>
         <p>Ruby</p>
         <p>Rails</p>
-        <p>React</p>
-        <h1>test</h1>
-        <p>banana!</p>
-
-        <p>*d3 bubble chart*</p>
-
-
+        <SkillsD3 />
       </div>
     )
   }

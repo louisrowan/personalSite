@@ -33,5 +33,22 @@
   "images": {
     "linkedin": "./images/linkedin.png",
     "github": "./images/github.png"
-  }
+  },
+  "skills": [
+    {
+      "name": "React",
+      "type": "front",
+      "image": "/public/images/react.png"
+    },
+    {
+      "name": "Rails",
+      "type": "back",
+      "image": "/public/images/react.png"
+    },
+    {
+      "name": "JavaScript",
+      "type": "front",
+      "image": "/public/images/react.png"
+    }
+  ] 
 }
