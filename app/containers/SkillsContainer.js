@@ -9,6 +9,7 @@ const SkillsContainer = React.createClass({
         <p>Rails</p>
         <p>React</p>
         <h1>test</h1>
+        <p>banana!</p>
 
         <p>*d3 bubble chart*</p>
 

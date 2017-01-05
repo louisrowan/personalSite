@@ -26678,6 +26678,11 @@
 	      React.createElement(
 	        'p',
 	        null,
+	        'banana!'
+	      ),
+	      React.createElement(
+	        'p',
+	        null,
 	        '*d3 bubble chart*'
 	      )
 	    );
