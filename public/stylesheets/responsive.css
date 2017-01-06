@@ -71,5 +71,23 @@
   .projectDiv {
     width: 75vw;
     margin: auto;
+    margin-top: 20%;
+  }
+
+  .projectsThumb {
+    height: 600px;
+  }
+
+  .contactContainer {
+ 
+  }
+
+  .contactTextarea {
+    width: 700px;
+    height: 400px;
+  }
+  .contactInput {
+    width: 345px;
+    margin-top: 50px;
   }
 }

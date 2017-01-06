@@ -3,7 +3,7 @@
     {
       "name": "Event Tracker",
       "description": "This is a site that does some stuff",
-      "image": "./images/event.JPG",
+      "image": "/public/images/event.JPG",
       "github": "https://github.com/louisrowan/event-tracker",
       "learned": "This was my first exposure to using an API or JSON, as well as using JQuery on the front-end to create a dynamic website.",
       "technologies": [
@@ -12,7 +12,7 @@
     },
     {
       "name": "Mathio Party",
-      "image": "./images/mathio.JPG",
+      "image": "/public/images/mathio.JPG",
       "description": "Play your games",
       "learned": "This was a week-long group project that I put at least 80 hours into, so I learned a great deal about group version control and using an agile workflow. This was also my introduction to data collection and visualization.",
       "technologies": [
@@ -22,7 +22,7 @@
     {
       "name": "Rainy Day Science",
       "description": "Award winning project at the 2016 San Francisco 'Science Hack Day'.",
-      "image": "./images/science.JPG",
+      "image": "/public/images/science.JPG",
       "github": "https://github.com/louisrowan/science-hack-react",
       "learned": "This was my first experiene working on a decoupled app, with a Rails backend and React front-end. I learned a good deal about manipulating the DOM in React using vanilla JavaScript and CSS, as opposed to using JQuery.",
       "technologies": [
@@ -31,64 +31,64 @@
     }
   ],
   "images": {
-    "linkedin": "./images/linkedin.png",
-    "github": "./images/github.png"
+    "linkedin": "/public/images/linkedin.png",
+    "github": "/public/images/github.png"
   },
   "skills": [
     {
       "name": "React",
       "type": "front",
-      "image": "./images/react.png"
+      "image": "/public/images/react.png"
     },
     {
       "name": "Rails",
       "type": "back",
-      "image": "./images/rails.png"
+      "image": "/public/images/rails.png"
     },
     {
       "name": "JavaScript",
       "type": "front",
-      "image": "./images/javascript.jpg"
+      "image": "/public/images/javascript.jpg"
     },
     {
       "name": "Redux",
       "type": "front",
-      "image": "./images/redux.png"
+      "image": "/public/images/redux.png"
     },
     {
       "name": "D3",
       "type": "front",
-      "image": "./images/d3.png"
+      "image": "/public/images/d3.png"
     },
     {
       "name": "Git/Github",
       "type": "other",
-      "image": "./images/github.png"
+      "image": "/public/images/github.png"
     },
     {
       "name": "Node/Webpack",
       "type": "back",
-      "image": "./images/node.jpg"
+      "image": "/public/images/node.jpg"
     },
     {
       "name": "C/C++",
       "type": "back",
-      "image": "./images/c.jpg"
+      "image": "/public/images/c.jpg"
     },
     {
       "name": "SQL",
       "type": "back",
-      "image": "./images/sql.png"
+      "image": "/public/images/sql.png"
     },
     {
       "name": "Python",
       "type": "back",
-      "image": "./images/python.png"
+      "image": "/public/images/python.png"
     },
     {
       "name": "Ruby",
       "type": "back",
-      "image": "./images/ruby.png"
+      "image": "/public/images/ruby.png"
     }
 
   ] 
