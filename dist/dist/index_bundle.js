@@ -26419,7 +26419,7 @@
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      null,
+	      { id: 'layoutDiv' },
 	      React.createElement(Nav, { handleClick: this.handleClick }),
 	      React.createElement(Home, { content: this.state.content })
 	    );
@@ -26677,13 +26677,20 @@
 
 	var SkillsD3 = React.createClass({
 	  displayName: 'SkillsD3',
+	  getInitialState: function getInitialState() {
+	    return {
+	      skillFront: '',
+	      skillBack: '',
+	      skillAll: 'd3Active'
+	    };
+	  },
 	  componentDidMount: function componentDidMount() {
 	    var svg = d3.select('svg');
 	    svg.attr('height', '100%').attr('width', '100%');
 
 	    var height = parseInt(svg.style('height'));
 	    var width = parseInt(svg.style('width'));
-	    var radius = width / 15;
+	    var radius = width / 14;
 
 	    var tooltip = d3.select('#d3SkillsContainer').append('div').style('position', 'absolute').style('z-index', '10').style('visibility', 'hidden').classed('tooltipDiv', 'true').text('JavaScript').style('background', 'black').style('color', 'white');
 
@@ -26700,13 +26707,16 @@
 	    }).style('stroke', 'black').style('stroke-width', '2px');
 
 	    circles.on('mouseover', function () {
+	      d3.select(this).classed('d3Circle', true);
 	      tooltip.style('visibility', 'visible');
 	    }).on('mousemove', function () {
 	      var left = d3.select(this).attr('cx');
 	      var top = d3.select(this).attr('cy');
-	      console.log(top);
 	      var name = d3.select(this)[0][0].__data__.name;
 	      tooltip.style('top', top - radius - 20 + 'px').style('left', left + "px").text(name);
+	    }).on('mouseout', function () {
+	      d3.select(this).classed('d3Circle', false);
+	      tooltip.style('visibility', 'hidden');
 	    });
 
 	    var forceXNormal = d3Force.forceX(function (d) {
@@ -26734,9 +26744,8 @@
 	    }).strength(0.05);
 
 	    var simulation = d3Force.forceSimulation().force('x', forceXNormal).force('y', forceYNormal).force('collide', d3Force.forceCollide(function (d) {
-	      console.log(d);
-	      return width / 15;
-	    }));
+	      return radius;
+	    })).alphaTarget(0.5).restart();
 
 	    d3.select('#skillsFront').on('click', function () {
 	      simulation.force('y', forceYFront).alphaTarget(0.5).restart();
@@ -26760,24 +26769,51 @@
 	      });
 	    }
 	  },
+	  frontClick: function frontClick() {
+	    this.setState({ skillFront: 'd3Active', skillBack: '', skillAll: '' });
+	  },
+	  backClick: function backClick() {
+	    this.setState({ skillBack: 'd3Active', skillFront: '', skillAll: '' });
+	  },
+	  allClick: function allClick() {
+	    this.setState({ skillAll: 'd3Active', skillFront: '', skillBack: '' });
+	  },
 	  render: function render() {
+	    var _this = this;
+
 	    return React.createElement(
 	      'div',
 	      { id: 'd3SkillsContainer' },
 	      React.createElement(
-	        'button',
-	        { id: 'skillsFront' },
-	        'Front-End'
-	      ),
-	      React.createElement(
-	        'button',
-	        { id: 'skillsAll' },
-	        'All'
-	      ),
-	      React.createElement(
-	        'button',
-	        { id: 'skillsBack' },
-	        'Back-End'
+	        'div',
+	        { id: 'd3ButtonDiv' },
+	        React.createElement(
+	          'button',
+	          { id: 'skillsFront',
+	            className: 'skillsButton ' + this.state.skillFront,
+	            onClick: function onClick() {
+	              return _this.frontClick();
+	            } },
+	          'Front-End'
+	        ),
+	        React.createElement(
+	          'button',
+	          { id: 'skillsAll',
+	            className: 'skillsButton ' + this.state.skillAll,
+	            onClick: function onClick() {
+	              return _this.allClick();
+	            } },
+	          'All'
+	        ),
+	        React.createElement(
+	          'button',
+	          { id: 'skillsBack',
+	            className: 'skillsButton ' + this.state.skillBack,
+	            onClick: function onClick() {
+	              return _this.backClick();
+	            } },
+	          'Back-End'
+	        )
 	      ),
 	      React.createElement('svg', null)
 	    );
@@ -41788,64 +41824,64 @@
 			}
 		],
 		"images": {
-			"linkedin": "./images/linkedin.png",
-			"github": "./images/github.png"
+			"linkedin": "/public/images/linkedin.png",
+			"github": "/public/images/github.png"
 		},
 		"skills": [
 			{
 				"name": "React",
 				"type": "front",
-				"image": "./images/react.png"
+				"image": "/public/images/react.png"
 			},
 			{
 				"name": "Rails",
 				"type": "back",
-				"image": "./images/rails.png"
+				"image": "/public/images/rails.png"
 			},
 			{
 				"name": "JavaScript",
 				"type": "front",
-				"image": "./images/javascript.jpg"
+				"image": "/public/images/javascript.jpg"
 			},
 			{
 				"name": "Redux",
 				"type": "front",
-				"image": "./images/redux.png"
+				"image": "/public/images/redux.png"
 			},
 			{
 				"name": "D3",
 				"type": "front",
-				"image": "./images/d3.png"
+				"image": "/public/images/d3.png"
 			},
 			{
 				"name": "Git/Github",
 				"type": "other",
-				"image": "./images/github.png"
+				"image": "/public/images/github.png"
 			},
 			{
 				"name": "Node/Webpack",
 				"type": "back",
-				"image": "./images/node.jpg"
+				"image": "/public/images/node.jpg"
 			},
 			{
 				"name": "C/C++",
 				"type": "back",
-				"image": "./images/c.jpg"
+				"image": "/public/images/c.jpg"
 			},
 			{
 				"name": "SQL",
 				"type": "back",
-				"image": "./images/sql.png"
+				"image": "/public/images/sql.png"
 			},
 			{
 				"name": "Python",
 				"type": "back",
-				"image": "./images/python.png"
+				"image": "/public/images/python.png"
 			},
 			{
 				"name": "Ruby",
 				"type": "back",
-				"image": "./images/ruby.png"
+				"image": "/public/images/ruby.png"
 			}
 		]
 	};
@@ -41894,7 +41930,7 @@
 	    if (!this.state.fullscreen) {
 	      return React.createElement(
 	        'div',
-	        null,
+	        { id: 'projectsContainerDiv' },
 	        React.createElement(
 	          'h1',
 	          null,
@@ -54840,7 +54876,7 @@
 
 
 	// module
-	exports.push([module.id, "* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: Georgia, Serif;\r\n}\r\n\r\nh1 {\r\n  padding: 20px;\r\n}\r\n\r\np {\r\n  padding: 10px;\r\n}\r\n\r\n.homeContainer {\r\n  width: 100%;\r\n  min-height: 1000px;\r\n  background: linear-gradient(to bottom right,\r\n    rgba(45, 6, 56, 1),\r\n    rgba(131, 11, 168, 1)\r\n  );\r\n  padding: 60px 0px;\r\n  color: orange;\r\n}\r\n\r\n.headerContainer {\r\n  width: 100%;\r\n  min-height: 1000px;\r\n  text-align: center;\r\n  border-bottom: 10px solid white;\r\n  color: white;\r\n}\r\n\r\n.contentContainer {\r\n  position: absolute;\r\n  background: white;\r\n  width: 100%;\r\n  min-height: 100%;\r\n  box-shadow: 0px 0px 50px 5px black, 0px 0px 10px 2px rgba(45, 6, 56, 1) inset;\r\n  padding: 10px;\r\n}\r\n\r\n.emp {\r\n  font-size: 1.3em;\r\n  font-weight: bold;\r\n}\r\n\r\n.projectDiv {\r\n  width: 50%;\r\n  height: 400px;\r\n  margin: auto;\r\n  position: relative;\r\n}\r\n\r\n.arrowDiv {\r\n  box-sizing: none;\r\n  height: 0;\r\n  width: 0;\r\n  border: 30px solid transparent;\r\n  position: absolute;\r\n  top: 45%;\r\n  bottom: 45%;\r\n}\r\n\r\n.arrowDiv:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n.leftArrowDiv {\r\n  border-right: 40px solid rgba(45, 6, 56, 1);\r\n  left: 10px;\r\n}\r\n\r\n.leftArrowDiv:hover {\r\n  border-right: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n.rightArrowDiv {\r\n  border-left: 40px solid rgba(45, 6, 56, 1);\r\n  right: 10px;\r\n}\r\n\r\n.rightArrowDiv:hover {\r\n  border-left: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n.component-enter {\r\n  transform: rotateY(90deg) rotateX(90deg);\r\n}\r\n\r\n.component-enter-active {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n  transition: transform 300ms ease-out 300ms;\r\n}\r\n\r\n.component-leave {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n}\r\n\r\n.component-leave-active {\r\n  transform: rotateY(90deg) rotateX(-90deg);\r\n  transition: transform 300ms ease-in;\r\n}\r\n\r\n#contentSpace {\r\n  width: 90%;\r\n  max-width: 1000px;\r\n  min-height: 600px;\r\n  overflow: visible;\r\n  text-align: center;\r\n  margin: 20px auto;\r\n  color: black;\r\n  position: relative;\r\n}\r\n\r\nnav table {\r\n  width: 100%;\r\n  background: black;\r\n  color: purple;\r\n}\r\n\r\nnav td {\r\n  width: 25%;\r\n  text-align: center;\r\n  height: 50px;\r\n}\r\n\r\nnav td:hover {\r\n  background: #141619;\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n}\r\n\r\n.projectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: absolute;\r\n  box-shadow: 0px 0px 10px 5px black;\r\n}\r\n\r\n.hoverProjectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: relative;\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  position: absolute;\r\n}\r\n\r\n.thumbImgDiv {\r\n  width: 100%;\r\n  height: 200px;\r\n  border-top: 5px solid black;\r\n}\r\n\r\n.thumbImgDiv img {\r\n  width: 100%;\r\n}\r\n\r\n.hiddenThumbDiv {\r\n  position: absolute;\r\n  height: 100%;\r\n  width: 100%;\r\n  background: transparent;\r\n  cursor: pointer;\r\n  z-index: 2;\r\n  background-color: rgba(0, 0, 0, .5);\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.hiddenThumbDiv h2 {\r\n  background: white;\r\n  margin: auto;\r\n  width: 100%;\r\n  padding: 10px;\r\n}\r\n\r\n.hidden {\r\n  display: none;\r\n}\r\n\r\n/*.nextProjectThumb {\r\n  height: 400px;\r\n  width: 20%;\r\n  background: purple;\r\n  overflow: hidden;\r\n  transform: scale(.5);\r\n  position: absolute;\r\n  left: 50px;\r\n}\r\n*/\r\n\r\n\r\n\r\n.projectFlip-enter {\r\n  transform: rotateY(-90deg);\r\n}\r\n\r\n.projectFlip-enter-active {\r\n  transform: rotateY(0deg);\r\n  transition: transform 400ms ease-out 200ms;\r\n}\r\n\r\n.projectFlip-leave {\r\n  transform: rotateY(0deg);\r\n}\r\n\r\n.projectFlip-leave-active {\r\n  transform: rotateY(90deg);\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  transition:\r\n    transform 200ms ease-in,\r\n    box-shadow 200ms ease-in;\r\n}\r\n\r\n\r\n\r\n\r\n.projectShow-appear {\r\n  transform: scale(.1);\r\n}\r\n\r\n.projectShow-appear-active {\r\n  transform: scale(1);\r\n  transition: transform 300ms ease-in;\r\n}\r\n\r\n.projectShow-leave {\r\n  transform: translateX(0);\r\n}\r\n\r\n.projectShow-leave-active {\r\n  transform: translateX(200px);\r\n  transition: transform 2s ease-in;\r\n}\r\n\r\n.projectFullscreenDiv {\r\n  \r\n}\r\n\r\n.projectFullscreenImgDiv {\r\n  max-height: 300px;\r\n  overflow: hidden;\r\n}\r\n\r\n\r\n/*contact page*/\r\n\r\n.contactInput {\r\n  width: 245px;\r\n  padding: 10px;\r\n  margin: 5px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactTextarea {\r\n  width: 500px;\r\n  height: 200px;\r\n  padding: 10px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.1em;\r\n}\r\n\r\n.contactSubmit {\r\n  width: 200px;\r\n  padding: 10px;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactSubmit:hover {\r\n  box-shadow: 2px 2px 1px 1px black;\r\n  font-weight: bold;\r\n}\r\n\r\n.formSubmit {\r\n  animation: formFlip 1s forwards;\r\n}\r\n\r\n@keyframes formFlip {\r\n  0% {\r\n    transform: rotateX(0);\r\n  }\r\n\r\n  100% {\r\n    transform: rotateX(90deg);\r\n  }\r\n}\r\n\r\n.contactContainer {\r\n  position: relative;\r\n}\r\n\r\n.formSuccess {\r\n  color: green;\r\n  position: absolute;\r\n  top: 250px;\r\n  width: 100%;\r\n  text-align: center;\r\n  animation: formSuccess 2s forwards;\r\n}\r\n\r\n@keyframes formSuccess {\r\n  0% {\r\n    opacity: 0;\r\n  }\r\n  50% {\r\n    opacity: 0;\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n  }\r\n}\r\n\r\n.contactTable {\r\n  margin: auto;\r\n  font-size: 1.5em;\r\n}\r\n\r\n.contactTable td {\r\n  padding: 5px;\r\n  text-align: left;\r\n}\r\n\r\n.contactIMG {\r\n  height: 40px;\r\n  width: 50px;\r\n  overflow: hidden;\r\n}\r\n\r\n.contactIMG img {\r\n  max-width: 100%;\r\n  max-height: 100%;\r\n}\r\n\r\n.contactPhone {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactPhone:before {\r\n  content: \"\\260E\";\r\n  font-size: 2em;\r\n}\r\n\r\n.contactEmail {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactEmail:before {\r\n  content: \"\\2709\";\r\n  font-size: 2em;\r\n\r\n}\r\n\r\n\r\n\r\n.showForm-enter {\r\n  transform: scale(0);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-enter-active {\r\n  transform: scale(1);\r\n}\r\n\r\n.showForm-leave {\r\n  transform: scale(1);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-leave-active {\r\n  transform: scale(0);\r\n}\r\n\r\n#emailMeLink:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n#emailMeLink {\r\n  color: blue;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n/*skills chart*/\r\n\r\n.skillsContainer {\r\n  width: 100%;\r\n  min-height: 800px;\r\n  border: 2px solid purple;\r\n}\r\n\r\n#d3SkillsContainer {\r\n  height: 600px;\r\n  width: 90%;\r\n  margin: auto;\r\n  border: 2px solid blue;\r\n  position: relative;\r\n  overflow: hidden;\r\n}\r\n\r\n.tooltipDiv {\r\n  width: 150px;\r\n  text-align: center;\r\n  padding: 10px;\r\n}\r\n\r\n.tooltipDiv:after {\r\n  content: '';\r\n  width: 0px;\r\n  height: 0px;\r\n  border: 10px solid transparent;\r\n  border-top: 10px solid black;\r\n  position: relative;\r\n  top: 38px;\r\n  right: 80px;\r\n\r\n}", ""]);
+	exports.push([module.id, "* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: Georgia, Serif;\r\n}\r\n\r\nh1 {\r\n  padding: 20px;\r\n}\r\n\r\np {\r\n  padding: 10px;\r\n}\r\n\r\n.homeContainer {\r\n  width: 100%;\r\n  min-height: 1000px;\r\n  background: linear-gradient(to bottom right,\r\n    rgba(45, 6, 56, 1),\r\n    rgba(131, 11, 168, 1)\r\n  );\r\n  padding: 60px 0px;\r\n  color: orange;\r\n}\r\n\r\n.headerContainer {\r\n  width: 100%;\r\n  min-height: 1000px;\r\n  text-align: center;\r\n  border-bottom: 10px solid white;\r\n  color: white;\r\n}\r\n\r\n.contentContainer {\r\n  position: absolute;\r\n  background: white;\r\n  width: 100%;\r\n  min-height: 100%;\r\n  box-shadow: 0px 0px 50px 5px black, 0px 0px 10px 2px rgba(45, 6, 56, 1) inset;\r\n  padding: 10px;\r\n}\r\n\r\n.emp {\r\n  font-size: 1.3em;\r\n  font-weight: bold;\r\n}\r\n\r\n.projectDiv {\r\n  width: 50%;\r\n  height: 400px;\r\n  margin: auto;\r\n  position: relative;\r\n}\r\n\r\n.arrowDiv {\r\n  box-sizing: none;\r\n  height: 0;\r\n  width: 0;\r\n  border: 30px solid transparent;\r\n  position: absolute;\r\n  top: 45%;\r\n  bottom: 45%;\r\n}\r\n\r\n.arrowDiv:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n.leftArrowDiv {\r\n  border-right: 40px solid rgba(45, 6, 56, 1);\r\n  left: 10px;\r\n}\r\n\r\n.leftArrowDiv:hover {\r\n  border-right: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n.rightArrowDiv {\r\n  border-left: 40px solid rgba(45, 6, 56, 1);\r\n  right: 10px;\r\n}\r\n\r\n.rightArrowDiv:hover {\r\n  border-left: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n.component-enter {\r\n  transform: rotateY(90deg) rotateX(90deg);\r\n}\r\n\r\n.component-enter-active {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n  transition: transform 300ms ease-out 300ms;\r\n}\r\n\r\n.component-leave {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n}\r\n\r\n.component-leave-active {\r\n  transform: rotateY(90deg) rotateX(-90deg);\r\n  transition: transform 300ms ease-in;\r\n}\r\n\r\n#contentSpace {\r\n  width: 90%;\r\n  max-width: 1000px;\r\n  min-height: 600px;\r\n  overflow: visible;\r\n  text-align: center;\r\n  margin: 20px auto;\r\n  color: black;\r\n  position: relative;\r\n}\r\n\r\nnav table {\r\n  width: 100%;\r\n  background: black;\r\n  color: purple;\r\n}\r\n\r\nnav td {\r\n  width: 25%;\r\n  text-align: center;\r\n  height: 50px;\r\n}\r\n\r\nnav td:hover {\r\n  background: #141619;\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n}\r\n\r\n.projectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: absolute;\r\n  box-shadow: 0px 0px 10px 5px black;\r\n}\r\n\r\n.hoverProjectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: relative;\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  position: absolute;\r\n}\r\n\r\n.thumbImgDiv {\r\n  width: 100%;\r\n  height: 200px;\r\n  border-top: 5px solid black;\r\n}\r\n\r\n.thumbImgDiv img {\r\n  width: 100%;\r\n}\r\n\r\n.hiddenThumbDiv {\r\n  position: absolute;\r\n  height: 100%;\r\n  width: 100%;\r\n  background: transparent;\r\n  cursor: pointer;\r\n  z-index: 2;\r\n  background-color: rgba(0, 0, 0, .5);\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.hiddenThumbDiv h2 {\r\n  background: white;\r\n  margin: auto;\r\n  width: 100%;\r\n  padding: 10px;\r\n}\r\n\r\n.hidden {\r\n  display: none;\r\n}\r\n\r\n/*.nextProjectThumb {\r\n  height: 400px;\r\n  width: 20%;\r\n  background: purple;\r\n  overflow: hidden;\r\n  transform: scale(.5);\r\n  position: absolute;\r\n  left: 50px;\r\n}\r\n*/\r\n\r\n\r\n\r\n.projectFlip-enter {\r\n  transform: rotateY(-90deg);\r\n}\r\n\r\n.projectFlip-enter-active {\r\n  transform: rotateY(0deg);\r\n  transition: transform 400ms ease-out 200ms;\r\n}\r\n\r\n.projectFlip-leave {\r\n  transform: rotateY(0deg);\r\n}\r\n\r\n.projectFlip-leave-active {\r\n  transform: rotateY(90deg);\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  transition:\r\n    transform 200ms ease-in,\r\n    box-shadow 200ms ease-in;\r\n}\r\n\r\n\r\n\r\n\r\n.projectShow-appear {\r\n  transform: scale(.1);\r\n}\r\n\r\n.projectShow-appear-active {\r\n  transform: scale(1);\r\n  transition: transform 300ms ease-in;\r\n}\r\n\r\n.projectShow-leave {\r\n  transform: translateX(0);\r\n}\r\n\r\n.projectShow-leave-active {\r\n  transform: translateX(200px);\r\n  transition: transform 2s ease-in;\r\n}\r\n\r\n.projectFullscreenDiv {\r\n  \r\n}\r\n\r\n.projectFullscreenImgDiv {\r\n  max-height: 300px;\r\n  overflow: hidden;\r\n}\r\n\r\n\r\n/*contact page*/\r\n\r\n.contactInput {\r\n  width: 245px;\r\n  padding: 10px;\r\n  margin: 5px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactTextarea {\r\n  width: 500px;\r\n  height: 200px;\r\n  padding: 10px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.1em;\r\n}\r\n\r\n.contactSubmit {\r\n  width: 200px;\r\n  padding: 10px;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactSubmit:hover {\r\n  box-shadow: 2px 2px 1px 1px black;\r\n  font-weight: bold;\r\n}\r\n\r\n.formSubmit {\r\n  animation: formFlip 1s forwards;\r\n}\r\n\r\n@keyframes formFlip {\r\n  0% {\r\n    transform: rotateX(0);\r\n  }\r\n\r\n  100% {\r\n    transform: rotateX(90deg);\r\n  }\r\n}\r\n\r\n.contactContainer {\r\n  position: relative;\r\n}\r\n\r\n.formSuccess {\r\n  color: green;\r\n  position: absolute;\r\n  top: 250px;\r\n  width: 100%;\r\n  text-align: center;\r\n  animation: formSuccess 2s forwards;\r\n}\r\n\r\n@keyframes formSuccess {\r\n  0% {\r\n    opacity: 0;\r\n  }\r\n  50% {\r\n    opacity: 0;\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n  }\r\n}\r\n\r\n.contactTable {\r\n  margin: auto;\r\n  font-size: 1.5em;\r\n}\r\n\r\n.contactTable td {\r\n  padding: 5px;\r\n  text-align: left;\r\n}\r\n\r\n.contactIMG {\r\n  height: 40px;\r\n  width: 50px;\r\n  overflow: hidden;\r\n}\r\n\r\n.contactIMG img {\r\n  max-width: 100%;\r\n  max-height: 100%;\r\n}\r\n\r\n.contactPhone {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactPhone:before {\r\n  content: \"\\260E\";\r\n  font-size: 2em;\r\n}\r\n\r\n.contactEmail {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactEmail:before {\r\n  content: \"\\2709\";\r\n  font-size: 2em;\r\n\r\n}\r\n\r\n\r\n\r\n.showForm-enter {\r\n  transform: scale(0);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-enter-active {\r\n  transform: scale(1);\r\n}\r\n\r\n.showForm-leave {\r\n  transform: scale(1);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-leave-active {\r\n  transform: scale(0);\r\n}\r\n\r\n#emailMeLink:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n#emailMeLink {\r\n  color: blue;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n/*skills chart*/\r\n\r\n.skillsContainer {\r\n  width: 100%;\r\n  min-height: 800px;\r\n  border: 2px solid purple;\r\n}\r\n\r\n#d3SkillsContainer {\r\n  height: 600px;\r\n  width: 90%;\r\n  margin: auto;\r\n  border: 2px solid blue;\r\n  position: relative;\r\n  overflow: hidden;\r\n}\r\n\r\n.tooltipDiv {\r\n  width: 150px;\r\n  text-align: center;\r\n  padding: 10px;\r\n}\r\n\r\n.tooltipDiv:after {\r\n  content: '';\r\n  width: 0px;\r\n  height: 0px;\r\n  border: 10px solid transparent;\r\n  border-top: 10px solid black;\r\n  position: relative;\r\n  top: 38px;\r\n  right: 80px;\r\n\r\n}\r\n\r\n#d3ButtonDiv {\r\n  position: absolute;\r\n  width: 100%;\r\n}\r\n\r\n.skillsButton {\r\n  padding: 20px;\r\n  margin: 10px;\r\n  background: rgba(244, 245, 247, .5);\r\n  border: none;\r\n  min-width: 100px;\r\n}\r\n\r\n.skillsButton:focus {\r\n  outline: 0;\r\n}\r\n\r\n.skillsButton:hover {\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n}\r\n\r\n.d3Active {\r\n  background: lightblue;\r\n}\r\n\r\n.d3Circle {\r\n  animation: stroke 1000ms linear alternate infinite;\r\n}\r\n\r\n@keyframes stroke {\r\n  0% {\r\n    stroke-opacity: 1;\r\n  }\r\n  100% {\r\n    stroke-opacity: .3;\r\n  }\r\n}", ""]);
 
 	// exports
 
@@ -55188,7 +55224,7 @@
 
 
 	// module
-	exports.push([module.id, "@media screen and (max-width: 1000px) {\r\n  html, body {\r\n    min-height: 100%;\r\n    margin: 0;\r\n  }\r\n  #contentSpace {\r\n    width: 99%;\r\n  }\r\n  nav td {\r\n    height: 150px;\r\n    color: white;\r\n    font-weight: bold;\r\n  }\r\n}", ""]);
+	exports.push([module.id, "@media screen and (max-width: 1000px) {\r\n  * {\r\n    font-size: 1.05em;\r\n  }\r\n  html, body, #app, #app > div {\r\n    height: 100vh;\r\n    width: 100%;\r\n  }\r\n\r\n  #layoutDiv {\r\n    height: 100vh;\r\n  }\r\n  .homeContainer {\r\n    width: 100%;\r\n    height: 90vh;\r\n  }\r\n  #contentSpace {\r\n    width: 98%;\r\n  }\r\n  .contentContainer {\r\n    min-height: 75vh;\r\n  }\r\n\r\n  .contentContainer > div {\r\n    min-height: 75vh;\r\n    width: 100%;\r\n  }\r\n\r\n  .skillsContainer svg {\r\n    min-height: 75vh;\r\n  }\r\n\r\n  #d3SkillsContainer {\r\n    min-height: 75vh;\r\n  }\r\n\r\n  #projectsContainerDiv {\r\n    min-height: 75vh;\r\n\r\n  }\r\n\r\n  .projectDiv {\r\n \r\n  }\r\n\r\n\r\n  nav td {\r\n    height: 10vh;\r\n    color: white;\r\n    font-weight: bold;\r\n  }\r\n\r\n  .component-enter {\r\n    transform: rotateX(90deg);\r\n  }\r\n\r\n  .component-enter-active {\r\n    transform: rotateX(0deg);\r\n    transition: transform 300ms ease-out 300ms;\r\n  }\r\n\r\n  .component-leave {\r\n    transform: rotateX(0deg);\r\n  }\r\n\r\n  .component-leave-active {\r\n    transform: rotateX(90deg);\r\n    transition: transform 300ms ease-in;\r\n  }\r\n\r\n  .projectDiv {\r\n    width: 75vw;\r\n    margin: auto;\r\n  }\r\n}", ""]);
 
 	// exports
 

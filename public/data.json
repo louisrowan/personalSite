@@ -3,7 +3,7 @@
     {
       "name": "Event Tracker",
       "description": "This is a site that does some stuff",
-      "image": "./images/event.JPG",
+      "image": "/public/images/event.JPG",
       "github": "https://github.com/louisrowan/event-tracker",
       "learned": "This was my first exposure to using an API or JSON, as well as using JQuery on the front-end to create a dynamic website.",
       "technologies": [
@@ -12,7 +12,7 @@
     },
     {
       "name": "Mathio Party",
-      "image": "./images/mathio.JPG",
+      "image": "/public/images/mathio.JPG",
       "description": "Play your games",
       "learned": "This was a week-long group project that I put at least 80 hours into, so I learned a great deal about group version control and using an agile workflow. This was also my introduction to data collection and visualization.",
       "technologies": [
@@ -22,7 +22,7 @@
     {
       "name": "Rainy Day Science",
       "description": "Award winning project at the 2016 San Francisco 'Science Hack Day'.",
-      "image": "./images/science.JPG",
+      "image": "/public/images/science.JPG",
       "github": "https://github.com/louisrowan/science-hack-react",
       "learned": "This was my first experiene working on a decoupled app, with a Rails backend and React front-end. I learned a good deal about manipulating the DOM in React using vanilla JavaScript and CSS, as opposed to using JQuery.",
       "technologies": [
