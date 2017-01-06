@@ -1,0 +1,14 @@
+@media screen and (max-width: 1000px) {
+  html, body {
+    min-height: 100%;
+    margin: 0;
+  }
+  #contentSpace {
+    width: 99%;
+  }
+  nav td {
+    height: 150px;
+    color: white;
+    font-weight: bold;
+  }
+}

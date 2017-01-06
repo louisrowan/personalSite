@@ -63,6 +63,7 @@
 
 	var HomeContainer = __webpack_require__(234);
 	__webpack_require__(322);
+	__webpack_require__(326);
 
 	var App = React.createClass({
 	  displayName: 'App',
@@ -26652,19 +26653,9 @@
 	      'div',
 	      { className: 'skillsContainer' },
 	      React.createElement(
-	        'p',
+	        'h1',
 	        null,
-	        'skills'
-	      ),
-	      React.createElement(
-	        'p',
-	        null,
-	        'Ruby'
-	      ),
-	      React.createElement(
-	        'p',
-	        null,
-	        'Rails'
+	        'some mad Skillz'
 	      ),
 	      React.createElement(SkillsD3, null)
 	    );
@@ -26694,7 +26685,7 @@
 	    var width = parseInt(svg.style('width'));
 	    var radius = width / 15;
 
-	    var tooltip = d3.select('#d3SkillsContainer').append('div').style('position', 'absolute').style('z-index', '10').style('visibility', 'hidden').classed('tooltipDiv', 'true').text('').style('background', 'black').style('color', 'white').style('padding', '10px');
+	    var tooltip = d3.select('#d3SkillsContainer').append('div').style('position', 'absolute').style('z-index', '10').style('visibility', 'hidden').classed('tooltipDiv', 'true').text('JavaScript').style('background', 'black').style('color', 'white');
 
 	    var nodes = svg.selectAll('circle').data(data).enter().append('g');
 
@@ -26722,22 +26713,41 @@
 	      return width / 2;
 	    }).strength(0.05);
 
-	    var forceXSplit = d3Force.forceX(function (d) {
-	      if (d.type === 'front') {
-	        return width / 4;
-	      } else {
-	        return 3 * width / 4;
-	      }
-	    });
+	    var forceYNormal = d3Force.forceY(function (d) {
+	      return height / 2;
+	    }).strength(0.05);
 
-	    var simulation = d3Force.forceSimulation().force('x', forceXNormal).force('y', d3Force.forceY(height / 2).strength(0.05)).force('collide', d3Force.forceCollide(function (d) {
+	    var forceYFront = d3Force.forceY(function (d) {
+	      if (d.type === 'front') {
+	        return height / 2;
+	      } else {
+	        return 2 * height;
+	      }
+	    }).strength(0.05);
+
+	    var forceYBack = d3Force.forceY(function (d) {
+	      if (d.type === 'back') {
+	        return height / 2;
+	      } else {
+	        return 2 * height;
+	      }
+	    }).strength(0.05);
+
+	    var simulation = d3Force.forceSimulation().force('x', forceXNormal).force('y', forceYNormal).force('collide', d3Force.forceCollide(function (d) {
 	      console.log(d);
 	      return width / 15;
 	    }));
 
-	    d3.select('#skillsLeft').on('click', function () {
-	      console.log('click');
-	      simulation.force('x', forceXSplit).alphaTarget(0.5).restart();
+	    d3.select('#skillsFront').on('click', function () {
+	      simulation.force('y', forceYFront).alphaTarget(0.5).restart();
+	    });
+
+	    d3.select('#skillsBack').on('click', function () {
+	      simulation.force('y', forceYBack).alphaTarget(0.5).restart();
+	    });
+
+	    d3.select('#skillsAll').on('click', function () {
+	      simulation.force('y', forceYNormal).alphaTarget(0.5).restart();
 	    });
 
 	    simulation.nodes(data).on('tick', ticked);
@@ -26756,8 +26766,18 @@
 	      { id: 'd3SkillsContainer' },
 	      React.createElement(
 	        'button',
-	        { id: 'skillsLeft' },
-	        'Left'
+	        { id: 'skillsFront' },
+	        'Front-End'
+	      ),
+	      React.createElement(
+	        'button',
+	        { id: 'skillsAll' },
+	        'All'
+	      ),
+	      React.createElement(
+	        'button',
+	        { id: 'skillsBack' },
+	        'Back-End'
 	      ),
 	      React.createElement('svg', null)
 	    );
@@ -41791,6 +41811,41 @@
 				"name": "Redux",
 				"type": "front",
 				"image": "./images/redux.png"
+			},
+			{
+				"name": "D3",
+				"type": "front",
+				"image": "./images/d3.png"
+			},
+			{
+				"name": "Git/Github",
+				"type": "other",
+				"image": "./images/github.png"
+			},
+			{
+				"name": "Node/Webpack",
+				"type": "back",
+				"image": "./images/node.jpg"
+			},
+			{
+				"name": "C/C++",
+				"type": "back",
+				"image": "./images/c.jpg"
+			},
+			{
+				"name": "SQL",
+				"type": "back",
+				"image": "./images/sql.png"
+			},
+			{
+				"name": "Python",
+				"type": "back",
+				"image": "./images/python.png"
+			},
+			{
+				"name": "Ruby",
+				"type": "back",
+				"image": "./images/ruby.png"
 			}
 		]
 	};
@@ -44310,12 +44365,20 @@
 	              React.createElement(
 	                'td',
 	                null,
-	                React.createElement('div', { className: 'contactPhone contactIMG' })
+	                React.createElement(
+	                  'a',
+	                  { href: 'tel:6173653595' },
+	                  React.createElement('div', { className: 'contactPhone contactIMG' })
+	                )
 	              ),
 	              React.createElement(
 	                'td',
 	                null,
-	                '617-365-3595'
+	                React.createElement(
+	                  'a',
+	                  { href: 'tel:6173653595' },
+	                  '617-365-3595'
+	                )
 	              )
 	            ),
 	            React.createElement(
@@ -54777,7 +54840,7 @@
 
 
 	// module
-	exports.push([module.id, "* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: Georgia, Serif;\r\n}\r\n\r\nh1 {\r\n  padding: 20px;\r\n}\r\n\r\np {\r\n  padding: 10px;\r\n}\r\n\r\n.homeContainer {\r\n  width: 100%;\r\n  min-height: 1000px;\r\n  background: linear-gradient(to bottom right,\r\n    rgba(45, 6, 56, 1),\r\n    rgba(131, 11, 168, 1)\r\n  );\r\n  padding: 60px 0px;\r\n  color: orange;\r\n}\r\n\r\n.headerContainer {\r\n  width: 100%;\r\n  min-height: 1000px;\r\n  text-align: center;\r\n  border-bottom: 10px solid white;\r\n  color: white;\r\n}\r\n\r\n.contentContainer {\r\n  position: absolute;\r\n  background: white;\r\n  width: 100%;\r\n  min-height: 100%;\r\n  box-shadow: 0px 0px 50px 5px black, 0px 0px 10px 2px rgba(45, 6, 56, 1) inset;\r\n  padding: 10px;\r\n}\r\n\r\n.emp {\r\n  font-size: 1.3em;\r\n  font-weight: bold;\r\n}\r\n\r\n.projectDiv {\r\n  width: 50%;\r\n  height: 400px;\r\n  margin: auto;\r\n  position: relative;\r\n}\r\n\r\n.arrowDiv {\r\n  box-sizing: none;\r\n  height: 0;\r\n  width: 0;\r\n  border: 30px solid transparent;\r\n  position: absolute;\r\n  top: 45%;\r\n  bottom: 45%;\r\n}\r\n\r\n.arrowDiv:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n.leftArrowDiv {\r\n  border-right: 40px solid rgba(45, 6, 56, 1);\r\n  left: 10px;\r\n}\r\n\r\n.leftArrowDiv:hover {\r\n  border-right: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n.rightArrowDiv {\r\n  border-left: 40px solid rgba(45, 6, 56, 1);\r\n  right: 10px;\r\n}\r\n\r\n.rightArrowDiv:hover {\r\n  border-left: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n.component-enter {\r\n  transform: rotateY(90deg) rotateX(90deg);\r\n}\r\n\r\n.component-enter-active {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n  transition: transform 300ms ease-out 300ms;\r\n}\r\n\r\n.component-leave {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n}\r\n\r\n.component-leave-active {\r\n  transform: rotateY(90deg) rotateX(-90deg);\r\n  transition: transform 300ms ease-in;\r\n}\r\n\r\n#contentSpace {\r\n  width: 90%;\r\n  max-width: 1000px;\r\n  min-height: 600px;\r\n  overflow: visible;\r\n  text-align: center;\r\n  margin: 20px auto;\r\n  color: black;\r\n  position: relative;\r\n}\r\n\r\nnav table {\r\n  width: 100%;\r\n  background: black;\r\n  color: purple;\r\n}\r\n\r\nnav td {\r\n  width: 25%;\r\n  text-align: center;\r\n  height: 50px;\r\n}\r\n\r\nnav td:hover {\r\n  background: #141619;\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n}\r\n\r\n.projectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: absolute;\r\n  box-shadow: 0px 0px 10px 5px black;\r\n}\r\n\r\n.hoverProjectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: relative;\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  position: absolute;\r\n}\r\n\r\n.thumbImgDiv {\r\n  width: 100%;\r\n  height: 200px;\r\n  border-top: 5px solid black;\r\n}\r\n\r\n.thumbImgDiv img {\r\n  width: 100%;\r\n}\r\n\r\n.hiddenThumbDiv {\r\n  position: absolute;\r\n  height: 100%;\r\n  width: 100%;\r\n  background: transparent;\r\n  cursor: pointer;\r\n  z-index: 2;\r\n  background-color: rgba(0, 0, 0, .5);\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.hiddenThumbDiv h2 {\r\n  background: white;\r\n  margin: auto;\r\n  width: 100%;\r\n  padding: 10px;\r\n}\r\n\r\n.hidden {\r\n  display: none;\r\n}\r\n\r\n/*.nextProjectThumb {\r\n  height: 400px;\r\n  width: 20%;\r\n  background: purple;\r\n  overflow: hidden;\r\n  transform: scale(.5);\r\n  position: absolute;\r\n  left: 50px;\r\n}\r\n*/\r\n\r\n\r\n\r\n.projectFlip-enter {\r\n  transform: rotateY(-90deg);\r\n}\r\n\r\n.projectFlip-enter-active {\r\n  transform: rotateY(0deg);\r\n  transition: transform 400ms ease-out 200ms;\r\n}\r\n\r\n.projectFlip-leave {\r\n  transform: rotateY(0deg);\r\n}\r\n\r\n.projectFlip-leave-active {\r\n  transform: rotateY(90deg);\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  transition:\r\n    transform 200ms ease-in,\r\n    box-shadow 200ms ease-in;\r\n}\r\n\r\n\r\n\r\n\r\n.projectShow-appear {\r\n  transform: scale(.1);\r\n}\r\n\r\n.projectShow-appear-active {\r\n  transform: scale(1);\r\n  transition: transform 300ms ease-in;\r\n}\r\n\r\n.projectShow-leave {\r\n  transform: translateX(0);\r\n}\r\n\r\n.projectShow-leave-active {\r\n  transform: translateX(200px);\r\n  transition: transform 2s ease-in;\r\n}\r\n\r\n.projectFullscreenDiv {\r\n  \r\n}\r\n\r\n.projectFullscreenImgDiv {\r\n  max-height: 300px;\r\n  overflow: hidden;\r\n}\r\n\r\n\r\n/*contact page*/\r\n\r\n.contactInput {\r\n  width: 245px;\r\n  padding: 10px;\r\n  margin: 5px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactTextarea {\r\n  width: 500px;\r\n  height: 200px;\r\n  padding: 10px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.1em;\r\n}\r\n\r\n.contactSubmit {\r\n  width: 200px;\r\n  padding: 10px;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactSubmit:hover {\r\n  box-shadow: 2px 2px 1px 1px black;\r\n  font-weight: bold;\r\n}\r\n\r\n.formSubmit {\r\n  animation: formFlip 1s forwards;\r\n}\r\n\r\n@keyframes formFlip {\r\n  0% {\r\n    transform: rotateX(0);\r\n  }\r\n\r\n  100% {\r\n    transform: rotateX(90deg);\r\n  }\r\n}\r\n\r\n.contactContainer {\r\n  position: relative;\r\n}\r\n\r\n.formSuccess {\r\n  color: green;\r\n  position: absolute;\r\n  top: 250px;\r\n  width: 100%;\r\n  text-align: center;\r\n  animation: formSuccess 2s forwards;\r\n}\r\n\r\n@keyframes formSuccess {\r\n  0% {\r\n    opacity: 0;\r\n  }\r\n  50% {\r\n    opacity: 0;\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n  }\r\n}\r\n\r\n.contactTable {\r\n  margin: auto;\r\n  font-size: 1.5em;\r\n}\r\n\r\n.contactTable td {\r\n  padding: 5px;\r\n  text-align: left;\r\n}\r\n\r\n.contactIMG {\r\n  height: 40px;\r\n  width: 50px;\r\n  overflow: hidden;\r\n}\r\n\r\n.contactIMG img {\r\n  max-width: 100%;\r\n  max-height: 100%;\r\n}\r\n\r\n.contactPhone {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactPhone:before {\r\n  content: \"\\260E\";\r\n  font-size: 2em;\r\n}\r\n\r\n.contactEmail {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactEmail:before {\r\n  content: \"\\2709\";\r\n  font-size: 2em;\r\n\r\n}\r\n\r\n\r\n\r\n.showForm-enter {\r\n  transform: scale(0);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-enter-active {\r\n  transform: scale(1);\r\n}\r\n\r\n.showForm-leave {\r\n  transform: scale(1);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-leave-active {\r\n  transform: scale(0);\r\n}\r\n\r\n#emailMeLink:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n#emailMeLink {\r\n  color: blue;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n/*skills chart*/\r\n\r\n.skillsContainer {\r\n  width: 100%;\r\n  min-height: 800px;\r\n  border: 2px solid purple;\r\n}\r\n\r\n#d3SkillsContainer {\r\n  height: 600px;\r\n  width: 90%;\r\n  margin: auto;\r\n  border: 2px solid blue;\r\n  position: relative;\r\n}\r\n\r\n.tooltipDiv {\r\n  width: 150px;\r\n  text-align: center;\r\n}\r\n\r\n.tooltipDiv:after {\r\n  content: '';\r\n  width: 0px;\r\n  height: 0px;\r\n  border: 10px solid transparent;\r\n  border-top: 10px solid black;\r\n  position: relative;\r\n  top: 38px;\r\n  right: 80px;\r\n\r\n}", ""]);
+	exports.push([module.id, "* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: Georgia, Serif;\r\n}\r\n\r\nh1 {\r\n  padding: 20px;\r\n}\r\n\r\np {\r\n  padding: 10px;\r\n}\r\n\r\n.homeContainer {\r\n  width: 100%;\r\n  min-height: 1000px;\r\n  background: linear-gradient(to bottom right,\r\n    rgba(45, 6, 56, 1),\r\n    rgba(131, 11, 168, 1)\r\n  );\r\n  padding: 60px 0px;\r\n  color: orange;\r\n}\r\n\r\n.headerContainer {\r\n  width: 100%;\r\n  min-height: 1000px;\r\n  text-align: center;\r\n  border-bottom: 10px solid white;\r\n  color: white;\r\n}\r\n\r\n.contentContainer {\r\n  position: absolute;\r\n  background: white;\r\n  width: 100%;\r\n  min-height: 100%;\r\n  box-shadow: 0px 0px 50px 5px black, 0px 0px 10px 2px rgba(45, 6, 56, 1) inset;\r\n  padding: 10px;\r\n}\r\n\r\n.emp {\r\n  font-size: 1.3em;\r\n  font-weight: bold;\r\n}\r\n\r\n.projectDiv {\r\n  width: 50%;\r\n  height: 400px;\r\n  margin: auto;\r\n  position: relative;\r\n}\r\n\r\n.arrowDiv {\r\n  box-sizing: none;\r\n  height: 0;\r\n  width: 0;\r\n  border: 30px solid transparent;\r\n  position: absolute;\r\n  top: 45%;\r\n  bottom: 45%;\r\n}\r\n\r\n.arrowDiv:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n.leftArrowDiv {\r\n  border-right: 40px solid rgba(45, 6, 56, 1);\r\n  left: 10px;\r\n}\r\n\r\n.leftArrowDiv:hover {\r\n  border-right: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n.rightArrowDiv {\r\n  border-left: 40px solid rgba(45, 6, 56, 1);\r\n  right: 10px;\r\n}\r\n\r\n.rightArrowDiv:hover {\r\n  border-left: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n.component-enter {\r\n  transform: rotateY(90deg) rotateX(90deg);\r\n}\r\n\r\n.component-enter-active {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n  transition: transform 300ms ease-out 300ms;\r\n}\r\n\r\n.component-leave {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n}\r\n\r\n.component-leave-active {\r\n  transform: rotateY(90deg) rotateX(-90deg);\r\n  transition: transform 300ms ease-in;\r\n}\r\n\r\n#contentSpace {\r\n  width: 90%;\r\n  max-width: 1000px;\r\n  min-height: 600px;\r\n  overflow: visible;\r\n  text-align: center;\r\n  margin: 20px auto;\r\n  color: black;\r\n  position: relative;\r\n}\r\n\r\nnav table {\r\n  width: 100%;\r\n  background: black;\r\n  color: purple;\r\n}\r\n\r\nnav td {\r\n  width: 25%;\r\n  text-align: center;\r\n  height: 50px;\r\n}\r\n\r\nnav td:hover {\r\n  background: #141619;\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n}\r\n\r\n.projectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: absolute;\r\n  box-shadow: 0px 0px 10px 5px black;\r\n}\r\n\r\n.hoverProjectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: relative;\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  position: absolute;\r\n}\r\n\r\n.thumbImgDiv {\r\n  width: 100%;\r\n  height: 200px;\r\n  border-top: 5px solid black;\r\n}\r\n\r\n.thumbImgDiv img {\r\n  width: 100%;\r\n}\r\n\r\n.hiddenThumbDiv {\r\n  position: absolute;\r\n  height: 100%;\r\n  width: 100%;\r\n  background: transparent;\r\n  cursor: pointer;\r\n  z-index: 2;\r\n  background-color: rgba(0, 0, 0, .5);\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.hiddenThumbDiv h2 {\r\n  background: white;\r\n  margin: auto;\r\n  width: 100%;\r\n  padding: 10px;\r\n}\r\n\r\n.hidden {\r\n  display: none;\r\n}\r\n\r\n/*.nextProjectThumb {\r\n  height: 400px;\r\n  width: 20%;\r\n  background: purple;\r\n  overflow: hidden;\r\n  transform: scale(.5);\r\n  position: absolute;\r\n  left: 50px;\r\n}\r\n*/\r\n\r\n\r\n\r\n.projectFlip-enter {\r\n  transform: rotateY(-90deg);\r\n}\r\n\r\n.projectFlip-enter-active {\r\n  transform: rotateY(0deg);\r\n  transition: transform 400ms ease-out 200ms;\r\n}\r\n\r\n.projectFlip-leave {\r\n  transform: rotateY(0deg);\r\n}\r\n\r\n.projectFlip-leave-active {\r\n  transform: rotateY(90deg);\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  transition:\r\n    transform 200ms ease-in,\r\n    box-shadow 200ms ease-in;\r\n}\r\n\r\n\r\n\r\n\r\n.projectShow-appear {\r\n  transform: scale(.1);\r\n}\r\n\r\n.projectShow-appear-active {\r\n  transform: scale(1);\r\n  transition: transform 300ms ease-in;\r\n}\r\n\r\n.projectShow-leave {\r\n  transform: translateX(0);\r\n}\r\n\r\n.projectShow-leave-active {\r\n  transform: translateX(200px);\r\n  transition: transform 2s ease-in;\r\n}\r\n\r\n.projectFullscreenDiv {\r\n  \r\n}\r\n\r\n.projectFullscreenImgDiv {\r\n  max-height: 300px;\r\n  overflow: hidden;\r\n}\r\n\r\n\r\n/*contact page*/\r\n\r\n.contactInput {\r\n  width: 245px;\r\n  padding: 10px;\r\n  margin: 5px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactTextarea {\r\n  width: 500px;\r\n  height: 200px;\r\n  padding: 10px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.1em;\r\n}\r\n\r\n.contactSubmit {\r\n  width: 200px;\r\n  padding: 10px;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactSubmit:hover {\r\n  box-shadow: 2px 2px 1px 1px black;\r\n  font-weight: bold;\r\n}\r\n\r\n.formSubmit {\r\n  animation: formFlip 1s forwards;\r\n}\r\n\r\n@keyframes formFlip {\r\n  0% {\r\n    transform: rotateX(0);\r\n  }\r\n\r\n  100% {\r\n    transform: rotateX(90deg);\r\n  }\r\n}\r\n\r\n.contactContainer {\r\n  position: relative;\r\n}\r\n\r\n.formSuccess {\r\n  color: green;\r\n  position: absolute;\r\n  top: 250px;\r\n  width: 100%;\r\n  text-align: center;\r\n  animation: formSuccess 2s forwards;\r\n}\r\n\r\n@keyframes formSuccess {\r\n  0% {\r\n    opacity: 0;\r\n  }\r\n  50% {\r\n    opacity: 0;\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n  }\r\n}\r\n\r\n.contactTable {\r\n  margin: auto;\r\n  font-size: 1.5em;\r\n}\r\n\r\n.contactTable td {\r\n  padding: 5px;\r\n  text-align: left;\r\n}\r\n\r\n.contactIMG {\r\n  height: 40px;\r\n  width: 50px;\r\n  overflow: hidden;\r\n}\r\n\r\n.contactIMG img {\r\n  max-width: 100%;\r\n  max-height: 100%;\r\n}\r\n\r\n.contactPhone {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactPhone:before {\r\n  content: \"\\260E\";\r\n  font-size: 2em;\r\n}\r\n\r\n.contactEmail {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactEmail:before {\r\n  content: \"\\2709\";\r\n  font-size: 2em;\r\n\r\n}\r\n\r\n\r\n\r\n.showForm-enter {\r\n  transform: scale(0);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-enter-active {\r\n  transform: scale(1);\r\n}\r\n\r\n.showForm-leave {\r\n  transform: scale(1);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-leave-active {\r\n  transform: scale(0);\r\n}\r\n\r\n#emailMeLink:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n#emailMeLink {\r\n  color: blue;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n/*skills chart*/\r\n\r\n.skillsContainer {\r\n  width: 100%;\r\n  min-height: 800px;\r\n  border: 2px solid purple;\r\n}\r\n\r\n#d3SkillsContainer {\r\n  height: 600px;\r\n  width: 90%;\r\n  margin: auto;\r\n  border: 2px solid blue;\r\n  position: relative;\r\n  overflow: hidden;\r\n}\r\n\r\n.tooltipDiv {\r\n  width: 150px;\r\n  text-align: center;\r\n  padding: 10px;\r\n}\r\n\r\n.tooltipDiv:after {\r\n  content: '';\r\n  width: 0px;\r\n  height: 0px;\r\n  border: 10px solid transparent;\r\n  border-top: 10px solid black;\r\n  position: relative;\r\n  top: 38px;\r\n  right: 80px;\r\n\r\n}", ""]);
 
 	// exports
 
@@ -55088,6 +55151,46 @@
 		if(oldSrc)
 			URL.revokeObjectURL(oldSrc);
 	}
+
+
+/***/ },
+/* 326 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(327);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(325)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./responsive.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./responsive.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 327 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(324)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "@media screen and (max-width: 1000px) {\r\n  html, body {\r\n    min-height: 100%;\r\n    margin: 0;\r\n  }\r\n  #contentSpace {\r\n    width: 99%;\r\n  }\r\n  nav td {\r\n    height: 150px;\r\n    color: white;\r\n    font-weight: bold;\r\n  }\r\n}", ""]);
+
+	// exports
 
 
 /***/ }

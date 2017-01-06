@@ -83,7 +83,7 @@ const ContactContainer = React.createClass({
           <table className='contactTable'>
            <tbody>
              <tr>
-                <td><div className='contactPhone contactIMG'></div></td><td>617-365-3595</td>
+                <td><a href='tel:6173653595'><div className='contactPhone contactIMG'></div></a></td><td><a href='tel:6173653595'>617-365-3595</a></td>
              </tr>
               <tr>
                 <td><div className='contactIMG'><img src={data.linkedin} /></div></td><td><a target="_blank" href="https://www.linkedin.com/in/louis-rowan-54869986">LinkedIn</a></td>

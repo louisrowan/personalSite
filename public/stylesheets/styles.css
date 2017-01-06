@@ -411,11 +411,13 @@ nav td:hover {
   margin: auto;
   border: 2px solid blue;
   position: relative;
+  overflow: hidden;
 }
 
 .tooltipDiv {
   width: 150px;
   text-align: center;
+  padding: 10px;
 }
 
 .tooltipDiv:after {

@@ -54,6 +54,42 @@
       "name": "Redux",
       "type": "front",
       "image": "./images/redux.png"
+    },
+    {
+      "name": "D3",
+      "type": "front",
+      "image": "./images/d3.png"
+    },
+    {
+      "name": "Git/Github",
+      "type": "other",
+      "image": "./images/github.png"
+    },
+    {
+      "name": "Node/Webpack",
+      "type": "back",
+      "image": "./images/node.jpg"
+    },
+    {
+      "name": "C/C++",
+      "type": "back",
+      "image": "./images/c.jpg"
+    },
+    {
+      "name": "SQL",
+      "type": "back",
+      "image": "./images/sql.png"
+    },
+    {
+      "name": "Python",
+      "type": "back",
+      "image": "./images/python.png"
+    },
+    {
+      "name": "Ruby",
+      "type": "back",
+      "image": "./images/ruby.png"
     }
+
   ] 
 }

@@ -21,10 +21,9 @@ const SkillsD3 = React.createClass({
       .style('z-index', '10')
       .style('visibility', 'hidden')
       .classed('tooltipDiv', 'true')
-      .text('')
+      .text('JavaScript')
       .style('background', 'black')
       .style('color', 'white')
-      .style('padding', '10px')
 
     const nodes = svg.selectAll('circle')
       .data(data)
@@ -67,24 +66,49 @@ const SkillsD3 = React.createClass({
       return width/2
     }).strength(0.05)
 
-    const forceXSplit = d3Force.forceX((d) => {
+    const forceYNormal = d3Force.forceY((d) => {
+      return height/2
+    }).strength(0.05)
+
+    const forceYFront = d3Force.forceY((d) => {
       if (d.type === 'front') {
-        return width/4
+        return height/2
       } else {
-        return 3*width/4
+        return 2*height
       }
-    })
+    }).strength(0.05)
+
+    const forceYBack = d3Force.forceY((d) => {
+      if (d.type === 'back') {
+        return height/2
+      } else {
+        return 2*height
+      }
+    }).strength(0.05)
 
     const simulation = d3Force.forceSimulation()
       .force('x', forceXNormal)
-      .force('y', d3Force.forceY(height/2).strength(0.05))
+      .force('y', forceYNormal)
       .force('collide', d3Force.forceCollide((d) => { console.log(d)
         return width/15 }))
 
-    d3.select('#skillsLeft').on('click', function() {
-      console.log('click')
+    d3.select('#skillsFront').on('click', function() {
       simulation
-        .force('x', forceXSplit)
+        .force('y', forceYFront)
+        .alphaTarget(0.5)
+        .restart()
+    })
+
+    d3.select('#skillsBack').on('click', function() {
+      simulation
+        .force('y', forceYBack)
+        .alphaTarget(0.5)
+        .restart()
+    })
+
+    d3.select('#skillsAll').on('click', function() {
+      simulation
+        .force('y', forceYNormal)
         .alphaTarget(0.5)
         .restart()
     })
@@ -107,7 +131,9 @@ const SkillsD3 = React.createClass({
   render() {
     return (
       <div id='d3SkillsContainer'>
-      <button id='skillsLeft'>Left</button>
+      <button id='skillsFront'>Front-End</button>
+      <button id='skillsAll'>All</button>
+      <button id='skillsBack'>Back-End</button>
         <svg>
         </svg>
       </div>

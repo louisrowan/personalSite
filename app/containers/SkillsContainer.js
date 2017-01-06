@@ -5,9 +5,7 @@ const SkillsContainer = React.createClass({
   render(){
     return (
       <div className='skillsContainer'>
-        <p>skills</p>
-        <p>Ruby</p>
-        <p>Rails</p>
+        <h1>some mad Skillz</h1>
         <SkillsD3 />
       </div>
     )
