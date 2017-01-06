@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans:700i');
+
 * {
   margin: 0;
   padding: 0;
@@ -5,8 +7,22 @@
   font-family: Georgia, Serif;
 }
 
+a {
+  color: blue;
+  font-weight: bold;
+}
+
+a:visited {
+  color: blue;
+}
+
 h1 {
   padding: 20px;
+  color: purple;
+  font-family: 'Merriweather Sans';
+  font-size: 3em;
+  text-shadow: 1px 1px 1px black;
+
 }
 
 p {
