@@ -33,7 +33,7 @@ const ProjectsContainer = React.createClass({
 
     if (!this.state.fullscreen){
     return (
-      <div>
+      <div id='projectsContainerDiv'>
         <h1>Projects</h1>
         <div className='leftArrowDiv arrowDiv' onClick={() => this.handleScroll(-1)}></div>
           <div className='projectDiv'>

@@ -13,7 +13,7 @@ const HomeContainer = React.createClass({
   },
   render(){
     return (
-      <div>
+      <div id='layoutDiv'>
         <Nav handleClick={this.handleClick} />
         <Home content={this.state.content} />
       </div>
