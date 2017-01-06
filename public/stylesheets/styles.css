@@ -431,3 +431,42 @@ nav td:hover {
   right: 80px;
 
 }
+
+#d3ButtonDiv {
+  position: absolute;
+  width: 100%;
+}
+
+.skillsButton {
+  padding: 20px;
+  margin: 10px;
+  background: rgba(244, 245, 247, .5);
+  border: none;
+  min-width: 100px;
+}
+
+.skillsButton:focus {
+  outline: 0;
+}
+
+.skillsButton:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.d3Active {
+  background: lightblue;
+}
+
+.d3Circle {
+  animation: stroke 1000ms linear alternate infinite;
+}
+
+@keyframes stroke {
+  0% {
+    stroke-opacity: 1;
+  }
+  100% {
+    stroke-opacity: .3;
+  }
+}

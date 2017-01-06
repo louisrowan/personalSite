@@ -5,6 +5,13 @@ const data = require('json!../../public/data.json').skills
 
 
 const SkillsD3 = React.createClass({
+  getInitialState() {
+    return {
+      skillFront: '',
+      skillBack: '',
+      skillAll: 'd3Active'
+    }
+  },
   componentDidMount () {
     const svg = d3.select('svg')
     svg
@@ -13,7 +20,7 @@ const SkillsD3 = React.createClass({
 
     const height = parseInt(svg.style('height'))
     const width = parseInt(svg.style('width'))
-    const radius = width/15
+    const radius = width/14
 
     const tooltip = d3.select('#d3SkillsContainer')
       .append('div')
@@ -49,17 +56,23 @@ const SkillsD3 = React.createClass({
       .style('stroke-width', '2px')
 
     circles.on('mouseover', function(){
+      d3.select(this)
+        .classed('d3Circle', true)
       tooltip
         .style('visibility', 'visible')
 
     }).on('mousemove', function(){
       const left = d3.select(this).attr('cx')
       const top = d3.select(this).attr('cy')
-      console.log(top)
       const name = d3.select(this)[0][0].__data__.name
       tooltip.style('top', top - radius - 20 + 'px')
         .style('left',  left +"px")
         .text(name)
+    }).on('mouseout', function() {
+      d3.select(this)
+        .classed('d3Circle', false)
+      tooltip
+        .style('visibility', 'hidden')
     })
 
     const forceXNormal = d3Force.forceX((d) => {
@@ -89,8 +102,9 @@ const SkillsD3 = React.createClass({
     const simulation = d3Force.forceSimulation()
       .force('x', forceXNormal)
       .force('y', forceYNormal)
-      .force('collide', d3Force.forceCollide((d) => { console.log(d)
-        return width/15 }))
+      .force('collide', d3Force.forceCollide((d) => radius ))
+      .alphaTarget(0.5)
+      .restart()
 
     d3.select('#skillsFront').on('click', function() {
       simulation
@@ -122,18 +136,33 @@ const SkillsD3 = React.createClass({
         .attr('cy', (d) => d.y)
     }
 
-
-
-
-
-
+  },
+  frontClick() {
+    this.setState({ skillFront: 'd3Active', skillBack: '', skillAll: ''})
+  },
+  backClick() {
+    this.setState({ skillBack: 'd3Active', skillFront: '', skillAll: ''})
+  },
+  allClick() {
+    this.setState({ skillAll: 'd3Active', skillFront: '', skillBack: ''})
   },
   render() {
     return (
       <div id='d3SkillsContainer'>
-      <button id='skillsFront'>Front-End</button>
-      <button id='skillsAll'>All</button>
-      <button id='skillsBack'>Back-End</button>
+      <div id='d3ButtonDiv'>
+      <button id='skillsFront'
+        className={'skillsButton ' + this.state.skillFront}
+        onClick={() => this.frontClick() }>
+        Front-End</button>
+      <button id='skillsAll'
+      className={'skillsButton ' + this.state.skillAll}
+      onClick={() => this.allClick() }>
+      All</button>
+      <button id='skillsBack'
+      className={'skillsButton ' + this.state.skillBack}
+      onClick={() => this.backClick() }>
+      Back-End</button>
+      </div>
         <svg>
         </svg>
       </div>
