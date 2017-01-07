@@ -26647,7 +26647,7 @@
 			{
 				"name": "Event Tracker",
 				"description": "This is a site that does some stuff",
-				"image": "./images/eventThumb.JPG",
+				"image": "./images/eventThumb.jpg",
 				"github": "https://github.com/louisrowan/event-tracker",
 				"learned": "This was my first exposure to using an API or JSON, as well as using JQuery on the front-end to create a dynamic website.",
 				"technologies": [
@@ -26658,7 +26658,7 @@
 			},
 			{
 				"name": "Mathio Party",
-				"image": "./images/mathioThumb.JPG",
+				"image": "./images/mathioThumb.jpg",
 				"description": "Play your games",
 				"learned": "This was a week-long group project that I put at least 80 hours into, so I learned a great deal about group version control and using an agile workflow. This was also my introduction to data collection and visualization.",
 				"technologies": [
@@ -26671,7 +26671,7 @@
 			{
 				"name": "Rainy Day Science",
 				"description": "Award winning project at the 2016 San Francisco 'Science Hack Day'.",
-				"image": "./images/scienceThumb.JPG",
+				"image": "./images/scienceThumb.jpg",
 				"github": "https://github.com/louisrowan/science-hack-react",
 				"learned": "This was my first experiene working on a decoupled app, with a Rails backend and React front-end. I learned a good deal about manipulating the DOM in React using vanilla JavaScript and CSS, as opposed to using JQuery.",
 				"technologies": [
@@ -26684,7 +26684,7 @@
 				"description": "First place at the 2016 'Hack Against Violence.' This site was an email form for people to easily contact their local representatives, politicians or ACLU depending on their needs.",
 				"github": "https://github.com/samuelparker/warrnt",
 				"learned": "stuff",
-				"image": "./images/warnntThumb.JPG",
+				"image": "./images/warnntThumb.jpg",
 				"technologies": [
 					"Sinatra",
 					"Ruby",
