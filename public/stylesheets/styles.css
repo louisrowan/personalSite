@@ -62,6 +62,39 @@ p {
   font-weight: bold;
 }
 
+.mainImg {
+  height: 300px;
+  width: 300px;
+  box-shadow: 0px 0px 5px 2px black;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: auto;
+  animation: picture-rotate 5s linear infinite;
+}
+
+@keyframes picture-rotate {
+  0% {
+    transform: rotateY(0deg);
+  }
+  25% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(90deg);
+  }
+  75% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+.mainImg img {
+  height: 100%;
+  width: 100%;
+}
+
 .projectDiv {
   width: 50%;
   height: 400px;
@@ -344,6 +377,23 @@ nav td:hover {
   font-size: 1.5em;
 }
 
+.contactTable tr {
+  background: #fcfcfc;
+}
+
+.contactTable tr:hover {
+  background: white;
+}
+
+.contactTable tr:hover td:first-child {
+  animation: contact-hover 500ms linear forwards;
+}
+
+.contactTable a:hover {
+  text-decoration: none;
+  color: darkblue;
+}
+
 .contactTable td {
   padding: 5px;
   text-align: left;
@@ -379,7 +429,50 @@ nav td:hover {
 .contactEmail:before {
   content: "\2709";
   font-size: 2em;
+  color: black;
 
+}
+
+.iconLink:hover img, .iconLink:hover div:before {
+  transform: scale(1.2);
+}
+
+#h2ClickContact {
+  padding: 10px;
+  color: purple;
+}
+
+#h2ClickContact:before, #h2ClickContact:after {
+  content: "\26E4";
+  font-size: 1.2em;
+  color: black;
+}
+
+#h2ClickContact:hover::before, #h2ClickContact:hover::after {
+  display: inline-block;
+  animation: contact-hover 2s linear forwards infinite;
+}
+
+#h2ClickContact:hover {
+  cursor: pointer;
+}
+
+@keyframes contact-hover {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-90deg);
+  }
+  50% {
+    transform: rotate(-180deg);
+  }
+  75% {
+    transofmr: rotate(-270deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
 }
 
 
@@ -402,13 +495,7 @@ nav td:hover {
   transform: scale(0);
 }
 
-#emailMeLink:hover {
-  cursor: pointer;
-}
 
-#emailMeLink {
-  color: blue;
-}
 
 
 

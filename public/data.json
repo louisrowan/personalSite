@@ -32,7 +32,8 @@
   ],
   "images": {
     "linkedin": "/public/images/linkedin.png",
-    "github": "/public/images/github.png"
+    "github": "/public/images/github.png",
+    "me": "/public/images/me.jpg"
   },
   "skills": [
     {
@@ -91,5 +92,5 @@
       "image": "/public/images/ruby.png"
     }
 
-  ] 
+  ]
 }

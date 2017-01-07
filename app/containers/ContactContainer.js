@@ -83,19 +83,52 @@ const ContactContainer = React.createClass({
           <table className='contactTable'>
            <tbody>
              <tr>
-                <td><a href='tel:6173653595'><div className='contactPhone contactIMG'></div></a></td><td><a href='tel:6173653595'>617-365-3595</a></td>
-             </tr>
+                <td>
+                  <a className='iconLink' href='tel:6173653595'>
+                    <div className='contactPhone contactIMG'>
+                    </div>
+                  </a>
+                </td><td><a href='tel:6173653595'>617-365-3595</a></td>
+              </tr>
               <tr>
-                <td><div className='contactIMG'><img src={data.linkedin} /></div></td><td><a target="_blank" href="https://www.linkedin.com/in/louis-rowan-54869986">LinkedIn</a></td>
+                <td>
+                  <a className='iconLink' target="_blank" href="https://www.linkedin.com/in/louis-rowan-54869986">
+                    <div className='contactIMG'>
+                      <img src={data.linkedin} />
+                    </div>
+                  </a>
+                </td>
+                <td>
+                  <a target="_blank" href="https://www.linkedin.com/in/louis-rowan-54869986">LinkedIn</a>
+                </td>
              </tr>
              <tr>
-                <td><div className='contactIMG'><img src={data.github} /></div></td><td><a target="_blank" href="https://github.com/louisrowan">Github</a></td>
+                <td>
+                  <a className='iconLink' target="_blank" href="https://github.com/louisrowan">
+                    <div className='contactIMG'>
+                      <img src={data.github} />
+                    </div>
+                  </a>
+                </td>
+                <td>
+                  <a target="_blank" href="https://github.com/louisrowan">Github</a>
+                </td>
               </tr>
-             <tr onClick={()=> this.handleShowForm()}>
-                <td><div className='contactEmail contactIMG'></div></td><td><span id='emailMeLink'>Email me</span> - louis.rowan@icloud.com</td>
+             <tr>
+                <td>
+                <a className='iconLink' href='mailto:louis.rowan@icloud.com?Subject=Great%20Website!' target='_top'>
+                  <div className='contactEmail contactIMG'>
+                  </div>
+                </a>
+                </td>
+                <td>
+                  <a href='mailto:louis.rowan@icloud.com?Subject=Great%20Website!' target='_top'>louis.rowan@icloud.com</a>
+                </td>
               </tr>
             </tbody>
           </table>
+          <h2 id='h2ClickContact' onClick={()=> this.handleShowForm()}>
+          Or Click to Message me Directly</h2>
         </div>
 
         {success}
