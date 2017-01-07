@@ -4,7 +4,7 @@ const MainContainer = React.createClass({
   render(){
     return (
       <div>
-        <h1>Hi,</h1>
+        <h1>Hello,</h1>
 
         <p>*insert pic here*</p>
         

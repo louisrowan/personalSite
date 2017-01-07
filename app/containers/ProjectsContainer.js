@@ -31,6 +31,18 @@ const ProjectsContainer = React.createClass({
   render(){
     let shownProject = this.state.projects[this.state.projectIndex]
 
+    let navCircles = (
+      <div className='projectsCirclesList'>
+        {this.state.projects.map((p, i) => {
+          if (i === this.state.projectIndex){
+            return <div className='activeCircle listCircle'></div>
+          } else {
+            return <div className='inactiveCircle listCircle'></div>
+          }
+        })}
+      </div>
+    )
+
     if (!this.state.fullscreen){
     return (
       <div id='projectsContainerDiv'>
@@ -47,6 +59,9 @@ const ProjectsContainer = React.createClass({
             
           </div>
         <div className='rightArrowDiv arrowDiv' onClick={() => this.handleScroll(1)}></div>
+
+        {navCircles}
+      
       </div>
     )}
 

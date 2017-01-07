@@ -368,6 +368,7 @@ nav td:hover {
 .contactPhone:before {
   content: "\260E";
   font-size: 2em;
+  color: black;
 }
 
 .contactEmail {
@@ -418,14 +419,12 @@ nav td:hover {
 .skillsContainer {
   width: 100%;
   min-height: 800px;
-  border: 2px solid purple;
 }
 
 #d3SkillsContainer {
   height: 600px;
   width: 90%;
   margin: auto;
-  border: 2px solid blue;
   position: relative;
   overflow: hidden;
 }
@@ -458,7 +457,7 @@ nav td:hover {
   margin: 10px;
   background: rgba(244, 245, 247, .5);
   border: none;
-  min-width: 100px;
+  min-width: 120px;
 }
 
 .skillsButton:focus {
@@ -485,4 +484,27 @@ nav td:hover {
   100% {
     stroke-opacity: .3;
   }
+}
+
+.inactiveCircle {
+  background: lightgray;
+  transition: background 200ms ease-in;
+}
+
+.activeCircle {
+  background: purple;
+  transition: background 200ms ease-in;
+}
+
+.listCircle {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: inline-block;
+  margin: 10px;
+}
+
+.projectsCirclesList {
+  width: 100%;
+  padding: 20px;
 }

@@ -102,9 +102,7 @@ const SkillsD3 = React.createClass({
     const simulation = d3Force.forceSimulation()
       .force('x', forceXNormal)
       .force('y', forceYNormal)
-      .force('collide', d3Force.forceCollide((d) => radius ))
-      .alphaTarget(0.5)
-      .restart()
+      .force('collide', d3Force.forceCollide((d) => radius + 2 ))
 
     d3.select('#skillsFront').on('click', function() {
       simulation
