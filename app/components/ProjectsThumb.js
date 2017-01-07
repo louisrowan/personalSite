@@ -15,10 +15,6 @@ const ProjectsThumb = React.createClass({
   render(){
     const data = this.props.data
 
-    const technologies = data.technologies.map((t, i) => {
-      return <td key={i}>{t}</td>
-    })
-
     let hiddenDivClass;
     let sectionClass;
     this.state.hover ? hiddenDivClass = 'hiddenThumbDiv' : hiddenDivClass = 'hidden'
@@ -32,19 +28,8 @@ const ProjectsThumb = React.createClass({
         <div onClick={()=> this.props.expand()} className={hiddenDivClass}>
           <h2>View Project</h2>
         </div>
-        <h1>{data.name}</h1>
+        <h2>{data.name}</h2>
         <p>{data.description}</p>
-        <p onClick={() => this.props.expand() }>Show</p>
-        <p>
-          <a href={data.github}>Code</a>
-        </p>
-        <table>
-          <tbody>
-            <tr>
-            {technologies}
-            </tr>
-          </tbody>
-        </table>
         <div className='thumbImgDiv'>
           <img src={data.image} />
           <div></div>
