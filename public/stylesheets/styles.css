@@ -216,18 +216,18 @@ nav td:hover {
 
 .thumbImgDiv {
   width: 100%;
-  min-height: 200px;
+  max-height: 300px;
   border-top: 2px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
 }
 
 .thumbImgDiv img {
   min-width: 100%;
   min-height: 100%;
-  flex-shrink: 0;
+}
+
+.projectsThumbHeader {
+  padding: 10px;
 }
 
 .hiddenThumbDiv {

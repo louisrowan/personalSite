@@ -28,8 +28,10 @@ const ProjectsThumb = React.createClass({
         <div onClick={()=> this.props.expand()} className={hiddenDivClass}>
           <h2>View Project</h2>
         </div>
-        <h2>{data.name}</h2>
-        <p>{data.description}</p>
+        <div className='projectsThumbHeader'>
+          <h2>{data.name}</h2>
+          <p>{data.description}</p>
+        </div>
         <div className='thumbImgDiv'>
           <img src={data.image} />
           <div></div>
