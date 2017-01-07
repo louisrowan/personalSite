@@ -28,6 +28,15 @@
       "technologies": [
         "React", "Rails"
       ]
+    },
+    {
+      "name": "Warnnt",
+      "description": "First place at the 2016 'Hack Against Violence.' This site was an email form for people to easily contact their local representatives, politicians or ACLU depending on their needs.",
+      "github": "https://github.com/samuelparker/warrnt",
+      "learned": "stuff",
+      "technologies": [
+        "Sinatra", "Ruby", "JQuery"
+      ]
     }
   ],
   "images": {
