@@ -26437,7 +26437,7 @@
 	var React = __webpack_require__(2);
 	var HeaderContainer = __webpack_require__(236);
 	var MainContainer = __webpack_require__(237);
-	var SkillsContainer = __webpack_require__(238);
+	var SkillsContainer = __webpack_require__(239);
 	var ProjectsContainer = __webpack_require__(302);
 	var ContactContainer = __webpack_require__(318);
 	var ReactCSSTransitionGroup = __webpack_require__(305);
@@ -26541,6 +26541,7 @@
 	'use strict';
 
 	var React = __webpack_require__(2);
+	var image = __webpack_require__(238).images.me;
 
 	var MainContainer = React.createClass({
 	  displayName: 'MainContainer',
@@ -26551,12 +26552,12 @@
 	      React.createElement(
 	        'h1',
 	        null,
-	        'Hi,'
+	        'Hello,'
 	      ),
 	      React.createElement(
-	        'p',
-	        null,
-	        '*insert pic here*'
+	        'div',
+	        { className: 'mainImg' },
+	        React.createElement('img', { src: image })
 	      ),
 	      React.createElement(
 	        'p',
@@ -26639,12 +26640,118 @@
 
 /***/ },
 /* 238 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"projects": [
+			{
+				"name": "Event Tracker",
+				"description": "This is a site that does some stuff",
+				"image": "/public/images/event.JPG",
+				"github": "https://github.com/louisrowan/event-tracker",
+				"learned": "This was my first exposure to using an API or JSON, as well as using JQuery on the front-end to create a dynamic website.",
+				"technologies": [
+					"Ruby",
+					"Sinatra",
+					"JQuery"
+				]
+			},
+			{
+				"name": "Mathio Party",
+				"image": "/public/images/mathio.JPG",
+				"description": "Play your games",
+				"learned": "This was a week-long group project that I put at least 80 hours into, so I learned a great deal about group version control and using an agile workflow. This was also my introduction to data collection and visualization.",
+				"technologies": [
+					"Rails",
+					"Ruby",
+					"JQuery",
+					"Phaser"
+				]
+			},
+			{
+				"name": "Rainy Day Science",
+				"description": "Award winning project at the 2016 San Francisco 'Science Hack Day'.",
+				"image": "/public/images/science.JPG",
+				"github": "https://github.com/louisrowan/science-hack-react",
+				"learned": "This was my first experiene working on a decoupled app, with a Rails backend and React front-end. I learned a good deal about manipulating the DOM in React using vanilla JavaScript and CSS, as opposed to using JQuery.",
+				"technologies": [
+					"React",
+					"Rails"
+				]
+			}
+		],
+		"images": {
+			"linkedin": "/public/images/linkedin.png",
+			"github": "/public/images/github.png",
+			"me": "/public/images/me.jpg"
+		},
+		"skills": [
+			{
+				"name": "React",
+				"type": "front",
+				"image": "/public/images/react.png"
+			},
+			{
+				"name": "Rails",
+				"type": "back",
+				"image": "/public/images/rails.png"
+			},
+			{
+				"name": "JavaScript",
+				"type": "front",
+				"image": "/public/images/javascript.jpg"
+			},
+			{
+				"name": "Redux",
+				"type": "front",
+				"image": "/public/images/redux.png"
+			},
+			{
+				"name": "D3",
+				"type": "front",
+				"image": "/public/images/d3.png"
+			},
+			{
+				"name": "Git/Github",
+				"type": "other",
+				"image": "/public/images/github.png"
+			},
+			{
+				"name": "Node/Webpack",
+				"type": "back",
+				"image": "/public/images/node.jpg"
+			},
+			{
+				"name": "C/C++",
+				"type": "back",
+				"image": "/public/images/c.jpg"
+			},
+			{
+				"name": "SQL",
+				"type": "back",
+				"image": "/public/images/sql.png"
+			},
+			{
+				"name": "Python",
+				"type": "back",
+				"image": "/public/images/python.png"
+			},
+			{
+				"name": "Ruby",
+				"type": "back",
+				"image": "/public/images/ruby.png"
+			}
+		]
+	};
+
+/***/ },
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var SkillsD3 = __webpack_require__(239);
+	var SkillsD3 = __webpack_require__(240);
 
 	var SkillsContainer = React.createClass({
 	  displayName: 'SkillsContainer',
@@ -26655,7 +26762,7 @@
 	      React.createElement(
 	        'h1',
 	        null,
-	        'some mad Skillz'
+	        'Skills'
 	      ),
 	      React.createElement(SkillsD3, null)
 	    );
@@ -26665,15 +26772,15 @@
 	module.exports = SkillsContainer;
 
 /***/ },
-/* 239 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var rd3 = __webpack_require__(240);
-	var d3Force = __webpack_require__(296);
-	var data = __webpack_require__(301).skills;
+	var rd3 = __webpack_require__(241);
+	var d3Force = __webpack_require__(297);
+	var data = __webpack_require__(238).skills;
 
 	var SkillsD3 = React.createClass({
 	  displayName: 'SkillsD3',
@@ -26744,8 +26851,8 @@
 	    }).strength(0.05);
 
 	    var simulation = d3Force.forceSimulation().force('x', forceXNormal).force('y', forceYNormal).force('collide', d3Force.forceCollide(function (d) {
-	      return radius;
-	    })).alphaTarget(0.5).restart();
+	      return radius + 2;
+	    }));
 
 	    d3.select('#skillsFront').on('click', function () {
 	      simulation.force('y', forceYFront).alphaTarget(0.5).restart();
@@ -26823,40 +26930,40 @@
 	module.exports = SkillsD3;
 
 /***/ },
-/* 240 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports.BarChart = __webpack_require__(241).BarChart;
-	exports.LineChart = __webpack_require__(264).LineChart;
-	exports.PieChart = __webpack_require__(270).PieChart;
-	exports.AreaChart = __webpack_require__(275).AreaChart;
-	exports.Treemap = __webpack_require__(280).Treemap;
-	exports.ScatterChart = __webpack_require__(285).ScatterChart;
-	exports.CandlestickChart = __webpack_require__(290).CandlestickChart;
-
-
-
-/***/ },
 /* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
-	
-	exports.BarChart = __webpack_require__(242);
+	exports.BarChart = __webpack_require__(242).BarChart;
+	exports.LineChart = __webpack_require__(265).LineChart;
+	exports.PieChart = __webpack_require__(271).PieChart;
+	exports.AreaChart = __webpack_require__(276).AreaChart;
+	exports.Treemap = __webpack_require__(281).Treemap;
+	exports.ScatterChart = __webpack_require__(286).ScatterChart;
+	exports.CandlestickChart = __webpack_require__(291).CandlestickChart;
+
 
 
 /***/ },
 /* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
+	
+	exports.BarChart = __webpack_require__(243);
+
+
+/***/ },
+/* 243 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
-	var DataSeries = __webpack_require__(244);
-	var utils = __webpack_require__(247);
+	var d3 = __webpack_require__(244);
+	var DataSeries = __webpack_require__(245);
+	var utils = __webpack_require__(248);
 
-	var $__0=      __webpack_require__(248),Chart=$__0.Chart,XAxis=$__0.XAxis,YAxis=$__0.YAxis;
-	var $__1=     __webpack_require__(257),CartesianChartPropsMixin=$__1.CartesianChartPropsMixin,ViewBoxMixin=$__1.ViewBoxMixin;
+	var $__0=      __webpack_require__(249),Chart=$__0.Chart,XAxis=$__0.XAxis,YAxis=$__0.YAxis;
+	var $__1=     __webpack_require__(258),CartesianChartPropsMixin=$__1.CartesianChartPropsMixin,ViewBoxMixin=$__1.ViewBoxMixin;
 
 	module.exports = React.createClass({
 
@@ -27012,7 +27119,7 @@
 
 
 /***/ },
-/* 243 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;!function() {
@@ -36571,14 +36678,14 @@
 	}();
 
 /***/ },
-/* 244 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
-	var BarContainer = __webpack_require__(245);
+	var d3 = __webpack_require__(244);
+	var BarContainer = __webpack_require__(246);
 
 	module.exports = React.createClass({
 
@@ -36625,14 +36732,14 @@
 
 
 /***/ },
-/* 245 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var Bar = __webpack_require__(246);
-	var shade = __webpack_require__(247).shade;
+	var Bar = __webpack_require__(247);
+	var shade = __webpack_require__(248).shade;
 
 	module.exports = React.createClass({displayName: "exports",
 
@@ -36683,7 +36790,7 @@
 
 
 /***/ },
-/* 246 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36723,10 +36830,10 @@
 
 
 /***/ },
-/* 247 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var d3 = __webpack_require__(243);
+	var d3 = __webpack_require__(244);
 
 
 	exports.calculateScales = function(chartWidth, chartHeight, xValues, yValues)  {
@@ -36881,38 +36988,38 @@
 
 
 /***/ },
-/* 248 */
-/***/ function(module, exports, __webpack_require__) {
-
-	
-	exports.XAxis = __webpack_require__(249).XAxis;
-	exports.YAxis = __webpack_require__(249).YAxis;
-	exports.Chart = __webpack_require__(255).Chart;
-	exports.LegendChart = __webpack_require__(255).LegendChart;
-	exports.Legend = __webpack_require__(262);
-	exports.Voronoi = __webpack_require__(263);
-
-
-/***/ },
 /* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	exports.XAxis = __webpack_require__(250);
-	exports.YAxis = __webpack_require__(254);
+	exports.XAxis = __webpack_require__(250).XAxis;
+	exports.YAxis = __webpack_require__(250).YAxis;
+	exports.Chart = __webpack_require__(256).Chart;
+	exports.LegendChart = __webpack_require__(256).LegendChart;
+	exports.Legend = __webpack_require__(263);
+	exports.Voronoi = __webpack_require__(264);
 
 
 /***/ },
 /* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
+	
+	exports.XAxis = __webpack_require__(251);
+	exports.YAxis = __webpack_require__(255);
+
+
+/***/ },
+/* 251 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
-	var AxisTicks = __webpack_require__(251);
-	var AxisLine = __webpack_require__(252);
-	var Label = __webpack_require__(253);
+	var d3 = __webpack_require__(244);
+	var AxisTicks = __webpack_require__(252);
+	var AxisLine = __webpack_require__(253);
+	var Label = __webpack_require__(254);
 
 	module.exports = React.createClass({
 
@@ -37011,13 +37118,13 @@
 
 
 /***/ },
-/* 251 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
+	var d3 = __webpack_require__(244);
 
 	module.exports = React.createClass({
 
@@ -37206,13 +37313,13 @@
 
 
 /***/ },
-/* 252 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
+	var d3 = __webpack_require__(244);
 
 	module.exports = React.createClass({
 
@@ -37282,7 +37389,7 @@
 
 
 /***/ },
-/* 253 */
+/* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -37376,16 +37483,16 @@
 
 
 /***/ },
-/* 254 */
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
-	var AxisTicks = __webpack_require__(251);
-	var AxisLine = __webpack_require__(252);
-	var Label = __webpack_require__(253);
+	var d3 = __webpack_require__(244);
+	var AxisTicks = __webpack_require__(252);
+	var AxisLine = __webpack_require__(253);
+	var Label = __webpack_require__(254);
 
 	module.exports = React.createClass({
 
@@ -37489,23 +37596,23 @@
 
 
 /***/ },
-/* 255 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	exports.BasicChart = __webpack_require__(256);
-	exports.Chart = __webpack_require__(260);
-	exports.LegendChart = __webpack_require__(261);
+	exports.BasicChart = __webpack_require__(257);
+	exports.Chart = __webpack_require__(261);
+	exports.LegendChart = __webpack_require__(262);
 
 
 /***/ },
-/* 256 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var mixins = __webpack_require__(257);
+	var mixins = __webpack_require__(258);
 
 	module.exports = React.createClass({
 
@@ -37576,22 +37683,22 @@
 
 
 /***/ },
-/* 257 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	exports.CartesianChartPropsMixin = __webpack_require__(258);
-	exports.ViewBoxMixin = __webpack_require__(259);
+	exports.CartesianChartPropsMixin = __webpack_require__(259);
+	exports.ViewBoxMixin = __webpack_require__(260);
 
 
 /***/ },
-/* 258 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
+	var d3 = __webpack_require__(244);
 
 	module.exports =  {
 
@@ -37655,7 +37762,7 @@
 
 
 /***/ },
-/* 259 */
+/* 260 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -37697,14 +37804,14 @@
 
 
 /***/ },
-/* 260 */
+/* 261 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var LegendChart = __webpack_require__(261);
-	var BasicChart = __webpack_require__(256);
+	var LegendChart = __webpack_require__(262);
+	var BasicChart = __webpack_require__(257);
 
 	module.exports = React.createClass({
 
@@ -37749,14 +37856,14 @@
 
 
 /***/ },
-/* 261 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var Legend = __webpack_require__(262);
-	var d3 = __webpack_require__(243);
+	var Legend = __webpack_require__(263);
+	var d3 = __webpack_require__(244);
 
 	module.exports = React.createClass({
 
@@ -37865,13 +37972,13 @@
 
 
 /***/ },
-/* 262 */
+/* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
+	var d3 = __webpack_require__(244);
 
 	module.exports = React.createClass({
 
@@ -37958,13 +38065,13 @@
 
 
 /***/ },
-/* 263 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
+	var d3 = __webpack_require__(244);
 
 	var Polygon = React.createClass({displayName: "Polygon",
 
@@ -38025,25 +38132,25 @@
 
 
 /***/ },
-/* 264 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	exports.LineChart = __webpack_require__(265);
+	exports.LineChart = __webpack_require__(266);
 
 
 /***/ },
-/* 265 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
-	var $__0=      __webpack_require__(248),Chart=$__0.Chart,XAxis=$__0.XAxis,YAxis=$__0.YAxis;
-	var DataSeries = __webpack_require__(266);
-	var utils = __webpack_require__(247);
-	var $__1=     __webpack_require__(257),CartesianChartPropsMixin=$__1.CartesianChartPropsMixin,ViewBoxMixin=$__1.ViewBoxMixin;
+	var d3 = __webpack_require__(244);
+	var $__0=      __webpack_require__(249),Chart=$__0.Chart,XAxis=$__0.XAxis,YAxis=$__0.YAxis;
+	var DataSeries = __webpack_require__(267);
+	var utils = __webpack_require__(248);
+	var $__1=     __webpack_require__(258),CartesianChartPropsMixin=$__1.CartesianChartPropsMixin,ViewBoxMixin=$__1.ViewBoxMixin;
 
 	module.exports = React.createClass({
 
@@ -38176,15 +38283,15 @@
 
 
 /***/ },
-/* 266 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
-	var VoronoiCircleContainer = __webpack_require__(267);
-	var Line = __webpack_require__(269);
+	var d3 = __webpack_require__(244);
+	var VoronoiCircleContainer = __webpack_require__(268);
+	var Line = __webpack_require__(270);
 
 	module.exports = React.createClass({
 
@@ -38289,15 +38396,15 @@
 
 
 /***/ },
-/* 267 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
-	var shade = __webpack_require__(247).shade;
-	var VoronoiCircle = __webpack_require__(268);
+	var d3 = __webpack_require__(244);
+	var shade = __webpack_require__(248).shade;
+	var VoronoiCircle = __webpack_require__(269);
 
 	module.exports = React.createClass({
 
@@ -38370,13 +38477,13 @@
 
 
 /***/ },
-/* 268 */
+/* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
+	var d3 = __webpack_require__(244);
 
 	module.exports = React.createClass({
 
@@ -38414,7 +38521,7 @@
 
 
 /***/ },
-/* 269 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -38461,23 +38568,23 @@
 
 
 /***/ },
-/* 270 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	exports.PieChart = __webpack_require__(271);
+	exports.PieChart = __webpack_require__(272);
 
 
 /***/ },
-/* 271 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var d3 = __webpack_require__(243);
+	var d3 = __webpack_require__(244);
 	var React = __webpack_require__(2);
-	var DataSeries = __webpack_require__(272);
-	var Chart = __webpack_require__(248).Chart;
+	var DataSeries = __webpack_require__(273);
+	var Chart = __webpack_require__(249).Chart;
 
 	module.exports = React.createClass({
 
@@ -38554,14 +38661,14 @@
 
 
 /***/ },
-/* 272 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
-	var ArcContainer = __webpack_require__(273);
+	var d3 = __webpack_require__(244);
+	var ArcContainer = __webpack_require__(274);
 
 
 	module.exports = React.createClass({
@@ -38633,14 +38740,14 @@
 
 
 /***/ },
-/* 273 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var shade = __webpack_require__(247).shade;
-	var Arc = __webpack_require__(274);
+	var shade = __webpack_require__(248).shade;
+	var Arc = __webpack_require__(275);
 
 	module.exports = React.createClass({
 
@@ -38687,13 +38794,13 @@
 
 
 /***/ },
-/* 274 */
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
+	var d3 = __webpack_require__(244);
 
 
 	module.exports = React.createClass({
@@ -38809,24 +38916,24 @@
 
 
 /***/ },
-/* 275 */
+/* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	exports.AreaChart = __webpack_require__(276);
+	exports.AreaChart = __webpack_require__(277);
 
 
 /***/ },
-/* 276 */
+/* 277 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
-	var DataSeries = __webpack_require__(277);
-	var $__0=      __webpack_require__(248),Chart=$__0.Chart,XAxis=$__0.XAxis,YAxis=$__0.YAxis;
-	var $__1=     __webpack_require__(257),CartesianChartPropsMixin=$__1.CartesianChartPropsMixin,ViewBoxMixin=$__1.ViewBoxMixin;
+	var d3 = __webpack_require__(244);
+	var DataSeries = __webpack_require__(278);
+	var $__0=      __webpack_require__(249),Chart=$__0.Chart,XAxis=$__0.XAxis,YAxis=$__0.YAxis;
+	var $__1=     __webpack_require__(258),CartesianChartPropsMixin=$__1.CartesianChartPropsMixin,ViewBoxMixin=$__1.ViewBoxMixin;
 
 	module.exports = React.createClass({
 
@@ -38989,14 +39096,14 @@
 
 
 /***/ },
-/* 277 */
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
-	var AreaContainer = __webpack_require__(278);
+	var d3 = __webpack_require__(244);
+	var AreaContainer = __webpack_require__(279);
 
 	module.exports = React.createClass({
 
@@ -39038,15 +39145,15 @@
 
 
 /***/ },
-/* 278 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
-	var shade = __webpack_require__(247).shade;
-	var Area = __webpack_require__(279);
+	var d3 = __webpack_require__(244);
+	var shade = __webpack_require__(248).shade;
+	var Area = __webpack_require__(280);
 
 	module.exports = React.createClass({
 
@@ -39107,7 +39214,7 @@
 
 
 /***/ },
-/* 279 */
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -39146,23 +39253,23 @@
 
 
 /***/ },
-/* 280 */
+/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	exports.Treemap = __webpack_require__(281);
+	exports.Treemap = __webpack_require__(282);
 
 
 /***/ },
-/* 281 */
+/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var d3 = __webpack_require__(243);
+	var d3 = __webpack_require__(244);
 	var React = __webpack_require__(2);
-	var Chart = __webpack_require__(248).Chart;
-	var DataSeries = __webpack_require__(282);
+	var Chart = __webpack_require__(249).Chart;
+	var DataSeries = __webpack_require__(283);
 
 	module.exports = React.createClass({
 
@@ -39228,14 +39335,14 @@
 
 
 /***/ },
-/* 282 */
+/* 283 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
-	var CellContainer = __webpack_require__(283);
+	var d3 = __webpack_require__(244);
+	var CellContainer = __webpack_require__(284);
 
 
 	module.exports = React.createClass({
@@ -39299,14 +39406,14 @@
 
 
 /***/ },
-/* 283 */
+/* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var shade = __webpack_require__(247).shade;
-	var Cell = __webpack_require__(284);
+	var shade = __webpack_require__(248).shade;
+	var Cell = __webpack_require__(285);
 
 
 	module.exports = React.createClass({
@@ -39355,13 +39462,13 @@
 
 
 /***/ },
-/* 284 */
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
+	var d3 = __webpack_require__(244);
 
 
 	module.exports = React.createClass({
@@ -39413,25 +39520,25 @@
 
 
 /***/ },
-/* 285 */
+/* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	exports.ScatterChart = __webpack_require__(286);
+	exports.ScatterChart = __webpack_require__(287);
 
 
 /***/ },
-/* 286 */
+/* 287 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
-	var $__0=      __webpack_require__(248),Chart=$__0.Chart,XAxis=$__0.XAxis,YAxis=$__0.YAxis;
-	var DataSeries = __webpack_require__(287);
-	var utils = __webpack_require__(247);
-	var $__1=     __webpack_require__(257),CartesianChartPropsMixin=$__1.CartesianChartPropsMixin,ViewBoxMixin=$__1.ViewBoxMixin;
+	var d3 = __webpack_require__(244);
+	var $__0=      __webpack_require__(249),Chart=$__0.Chart,XAxis=$__0.XAxis,YAxis=$__0.YAxis;
+	var DataSeries = __webpack_require__(288);
+	var utils = __webpack_require__(248);
+	var $__1=     __webpack_require__(258),CartesianChartPropsMixin=$__1.CartesianChartPropsMixin,ViewBoxMixin=$__1.ViewBoxMixin;
 
 	module.exports = React.createClass({
 
@@ -39575,14 +39682,14 @@
 
 
 /***/ },
-/* 287 */
+/* 288 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
-	var VoronoiCircleContainer = __webpack_require__(288);
+	var d3 = __webpack_require__(244);
+	var VoronoiCircleContainer = __webpack_require__(289);
 
 	module.exports = React.createClass({
 
@@ -39666,15 +39773,15 @@
 
 
 /***/ },
-/* 288 */
+/* 289 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
-	var shade = __webpack_require__(247).shade;
-	var VoronoiCircle = __webpack_require__(289);
+	var d3 = __webpack_require__(244);
+	var shade = __webpack_require__(248).shade;
+	var VoronoiCircle = __webpack_require__(290);
 
 	module.exports = React.createClass({
 
@@ -39770,13 +39877,13 @@
 
 
 /***/ },
-/* 289 */
+/* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
+	var d3 = __webpack_require__(244);
 
 	module.exports = React.createClass({
 
@@ -39828,24 +39935,24 @@
 
 
 /***/ },
-/* 290 */
+/* 291 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	exports.CandlestickChart = __webpack_require__(291);
+	exports.CandlestickChart = __webpack_require__(292);
 
 
 /***/ },
-/* 291 */
+/* 292 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
-	var utils = __webpack_require__(247);
-	var DataSeries = __webpack_require__(292);
-	var $__0=      __webpack_require__(248),Chart=$__0.Chart,XAxis=$__0.XAxis,YAxis=$__0.YAxis;
+	var d3 = __webpack_require__(244);
+	var utils = __webpack_require__(248);
+	var DataSeries = __webpack_require__(293);
+	var $__0=      __webpack_require__(249),Chart=$__0.Chart,XAxis=$__0.XAxis,YAxis=$__0.YAxis;
 
 	module.exports = React.createClass({
 
@@ -39991,15 +40098,15 @@
 
 
 /***/ },
-/* 292 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
-	var utils = __webpack_require__(247);
-	var CandlestickContainer = __webpack_require__(293);
+	var d3 = __webpack_require__(244);
+	var utils = __webpack_require__(248);
+	var CandlestickContainer = __webpack_require__(294);
 
 
 	module.exports = React.createClass({
@@ -40063,16 +40170,16 @@
 
 
 /***/ },
-/* 293 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var d3 = __webpack_require__(243);
-	var utils = __webpack_require__(247);
-	var Candle = __webpack_require__(294);
-	var Wick = __webpack_require__(295);
+	var d3 = __webpack_require__(244);
+	var utils = __webpack_require__(248);
+	var Candle = __webpack_require__(295);
+	var Wick = __webpack_require__(296);
 
 	module.exports = React.createClass({
 
@@ -40158,7 +40265,7 @@
 
 
 /***/ },
-/* 294 */
+/* 295 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40209,7 +40316,7 @@
 
 
 /***/ },
-/* 295 */
+/* 296 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40255,12 +40362,12 @@
 
 
 /***/ },
-/* 296 */
+/* 297 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// https://d3js.org/d3-force/ Version 1.0.4. Copyright 2016 Mike Bostock.
 	(function (global, factory) {
-	   true ? factory(exports, __webpack_require__(297), __webpack_require__(298), __webpack_require__(299), __webpack_require__(300)) :
+	   true ? factory(exports, __webpack_require__(298), __webpack_require__(299), __webpack_require__(300), __webpack_require__(301)) :
 	  typeof define === 'function' && define.amd ? define(['exports', 'd3-quadtree', 'd3-collection', 'd3-dispatch', 'd3-timer'], factory) :
 	  (factory((global.d3 = global.d3 || {}),global.d3,global.d3,global.d3,global.d3));
 	}(this, (function (exports,d3Quadtree,d3Collection,d3Dispatch,d3Timer) { 'use strict';
@@ -40864,7 +40971,7 @@
 
 
 /***/ },
-/* 297 */
+/* 298 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// https://d3js.org/d3-quadtree/ Version 1.0.2. Copyright 2016 Mike Bostock.
@@ -41305,7 +41412,7 @@
 
 
 /***/ },
-/* 298 */
+/* 299 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// https://d3js.org/d3-collection/ Version 1.0.2. Copyright 2016 Mike Bostock.
@@ -41528,7 +41635,7 @@
 
 
 /***/ },
-/* 299 */
+/* 300 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// https://d3js.org/d3-dispatch/ Version 1.0.2. Copyright 2016 Mike Bostock.
@@ -41629,7 +41736,7 @@
 
 
 /***/ },
-/* 300 */
+/* 301 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// https://d3js.org/d3-timer/ Version 1.0.3. Copyright 2016 Mike Bostock.
@@ -41782,118 +41889,13 @@
 	})));
 
 /***/ },
-/* 301 */
-/***/ function(module, exports) {
-
-	module.exports = {
-		"projects": [
-			{
-				"name": "Event Tracker",
-				"description": "This is a site that does some stuff",
-				"image": "/public/images/event.JPG",
-				"github": "https://github.com/louisrowan/event-tracker",
-				"learned": "This was my first exposure to using an API or JSON, as well as using JQuery on the front-end to create a dynamic website.",
-				"technologies": [
-					"Ruby",
-					"Sinatra",
-					"JQuery"
-				]
-			},
-			{
-				"name": "Mathio Party",
-				"image": "/public/images/mathio.JPG",
-				"description": "Play your games",
-				"learned": "This was a week-long group project that I put at least 80 hours into, so I learned a great deal about group version control and using an agile workflow. This was also my introduction to data collection and visualization.",
-				"technologies": [
-					"Rails",
-					"Ruby",
-					"JQuery",
-					"Phaser"
-				]
-			},
-			{
-				"name": "Rainy Day Science",
-				"description": "Award winning project at the 2016 San Francisco 'Science Hack Day'.",
-				"image": "/public/images/science.JPG",
-				"github": "https://github.com/louisrowan/science-hack-react",
-				"learned": "This was my first experiene working on a decoupled app, with a Rails backend and React front-end. I learned a good deal about manipulating the DOM in React using vanilla JavaScript and CSS, as opposed to using JQuery.",
-				"technologies": [
-					"React",
-					"Rails"
-				]
-			}
-		],
-		"images": {
-			"linkedin": "/public/images/linkedin.png",
-			"github": "/public/images/github.png"
-		},
-		"skills": [
-			{
-				"name": "React",
-				"type": "front",
-				"image": "/public/images/react.png"
-			},
-			{
-				"name": "Rails",
-				"type": "back",
-				"image": "/public/images/rails.png"
-			},
-			{
-				"name": "JavaScript",
-				"type": "front",
-				"image": "/public/images/javascript.jpg"
-			},
-			{
-				"name": "Redux",
-				"type": "front",
-				"image": "/public/images/redux.png"
-			},
-			{
-				"name": "D3",
-				"type": "front",
-				"image": "/public/images/d3.png"
-			},
-			{
-				"name": "Git/Github",
-				"type": "other",
-				"image": "/public/images/github.png"
-			},
-			{
-				"name": "Node/Webpack",
-				"type": "back",
-				"image": "/public/images/node.jpg"
-			},
-			{
-				"name": "C/C++",
-				"type": "back",
-				"image": "/public/images/c.jpg"
-			},
-			{
-				"name": "SQL",
-				"type": "back",
-				"image": "/public/images/sql.png"
-			},
-			{
-				"name": "Python",
-				"type": "back",
-				"image": "/public/images/python.png"
-			},
-			{
-				"name": "Ruby",
-				"type": "back",
-				"image": "/public/images/ruby.png"
-			}
-		]
-	};
-
-/***/ },
 /* 302 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var data = __webpack_require__(301).projects;
+	var data = __webpack_require__(238).projects;
 	var ProjectsThumb = __webpack_require__(303);
 	var ProjectsFullscreen = __webpack_require__(304);
 	var ReactCSSTransitionGroup = __webpack_require__(305);
@@ -41927,6 +41929,18 @@
 
 	    var shownProject = this.state.projects[this.state.projectIndex];
 
+	    var navCircles = React.createElement(
+	      'div',
+	      { className: 'projectsCirclesList' },
+	      this.state.projects.map(function (p, i) {
+	        if (i === _this.state.projectIndex) {
+	          return React.createElement('div', { className: 'activeCircle listCircle' });
+	        } else {
+	          return React.createElement('div', { className: 'inactiveCircle listCircle' });
+	        }
+	      })
+	    );
+
 	    if (!this.state.fullscreen) {
 	      return React.createElement(
 	        'div',
@@ -41953,7 +41967,8 @@
 	        ),
 	        React.createElement('div', { className: 'rightArrowDiv arrowDiv', onClick: function onClick() {
 	            return _this.handleScroll(1);
-	          } })
+	          } }),
+	        navCircles
 	      );
 	    } else {
 	      return React.createElement(
@@ -44299,7 +44314,7 @@
 	var ContactForm = __webpack_require__(319);
 	var $ = __webpack_require__(320);
 	var ReactCSSTransitionGroup = __webpack_require__(305);
-	var data = __webpack_require__(301).images;
+	var data = __webpack_require__(238).images;
 
 	var ContactContainer = React.createClass({
 	  displayName: 'ContactContainer',
@@ -44403,7 +44418,7 @@
 	                null,
 	                React.createElement(
 	                  'a',
-	                  { href: 'tel:6173653595' },
+	                  { className: 'iconLink', href: 'tel:6173653595' },
 	                  React.createElement('div', { className: 'contactPhone contactIMG' })
 	                )
 	              ),
@@ -44424,9 +44439,13 @@
 	                'td',
 	                null,
 	                React.createElement(
-	                  'div',
-	                  { className: 'contactIMG' },
-	                  React.createElement('img', { src: data.linkedin })
+	                  'a',
+	                  { className: 'iconLink', target: '_blank', href: 'https://www.linkedin.com/in/louis-rowan-54869986' },
+	                  React.createElement(
+	                    'div',
+	                    { className: 'contactIMG' },
+	                    React.createElement('img', { src: data.linkedin })
+	                  )
 	                )
 	              ),
 	              React.createElement(
@@ -44446,9 +44465,13 @@
 	                'td',
 	                null,
 	                React.createElement(
-	                  'div',
-	                  { className: 'contactIMG' },
-	                  React.createElement('img', { src: data.github })
+	                  'a',
+	                  { className: 'iconLink', target: '_blank', href: 'https://github.com/louisrowan' },
+	                  React.createElement(
+	                    'div',
+	                    { className: 'contactIMG' },
+	                    React.createElement('img', { src: data.github })
+	                  )
 	                )
 	              ),
 	              React.createElement(
@@ -44463,26 +44486,34 @@
 	            ),
 	            React.createElement(
 	              'tr',
-	              { onClick: function onClick() {
-	                  return _this.handleShowForm();
-	                } },
+	              null,
 	              React.createElement(
 	                'td',
 	                null,
-	                React.createElement('div', { className: 'contactEmail contactIMG' })
+	                React.createElement(
+	                  'a',
+	                  { className: 'iconLink', href: 'mailto:louis.rowan@icloud.com?Subject=Great%20Website!', target: '_top' },
+	                  React.createElement('div', { className: 'contactEmail contactIMG' })
+	                )
 	              ),
 	              React.createElement(
 	                'td',
 	                null,
 	                React.createElement(
-	                  'span',
-	                  { id: 'emailMeLink' },
-	                  'Email me'
-	                ),
-	                ' - louis.rowan@icloud.com'
+	                  'a',
+	                  { href: 'mailto:louis.rowan@icloud.com?Subject=Great%20Website!', target: '_top' },
+	                  'louis.rowan@icloud.com'
+	                )
 	              )
 	            )
 	          )
+	        ),
+	        React.createElement(
+	          'h2',
+	          { id: 'h2ClickContact', onClick: function onClick() {
+	              return _this.handleShowForm();
+	            } },
+	          'Or Click to Message me Directly'
 	        )
 	      ),
 	      success,
@@ -54873,10 +54904,10 @@
 
 	exports = module.exports = __webpack_require__(324)();
 	// imports
-
+	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Merriweather+Sans:700i);", ""]);
 
 	// module
-	exports.push([module.id, "* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: Georgia, Serif;\r\n}\r\n\r\nh1 {\r\n  padding: 20px;\r\n}\r\n\r\np {\r\n  padding: 10px;\r\n}\r\n\r\n.homeContainer {\r\n  width: 100%;\r\n  min-height: 1000px;\r\n  background: linear-gradient(to bottom right,\r\n    rgba(45, 6, 56, 1),\r\n    rgba(131, 11, 168, 1)\r\n  );\r\n  padding: 60px 0px;\r\n  color: orange;\r\n}\r\n\r\n.headerContainer {\r\n  width: 100%;\r\n  min-height: 1000px;\r\n  text-align: center;\r\n  border-bottom: 10px solid white;\r\n  color: white;\r\n}\r\n\r\n.contentContainer {\r\n  position: absolute;\r\n  background: white;\r\n  width: 100%;\r\n  min-height: 100%;\r\n  box-shadow: 0px 0px 50px 5px black, 0px 0px 10px 2px rgba(45, 6, 56, 1) inset;\r\n  padding: 10px;\r\n}\r\n\r\n.emp {\r\n  font-size: 1.3em;\r\n  font-weight: bold;\r\n}\r\n\r\n.projectDiv {\r\n  width: 50%;\r\n  height: 400px;\r\n  margin: auto;\r\n  position: relative;\r\n}\r\n\r\n.arrowDiv {\r\n  box-sizing: none;\r\n  height: 0;\r\n  width: 0;\r\n  border: 30px solid transparent;\r\n  position: absolute;\r\n  top: 45%;\r\n  bottom: 45%;\r\n}\r\n\r\n.arrowDiv:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n.leftArrowDiv {\r\n  border-right: 40px solid rgba(45, 6, 56, 1);\r\n  left: 10px;\r\n}\r\n\r\n.leftArrowDiv:hover {\r\n  border-right: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n.rightArrowDiv {\r\n  border-left: 40px solid rgba(45, 6, 56, 1);\r\n  right: 10px;\r\n}\r\n\r\n.rightArrowDiv:hover {\r\n  border-left: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n.component-enter {\r\n  transform: rotateY(90deg) rotateX(90deg);\r\n}\r\n\r\n.component-enter-active {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n  transition: transform 300ms ease-out 300ms;\r\n}\r\n\r\n.component-leave {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n}\r\n\r\n.component-leave-active {\r\n  transform: rotateY(90deg) rotateX(-90deg);\r\n  transition: transform 300ms ease-in;\r\n}\r\n\r\n#contentSpace {\r\n  width: 90%;\r\n  max-width: 1000px;\r\n  min-height: 600px;\r\n  overflow: visible;\r\n  text-align: center;\r\n  margin: 20px auto;\r\n  color: black;\r\n  position: relative;\r\n}\r\n\r\nnav table {\r\n  width: 100%;\r\n  background: black;\r\n  color: purple;\r\n}\r\n\r\nnav td {\r\n  width: 25%;\r\n  text-align: center;\r\n  height: 50px;\r\n}\r\n\r\nnav td:hover {\r\n  background: #141619;\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n}\r\n\r\n.projectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: absolute;\r\n  box-shadow: 0px 0px 10px 5px black;\r\n}\r\n\r\n.hoverProjectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: relative;\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  position: absolute;\r\n}\r\n\r\n.thumbImgDiv {\r\n  width: 100%;\r\n  height: 200px;\r\n  border-top: 5px solid black;\r\n}\r\n\r\n.thumbImgDiv img {\r\n  width: 100%;\r\n}\r\n\r\n.hiddenThumbDiv {\r\n  position: absolute;\r\n  height: 100%;\r\n  width: 100%;\r\n  background: transparent;\r\n  cursor: pointer;\r\n  z-index: 2;\r\n  background-color: rgba(0, 0, 0, .5);\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.hiddenThumbDiv h2 {\r\n  background: white;\r\n  margin: auto;\r\n  width: 100%;\r\n  padding: 10px;\r\n}\r\n\r\n.hidden {\r\n  display: none;\r\n}\r\n\r\n/*.nextProjectThumb {\r\n  height: 400px;\r\n  width: 20%;\r\n  background: purple;\r\n  overflow: hidden;\r\n  transform: scale(.5);\r\n  position: absolute;\r\n  left: 50px;\r\n}\r\n*/\r\n\r\n\r\n\r\n.projectFlip-enter {\r\n  transform: rotateY(-90deg);\r\n}\r\n\r\n.projectFlip-enter-active {\r\n  transform: rotateY(0deg);\r\n  transition: transform 400ms ease-out 200ms;\r\n}\r\n\r\n.projectFlip-leave {\r\n  transform: rotateY(0deg);\r\n}\r\n\r\n.projectFlip-leave-active {\r\n  transform: rotateY(90deg);\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  transition:\r\n    transform 200ms ease-in,\r\n    box-shadow 200ms ease-in;\r\n}\r\n\r\n\r\n\r\n\r\n.projectShow-appear {\r\n  transform: scale(.1);\r\n}\r\n\r\n.projectShow-appear-active {\r\n  transform: scale(1);\r\n  transition: transform 300ms ease-in;\r\n}\r\n\r\n.projectShow-leave {\r\n  transform: translateX(0);\r\n}\r\n\r\n.projectShow-leave-active {\r\n  transform: translateX(200px);\r\n  transition: transform 2s ease-in;\r\n}\r\n\r\n.projectFullscreenDiv {\r\n  \r\n}\r\n\r\n.projectFullscreenImgDiv {\r\n  max-height: 300px;\r\n  overflow: hidden;\r\n}\r\n\r\n\r\n/*contact page*/\r\n\r\n.contactInput {\r\n  width: 245px;\r\n  padding: 10px;\r\n  margin: 5px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactTextarea {\r\n  width: 500px;\r\n  height: 200px;\r\n  padding: 10px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.1em;\r\n}\r\n\r\n.contactSubmit {\r\n  width: 200px;\r\n  padding: 10px;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactSubmit:hover {\r\n  box-shadow: 2px 2px 1px 1px black;\r\n  font-weight: bold;\r\n}\r\n\r\n.formSubmit {\r\n  animation: formFlip 1s forwards;\r\n}\r\n\r\n@keyframes formFlip {\r\n  0% {\r\n    transform: rotateX(0);\r\n  }\r\n\r\n  100% {\r\n    transform: rotateX(90deg);\r\n  }\r\n}\r\n\r\n.contactContainer {\r\n  position: relative;\r\n}\r\n\r\n.formSuccess {\r\n  color: green;\r\n  position: absolute;\r\n  top: 250px;\r\n  width: 100%;\r\n  text-align: center;\r\n  animation: formSuccess 2s forwards;\r\n}\r\n\r\n@keyframes formSuccess {\r\n  0% {\r\n    opacity: 0;\r\n  }\r\n  50% {\r\n    opacity: 0;\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n  }\r\n}\r\n\r\n.contactTable {\r\n  margin: auto;\r\n  font-size: 1.5em;\r\n}\r\n\r\n.contactTable td {\r\n  padding: 5px;\r\n  text-align: left;\r\n}\r\n\r\n.contactIMG {\r\n  height: 40px;\r\n  width: 50px;\r\n  overflow: hidden;\r\n}\r\n\r\n.contactIMG img {\r\n  max-width: 100%;\r\n  max-height: 100%;\r\n}\r\n\r\n.contactPhone {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactPhone:before {\r\n  content: \"\\260E\";\r\n  font-size: 2em;\r\n}\r\n\r\n.contactEmail {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactEmail:before {\r\n  content: \"\\2709\";\r\n  font-size: 2em;\r\n\r\n}\r\n\r\n\r\n\r\n.showForm-enter {\r\n  transform: scale(0);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-enter-active {\r\n  transform: scale(1);\r\n}\r\n\r\n.showForm-leave {\r\n  transform: scale(1);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-leave-active {\r\n  transform: scale(0);\r\n}\r\n\r\n#emailMeLink:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n#emailMeLink {\r\n  color: blue;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n/*skills chart*/\r\n\r\n.skillsContainer {\r\n  width: 100%;\r\n  min-height: 800px;\r\n  border: 2px solid purple;\r\n}\r\n\r\n#d3SkillsContainer {\r\n  height: 600px;\r\n  width: 90%;\r\n  margin: auto;\r\n  border: 2px solid blue;\r\n  position: relative;\r\n  overflow: hidden;\r\n}\r\n\r\n.tooltipDiv {\r\n  width: 150px;\r\n  text-align: center;\r\n  padding: 10px;\r\n}\r\n\r\n.tooltipDiv:after {\r\n  content: '';\r\n  width: 0px;\r\n  height: 0px;\r\n  border: 10px solid transparent;\r\n  border-top: 10px solid black;\r\n  position: relative;\r\n  top: 38px;\r\n  right: 80px;\r\n\r\n}\r\n\r\n#d3ButtonDiv {\r\n  position: absolute;\r\n  width: 100%;\r\n}\r\n\r\n.skillsButton {\r\n  padding: 20px;\r\n  margin: 10px;\r\n  background: rgba(244, 245, 247, .5);\r\n  border: none;\r\n  min-width: 100px;\r\n}\r\n\r\n.skillsButton:focus {\r\n  outline: 0;\r\n}\r\n\r\n.skillsButton:hover {\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n}\r\n\r\n.d3Active {\r\n  background: lightblue;\r\n}\r\n\r\n.d3Circle {\r\n  animation: stroke 1000ms linear alternate infinite;\r\n}\r\n\r\n@keyframes stroke {\r\n  0% {\r\n    stroke-opacity: 1;\r\n  }\r\n  100% {\r\n    stroke-opacity: .3;\r\n  }\r\n}", ""]);
+	exports.push([module.id, "* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: Georgia, Serif;\r\n}\r\n\r\na {\r\n  color: blue;\r\n  font-weight: bold;\r\n}\r\n\r\na:visited {\r\n  color: blue;\r\n}\r\n\r\nh1 {\r\n  padding: 20px;\r\n  color: purple;\r\n  font-family: 'Merriweather Sans';\r\n  font-size: 3em;\r\n  text-shadow: 1px 1px 1px black;\r\n\r\n}\r\n\r\np {\r\n  padding: 10px;\r\n}\r\n\r\n.homeContainer {\r\n  width: 100%;\r\n  min-height: 1000px;\r\n  background: linear-gradient(to bottom right,\r\n    rgba(45, 6, 56, 1),\r\n    rgba(131, 11, 168, 1)\r\n  );\r\n  padding: 60px 0px;\r\n  color: orange;\r\n}\r\n\r\n.headerContainer {\r\n  width: 100%;\r\n  min-height: 1000px;\r\n  text-align: center;\r\n  border-bottom: 10px solid white;\r\n  color: white;\r\n}\r\n\r\n.contentContainer {\r\n  position: absolute;\r\n  background: white;\r\n  width: 100%;\r\n  min-height: 100%;\r\n  box-shadow: 0px 0px 50px 5px black, 0px 0px 10px 2px rgba(45, 6, 56, 1) inset;\r\n  padding: 10px;\r\n}\r\n\r\n.emp {\r\n  font-size: 1.3em;\r\n  font-weight: bold;\r\n}\r\n\r\n.mainImg {\r\n  height: 300px;\r\n  width: 300px;\r\n  box-shadow: 0px 0px 5px 2px black;\r\n  border-radius: 50%;\r\n  overflow: hidden;\r\n  margin: auto;\r\n  animation: picture-rotate 5s linear infinite;\r\n}\r\n\r\n@keyframes picture-rotate {\r\n  0% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  25% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  50% {\r\n    transform: rotateY(90deg);\r\n  }\r\n  75% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  100% {\r\n    transform: rotateY(0deg);\r\n  }\r\n}\r\n\r\n.mainImg img {\r\n  height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n.projectDiv {\r\n  width: 50%;\r\n  height: 400px;\r\n  margin: auto;\r\n  position: relative;\r\n}\r\n\r\n.arrowDiv {\r\n  box-sizing: none;\r\n  height: 0;\r\n  width: 0;\r\n  border: 30px solid transparent;\r\n  position: absolute;\r\n  top: 45%;\r\n  bottom: 45%;\r\n}\r\n\r\n.arrowDiv:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n.leftArrowDiv {\r\n  border-right: 40px solid rgba(45, 6, 56, 1);\r\n  left: 10px;\r\n}\r\n\r\n.leftArrowDiv:hover {\r\n  border-right: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n.rightArrowDiv {\r\n  border-left: 40px solid rgba(45, 6, 56, 1);\r\n  right: 10px;\r\n}\r\n\r\n.rightArrowDiv:hover {\r\n  border-left: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n.component-enter {\r\n  transform: rotateY(90deg) rotateX(90deg);\r\n}\r\n\r\n.component-enter-active {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n  transition: transform 300ms ease-out 300ms;\r\n}\r\n\r\n.component-leave {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n}\r\n\r\n.component-leave-active {\r\n  transform: rotateY(90deg) rotateX(-90deg);\r\n  transition: transform 300ms ease-in;\r\n}\r\n\r\n#contentSpace {\r\n  width: 90%;\r\n  max-width: 1000px;\r\n  min-height: 600px;\r\n  overflow: visible;\r\n  text-align: center;\r\n  margin: 20px auto;\r\n  color: black;\r\n  position: relative;\r\n}\r\n\r\nnav table {\r\n  width: 100%;\r\n  background: black;\r\n  color: purple;\r\n}\r\n\r\nnav td {\r\n  width: 25%;\r\n  text-align: center;\r\n  height: 50px;\r\n}\r\n\r\nnav td:hover {\r\n  background: #141619;\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n}\r\n\r\n.projectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: absolute;\r\n  box-shadow: 0px 0px 10px 5px black;\r\n}\r\n\r\n.hoverProjectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: relative;\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  position: absolute;\r\n}\r\n\r\n.thumbImgDiv {\r\n  width: 100%;\r\n  height: 200px;\r\n  border-top: 5px solid black;\r\n}\r\n\r\n.thumbImgDiv img {\r\n  width: 100%;\r\n}\r\n\r\n.hiddenThumbDiv {\r\n  position: absolute;\r\n  height: 100%;\r\n  width: 100%;\r\n  background: transparent;\r\n  cursor: pointer;\r\n  z-index: 2;\r\n  background-color: rgba(0, 0, 0, .5);\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.hiddenThumbDiv h2 {\r\n  background: white;\r\n  margin: auto;\r\n  width: 100%;\r\n  padding: 10px;\r\n}\r\n\r\n.hidden {\r\n  display: none;\r\n}\r\n\r\n/*.nextProjectThumb {\r\n  height: 400px;\r\n  width: 20%;\r\n  background: purple;\r\n  overflow: hidden;\r\n  transform: scale(.5);\r\n  position: absolute;\r\n  left: 50px;\r\n}\r\n*/\r\n\r\n\r\n\r\n.projectFlip-enter {\r\n  transform: rotateY(-90deg);\r\n}\r\n\r\n.projectFlip-enter-active {\r\n  transform: rotateY(0deg);\r\n  transition: transform 400ms ease-out 200ms;\r\n}\r\n\r\n.projectFlip-leave {\r\n  transform: rotateY(0deg);\r\n}\r\n\r\n.projectFlip-leave-active {\r\n  transform: rotateY(90deg);\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  transition:\r\n    transform 200ms ease-in,\r\n    box-shadow 200ms ease-in;\r\n}\r\n\r\n\r\n\r\n\r\n.projectShow-appear {\r\n  transform: scale(.1);\r\n}\r\n\r\n.projectShow-appear-active {\r\n  transform: scale(1);\r\n  transition: transform 300ms ease-in;\r\n}\r\n\r\n.projectShow-leave {\r\n  transform: translateX(0);\r\n}\r\n\r\n.projectShow-leave-active {\r\n  transform: translateX(200px);\r\n  transition: transform 2s ease-in;\r\n}\r\n\r\n.projectFullscreenDiv {\r\n  \r\n}\r\n\r\n.projectFullscreenImgDiv {\r\n  max-height: 300px;\r\n  overflow: hidden;\r\n}\r\n\r\n\r\n/*contact page*/\r\n\r\n.contactInput {\r\n  width: 245px;\r\n  padding: 10px;\r\n  margin: 5px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactTextarea {\r\n  width: 500px;\r\n  height: 200px;\r\n  padding: 10px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.1em;\r\n}\r\n\r\n.contactSubmit {\r\n  width: 200px;\r\n  padding: 10px;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactSubmit:hover {\r\n  box-shadow: 2px 2px 1px 1px black;\r\n  font-weight: bold;\r\n}\r\n\r\n.formSubmit {\r\n  animation: formFlip 1s forwards;\r\n}\r\n\r\n@keyframes formFlip {\r\n  0% {\r\n    transform: rotateX(0);\r\n  }\r\n\r\n  100% {\r\n    transform: rotateX(90deg);\r\n  }\r\n}\r\n\r\n.contactContainer {\r\n  position: relative;\r\n}\r\n\r\n.formSuccess {\r\n  color: green;\r\n  position: absolute;\r\n  top: 250px;\r\n  width: 100%;\r\n  text-align: center;\r\n  animation: formSuccess 2s forwards;\r\n}\r\n\r\n@keyframes formSuccess {\r\n  0% {\r\n    opacity: 0;\r\n  }\r\n  50% {\r\n    opacity: 0;\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n  }\r\n}\r\n\r\n.contactTable {\r\n  margin: auto;\r\n  font-size: 1.5em;\r\n}\r\n\r\n.contactTable tr {\r\n  background: #fcfcfc;\r\n}\r\n\r\n.contactTable tr:hover {\r\n  background: white;\r\n}\r\n\r\n.contactTable tr:hover td:first-child {\r\n  animation: contact-hover 500ms linear forwards;\r\n}\r\n\r\n.contactTable a:hover {\r\n  text-decoration: none;\r\n  color: darkblue;\r\n}\r\n\r\n.contactTable td {\r\n  padding: 5px;\r\n  text-align: left;\r\n}\r\n\r\n.contactIMG {\r\n  height: 40px;\r\n  width: 50px;\r\n  overflow: hidden;\r\n}\r\n\r\n.contactIMG img {\r\n  max-width: 100%;\r\n  max-height: 100%;\r\n}\r\n\r\n.contactPhone {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactPhone:before {\r\n  content: \"\\260E\";\r\n  font-size: 2em;\r\n  color: black;\r\n}\r\n\r\n.contactEmail {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactEmail:before {\r\n  content: \"\\2709\";\r\n  font-size: 2em;\r\n  color: black;\r\n\r\n}\r\n\r\n.iconLink:hover img, .iconLink:hover div:before {\r\n  transform: scale(1.2);\r\n}\r\n\r\n#h2ClickContact {\r\n  padding: 10px;\r\n  color: purple;\r\n}\r\n\r\n#h2ClickContact:before, #h2ClickContact:after {\r\n  content: \"\\26E4\";\r\n  font-size: 1.2em;\r\n  color: black;\r\n}\r\n\r\n#h2ClickContact:hover::before, #h2ClickContact:hover::after {\r\n  display: inline-block;\r\n  animation: contact-hover 2s linear forwards infinite;\r\n}\r\n\r\n#h2ClickContact:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n@keyframes contact-hover {\r\n  0% {\r\n    transform: rotate(0deg);\r\n  }\r\n  25% {\r\n    transform: rotate(-90deg);\r\n  }\r\n  50% {\r\n    transform: rotate(-180deg);\r\n  }\r\n  75% {\r\n    transofmr: rotate(-270deg);\r\n  }\r\n  100% {\r\n    transform: rotate(-360deg);\r\n  }\r\n}\r\n\r\n\r\n\r\n.showForm-enter {\r\n  transform: scale(0);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-enter-active {\r\n  transform: scale(1);\r\n}\r\n\r\n.showForm-leave {\r\n  transform: scale(1);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-leave-active {\r\n  transform: scale(0);\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n/*skills chart*/\r\n\r\n.skillsContainer {\r\n  width: 100%;\r\n  min-height: 800px;\r\n}\r\n\r\n#d3SkillsContainer {\r\n  height: 600px;\r\n  width: 90%;\r\n  margin: auto;\r\n  position: relative;\r\n  overflow: hidden;\r\n}\r\n\r\n.tooltipDiv {\r\n  width: 150px;\r\n  text-align: center;\r\n  padding: 10px;\r\n}\r\n\r\n.tooltipDiv:after {\r\n  content: '';\r\n  width: 0px;\r\n  height: 0px;\r\n  border: 10px solid transparent;\r\n  border-top: 10px solid black;\r\n  position: relative;\r\n  top: 38px;\r\n  right: 80px;\r\n\r\n}\r\n\r\n#d3ButtonDiv {\r\n  position: absolute;\r\n  width: 100%;\r\n}\r\n\r\n.skillsButton {\r\n  padding: 20px;\r\n  margin: 10px;\r\n  background: rgba(244, 245, 247, .5);\r\n  border: none;\r\n  min-width: 120px;\r\n}\r\n\r\n.skillsButton:focus {\r\n  outline: 0;\r\n}\r\n\r\n.skillsButton:hover {\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n}\r\n\r\n.d3Active {\r\n  background: lightblue;\r\n}\r\n\r\n.d3Circle {\r\n  animation: stroke 1000ms linear alternate infinite;\r\n}\r\n\r\n@keyframes stroke {\r\n  0% {\r\n    stroke-opacity: 1;\r\n  }\r\n  100% {\r\n    stroke-opacity: .3;\r\n  }\r\n}\r\n\r\n.inactiveCircle {\r\n  background: lightgray;\r\n  transition: background 200ms ease-in;\r\n}\r\n\r\n.activeCircle {\r\n  background: purple;\r\n  transition: background 200ms ease-in;\r\n}\r\n\r\n.listCircle {\r\n  width: 20px;\r\n  height: 20px;\r\n  border-radius: 10px;\r\n  display: inline-block;\r\n  margin: 10px;\r\n}\r\n\r\n.projectsCirclesList {\r\n  width: 100%;\r\n  padding: 20px;\r\n}", ""]);
 
 	// exports
 
@@ -55224,7 +55255,7 @@
 
 
 	// module
-	exports.push([module.id, "@media screen and (max-width: 1000px) {\r\n  * {\r\n    font-size: 1.05em;\r\n  }\r\n  html, body, #app, #app > div {\r\n    height: 100vh;\r\n    width: 100%;\r\n  }\r\n\r\n  #layoutDiv {\r\n    height: 100vh;\r\n  }\r\n  .homeContainer {\r\n    width: 100%;\r\n    height: 90vh;\r\n  }\r\n  #contentSpace {\r\n    width: 98%;\r\n  }\r\n  .contentContainer {\r\n    min-height: 75vh;\r\n  }\r\n\r\n  .contentContainer > div {\r\n    min-height: 75vh;\r\n    width: 100%;\r\n  }\r\n\r\n  .skillsContainer svg {\r\n    min-height: 75vh;\r\n  }\r\n\r\n  #d3SkillsContainer {\r\n    min-height: 75vh;\r\n  }\r\n\r\n  #projectsContainerDiv {\r\n    min-height: 75vh;\r\n\r\n  }\r\n\r\n  .projectDiv {\r\n \r\n  }\r\n\r\n\r\n  nav td {\r\n    height: 10vh;\r\n    color: white;\r\n    font-weight: bold;\r\n  }\r\n\r\n  .component-enter {\r\n    transform: rotateX(90deg);\r\n  }\r\n\r\n  .component-enter-active {\r\n    transform: rotateX(0deg);\r\n    transition: transform 300ms ease-out 300ms;\r\n  }\r\n\r\n  .component-leave {\r\n    transform: rotateX(0deg);\r\n  }\r\n\r\n  .component-leave-active {\r\n    transform: rotateX(90deg);\r\n    transition: transform 300ms ease-in;\r\n  }\r\n\r\n  .projectDiv {\r\n    width: 75vw;\r\n    margin: auto;\r\n  }\r\n}", ""]);
+	exports.push([module.id, "@media screen and (max-width: 1000px) {\r\n  * {\r\n    font-size: 1.05em;\r\n  }\r\n  html, body, #app, #app > div {\r\n    height: 100vh;\r\n    width: 100%;\r\n  }\r\n\r\n  #layoutDiv {\r\n    height: 100vh;\r\n  }\r\n  .homeContainer {\r\n    width: 100%;\r\n    height: 90vh;\r\n  }\r\n  #contentSpace {\r\n    width: 98%;\r\n  }\r\n  .contentContainer {\r\n    min-height: 75vh;\r\n  }\r\n\r\n  .contentContainer > div {\r\n    min-height: 75vh;\r\n    width: 100%;\r\n  }\r\n\r\n  .skillsContainer svg {\r\n    min-height: 75vh;\r\n  }\r\n\r\n  #d3SkillsContainer {\r\n    min-height: 75vh;\r\n  }\r\n\r\n  #projectsContainerDiv {\r\n    min-height: 75vh;\r\n\r\n  }\r\n\r\n  .projectDiv {\r\n \r\n  }\r\n\r\n\r\n  nav td {\r\n    height: 10vh;\r\n    color: white;\r\n    font-weight: bold;\r\n  }\r\n\r\n  .component-enter {\r\n    transform: rotateX(90deg);\r\n  }\r\n\r\n  .component-enter-active {\r\n    transform: rotateX(0deg);\r\n    transition: transform 300ms ease-out 300ms;\r\n  }\r\n\r\n  .component-leave {\r\n    transform: rotateX(0deg);\r\n  }\r\n\r\n  .component-leave-active {\r\n    transform: rotateX(90deg);\r\n    transition: transform 300ms ease-in;\r\n  }\r\n\r\n  .projectDiv {\r\n    width: 75vw;\r\n    margin: auto;\r\n    margin-top: 20%;\r\n  }\r\n\r\n  .projectsThumb {\r\n    height: 600px;\r\n  }\r\n\r\n  .contactContainer {\r\n \r\n  }\r\n\r\n  .contactTextarea {\r\n    width: 700px;\r\n    height: 400px;\r\n  }\r\n  .contactInput {\r\n    width: 345px;\r\n    margin-top: 50px;\r\n  }\r\n}", ""]);
 
 	// exports
 
