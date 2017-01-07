@@ -70,7 +70,7 @@ const ProjectsContainer = React.createClass({
       <ReactCSSTransitionGroup
       transitionName='projectShow'
       transitionEnterTimeout={400}
-      transitionLeaveTimeout={400}
+      transitionLeaveTimeout={2000}
       transitionAppear={true}
       transitionAppearTimeout={300}>
         <ProjectsFullscreen key={shownProject.name} data={shownProject} hide={this.hideFullscreen} />

@@ -141,6 +141,10 @@ p {
   border-left: 40px solid rgba(131, 11, 168, 1);
 }
 
+#projectsBackButton {
+  top: 30px;
+}
+
 .component-enter {
   transform: rotateY(90deg) rotateX(90deg);
 }
@@ -300,16 +304,16 @@ nav td:hover {
 }
 
 .projectShow-leave {
-  transform: translateX(0);
+  transform: scale(1);
 }
 
 .projectShow-leave-active {
-  transform: translateX(200px);
+  transform: scale(.1);
   transition: transform 2s ease-in;
 }
 
 .projectFullscreenDiv {
-  
+  padding: 10px;
 }
 
 .projectFullscreenImgDiv {
