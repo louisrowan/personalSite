@@ -321,6 +321,32 @@ nav td:hover {
   overflow: hidden;
 }
 
+.projectSkillsList {
+  list-style-type: none;
+}
+
+.projectSkillsList li {
+  float: left;
+  padding: 40px;
+  font-size: 1.5em;
+  width: 33.3%;
+}
+
+.fullscreenHalf {
+  float: left;
+  width: 50%;
+  overflow: hidden;
+  border: 2px solid red;
+}
+
+.fullscreenHalf h2 {
+
+}
+
+.fullscreenHalf p {
+  font-size: 1.2;
+}
+
 
 /*contact page*/
 

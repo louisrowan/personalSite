@@ -25,20 +25,13 @@ const ProjectsFullscreen = React.createClass({
               )} else {
         herokuContent = ''
       }
+
     return (
       <div className='projectFullscreenDiv'>
         <div id='projectsBackButton' className='leftArrowDiv arrowDiv' onClick={()=> this.props.hide()}>
         </div>
         <h1>{data.name}</h1>
-        <div className='projectFullscreenImgDiv'>
-          <img src={data.image} />
-        </div>
-        <p>{data.description}</p>
-        <ul>
-          {data.technologies.map((d, i) => {
-            return <li key={i}>{d}</li>
-          })}
-        </ul>
+
         <table className='contactTable'>
            <tbody>
              <tr>
@@ -58,8 +51,24 @@ const ProjectsFullscreen = React.createClass({
 
             </tbody>
           </table>
-        <h4>What I learned:</h4>
-        <p>{data.learned}</p>
+        <div className='fullscreenHalf'>
+          <div className='projectFullscreenImgDiv'>
+            <img src={data.image} />
+          </div>
+          <ul className='projectSkillsList'>
+          {data.technologies.map((d, i) => {
+            return <li key={i}>{d}</li>
+          })}
+        </ul>
+
+        </div>
+
+        <div className='fullscreenHalf'>
+          <h2>About</h2>
+          <p>{data.description}</p>
+          <h2>Learned</h2>
+          <p>{data.learned}</p>
+        </div>
 
       </div>
     )
