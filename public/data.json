@@ -3,7 +3,7 @@
     {
       "name": "Event Tracker",
       "description": "This is a site that does some stuff",
-      "image": "/public/images/eventThumb.JPG",
+      "image": "./images/eventThumb.JPG",
       "github": "https://github.com/louisrowan/event-tracker",
       "learned": "This was my first exposure to using an API or JSON, as well as using JQuery on the front-end to create a dynamic website.",
       "technologies": [
@@ -12,7 +12,7 @@
     },
     {
       "name": "Mathio Party",
-      "image": "/public/images/mathioThumb.JPG",
+      "image": "./images/mathioThumb.JPG",
       "description": "Play your games",
       "learned": "This was a week-long group project that I put at least 80 hours into, so I learned a great deal about group version control and using an agile workflow. This was also my introduction to data collection and visualization.",
       "technologies": [
@@ -22,7 +22,7 @@
     {
       "name": "Rainy Day Science",
       "description": "Award winning project at the 2016 San Francisco 'Science Hack Day'.",
-      "image": "/public/images/scienceThumb.JPG",
+      "image": "./images/scienceThumb.JPG",
       "github": "https://github.com/louisrowan/science-hack-react",
       "learned": "This was my first experiene working on a decoupled app, with a Rails backend and React front-end. I learned a good deal about manipulating the DOM in React using vanilla JavaScript and CSS, as opposed to using JQuery.",
       "technologies": [
@@ -34,72 +34,72 @@
       "description": "First place at the 2016 'Hack Against Violence.' This site was an email form for people to easily contact their local representatives, politicians or ACLU depending on their needs.",
       "github": "https://github.com/samuelparker/warrnt",
       "learned": "stuff",
-      "image": "/public/images/warnntThumb.JPG",
+      "image": "./images/warnntThumb.JPG",
       "technologies": [
         "Sinatra", "Ruby", "JQuery"
       ]
     }
   ],
   "images": {
-    "linkedin": "/public/images/linkedin.png",
-    "github": "/public/images/github.png",
-    "me": "/public/images/me.jpg"
+    "linkedin": "./images/linkedin.png",
+    "github": "./images/github.png",
+    "me": "./images/me.jpg"
   },
   "skills": [
     {
       "name": "React",
       "type": "front",
-      "image": "/public/images/react.png"
+      "image": "./images/react.png"
     },
     {
       "name": "Rails",
       "type": "back",
-      "image": "/public/images/rails.png"
+      "image": "./images/rails.png"
     },
     {
       "name": "JavaScript",
       "type": "front",
-      "image": "/public/images/javascript.jpg"
+      "image": "./images/javascript.jpg"
     },
     {
       "name": "Redux",
       "type": "front",
-      "image": "/public/images/redux.png"
+      "image": "./images/redux.png"
     },
     {
       "name": "D3",
       "type": "front",
-      "image": "/public/images/d3.png"
+      "image": "./images/d3.png"
     },
     {
       "name": "Git/Github",
       "type": "other",
-      "image": "/public/images/github.png"
+      "image": "./images/github.png"
     },
     {
       "name": "Node/Webpack",
       "type": "back",
-      "image": "/public/images/node.jpg"
+      "image": "./images/node.jpg"
     },
     {
       "name": "C/C++",
       "type": "back",
-      "image": "/public/images/c.jpg"
+      "image": "./images/c.jpg"
     },
     {
       "name": "SQL",
       "type": "back",
-      "image": "/public/images/sql.png"
+      "image": "./images/sql.png"
     },
     {
       "name": "Python",
       "type": "back",
-      "image": "/public/images/python.png"
+      "image": "./images/python.png"
     },
     {
       "name": "Ruby",
       "type": "back",
-      "image": "/public/images/ruby.png"
+      "image": "./images/ruby.png"
     }
 
   ]
