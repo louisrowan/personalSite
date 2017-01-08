@@ -26608,7 +26608,13 @@
 	        React.createElement(
 	          'span',
 	          { className: 'emp' },
-	          'C'
+	          'D3'
+	        ),
+	        ', ',
+	        React.createElement(
+	          'span',
+	          { className: 'emp' },
+	          'C/C++'
 	        ),
 	        ', ',
 	        React.createElement(
@@ -26646,55 +26652,69 @@
 		"projects": [
 			{
 				"name": "Event Tracker",
-				"description": "This is a site that does some stuff",
+				"teaser": "Find and buy tickets for upcoming events from your favorite performers.",
+				"description": "This site allowed a user to search upcoming events for any sports team or musical artist. Users were shown the performer’s next 10 upcoming events, time and location, number of available tickets to buy, lowest available price, and a direct link to buy tickets.",
 				"image": "./images/eventThumb.jpg",
 				"github": "https://github.com/louisrowan/event-tracker",
-				"learned": "This was my first exposure to using an API or JSON, as well as using JQuery on the front-end to create a dynamic website.",
+				"learned": "This was my first exposure to using both an API and JSON, as well as using JQuery on the front-end to create a dynamic website. This was also my introduction to design and making a site look nice.",
 				"technologies": [
 					"Ruby",
 					"Sinatra",
-					"JQuery"
+					"JQuery",
+					"SQL"
 				]
 			},
 			{
 				"name": "Mathio Party",
+				"teaser": "Multiplayer math games that track your data.",
 				"image": "./images/mathioThumb.jpg",
-				"description": "Play your games",
-				"learned": "This was a week-long group project that I put at least 80 hours into, so I learned a great deal about group version control and using an agile workflow. This was also my introduction to data collection and visualization.",
+				"description": "This week-long group project at Dev Bootcamp was a game suite with 4 math games that tracked data and used data visualization to show a user’s strengths and weaknesses. The games are all multi-player and data tracking is specific enough to pinpoint which areas need improvement.",
+				"heroku": "http://mathio-party.herokuapp.com/",
+				"github": "https://github.com/kaydenwilliams7/mathio-party",
+				"learned": "This was a week-long group project that I put at least 80 hours into, so I learned a great deal about group version control and using an agile workflow. This was also my introduction to data collection and visualization, and technologies such as D3, highcharts and Phaser.",
 				"technologies": [
+					"D3",
 					"Rails",
 					"Ruby",
 					"JQuery",
-					"Phaser"
+					"Phaser",
+					"Git"
 				]
 			},
 			{
 				"name": "Rainy Day Science",
-				"description": "Award winning project at the 2016 San Francisco 'Science Hack Day'.",
+				"teaser": "Conduct Science experiments from common household items.",
+				"description": "Award winning project at the 2016 San Francisco Science Hack Day, this was a decoupled Rails/React app that supplied a list of household items for a user to check. Users were then given a list of Science Experiments that could be conducted with the items they have, and given directions and an instructional video to conduct the experiment.",
 				"image": "./images/scienceThumb.jpg",
 				"github": "https://github.com/louisrowan/science-hack-react",
-				"learned": "This was my first experiene working on a decoupled app, with a Rails backend and React front-end. I learned a good deal about manipulating the DOM in React using vanilla JavaScript and CSS, as opposed to using JQuery.",
+				"heroku": "http://rainy-day-science.herokuapp.com/#/",
+				"learned": "This was my first experience working on a decoupled app, as well as my first time attempting to manipulate the DOM in React without using JQuery. Since the target user of the site is a child we also made sure to make the UI very user-friendly and easy to use, which was another new concept.",
 				"technologies": [
 					"React",
-					"Rails"
+					"Rails",
+					"Git",
+					"Node/Webpack"
 				]
 			},
 			{
 				"name": "Warnnt",
-				"description": "First place at the 2016 'Hack Against Violence.' This site was an email form for people to easily contact their local representatives, politicians or ACLU depending on their needs.",
+				"teaser": "First-place Hackathon Project promoting community accountability.",
+				"description": "This project won first place at the 2016 SF Hack Against Violence, and featured an easy-to-use email form that dynamically edited the recipients based on a user’s needs. Users were given a list of possible community issues they were experiencing, such as excessive force or reckless driving by police. The idea was to create an easy way to hold police accountable and a venue for people to easily contact the appropriate party.",
 				"github": "https://github.com/samuelparker/warrnt",
-				"learned": "stuff",
+				"learned": "This group project was completed a week after first being exposed to Sinatra and web development, so it introduced an array of foreign concepts such as design, using JQuery, creating and email form as well as simply integrating a database into a project. ",
 				"image": "./images/warnntThumb.jpg",
 				"technologies": [
 					"Sinatra",
 					"Ruby",
-					"JQuery"
+					"JQuery",
+					"Git"
 				]
 			}
 		],
 		"images": {
 			"linkedin": "./images/linkedin.png",
 			"github": "./images/github.png",
+			"heroku": "./images/heroku.png",
 			"me": "./images/me.jpg"
 		},
 		"skills": [
@@ -41988,7 +42008,7 @@
 	        {
 	          transitionName: 'projectShow',
 	          transitionEnterTimeout: 400,
-	          transitionLeaveTimeout: 400,
+	          transitionLeaveTimeout: 2000,
 	          transitionAppear: true,
 	          transitionAppearTimeout: 300 },
 	        React.createElement(ProjectsFullscreen, { key: shownProject.name, data: shownProject, hide: this.hideFullscreen })
@@ -42062,7 +42082,7 @@
 	        React.createElement(
 	          'p',
 	          null,
-	          data.description
+	          data.teaser
 	        )
 	      ),
 	      React.createElement(
@@ -42084,6 +42104,7 @@
 	'use strict';
 
 	var React = __webpack_require__(2);
+	var logos = __webpack_require__(238).images;
 
 	var ProjectsFullscreen = React.createClass({
 	  displayName: 'ProjectsFullscreen',
@@ -42092,56 +42113,128 @@
 
 	    console.log('show');
 	    var data = this.props.data;
+
+	    var herokuContent = void 0;
+	    if (data.heroku) {
+	      herokuContent = React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          null,
+	          React.createElement(
+	            'a',
+	            { className: 'iconLink', target: '_blank', href: data.heroku },
+	            React.createElement(
+	              'div',
+	              { className: 'contactIMG' },
+	              React.createElement('img', { src: logos.heroku })
+	            )
+	          )
+	        ),
+	        React.createElement(
+	          'td',
+	          null,
+	          React.createElement(
+	            'a',
+	            { target: '_blank', href: data.heroku },
+	            'Deployed on Heroku'
+	          )
+	        )
+	      );
+	    } else {
+	      herokuContent = '';
+	    }
+
 	    return React.createElement(
 	      'div',
 	      { className: 'projectFullscreenDiv' },
+	      React.createElement('div', { id: 'projectsBackButton', className: 'leftArrowDiv arrowDiv', onClick: function onClick() {
+	          return _this.props.hide();
+	        } }),
 	      React.createElement(
 	        'h1',
 	        null,
 	        data.name
 	      ),
 	      React.createElement(
+	        'table',
+	        { className: 'contactTable' },
+	        React.createElement(
+	          'tbody',
+	          null,
+	          React.createElement(
+	            'tr',
+	            null,
+	            React.createElement(
+	              'td',
+	              null,
+	              React.createElement(
+	                'a',
+	                { className: 'iconLink', target: '_blank', href: data.github },
+	                React.createElement(
+	                  'div',
+	                  { className: 'contactIMG' },
+	                  React.createElement('img', { src: logos.github })
+	                )
+	              )
+	            ),
+	            React.createElement(
+	              'td',
+	              null,
+	              React.createElement(
+	                'a',
+	                { target: '_blank', href: 'https://github.com/louisrowan' },
+	                'See the Code'
+	              )
+	            )
+	          ),
+	          herokuContent
+	        )
+	      ),
+	      React.createElement(
 	        'div',
-	        { className: 'projectFullscreenImgDiv' },
-	        React.createElement('img', { src: data.image })
+	        { className: 'fullscreenHalf' },
+	        React.createElement(
+	          'div',
+	          { className: 'projectFullscreenImgDiv' },
+	          React.createElement('img', { src: data.image })
+	        ),
+	        React.createElement(
+	          'ul',
+	          { className: 'projectSkillsList' },
+	          data.technologies.map(function (d, i) {
+	            return React.createElement(
+	              'li',
+	              { key: i },
+	              d
+	            );
+	          })
+	        )
 	      ),
 	      React.createElement(
-	        'p',
-	        null,
-	        data.description
-	      ),
-	      React.createElement(
-	        'ul',
-	        null,
-	        data.technologies.map(function (d, i) {
-	          return React.createElement(
-	            'li',
-	            { key: i },
-	            d
-	          );
-	        })
-	      ),
-	      React.createElement(
-	        'a',
-	        { href: data.github },
-	        'See the code'
-	      ),
-	      React.createElement(
-	        'h4',
-	        null,
-	        'What I learned:'
-	      ),
-	      React.createElement(
-	        'p',
-	        null,
-	        data.learned
-	      ),
-	      React.createElement(
-	        'p',
-	        { onClick: function onClick() {
-	            return _this.props.hide();
-	          } },
-	        'Back'
+	        'div',
+	        { className: 'fullscreenHalf' },
+	        React.createElement(
+	          'h2',
+	          null,
+	          'About'
+	        ),
+	        React.createElement(
+	          'p',
+	          null,
+	          data.description
+	        ),
+	        React.createElement(
+	          'h2',
+	          null,
+	          'What I Learned'
+	        ),
+	        React.createElement(
+	          'p',
+	          null,
+	          data.learned
+	        )
 	      )
 	    );
 	  }
@@ -54883,10 +54976,10 @@
 
 	exports = module.exports = __webpack_require__(324)();
 	// imports
-	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Merriweather+Sans:700i);", ""]);
+
 
 	// module
-	exports.push([module.id, "* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: Georgia, Serif;\r\n}\r\n\r\na {\r\n  color: blue;\r\n  font-weight: bold;\r\n}\r\n\r\na:visited {\r\n  color: blue;\r\n}\r\n\r\nh1 {\r\n  padding: 20px;\r\n  color: purple;\r\n  font-family: 'Merriweather Sans';\r\n  font-size: 3em;\r\n  text-shadow: 1px 1px 1px black;\r\n}\r\n\r\nh2 {\r\n  padding: 10px;\r\n}\r\n\r\np {\r\n  padding: 10px;\r\n}\r\n\r\n.homeContainer {\r\n  width: 100%;\r\n  min-height: 1000px;\r\n  background: linear-gradient(to bottom right,\r\n    rgba(45, 6, 56, 1),\r\n    rgba(131, 11, 168, 1)\r\n  );\r\n  padding: 60px 0px;\r\n  color: orange;\r\n}\r\n\r\n.headerContainer {\r\n  width: 100%;\r\n  min-height: 1000px;\r\n  text-align: center;\r\n  border-bottom: 10px solid white;\r\n  color: white;\r\n}\r\n\r\n.contentContainer {\r\n  position: absolute;\r\n  background: white;\r\n  width: 100%;\r\n  min-height: 100%;\r\n  box-shadow: 0px 0px 50px 5px black, 0px 0px 10px 2px rgba(45, 6, 56, 1) inset;\r\n  padding: 10px;\r\n}\r\n\r\n.emp {\r\n  font-size: 1.3em;\r\n  font-weight: bold;\r\n}\r\n\r\n#mainParagraph {\r\n  font-size: 1.2em;\r\n}\r\n\r\n.mainImg {\r\n  height: 300px;\r\n  width: 300px;\r\n  box-shadow: 0px 0px 5px 2px black;\r\n  border-radius: 50%;\r\n  overflow: hidden;\r\n  margin: auto;\r\n  animation: picture-rotate 5s linear infinite;\r\n}\r\n\r\n@keyframes picture-rotate {\r\n  0% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  25% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  50% {\r\n    transform: rotateY(90deg);\r\n  }\r\n  75% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  100% {\r\n    transform: rotateY(0deg);\r\n  }\r\n}\r\n\r\n.mainImg img {\r\n  height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n.projectDiv {\r\n  width: 50%;\r\n  height: 400px;\r\n  margin: auto;\r\n  position: relative;\r\n}\r\n\r\n.arrowDiv {\r\n  box-sizing: none;\r\n  height: 0;\r\n  width: 0;\r\n  border: 30px solid transparent;\r\n  position: absolute;\r\n  top: 45%;\r\n  bottom: 45%;\r\n}\r\n\r\n.arrowDiv:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n.leftArrowDiv {\r\n  border-right: 40px solid rgba(45, 6, 56, 1);\r\n  left: 10px;\r\n}\r\n\r\n.leftArrowDiv:hover {\r\n  border-right: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n.rightArrowDiv {\r\n  border-left: 40px solid rgba(45, 6, 56, 1);\r\n  right: 10px;\r\n}\r\n\r\n.rightArrowDiv:hover {\r\n  border-left: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n.component-enter {\r\n  transform: rotateY(90deg) rotateX(90deg);\r\n}\r\n\r\n.component-enter-active {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n  transition: transform 300ms ease-out 300ms;\r\n}\r\n\r\n.component-leave {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n}\r\n\r\n.component-leave-active {\r\n  transform: rotateY(90deg) rotateX(-90deg);\r\n  transition: transform 300ms ease-in;\r\n}\r\n\r\n#contentSpace {\r\n  width: 90%;\r\n  max-width: 1000px;\r\n  min-height: 600px;\r\n  overflow: visible;\r\n  text-align: center;\r\n  margin: 20px auto;\r\n  color: black;\r\n  position: relative;\r\n}\r\n\r\nnav table {\r\n  width: 100%;\r\n  background: linear-gradient(to right,\r\n    rgba(45, 6, 56, 1),\r\n    rgba(89, 9, 113, 1)\r\n  );\r\n  color: white;\r\n}\r\n\r\nnav td {\r\n  width: 25%;\r\n  text-align: center;\r\n  height: 100px;\r\n  font-size: 1.2em;\r\n  font-family: 'Merriweather Sans';\r\n}\r\n\r\nnav td:hover {\r\n  background: rgba(50, 10, 60, 1);\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n}\r\n\r\n.projectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: absolute;\r\n  box-shadow: 0px 0px 10px 5px black;\r\n}\r\n\r\n.hoverProjectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: relative;\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  position: absolute;\r\n}\r\n\r\n.thumbImgDiv {\r\n  width: 100%;\r\n  max-height: 300px;\r\n  border-top: 2px solid black;\r\n  overflow: hidden;\r\n}\r\n\r\n.thumbImgDiv img {\r\n  min-width: 100%;\r\n  min-height: 100%;\r\n}\r\n\r\n.projectsThumbHeader {\r\n  padding: 10px;\r\n}\r\n\r\n.hiddenThumbDiv {\r\n  position: absolute;\r\n  height: 100%;\r\n  width: 100%;\r\n  background: transparent;\r\n  cursor: pointer;\r\n  z-index: 2;\r\n  background-color: rgba(0, 0, 0, .5);\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.hiddenThumbDiv h2 {\r\n  background: white;\r\n  margin: auto;\r\n  width: 100%;\r\n  padding: 10px;\r\n}\r\n\r\n.hidden {\r\n  display: none;\r\n}\r\n\r\n/*.nextProjectThumb {\r\n  height: 400px;\r\n  width: 20%;\r\n  background: purple;\r\n  overflow: hidden;\r\n  transform: scale(.5);\r\n  position: absolute;\r\n  left: 50px;\r\n}\r\n*/\r\n\r\n\r\n\r\n.projectFlip-enter {\r\n  transform: rotateY(-90deg);\r\n}\r\n\r\n.projectFlip-enter-active {\r\n  transform: rotateY(0deg);\r\n  transition: transform 400ms ease-out 200ms;\r\n}\r\n\r\n.projectFlip-leave {\r\n  transform: rotateY(0deg);\r\n}\r\n\r\n.projectFlip-leave-active {\r\n  transform: rotateY(90deg);\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  transition:\r\n    transform 200ms ease-in,\r\n    box-shadow 200ms ease-in;\r\n}\r\n\r\n\r\n\r\n\r\n.projectShow-appear {\r\n  transform: scale(.1);\r\n}\r\n\r\n.projectShow-appear-active {\r\n  transform: scale(1);\r\n  transition: transform 300ms ease-in;\r\n}\r\n\r\n.projectShow-leave {\r\n  transform: translateX(0);\r\n}\r\n\r\n.projectShow-leave-active {\r\n  transform: translateX(200px);\r\n  transition: transform 2s ease-in;\r\n}\r\n\r\n.projectFullscreenDiv {\r\n  \r\n}\r\n\r\n.projectFullscreenImgDiv {\r\n  max-height: 300px;\r\n  overflow: hidden;\r\n}\r\n\r\n\r\n/*contact page*/\r\n\r\n.contactInput {\r\n  width: 245px;\r\n  padding: 10px;\r\n  margin: 5px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactTextarea {\r\n  width: 500px;\r\n  height: 200px;\r\n  padding: 10px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.1em;\r\n}\r\n\r\n.contactSubmit {\r\n  width: 200px;\r\n  padding: 10px;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactSubmit:hover {\r\n  box-shadow: 2px 2px 1px 1px black;\r\n  font-weight: bold;\r\n}\r\n\r\n.formSubmit {\r\n  animation: formFlip 1s forwards;\r\n}\r\n\r\n@keyframes formFlip {\r\n  0% {\r\n    transform: rotateX(0);\r\n  }\r\n\r\n  100% {\r\n    transform: rotateX(90deg);\r\n  }\r\n}\r\n\r\n.contactContainer {\r\n  position: relative;\r\n}\r\n\r\n.formSuccess {\r\n  color: green;\r\n  position: absolute;\r\n  top: 250px;\r\n  width: 100%;\r\n  text-align: center;\r\n  animation: formSuccess 2s forwards;\r\n}\r\n\r\n@keyframes formSuccess {\r\n  0% {\r\n    opacity: 0;\r\n  }\r\n  50% {\r\n    opacity: 0;\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n  }\r\n}\r\n\r\n.contactTable {\r\n  margin: auto;\r\n  font-size: 1.5em;\r\n}\r\n\r\n.contactTable tr {\r\n  background: #fcfcfc;\r\n}\r\n\r\n.contactTable tr:hover {\r\n  background: white;\r\n}\r\n\r\n.contactTable tr:hover td:first-child {\r\n  animation: contact-hover 500ms linear forwards;\r\n}\r\n\r\n.contactTable a:hover {\r\n  text-decoration: none;\r\n  color: darkblue;\r\n}\r\n\r\n.contactTable td {\r\n  padding: 5px;\r\n  text-align: left;\r\n}\r\n\r\n.contactIMG {\r\n  height: 40px;\r\n  width: 50px;\r\n  overflow: hidden;\r\n}\r\n\r\n.contactIMG img {\r\n  max-width: 100%;\r\n  max-height: 100%;\r\n}\r\n\r\n.contactPhone {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactPhone:before {\r\n  content: \"\\260E\";\r\n  font-size: 2em;\r\n  color: black;\r\n}\r\n\r\n.contactEmail {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactEmail:before {\r\n  content: \"\\2709\";\r\n  font-size: 2em;\r\n  color: black;\r\n\r\n}\r\n\r\n.iconLink:hover img, .iconLink:hover div:before {\r\n  transform: scale(1.2);\r\n}\r\n\r\n#h2ClickContact {\r\n  padding: 10px;\r\n  color: purple;\r\n}\r\n\r\n#h2ClickContact:before, #h2ClickContact:after {\r\n  content: \"\\26E4\";\r\n  font-size: 1.2em;\r\n  color: black;\r\n}\r\n\r\n#h2ClickContact:hover::before, #h2ClickContact:hover::after {\r\n  display: inline-block;\r\n  animation: contact-hover 2s linear forwards infinite;\r\n}\r\n\r\n#h2ClickContact:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n@keyframes contact-hover {\r\n  0% {\r\n    transform: rotate(0deg);\r\n  }\r\n  25% {\r\n    transform: rotate(-90deg);\r\n  }\r\n  50% {\r\n    transform: rotate(-180deg);\r\n  }\r\n  75% {\r\n    transofmr: rotate(-270deg);\r\n  }\r\n  100% {\r\n    transform: rotate(-360deg);\r\n  }\r\n}\r\n\r\n\r\n\r\n.showForm-enter {\r\n  transform: scale(0);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-enter-active {\r\n  transform: scale(1);\r\n}\r\n\r\n.showForm-leave {\r\n  transform: scale(1);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-leave-active {\r\n  transform: scale(0);\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n/*skills chart*/\r\n\r\n.skillsContainer {\r\n  width: 100%;\r\n  min-height: 800px;\r\n}\r\n\r\n#d3SkillsContainer {\r\n  height: 600px;\r\n  width: 90%;\r\n  margin: auto;\r\n  position: relative;\r\n  overflow: hidden;\r\n}\r\n\r\n.tooltipDiv {\r\n  width: 150px;\r\n  text-align: center;\r\n  padding: 10px;\r\n}\r\n\r\n.tooltipDiv:after {\r\n  content: '';\r\n  width: 0px;\r\n  height: 0px;\r\n  border: 10px solid transparent;\r\n  border-top: 10px solid black;\r\n  position: relative;\r\n  top: 38px;\r\n  right: 80px;\r\n\r\n}\r\n\r\n#d3ButtonDiv {\r\n  position: absolute;\r\n  width: 100%;\r\n}\r\n\r\n.skillsButton {\r\n  padding: 20px;\r\n  margin: 10px;\r\n  background: rgba(244, 245, 247, .5);\r\n  border: none;\r\n  min-width: 120px;\r\n}\r\n\r\n.skillsButton:focus {\r\n  outline: 0;\r\n}\r\n\r\n.skillsButton:hover {\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n}\r\n\r\n.d3Active {\r\n  background: lightblue;\r\n}\r\n\r\n.d3Circle {\r\n  animation: stroke 1000ms linear alternate infinite;\r\n}\r\n\r\n@keyframes stroke {\r\n  0% {\r\n    stroke-opacity: 1;\r\n  }\r\n  100% {\r\n    stroke-opacity: .3;\r\n  }\r\n}\r\n\r\n.inactiveCircle {\r\n  background: lightgray;\r\n  transition: background 200ms ease-in;\r\n}\r\n\r\n.activeCircle {\r\n  background: purple;\r\n  transition: background 200ms ease-in;\r\n}\r\n\r\n.listCircle {\r\n  width: 20px;\r\n  height: 20px;\r\n  border-radius: 10px;\r\n  display: inline-block;\r\n  margin: 10px;\r\n}\r\n\r\n.projectsCirclesList {\r\n  width: 100%;\r\n  padding: 20px;\r\n}", ""]);
+	exports.push([module.id, "/*@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans:700i');*/\r\n\r\n* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: 'Khula', Serif;\r\n}\r\n\r\na {\r\n  color: blue;\r\n  font-weight: bold;\r\n  text-decoration: none;\r\n}\r\n\r\na:visited {\r\n  color: blue;\r\n}\r\n\r\nh1 {\r\n  padding: 20px;\r\n  color: purple;\r\n  font-family: 'Merriweather Sans';\r\n  font-size: 3em;\r\n  text-shadow: 1px 1px 1px black;\r\n}\r\n\r\nh2 {\r\n  padding: 10px;\r\n  font-family: 'Petit Formal Script';\r\n}\r\n\r\np {\r\n  padding: 10px;\r\n}\r\n\r\n.homeContainer {\r\n  width: 100%;\r\n  min-height: 1000px;\r\n  background: linear-gradient(to bottom right,\r\n    rgba(45, 6, 56, 1),\r\n    rgba(131, 11, 168, 1)\r\n  );\r\n  padding: 60px 0px;\r\n  color: orange;\r\n}\r\n\r\n.headerContainer {\r\n  width: 100%;\r\n  min-height: 1000px;\r\n  text-align: center;\r\n  border-bottom: 10px solid white;\r\n  color: white;\r\n}\r\n\r\n.contentContainer {\r\n  position: absolute;\r\n  background: white;\r\n  width: 100%;\r\n  min-height: 100%;\r\n  box-shadow: 0px 0px 50px 5px black, 0px 0px 10px 2px rgba(45, 6, 56, 1) inset;\r\n  padding: 10px;\r\n}\r\n\r\n.emp {\r\n  font-size: 1.3em;\r\n  font-weight: bold;\r\n}\r\n\r\n#mainParagraph {\r\n  font-size: 1.2em;\r\n}\r\n\r\n.mainImg {\r\n  height: 300px;\r\n  width: 300px;\r\n  box-shadow: 0px 0px 5px 2px black;\r\n  border-radius: 50%;\r\n  overflow: hidden;\r\n  margin: auto;\r\n  animation: picture-rotate 5s linear infinite;\r\n}\r\n\r\n@keyframes picture-rotate {\r\n  0% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  25% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  50% {\r\n    transform: rotateY(90deg);\r\n  }\r\n  75% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  100% {\r\n    transform: rotateY(0deg);\r\n  }\r\n}\r\n\r\n.mainImg img {\r\n  height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n.projectDiv {\r\n  width: 50%;\r\n  height: 400px;\r\n  margin: auto;\r\n  position: relative;\r\n}\r\n\r\n.arrowDiv {\r\n  box-sizing: none;\r\n  height: 0;\r\n  width: 0;\r\n  border: 30px solid transparent;\r\n  position: absolute;\r\n  top: 45%;\r\n  bottom: 45%;\r\n}\r\n\r\n.arrowDiv:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n.leftArrowDiv {\r\n  border-right: 40px solid rgba(45, 6, 56, 1);\r\n  left: 10px;\r\n}\r\n\r\n.leftArrowDiv:hover {\r\n  border-right: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n.rightArrowDiv {\r\n  border-left: 40px solid rgba(45, 6, 56, 1);\r\n  right: 10px;\r\n}\r\n\r\n.rightArrowDiv:hover {\r\n  border-left: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n#projectsBackButton {\r\n  top: 30px;\r\n}\r\n\r\n.component-enter {\r\n  transform: rotateY(90deg) rotateX(90deg);\r\n}\r\n\r\n.component-enter-active {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n  transition: transform 300ms ease-out 300ms;\r\n}\r\n\r\n.component-leave {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n}\r\n\r\n.component-leave-active {\r\n  transform: rotateY(90deg) rotateX(-90deg);\r\n  transition: transform 300ms ease-in;\r\n}\r\n\r\n#contentSpace {\r\n  width: 90%;\r\n  max-width: 1000px;\r\n  min-height: 600px;\r\n  overflow: visible;\r\n  text-align: center;\r\n  margin: 20px auto;\r\n  color: black;\r\n  position: relative;\r\n}\r\n\r\nnav table {\r\n  width: 100%;\r\n  background: linear-gradient(to right,\r\n    rgba(45, 6, 56, 1),\r\n    rgba(89, 9, 113, 1)\r\n  );\r\n  color: white;\r\n}\r\n\r\nnav td {\r\n  width: 25%;\r\n  text-align: center;\r\n  height: 100px;\r\n  font-size: 1.2em;\r\n  font-family: 'Merriweather Sans';\r\n}\r\n\r\nnav td:hover {\r\n  background: rgba(50, 10, 60, 1);\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n}\r\n\r\n.projectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: absolute;\r\n  box-shadow: 0px 0px 10px 5px black;\r\n}\r\n\r\n.hoverProjectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: relative;\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  position: absolute;\r\n}\r\n\r\n.thumbImgDiv {\r\n  width: 100%;\r\n  max-height: 300px;\r\n  border-top: 2px solid black;\r\n  overflow: hidden;\r\n}\r\n\r\n.thumbImgDiv img {\r\n  min-width: 100%;\r\n  min-height: 100%;\r\n}\r\n\r\n.projectsThumbHeader {\r\n  padding: 10px;\r\n}\r\n\r\n.hiddenThumbDiv {\r\n  position: absolute;\r\n  height: 100%;\r\n  width: 100%;\r\n  background: transparent;\r\n  cursor: pointer;\r\n  z-index: 2;\r\n  background-color: rgba(0, 0, 0, .5);\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.hiddenThumbDiv h2 {\r\n  background: white;\r\n  margin: auto;\r\n  width: 100%;\r\n  padding: 10px;\r\n}\r\n\r\n.hidden {\r\n  display: none;\r\n}\r\n\r\n/*.nextProjectThumb {\r\n  height: 400px;\r\n  width: 20%;\r\n  background: purple;\r\n  overflow: hidden;\r\n  transform: scale(.5);\r\n  position: absolute;\r\n  left: 50px;\r\n}\r\n*/\r\n\r\n\r\n\r\n.projectFlip-enter {\r\n  transform: rotateY(-90deg);\r\n}\r\n\r\n.projectFlip-enter-active {\r\n  transform: rotateY(0deg);\r\n  transition: transform 400ms ease-out 200ms;\r\n}\r\n\r\n.projectFlip-leave {\r\n  transform: rotateY(0deg);\r\n}\r\n\r\n.projectFlip-leave-active {\r\n  transform: rotateY(90deg);\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  transition:\r\n    transform 200ms ease-in,\r\n    box-shadow 200ms ease-in;\r\n}\r\n\r\n\r\n\r\n\r\n.projectShow-appear {\r\n  transform: scale(.1);\r\n}\r\n\r\n.projectShow-appear-active {\r\n  transform: scale(1);\r\n  transition: transform 300ms ease-in;\r\n}\r\n\r\n.projectShow-leave {\r\n  transform: scale(1);\r\n}\r\n\r\n.projectShow-leave-active {\r\n  transform: scale(.1);\r\n  transition: transform 2s ease-in;\r\n}\r\n\r\n.projectFullscreenDiv {\r\n  padding: 10px;\r\n}\r\n\r\n.projectFullscreenImgDiv {\r\n  max-height: 300px;\r\n  overflow: hidden;\r\n}\r\n\r\n.projectSkillsList {\r\n  list-style-type: none;\r\n}\r\n\r\n.projectSkillsList li {\r\n  float: left;\r\n  padding: 40px;\r\n  font-size: 1.5em;\r\n  width: 33.3%;\r\n  font-family: 'Pacifico', Serif;\r\n}\r\n\r\n.projectSkillsList li:hover {\r\n  background: #f9f9f7;\r\n}\r\n\r\n.fullscreenHalf {\r\n  float: left;\r\n  width: 50%;\r\n  overflow: hidden;\r\n}\r\n\r\n.fullscreenHalf h2 {\r\n\r\n}\r\n\r\n.fullscreenHalf p {\r\n  font-size: 1.2;\r\n  padding: 10px;\r\n}\r\n\r\n\r\n/*contact page*/\r\n\r\n.contactInput {\r\n  width: 245px;\r\n  padding: 10px;\r\n  margin: 5px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactTextarea {\r\n  width: 500px;\r\n  height: 200px;\r\n  padding: 10px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.1em;\r\n}\r\n\r\n.contactSubmit {\r\n  width: 200px;\r\n  padding: 10px;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactSubmit:hover {\r\n  box-shadow: 2px 2px 1px 1px black;\r\n  font-weight: bold;\r\n}\r\n\r\n.formSubmit {\r\n  animation: formFlip 1s forwards;\r\n}\r\n\r\n@keyframes formFlip {\r\n  0% {\r\n    transform: rotateX(0);\r\n  }\r\n\r\n  100% {\r\n    transform: rotateX(90deg);\r\n  }\r\n}\r\n\r\n.contactContainer {\r\n  position: relative;\r\n}\r\n\r\n.formSuccess {\r\n  color: green;\r\n  position: absolute;\r\n  top: 250px;\r\n  width: 100%;\r\n  text-align: center;\r\n  animation: formSuccess 2s forwards;\r\n}\r\n\r\n@keyframes formSuccess {\r\n  0% {\r\n    opacity: 0;\r\n  }\r\n  50% {\r\n    opacity: 0;\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n  }\r\n}\r\n\r\n.contactTable {\r\n  margin: auto;\r\n  font-size: 1.5em;\r\n}\r\n\r\n.contactTable tr {\r\n  background: #fcfcfc;\r\n}\r\n\r\n.contactTable tr:hover {\r\n  background: white;\r\n}\r\n\r\n.contactTable tr:hover td:first-child {\r\n  animation: contact-hover 500ms linear forwards;\r\n}\r\n\r\n.contactTable a:hover {\r\n  text-decoration: none;\r\n  color: darkblue;\r\n}\r\n\r\n.contactTable td {\r\n  padding: 5px;\r\n  text-align: left;\r\n}\r\n\r\n.contactIMG {\r\n  height: 40px;\r\n  width: 50px;\r\n  overflow: hidden;\r\n}\r\n\r\n.contactIMG img {\r\n  max-width: 100%;\r\n  max-height: 100%;\r\n}\r\n\r\n.contactPhone {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactPhone:before {\r\n  content: \"\\260E\";\r\n  font-size: 2em;\r\n  color: black;\r\n}\r\n\r\n.contactEmail {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactEmail:before {\r\n  content: \"\\2709\";\r\n  font-size: 2em;\r\n  color: black;\r\n\r\n}\r\n\r\n.iconLink:hover img, .iconLink:hover div:before {\r\n  transform: scale(1.2);\r\n}\r\n\r\n#h2ClickContact {\r\n  padding: 10px;\r\n  color: purple;\r\n  font-family: 'Khula', Serif;\r\n}\r\n\r\n#h2ClickContact:before, #h2ClickContact:after {\r\n  content: \"\\26E4\";\r\n  font-size: 1.2em;\r\n  color: black;\r\n}\r\n\r\n#h2ClickContact:hover::before, #h2ClickContact:hover::after {\r\n  display: inline-block;\r\n  animation: contact-hover 2s linear forwards infinite;\r\n}\r\n\r\n#h2ClickContact:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n@keyframes contact-hover {\r\n  0% {\r\n    transform: rotate(0deg);\r\n  }\r\n  25% {\r\n    transform: rotate(-90deg);\r\n  }\r\n  50% {\r\n    transform: rotate(-180deg);\r\n  }\r\n  75% {\r\n    transofmr: rotate(-270deg);\r\n  }\r\n  100% {\r\n    transform: rotate(-360deg);\r\n  }\r\n}\r\n\r\n\r\n\r\n.showForm-enter {\r\n  transform: scale(0);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-enter-active {\r\n  transform: scale(1);\r\n}\r\n\r\n.showForm-leave {\r\n  transform: scale(1);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-leave-active {\r\n  transform: scale(0);\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n/*skills chart*/\r\n\r\n.skillsContainer {\r\n  width: 100%;\r\n  min-height: 800px;\r\n}\r\n\r\n#d3SkillsContainer {\r\n  height: 600px;\r\n  width: 90%;\r\n  margin: auto;\r\n  position: relative;\r\n  overflow: hidden;\r\n}\r\n\r\n.tooltipDiv {\r\n  width: 150px;\r\n  text-align: center;\r\n  padding: 10px;\r\n}\r\n\r\n.tooltipDiv:after {\r\n  content: '';\r\n  width: 0px;\r\n  height: 0px;\r\n  border: 10px solid transparent;\r\n  border-top: 10px solid black;\r\n  position: relative;\r\n  top: 38px;\r\n  right: 80px;\r\n\r\n}\r\n\r\n#d3ButtonDiv {\r\n  position: absolute;\r\n  width: 100%;\r\n}\r\n\r\n.skillsButton {\r\n  padding: 20px;\r\n  margin: 10px;\r\n  background: rgba(244, 245, 247, .5);\r\n  border: none;\r\n  min-width: 120px;\r\n}\r\n\r\n.skillsButton:focus {\r\n  outline: 0;\r\n}\r\n\r\n.skillsButton:hover {\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n}\r\n\r\n.d3Active {\r\n  background: lightblue;\r\n}\r\n\r\n.d3Circle {\r\n  animation: stroke 1000ms linear alternate infinite;\r\n}\r\n\r\n@keyframes stroke {\r\n  0% {\r\n    stroke-opacity: 1;\r\n  }\r\n  100% {\r\n    stroke-opacity: .3;\r\n  }\r\n}\r\n\r\n.inactiveCircle {\r\n  background: lightgray;\r\n  transition: background 200ms ease-in;\r\n}\r\n\r\n.activeCircle {\r\n  background: purple;\r\n  transition: background 200ms ease-in;\r\n}\r\n\r\n.listCircle {\r\n  width: 20px;\r\n  height: 20px;\r\n  border-radius: 10px;\r\n  display: inline-block;\r\n  margin: 10px;\r\n}\r\n\r\n.projectsCirclesList {\r\n  width: 100%;\r\n  padding: 20px;\r\n}", ""]);
 
 	// exports
 
