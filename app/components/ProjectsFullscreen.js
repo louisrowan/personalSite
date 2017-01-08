@@ -7,6 +7,26 @@ const ProjectsFullscreen = React.createClass({
     console.log('show')
     let data = this.props.data
 
+    let githubContent;
+    if (data.github) {
+      githubContent = (
+             <tr>
+                <td>
+                  <a className='iconLink' target="_blank" href={data.github}>
+                    <div className='contactIMG'>
+                      <img src={logos.github} />
+                    </div>
+                  </a>
+                </td>
+                <td>
+                  <a target="_blank" href={data.github}>See the Code</a>
+                </td>
+              </tr>
+      )
+    } else {
+      githubContent = ''
+    }
+
     let herokuContent;
     if (data.heroku) {
       herokuContent = (
@@ -34,19 +54,8 @@ const ProjectsFullscreen = React.createClass({
 
         <table className='contactTable'>
            <tbody>
-             <tr>
-                <td>
-                  <a className='iconLink' target="_blank" href={data.github}>
-                    <div className='contactIMG'>
-                      <img src={logos.github} />
-                    </div>
-                  </a>
-                </td>
-                <td>
-                  <a target="_blank" href="https://github.com/louisrowan">See the Code</a>
-                </td>
-              </tr>
 
+              {githubContent}
               {herokuContent}
 
             </tbody>
