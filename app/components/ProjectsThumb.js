@@ -30,7 +30,7 @@ const ProjectsThumb = React.createClass({
         </div>
         <div className='projectsThumbHeader'>
           <h2>{data.name}</h2>
-          <p>{data.description}</p>
+          <p>{data.teaser}</p>
         </div>
         <div className='thumbImgDiv'>
           <img src={data.image} />

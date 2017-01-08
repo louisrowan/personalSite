@@ -19,7 +19,7 @@ const ProjectsFullscreen = React.createClass({
                   </a>
                 </td>
                 <td>
-                  <a target="_blank" href="https://github.com/louisrowan">Deployed on Heroku</a>
+                  <a target="_blank" href={data.heroku}>Deployed on Heroku</a>
                 </td>
               </tr>
               )} else {
@@ -66,7 +66,7 @@ const ProjectsFullscreen = React.createClass({
         <div className='fullscreenHalf'>
           <h2>About</h2>
           <p>{data.description}</p>
-          <h2>Learned</h2>
+          <h2>What I Learned</h2>
           <p>{data.learned}</p>
         </div>
 

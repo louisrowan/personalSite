@@ -1,15 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans:700i');
+/*@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans:700i');*/
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Georgia, Serif;
+  font-family: 'Khula', Serif;
 }
 
 a {
   color: blue;
   font-weight: bold;
+  text-decoration: none;
 }
 
 a:visited {
@@ -26,6 +27,7 @@ h1 {
 
 h2 {
   padding: 10px;
+  font-family: 'Petit Formal Script';
 }
 
 p {
@@ -330,13 +332,17 @@ nav td:hover {
   padding: 40px;
   font-size: 1.5em;
   width: 33.3%;
+  font-family: 'Pacifico', Serif;
+}
+
+.projectSkillsList li:hover {
+  background: #f9f9f7;
 }
 
 .fullscreenHalf {
   float: left;
   width: 50%;
   overflow: hidden;
-  border: 2px solid red;
 }
 
 .fullscreenHalf h2 {
@@ -345,6 +351,7 @@ nav td:hover {
 
 .fullscreenHalf p {
   font-size: 1.2;
+  padding: 10px;
 }
 
 
@@ -488,6 +495,7 @@ nav td:hover {
 #h2ClickContact {
   padding: 10px;
   color: purple;
+  font-family: 'Khula', Serif;
 }
 
 #h2ClickContact:before, #h2ClickContact:after {

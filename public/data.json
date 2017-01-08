@@ -2,43 +2,48 @@
   "projects": [
     {
       "name": "Event Tracker",
-      "description": "This is a site that does some stuff",
+      "teaser": "Find and buy tickets for upcoming events from your favorite performers.",
+      "description": "This site allowed a user to search upcoming events for any sports team or musical artist. Users were shown the performer’s next 10 upcoming events, time and location, number of available tickets to buy, lowest available price, and a direct link to buy tickets.",
       "image": "/public/images/eventThumb.jpg",
       "github": "https://github.com/louisrowan/event-tracker",
-      "learned": "This was my first exposure to using an API or JSON, as well as using JQuery on the front-end to create a dynamic website.",
+      "learned": "This was my first exposure to using both an API and JSON, as well as using JQuery on the front-end to create a dynamic website. This was also my introduction to design and making a site look nice.",
       "technologies": [
-        "Ruby", "Sinatra", "JQuery"
+        "Ruby", "Sinatra", "JQuery", "SQL"
       ]
     },
     {
       "name": "Mathio Party",
+      "teaser": "Multiplayer math games that track your data.",
       "image": "/public/images/mathioThumb.jpg",
-      "description": "Play your games",
+      "description": "This week-long group project at Dev Bootcamp was a game suite with 4 math games that tracked data and used data visualization to show a user’s strengths and weaknesses. The games are all multi-player and data tracking is specific enough to pinpoint which areas need improvement.",
       "heroku": "http://mathio-party.herokuapp.com/",
       "github": "https://github.com/kaydenwilliams7/mathio-party",
-      "learned": "This was a week-long group project that I put at least 80 hours into, so I learned a great deal about group version control and using an agile workflow. This was also my introduction to data collection and visualization.",
+      "learned": "This was a week-long group project that I put at least 80 hours into, so I learned a great deal about group version control and using an agile workflow. This was also my introduction to data collection and visualization, and technologies such as D3, highcharts and Phaser.",
       "technologies": [
-        "Rails", "Ruby", "JQuery", "Phaser"
+        "D3", "Rails", "Ruby", "JQuery", "Phaser", "Git"
       ]
     },
     {
       "name": "Rainy Day Science",
-      "description": "Award winning project at the 2016 San Francisco 'Science Hack Day'.",
+      "teaser": "Conduct Science experiments from common household items.",
+      "description": "Award winning project at the 2016 San Francisco Science Hack Day, this was a decoupled Rails/React app that supplied a list of household items for a user to check. Users were then given a list of Science Experiments that could be conducted with the items they have, and given directions and an instructional video to conduct the experiment.",
       "image": "/public/images/scienceThumb.jpg",
       "github": "https://github.com/louisrowan/science-hack-react",
-      "learned": "This was my first experience working on a decoupled app, with a Rails backend and React front-end. I learned a good deal about manipulating the DOM in React using vanilla JavaScript and CSS, as opposed to using JQuery.",
+      "heroku": "http://rainy-day-science.herokuapp.com/#/",
+      "learned": "This was my first experience working on a decoupled app, as well as my first time attempting to manipulate the DOM in React without using JQuery. Since the target user of the site is a child we also made sure to make the UI very user-friendly and easy to use, which was another new concept.",
       "technologies": [
-        "React", "Rails"
+        "React", "Rails", "Git", "Node/Webpack"
       ]
     },
     {
       "name": "Warnnt",
-      "description": "First place at the 2016 'Hack Against Violence.' This site was an email form for people to easily contact their local representatives, politicians or ACLU depending on their needs.",
+      "teaser": "First-place Hackathon Project promoting community accountability.",
+      "description": "This project won first place at the 2016 SF Hack Against Violence, and featured an easy-to-use email form that dynamically edited the recipients based on a user’s needs. Users were given a list of possible community issues they were experiencing, such as excessive force or reckless driving by police. The idea was to create an easy way to hold police accountable and a venue for people to easily contact the appropriate party.",
       "github": "https://github.com/samuelparker/warrnt",
-      "learned": "stuff",
+      "learned": "This group project was completed a week after first being exposed to Sinatra and web development, so it introduced an array of foreign concepts such as design, using JQuery, creating and email form as well as simply integrating a database into a project. ",
       "image": "/public/images/warnntThumb.jpg",
       "technologies": [
-        "Sinatra", "Ruby", "JQuery"
+        "Sinatra", "Ruby", "JQuery", "Git"
       ]
     }
   ],
