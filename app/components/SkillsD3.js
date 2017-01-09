@@ -20,7 +20,7 @@ const SkillsD3 = React.createClass({
 
     const height = parseInt(svg.style('height'))
     const width = parseInt(svg.style('width'))
-    const radius = width/14
+    const radius = width/16
 
     const tooltip = d3.select('#d3SkillsContainer')
       .append('div')
@@ -104,6 +104,15 @@ const SkillsD3 = React.createClass({
       .force('y', forceYNormal)
       .force('collide', d3Force.forceCollide((d) => radius + 2 ))
 
+    simulation.nodes(data)
+      .on('tick', ticked)
+
+    function ticked() {
+      circles
+        .attr('cx', (d) => d.x)
+        .attr('cy', (d) => d.y)
+    }
+
     d3.select('#skillsFront').on('click', function() {
       simulation
         .force('y', forceYFront)
@@ -124,15 +133,6 @@ const SkillsD3 = React.createClass({
         .alphaTarget(0.5)
         .restart()
     })
-
-    simulation.nodes(data)
-      .on('tick', ticked)
-
-    function ticked() {
-      circles
-        .attr('cx', (d) => d.x)
-        .attr('cy', (d) => d.y)
-    }
 
   },
   frontClick() {

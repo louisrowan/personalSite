@@ -35,9 +35,9 @@ const ProjectsContainer = React.createClass({
       <div className='projectsCirclesList'>
         {this.state.projects.map((p, i) => {
           if (i === this.state.projectIndex){
-            return <div className='activeCircle listCircle'></div>
+            return <div key={i} className='activeCircle listCircle'></div>
           } else {
-            return <div className='inactiveCircle listCircle'></div>
+            return <div key={i} className='inactiveCircle listCircle'></div>
           }
         })}
       </div>

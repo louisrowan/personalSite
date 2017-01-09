@@ -4,6 +4,7 @@ const { Router, Route, hashHistory } = require('react-router')
 const HomeContainer = require('./containers/HomeContainer')
 require('../public/stylesheets/styles.css')
 require('../public/stylesheets/responsive.css')
+require('../public/stylesheets/animations.css')
 
 const App = React.createClass({
   render(){

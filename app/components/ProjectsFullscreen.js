@@ -54,10 +54,8 @@ const ProjectsFullscreen = React.createClass({
 
         <table className='contactTable'>
            <tbody>
-
               {githubContent}
               {herokuContent}
-
             </tbody>
           </table>
         <div className='fullscreenHalf'>
