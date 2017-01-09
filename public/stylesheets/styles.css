@@ -49,7 +49,7 @@ p {
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
-  overflow: auto;
+  overflow-y: hidden;
 }
 
 .headerContainer {
