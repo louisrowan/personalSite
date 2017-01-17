@@ -1,6 +1,9 @@
 @media only screen and (max-width: 1000px) {
-  * {
-    font-size: 1.05em;
+  p {
+    font-size: 1.1em;
+  }
+  h1 {
+    font-size: 2em;
   }
   html, body, #app, #app > div {
     height: 100vh;
@@ -36,11 +39,9 @@
 
   #projectsContainerDiv {
     min-height: 75vh;
-
-  }
-
-  .projectDiv {
- 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
 
@@ -68,14 +69,25 @@
     transition: transform 300ms ease-in;
   }
 
+
+
   .projectDiv {
-    width: 75vw;
-    margin: auto;
-    margin-top: 20%;
+    width: 65vw;
+    margin: 20px auto;
+    overflow: hidden;
+    height: 500px;
   }
 
   .projectsThumb {
-    height: 600px;
+    height: 500px;
+  }
+
+  .hoverProjectsThumb {
+    height: 500px;
+  }
+  .thumbImgDiv, .thumbImgDiv img {
+    min-height: 100%;
+    min-width: 100%;
   }
 
   .contactContainer {
@@ -90,4 +102,22 @@
     width: 345px;
     margin-top: 50px;
   }
+
+  .contactPhone:before {
+    content: "\260E";
+    font-size: .9em;
+    color: black;
+  }
+
+  .contactEmail:before {
+    content: "\2709";
+    font-size: .9em;
+    color: black;
+  }
+
+  .contactIMG {
+    overflow: visible;
+  }
+
+
 }
