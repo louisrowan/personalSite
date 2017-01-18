@@ -6,6 +6,7 @@ const BlogContainer = require('./containers/BlogContainer')
 require('../public/stylesheets/styles.css')
 require('../public/stylesheets/responsive.css')
 require('../public/stylesheets/animations.css')
+require('../public/stylesheets/blog.css')
 
 const App = React.createClass({
   render(){
