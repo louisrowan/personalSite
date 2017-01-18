@@ -1,0 +1,21 @@
+{
+  "posts": [
+
+    {
+      "title": "Closures",
+      "content": [
+        ["p", "first paragraph"],
+        ["h1", "header"]
+      ]
+    },
+
+    {
+      "title": "Let",
+      "content": [
+        ["p", "another p"],
+        ["h1", "another header"]
+      ]
+    }
+
+  ]
+}
