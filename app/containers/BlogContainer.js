@@ -17,7 +17,9 @@ const BlogContainer = React.createClass({
         <div id='blogBackground' style={{"background": `url(${background})`}}></div>
         <Link to ='/'>Back to my main site</Link>
       
-        {blogPosts}
+        <div id='blogPostsDiv'>
+          {blogPosts}
+        </div>
           
       </div>
     )

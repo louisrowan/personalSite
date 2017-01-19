@@ -17,13 +17,18 @@ const BlogPost = React.createClass({
       else if (d[0] === 'a') {
         return <a href={d[1]} key={i}>{d[2]}</a>
       }
+      else if (d[0] === 'ol') {
+        let items = d[1].map((li, index) => <li key={index}>{li}</li>)
+        return <ol key={i}>{items}</ol>
+      }
     })
 
     return (
-      <div>
+      <article>
+        <div className='articleBackground'></div>
         <h1>{this.props.data.title}</h1>
-        <div>{content}</div>
-      </div>
+        <section>{content}</section>
+      </article>
     )
   }
 })
