@@ -1,6 +1,6 @@
 const React = require('react')
 const { Link } = require('react-router')
-const posts = require('json!../../public/blog.json').posts
+const posts = require('json!../../public/blog/blog.json').posts
 const BlogPost = require('../components/BlogPost')
 const background = require('json!../../public/data.json').images.background
 
