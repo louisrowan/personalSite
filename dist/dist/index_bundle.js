@@ -59,7 +59,7 @@
 	var _require = __webpack_require__(179),
 	    Router = _require.Router,
 	    Route = _require.Route,
-	    browserHistory = _require.browserHistory,
+	    hashHistory = _require.hashHistory,
 	    IndexRoute = _require.IndexRoute;
 
 	var HomeContainer = __webpack_require__(234);
@@ -75,12 +75,12 @@
 	  render: function render() {
 	    return React.createElement(
 	      Router,
-	      { history: browserHistory },
+	      { history: hashHistory },
 	      React.createElement(
 	        Route,
 	        { path: '/', component: Container },
 	        React.createElement(IndexRoute, { component: HomeContainer }),
-	        React.createElement(Route, { path: '/blog', component: BlogContainer })
+	        React.createElement(Route, { path: 'blog', component: BlogContainer })
 	      )
 	    );
 	  }

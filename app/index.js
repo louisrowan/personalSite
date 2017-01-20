@@ -1,6 +1,6 @@
 const React = require('react')
 const ReactDOM = require('react-dom')
-const { Router, Route, browserHistory, IndexRoute } = require('react-router')
+const { Router, Route, hashHistory, IndexRoute } = require('react-router')
 const HomeContainer = require('./containers/HomeContainer')
 const BlogContainer = require('./containers/BlogContainer')
 const ReactCSSTransitionGroup = require('react-addons-css-transition-group')
@@ -12,10 +12,10 @@ require('../public/stylesheets/blog.css')
 const App = React.createClass({
   render(){
     return (
-      <Router history={browserHistory}>
+      <Router history={hashHistory}>
         <Route path='/' component={Container}>
         <IndexRoute component={HomeContainer} />
-        <Route path='/blog' component={BlogContainer} />
+        <Route path='blog' component={BlogContainer} />
         </Route>
       </Router>
     )
