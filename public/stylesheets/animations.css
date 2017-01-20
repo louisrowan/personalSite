@@ -1,4 +1,45 @@
+/*Transition between 2 routes on index.js*/
+
+.siteLayoutTransition-enter {
+  transform: translateY(100%);
+  z-index: 10;
+  height: 100%;
+}
+
+.siteLayoutTransition-enter-active {
+  transform: translateY(0%);
+  z-index: 10;
+  height: 100%;
+  transition: transform 800ms ease-in-out;
+}
+
+.siteLayoutTransition-leave {
+  height: 100%;
+  transform: translateY(0%);
+}
+
+.siteLayoutTransition-leave-active {
+  height: 100%;
+  transform: translateY(-100%);
+  transition: transform 800ms ease-in-out;
+}
+
+.pageContainer {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
 /*Main component flip animation used on Home.js*/
+.component-appear {
+  transform: scale(0);
+}
+
+.component-appear-active {
+  transform: scale(1);
+  transition: transform 800ms linear;
+}
+
 .component-enter {
   transform: rotateY(90deg) rotateX(90deg);
 }

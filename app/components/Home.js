@@ -37,6 +37,8 @@ const Home = React.createClass({
         <div id='contentSpace'>
           <ReactCSSTransitionGroup
           transitionName="component"
+          transitionAppear={true}
+          transitionAppearTimeout={1000}
           transitionEnterTimeout={600}
           transitionLeaveTimeout={300}>
             {currentComponent}

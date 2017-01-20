@@ -3,7 +3,6 @@ const Home = require('../components/Home')
 const Nav = require('../components/Nav')
 const background = require('json!../../public/data.json').images.background
 
-
 const HomeContainer = React.createClass({
   getInitialState() {
     return {
@@ -15,10 +14,10 @@ const HomeContainer = React.createClass({
   },
   render(){
     return (
-      <div id='layoutDiv' style={{"background": `url(${background})`}}>
-        <Nav handleClick={this.handleClick} />
-        <Home content={this.state.content} />
-      </div>
+        <div id='layoutDiv' className='pageContainer' style={{"background": `url(${background})`}}>
+          <Nav handleClick={this.handleClick} />
+          <Home content={this.state.content} />
+        </div>
     )
   }
 })
