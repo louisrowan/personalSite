@@ -59,6 +59,7 @@
 	var _require = __webpack_require__(179),
 	    Router = _require.Router,
 	    Route = _require.Route,
+<<<<<<< HEAD
 	    browserHistory = _require.browserHistory,
 	    IndexRoute = _require.IndexRoute;
 
@@ -69,6 +70,15 @@
 	__webpack_require__(329);
 	__webpack_require__(331);
 	__webpack_require__(333);
+=======
+	    browserHistory = _require.browserHistory;
+
+	var HomeContainer = __webpack_require__(234);
+	var BlogContainer = __webpack_require__(322);
+	__webpack_require__(323);
+	__webpack_require__(327);
+	__webpack_require__(329);
+>>>>>>> blog
 
 	var App = React.createClass({
 	  displayName: 'App',
@@ -76,6 +86,7 @@
 	    return React.createElement(
 	      Router,
 	      { history: browserHistory },
+<<<<<<< HEAD
 	      React.createElement(
 	        Route,
 	        { path: '/', component: Container },
@@ -108,6 +119,10 @@
 	          transitionLeaveTimeout: 800 },
 	        this.cloneChildren()
 	      )
+=======
+	      React.createElement(Route, { path: '/', component: HomeContainer }),
+	      React.createElement(Route, { path: '/blog', component: BlogContainer })
+>>>>>>> blog
 	    );
 	  }
 	});
@@ -26456,7 +26471,11 @@
 	  render: function render() {
 	    return React.createElement(
 	      'div',
+<<<<<<< HEAD
 	      { id: 'layoutDiv', className: 'pageContainer', style: { "background": 'url(' + background + ')' } },
+=======
+	      { id: 'layoutDiv', style: { "background": 'url(' + background + ')' } },
+>>>>>>> blog
 	      React.createElement(Nav, { handleClick: this.handleClick }),
 	      React.createElement(Home, { content: this.state.content })
 	    );
@@ -55064,6 +55083,7 @@
 
 	var React = __webpack_require__(2);
 
+<<<<<<< HEAD
 	var _require = __webpack_require__(179),
 	    Link = _require.Link;
 
@@ -55093,6 +55113,15 @@
 	        { id: 'blogPostsDiv' },
 	        blogPosts
 	      )
+=======
+	var BlogContainer = React.createClass({
+	  displayName: 'BlogContainer',
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      'in BlogContainer'
+>>>>>>> blog
 	    );
 	  }
 	});
@@ -55101,6 +55130,7 @@
 
 /***/ },
 /* 323 */
+<<<<<<< HEAD
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -55290,15 +55320,24 @@
 
 /***/ },
 /* 325 */
+=======
+>>>>>>> blog
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
+<<<<<<< HEAD
 	var content = __webpack_require__(326);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(328)(content, {});
+=======
+	var content = __webpack_require__(324);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(326)(content, {});
+>>>>>>> blog
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -55315,21 +55354,36 @@
 	}
 
 /***/ },
+<<<<<<< HEAD
 /* 326 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(327)();
+=======
+/* 324 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(325)();
+>>>>>>> blog
 	// imports
 
 
 	// module
+<<<<<<< HEAD
 	exports.push([module.id, "/*@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans:700i');*/\r\n\r\n* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: 'Khula', Serif;\r\n}\r\n\r\na {\r\n  color: blue;\r\n  font-weight: bold;\r\n  text-decoration: none;\r\n}\r\n\r\na:visited {\r\n  color: blue;\r\n}\r\n\r\nh1 {\r\n  padding: 20px;\r\n  color: purple;\r\n  font-family: 'Merriweather Sans';\r\n  font-size: 3em;\r\n  text-shadow: 1px 1px 1px black;\r\n}\r\n\r\nh2 {\r\n  padding: 10px;\r\n  font-family: 'Petit Formal Script';\r\n}\r\n\r\np {\r\n  padding: 10px;\r\n}\r\n\r\n.homeContainer {\r\n  width: 100%;\r\n/*  background: linear-gradient(to bottom right,\r\n    rgba(45, 6, 56, 1),\r\n    rgba(131, 11, 168, 1)\r\n  );*/\r\n\r\n  padding: 20px;\r\n  color: orange;\r\n}\r\n\r\n#layoutDiv {\r\n  background-repeat: no-repeat;\r\n  background-size: cover;\r\n  min-height: 100vh;\r\n  overflow: auto;\r\n}\r\n\r\n.headerContainer {\r\n  width: 100%;\r\n  min-height: 1000px;\r\n  text-align: center;\r\n  border-bottom: 10px solid white;\r\n  color: white;\r\n}\r\n\r\n.contentContainer {\r\n  position: absolute;\r\n  background: white;\r\n  width: 100%;\r\n  min-height: 100%;\r\n  box-shadow: 0px 0px 50px 5px black, 0px 0px 10px 2px rgba(45, 6, 56, 1) inset;\r\n  padding: 10px;\r\n  margin-bottom: 10px;\r\n}\r\n\r\n.emp {\r\n  font-size: 1.3em;\r\n  font-weight: bold;\r\n}\r\n\r\n#mainParagraph {\r\n  font-size: 1.2em;\r\n}\r\n\r\n.mainImg {\r\n  height: 300px;\r\n  width: 300px;\r\n  box-shadow: 0px 0px 5px 2px black;\r\n  border-radius: 50%;\r\n  overflow: hidden;\r\n  margin: auto;\r\n  animation: picture-rotate 5s linear infinite;\r\n}\r\n\r\n.mainImg img {\r\n  height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n.projectDiv {\r\n  width: 50%;\r\n  height: 400px;\r\n  margin: auto;\r\n  position: relative;\r\n}\r\n\r\n.arrowDiv {\r\n  box-sizing: none;\r\n  height: 0;\r\n  width: 0;\r\n  border: 30px solid transparent;\r\n  position: absolute;\r\n  top: 45%;\r\n  bottom: 45%;\r\n}\r\n\r\n.arrowDiv:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n.leftArrowDiv {\r\n  border-right: 40px solid rgba(45, 6, 56, 1);\r\n  left: 10px;\r\n}\r\n\r\n.leftArrowDiv:hover {\r\n  border-right: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n.rightArrowDiv {\r\n  border-left: 40px solid rgba(45, 6, 56, 1);\r\n  right: 10px;\r\n}\r\n\r\n.rightArrowDiv:hover {\r\n  border-left: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n#projectsBackButton {\r\n  top: 30px;\r\n}\r\n\r\n#contentSpace {\r\n  width: 90%;\r\n  max-width: 1200px;\r\n  min-height: 600px;\r\n  overflow: visible;\r\n  text-align: center;\r\n  margin: auto;\r\n  color: black;\r\n  position: relative;\r\n}\r\n\r\nnav table {\r\n  width: 100%;\r\n  color: white;\r\n}\r\n\r\nnav td, nav a, nav a:visited {\r\n  color: white;\r\n  font-weight: none;\r\n  width: 20%;\r\n  text-align: center;\r\n  height: 100px;\r\n  font-size: 1.2em;\r\n  font-family: 'Merriweather Sans';\r\n  transition: font-size 100ms ease-in, text-shadow 200ms ease-in;\r\n}\r\n\r\n/*nav a, nav a:visited {\r\n  color: white;\r\n}*/\r\n\r\nnav td:hover {\r\n  font-size: 1.6em;\r\n  text-shadow: 1px 1px 2px black;\r\n  cursor: pointer;\r\n}\r\n\r\n.projectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: absolute;\r\n  box-shadow: 0px 0px 10px 5px black;\r\n}\r\n\r\n.hoverProjectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: relative;\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  position: absolute;\r\n}\r\n\r\n.thumbImgDiv {\r\n  width: 100%;\r\n  max-height: 300px;\r\n  border-top: 2px solid black;\r\n  overflow: hidden;\r\n}\r\n\r\n.thumbImgDiv img {\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n.projectsThumbHeader {\r\n  padding: 10px;\r\n}\r\n\r\n.hiddenThumbDiv {\r\n  position: absolute;\r\n  height: 100%;\r\n  width: 100%;\r\n  background: transparent;\r\n  cursor: pointer;\r\n  z-index: 2;\r\n  background-color: rgba(0, 0, 0, .5);\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.hiddenThumbDiv h2 {\r\n  background: white;\r\n  margin: auto;\r\n  width: 100%;\r\n  padding: 10px;\r\n}\r\n\r\n.hidden {\r\n  display: none;\r\n}\r\n\r\n/*.nextProjectThumb {\r\n  height: 400px;\r\n  width: 20%;\r\n  background: purple;\r\n  overflow: hidden;\r\n  transform: scale(.5);\r\n  position: absolute;\r\n  left: 50px;\r\n}\r\n*/\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n.projectFullscreenDiv {\r\n  padding: 10px;\r\n}\r\n\r\n.projectFullscreenImgDiv {\r\n  max-height: 300px;\r\n  overflow: hidden;\r\n}\r\n\r\n.projectFullscreenImgDiv img {\r\n  height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n.projectSkillsList {\r\n  list-style-type: none;\r\n}\r\n\r\n.projectSkillsList li {\r\n  float: left;\r\n  padding: 40px;\r\n  font-size: 1.5em;\r\n  width: 33.3%;\r\n  font-family: 'Pacifico', Serif;\r\n}\r\n\r\n.projectSkillsList li:hover {\r\n  background: #f9f9f7;\r\n}\r\n\r\n.fullscreenHalf {\r\n  float: left;\r\n  width: 50%;\r\n  overflow: hidden;\r\n}\r\n\r\n.fullscreenHalf h2 {\r\n\r\n}\r\n\r\n.fullscreenHalf p {\r\n  font-size: 1.2;\r\n  padding: 10px;\r\n}\r\n\r\n\r\n/*contact page*/\r\n\r\n.contactInput {\r\n  width: 245px;\r\n  padding: 10px;\r\n  margin: 5px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactTextarea {\r\n  width: 500px;\r\n  height: 200px;\r\n  padding: 10px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.1em;\r\n}\r\n\r\n.contactSubmit {\r\n  width: 200px;\r\n  padding: 10px;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactSubmit:hover {\r\n  box-shadow: 2px 2px 1px 1px black;\r\n  font-weight: bold;\r\n}\r\n\r\n.formSubmit {\r\n  animation: formFlip 1s forwards;\r\n}\r\n\r\n.contactContainer {\r\n  position: relative;\r\n}\r\n\r\n.formSuccess {\r\n  color: green;\r\n  position: absolute;\r\n  top: 250px;\r\n  width: 100%;\r\n  text-align: center;\r\n  animation: formSuccess 2s forwards;\r\n}\r\n\r\n\r\n\r\n.contactTable {\r\n  margin: auto;\r\n  font-size: 1.5em;\r\n}\r\n\r\n.contactTable tr {\r\n  background: #fcfcfc;\r\n}\r\n\r\n.contactTable tr:hover {\r\n  background: white;\r\n}\r\n\r\n.contactTable tr:hover td:first-child {\r\n  animation: contact-hover 500ms linear forwards;\r\n}\r\n\r\n.contactTable a:hover {\r\n  text-decoration: none;\r\n  color: darkblue;\r\n}\r\n\r\n.contactTable td {\r\n  padding: 5px;\r\n  text-align: left;\r\n}\r\n\r\n.contactIMG {\r\n  height: 40px;\r\n  width: 50px;\r\n  overflow: hidden;\r\n}\r\n\r\n.contactIMG img {\r\n  max-width: 100%;\r\n  max-height: 100%;\r\n}\r\n\r\n.contactPhone {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactPhone:before {\r\n  content: \"\\260E\";\r\n  font-size: 2em;\r\n  color: black;\r\n}\r\n\r\n.contactEmail {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactEmail:before {\r\n  content: \"\\2709\";\r\n  font-size: 2em;\r\n  color: black;\r\n\r\n}\r\n\r\n.iconLink:hover img, .iconLink:hover div:before {\r\n  transform: scale(1.2);\r\n}\r\n\r\n#h2ClickContact {\r\n  padding: 10px;\r\n  color: purple;\r\n  font-family: 'Khula', Serif;\r\n}\r\n\r\n#h2ClickContact:before, #h2ClickContact:after {\r\n  content: \"\\26E4\";\r\n  font-size: 1.2em;\r\n  color: black;\r\n}\r\n\r\n#h2ClickContact:hover::before, #h2ClickContact:hover::after {\r\n  display: inline-block;\r\n  animation: contact-hover 2s linear forwards infinite;\r\n}\r\n\r\n#h2ClickContact:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n/*skills chart*/\r\n\r\n.skillsContainer {\r\n  width: 100%;\r\n  min-height: 800px;\r\n}\r\n\r\n#d3SkillsContainer {\r\n  height: 600px;\r\n  width: 90%;\r\n  margin: auto;\r\n  position: relative;\r\n  overflow: hidden;\r\n}\r\n\r\n.tooltipDiv {\r\n  width: 150px;\r\n  text-align: center;\r\n  padding: 10px;\r\n}\r\n\r\n.tooltipDiv:after {\r\n  content: '';\r\n  width: 0px;\r\n  height: 0px;\r\n  border: 10px solid transparent;\r\n  border-top: 10px solid black;\r\n  position: relative;\r\n  top: 38px;\r\n  right: 80px;\r\n\r\n}\r\n\r\n#d3ButtonDiv {\r\n  position: absolute;\r\n  width: 100%;\r\n}\r\n\r\n.skillsButton {\r\n  padding: 20px;\r\n  margin: 10px;\r\n  background: rgba(244, 245, 247, .5);\r\n  border: none;\r\n  min-width: 120px;\r\n}\r\n\r\n.skillsButton:focus {\r\n  outline: 0;\r\n}\r\n\r\n.skillsButton:hover {\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n}\r\n\r\n.d3Active {\r\n  background: lightblue;\r\n}\r\n\r\n.d3Circle {\r\n  animation: stroke 1000ms linear alternate infinite;\r\n}\r\n\r\n\r\n\r\n.inactiveCircle {\r\n  background: lightgray;\r\n  transition: background 200ms ease-in;\r\n}\r\n\r\n.activeCircle {\r\n  background: purple;\r\n  transition: background 200ms ease-in;\r\n}\r\n\r\n.listCircle {\r\n  width: 20px;\r\n  height: 20px;\r\n  border-radius: 10px;\r\n  display: inline-block;\r\n  margin: 10px;\r\n}\r\n\r\n.projectsCirclesList {\r\n  width: 100%;\r\n  padding: 20px;\r\n}", ""]);
+=======
+	exports.push([module.id, "/*@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans:700i');*/\r\n\r\n* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: 'Khula', Serif;\r\n}\r\n\r\na {\r\n  color: blue;\r\n  font-weight: bold;\r\n  text-decoration: none;\r\n}\r\n\r\na:visited {\r\n  color: blue;\r\n}\r\n\r\nh1 {\r\n  padding: 20px;\r\n  color: purple;\r\n  font-family: 'Merriweather Sans';\r\n  font-size: 3em;\r\n  text-shadow: 1px 1px 1px black;\r\n}\r\n\r\nh2 {\r\n  padding: 10px;\r\n  font-family: 'Petit Formal Script';\r\n}\r\n\r\np {\r\n  padding: 10px;\r\n}\r\n\r\n.homeContainer {\r\n  width: 100%;\r\n/*  background: linear-gradient(to bottom right,\r\n    rgba(45, 6, 56, 1),\r\n    rgba(131, 11, 168, 1)\r\n  );*/\r\n\r\n  padding: 20px;\r\n  color: orange;\r\n}\r\n\r\n#layoutDiv {\r\n  background-repeat: no-repeat;\r\n  background-size: cover;\r\n  min-height: 100vh;\r\n  overflow: auto;\r\n}\r\n\r\n.headerContainer {\r\n  width: 100%;\r\n  min-height: 1000px;\r\n  text-align: center;\r\n  border-bottom: 10px solid white;\r\n  color: white;\r\n}\r\n\r\n.contentContainer {\r\n  position: absolute;\r\n  background: white;\r\n  width: 100%;\r\n  min-height: 100%;\r\n  box-shadow: 0px 0px 50px 5px black, 0px 0px 10px 2px rgba(45, 6, 56, 1) inset;\r\n  padding: 10px;\r\n  margin-bottom: 10px;\r\n}\r\n\r\n.emp {\r\n  font-size: 1.3em;\r\n  font-weight: bold;\r\n}\r\n\r\n#mainParagraph {\r\n  font-size: 1.2em;\r\n}\r\n\r\n.mainImg {\r\n  height: 300px;\r\n  width: 300px;\r\n  box-shadow: 0px 0px 5px 2px black;\r\n  border-radius: 50%;\r\n  overflow: hidden;\r\n  margin: auto;\r\n  animation: picture-rotate 5s linear infinite;\r\n}\r\n\r\n.mainImg img {\r\n  height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n.projectDiv {\r\n  width: 50%;\r\n  height: 400px;\r\n  margin: auto;\r\n  position: relative;\r\n}\r\n\r\n.arrowDiv {\r\n  box-sizing: none;\r\n  height: 0;\r\n  width: 0;\r\n  border: 30px solid transparent;\r\n  position: absolute;\r\n  top: 45%;\r\n  bottom: 45%;\r\n}\r\n\r\n.arrowDiv:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n.leftArrowDiv {\r\n  border-right: 40px solid rgba(45, 6, 56, 1);\r\n  left: 10px;\r\n}\r\n\r\n.leftArrowDiv:hover {\r\n  border-right: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n.rightArrowDiv {\r\n  border-left: 40px solid rgba(45, 6, 56, 1);\r\n  right: 10px;\r\n}\r\n\r\n.rightArrowDiv:hover {\r\n  border-left: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n#projectsBackButton {\r\n  top: 30px;\r\n}\r\n\r\n#contentSpace {\r\n  width: 90%;\r\n  max-width: 1200px;\r\n  min-height: 600px;\r\n  overflow: visible;\r\n  text-align: center;\r\n  margin: auto;\r\n  color: black;\r\n  position: relative;\r\n}\r\n\r\nnav table {\r\n  width: 100%;\r\n  color: white;\r\n}\r\n\r\nnav td {\r\n  width: 25%;\r\n  text-align: center;\r\n  height: 100px;\r\n  font-size: 1.2em;\r\n  font-family: 'Merriweather Sans';\r\n  transition: font-size 200ms ease-in, text-shadow 200ms ease-in;\r\n}\r\n\r\nnav td:hover {\r\n  font-size: 1.6em;\r\n  text-shadow: 1px 1px 2px black;\r\n  cursor: pointer;\r\n}\r\n\r\n.projectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: absolute;\r\n  box-shadow: 0px 0px 10px 5px black;\r\n}\r\n\r\n.hoverProjectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: relative;\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  position: absolute;\r\n}\r\n\r\n.thumbImgDiv {\r\n  width: 100%;\r\n  max-height: 300px;\r\n  border-top: 2px solid black;\r\n  overflow: hidden;\r\n}\r\n\r\n.thumbImgDiv img {\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n.projectsThumbHeader {\r\n  padding: 10px;\r\n}\r\n\r\n.hiddenThumbDiv {\r\n  position: absolute;\r\n  height: 100%;\r\n  width: 100%;\r\n  background: transparent;\r\n  cursor: pointer;\r\n  z-index: 2;\r\n  background-color: rgba(0, 0, 0, .5);\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.hiddenThumbDiv h2 {\r\n  background: white;\r\n  margin: auto;\r\n  width: 100%;\r\n  padding: 10px;\r\n}\r\n\r\n.hidden {\r\n  display: none;\r\n}\r\n\r\n/*.nextProjectThumb {\r\n  height: 400px;\r\n  width: 20%;\r\n  background: purple;\r\n  overflow: hidden;\r\n  transform: scale(.5);\r\n  position: absolute;\r\n  left: 50px;\r\n}\r\n*/\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n.projectFullscreenDiv {\r\n  padding: 10px;\r\n}\r\n\r\n.projectFullscreenImgDiv {\r\n  max-height: 300px;\r\n  overflow: hidden;\r\n}\r\n\r\n.projectFullscreenImgDiv img {\r\n  height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n.projectSkillsList {\r\n  list-style-type: none;\r\n}\r\n\r\n.projectSkillsList li {\r\n  float: left;\r\n  padding: 40px;\r\n  font-size: 1.5em;\r\n  width: 33.3%;\r\n  font-family: 'Pacifico', Serif;\r\n}\r\n\r\n.projectSkillsList li:hover {\r\n  background: #f9f9f7;\r\n}\r\n\r\n.fullscreenHalf {\r\n  float: left;\r\n  width: 50%;\r\n  overflow: hidden;\r\n}\r\n\r\n.fullscreenHalf h2 {\r\n\r\n}\r\n\r\n.fullscreenHalf p {\r\n  font-size: 1.2;\r\n  padding: 10px;\r\n}\r\n\r\n\r\n/*contact page*/\r\n\r\n.contactInput {\r\n  width: 245px;\r\n  padding: 10px;\r\n  margin: 5px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactTextarea {\r\n  width: 500px;\r\n  height: 200px;\r\n  padding: 10px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.1em;\r\n}\r\n\r\n.contactSubmit {\r\n  width: 200px;\r\n  padding: 10px;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactSubmit:hover {\r\n  box-shadow: 2px 2px 1px 1px black;\r\n  font-weight: bold;\r\n}\r\n\r\n.formSubmit {\r\n  animation: formFlip 1s forwards;\r\n}\r\n\r\n.contactContainer {\r\n  position: relative;\r\n}\r\n\r\n.formSuccess {\r\n  color: green;\r\n  position: absolute;\r\n  top: 250px;\r\n  width: 100%;\r\n  text-align: center;\r\n  animation: formSuccess 2s forwards;\r\n}\r\n\r\n\r\n\r\n.contactTable {\r\n  margin: auto;\r\n  font-size: 1.5em;\r\n}\r\n\r\n.contactTable tr {\r\n  background: #fcfcfc;\r\n}\r\n\r\n.contactTable tr:hover {\r\n  background: white;\r\n}\r\n\r\n.contactTable tr:hover td:first-child {\r\n  animation: contact-hover 500ms linear forwards;\r\n}\r\n\r\n.contactTable a:hover {\r\n  text-decoration: none;\r\n  color: darkblue;\r\n}\r\n\r\n.contactTable td {\r\n  padding: 5px;\r\n  text-align: left;\r\n}\r\n\r\n.contactIMG {\r\n  height: 40px;\r\n  width: 50px;\r\n  overflow: hidden;\r\n}\r\n\r\n.contactIMG img {\r\n  max-width: 100%;\r\n  max-height: 100%;\r\n}\r\n\r\n.contactPhone {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactPhone:before {\r\n  content: \"\\260E\";\r\n  font-size: 2em;\r\n  color: black;\r\n}\r\n\r\n.contactEmail {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactEmail:before {\r\n  content: \"\\2709\";\r\n  font-size: 2em;\r\n  color: black;\r\n\r\n}\r\n\r\n.iconLink:hover img, .iconLink:hover div:before {\r\n  transform: scale(1.2);\r\n}\r\n\r\n#h2ClickContact {\r\n  padding: 10px;\r\n  color: purple;\r\n  font-family: 'Khula', Serif;\r\n}\r\n\r\n#h2ClickContact:before, #h2ClickContact:after {\r\n  content: \"\\26E4\";\r\n  font-size: 1.2em;\r\n  color: black;\r\n}\r\n\r\n#h2ClickContact:hover::before, #h2ClickContact:hover::after {\r\n  display: inline-block;\r\n  animation: contact-hover 2s linear forwards infinite;\r\n}\r\n\r\n#h2ClickContact:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n/*skills chart*/\r\n\r\n.skillsContainer {\r\n  width: 100%;\r\n  min-height: 800px;\r\n}\r\n\r\n#d3SkillsContainer {\r\n  height: 600px;\r\n  width: 90%;\r\n  margin: auto;\r\n  position: relative;\r\n  overflow: hidden;\r\n}\r\n\r\n.tooltipDiv {\r\n  width: 150px;\r\n  text-align: center;\r\n  padding: 10px;\r\n}\r\n\r\n.tooltipDiv:after {\r\n  content: '';\r\n  width: 0px;\r\n  height: 0px;\r\n  border: 10px solid transparent;\r\n  border-top: 10px solid black;\r\n  position: relative;\r\n  top: 38px;\r\n  right: 80px;\r\n\r\n}\r\n\r\n#d3ButtonDiv {\r\n  position: absolute;\r\n  width: 100%;\r\n}\r\n\r\n.skillsButton {\r\n  padding: 20px;\r\n  margin: 10px;\r\n  background: rgba(244, 245, 247, .5);\r\n  border: none;\r\n  min-width: 120px;\r\n}\r\n\r\n.skillsButton:focus {\r\n  outline: 0;\r\n}\r\n\r\n.skillsButton:hover {\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n}\r\n\r\n.d3Active {\r\n  background: lightblue;\r\n}\r\n\r\n.d3Circle {\r\n  animation: stroke 1000ms linear alternate infinite;\r\n}\r\n\r\n\r\n\r\n.inactiveCircle {\r\n  background: lightgray;\r\n  transition: background 200ms ease-in;\r\n}\r\n\r\n.activeCircle {\r\n  background: purple;\r\n  transition: background 200ms ease-in;\r\n}\r\n\r\n.listCircle {\r\n  width: 20px;\r\n  height: 20px;\r\n  border-radius: 10px;\r\n  display: inline-block;\r\n  margin: 10px;\r\n}\r\n\r\n.projectsCirclesList {\r\n  width: 100%;\r\n  padding: 20px;\r\n}", ""]);
+>>>>>>> blog
 
 	// exports
 
 
 /***/ },
+<<<<<<< HEAD
 /* 327 */
+=======
+/* 325 */
+>>>>>>> blog
 /***/ function(module, exports) {
 
 	/*
@@ -55385,7 +55439,11 @@
 
 
 /***/ },
+<<<<<<< HEAD
 /* 328 */
+=======
+/* 326 */
+>>>>>>> blog
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -55637,16 +55695,27 @@
 
 
 /***/ },
+<<<<<<< HEAD
 /* 329 */
+=======
+/* 327 */
+>>>>>>> blog
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
+<<<<<<< HEAD
 	var content = __webpack_require__(330);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(328)(content, {});
+=======
+	var content = __webpack_require__(328);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(326)(content, {});
+>>>>>>> blog
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -55663,10 +55732,17 @@
 	}
 
 /***/ },
+<<<<<<< HEAD
 /* 330 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(327)();
+=======
+/* 328 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(325)();
+>>>>>>> blog
 	// imports
 
 
@@ -55677,16 +55753,27 @@
 
 
 /***/ },
+<<<<<<< HEAD
 /* 331 */
+=======
+/* 329 */
+>>>>>>> blog
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
+<<<<<<< HEAD
 	var content = __webpack_require__(332);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(328)(content, {});
+=======
+	var content = __webpack_require__(330);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(326)(content, {});
+>>>>>>> blog
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -55703,6 +55790,7 @@
 	}
 
 /***/ },
+<<<<<<< HEAD
 /* 332 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -55747,11 +55835,21 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(327)();
+=======
+/* 330 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(325)();
+>>>>>>> blog
 	// imports
 
 
 	// module
+<<<<<<< HEAD
 	exports.push([module.id, "#blogBackground {\r\n  position: fixed;\r\n  height: 100%;\r\n  width: 100%;\r\n  opacity: .2;\r\n  z-index: -2;\r\n}\r\n\r\n#blogPostsDiv {\r\n  padding: 20px;\r\n}\r\n\r\n#blogPostsDiv h1 {\r\n  text-align: center;\r\n}\r\n\r\n#blogPostsDiv p {\r\n  font-size: 1.1em;\r\n  text-indent: 30px;\r\n}\r\n\r\n#blogPostsDiv ol {\r\n  padding: 10px 40px;\r\n  font-size: 1.2em;\r\n}\r\n\r\n#blogPostsDiv article {\r\n  position: relative;\r\n  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, .3);\r\n  border-radius: 5px;\r\n  margin: 0px auto 20px;\r\n  max-width: 1200px;\r\n}\r\n\r\n#blogPostsDiv section {\r\n  padding: 20px;\r\n}\r\n\r\n#blogPostsDiv img {\r\n  max-height: 100%;\r\n  max-width: 100%;\r\n}\r\n\r\n#blogPostsDiv .articleBackground {\r\n  position: absolute;\r\n  height: 100%;\r\n  width: 100%;\r\n  background: rgba(255, 255, 255, .3);\r\n  z-index: -1;\r\n}", ""]);
+=======
+	exports.push([module.id, "/*Main component flip animation used on Home.js*/\r\n.component-enter {\r\n  transform: rotateY(90deg) rotateX(90deg);\r\n}\r\n\r\n.component-enter-active {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n  transition: transform 300ms ease-out 300ms;\r\n}\r\n\r\n.component-leave {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n}\r\n\r\n.component-leave-active {\r\n  transform: rotateY(90deg) rotateX(-90deg);\r\n  transition: transform 300ms ease-in;\r\n}\r\n\r\n/*Rotating active project thumb on ProjectsContainer.js*/\r\n.projectFlip-enter {\r\n  transform: rotateY(-90deg);\r\n}\r\n\r\n.projectFlip-enter-active {\r\n  transform: rotateY(0deg);\r\n  transition: transform 400ms ease-out 200ms;\r\n}\r\n\r\n.projectFlip-leave {\r\n  transform: rotateY(0deg);\r\n}\r\n\r\n.projectFlip-leave-active {\r\n  transform: rotateY(90deg);\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  transition:\r\n    transform 200ms ease-in,\r\n    box-shadow 200ms ease-in;\r\n}\r\n\r\n/*Zooming in on fullscreen project on ProjectsContainer*/\r\n.projectShow-appear {\r\n  transform: scale(.1);\r\n}\r\n\r\n.projectShow-appear-active {\r\n  transform: scale(1);\r\n  transition: transform 300ms ease-in;\r\n}\r\n\r\n.projectShow-leave {\r\n  transform: scale(1);\r\n}\r\n\r\n.projectShow-leave-active {\r\n  transform: scale(.1);\r\n  transition: transform 2s ease-in;\r\n}\r\n\r\n/*Zoom in and out on contact form from ContactContainer*/\r\n.showForm-enter {\r\n  transform: scale(0);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-enter-active {\r\n  transform: scale(1);\r\n}\r\n\r\n.showForm-leave {\r\n  transform: scale(1);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-leave-active {\r\n  transform: scale(0);\r\n}\r\n\r\n/*Rotating picture of me on MainContainer.js*/\r\n@keyframes picture-rotate {\r\n  0% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  25% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  50% {\r\n    transform: rotateY(90deg);\r\n  }\r\n  75% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  100% {\r\n    transform: rotateY(0deg);\r\n  }\r\n}\r\n\r\n/*Form animation upon submission, ContactContainer*/\r\n@keyframes formFlip {\r\n  0% {\r\n    transform: rotateX(0);\r\n  }\r\n\r\n  100% {\r\n    transform: rotateX(90deg);\r\n  }\r\n}\r\n\r\n/*Showing success after form submission, ContactContainer*/\r\n@keyframes formSuccess {\r\n  0% {\r\n    opacity: 0;\r\n  }\r\n  50% {\r\n    opacity: 0;\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n  }\r\n}\r\n\r\n/*Rotating icons on contact table, from ContactContainer and ProjectsFullscreen*/\r\n@keyframes contact-hover {\r\n  0% {\r\n    transform: rotate(0deg);\r\n  }\r\n  25% {\r\n    transform: rotate(-90deg);\r\n  }\r\n  50% {\r\n    transform: rotate(-180deg);\r\n  }\r\n  75% {\r\n    transform: rotate(-270deg);\r\n  }\r\n  100% {\r\n    transform: rotate(-360deg);\r\n  }\r\n}\r\n\r\n/*Toggle stroke for D3 bubbles in SkillsD3*/\r\n@keyframes stroke {\r\n  0% {\r\n    stroke-opacity: 1;\r\n  }\r\n  100% {\r\n    stroke-opacity: .3;\r\n  }\r\n}", ""]);
+>>>>>>> blog
 
 	// exports
 
