@@ -1,7 +1,7 @@
 const React = require('react')
-const { Link } = require('react-router')
 const posts = require('json!../../public/blog/blog.json').posts
 const BlogPost = require('../components/BlogPost')
+const BlogNav = require('../components/BlogNav')
 const background = require('json!../../public/data.json').images.background
 
 const BlogContainer = React.createClass({
@@ -13,9 +13,10 @@ const BlogContainer = React.createClass({
 
     return (
       <div className='pageContainer'>
+        <BlogNav posts={posts} />
         <div id='blogBackground' style={{"background": `url(${background})`}}></div>
-        <Link to ='/'>Back to my main site</Link>
         <div id='blogPostsDiv'>
+          <h1>My JS Blog</h1>
           {blogPosts}
         </div>
           

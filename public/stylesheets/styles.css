@@ -148,7 +148,7 @@ p {
   position: relative;
 }
 
-nav table {
+#siteNav table {
   width: 100%;
   color: white;
 }
@@ -156,15 +156,18 @@ nav table {
 nav td, nav a, nav a:visited {
   color: white;
   font-weight: none;
-  width: 20%;
   text-align: center;
-  height: 100px;
   font-size: 1.2em;
   font-family: 'Merriweather Sans';
   transition: font-size 100ms ease-in, text-shadow 200ms ease-in;
 }
 
-/*nav a, nav a:visited {
+#siteNav td, #siteNav a {
+  width: 20%;
+  height: 100px;
+}
+
+/*#siteNav a, #siteNav a:visited {
   color: white;
 }*/
 

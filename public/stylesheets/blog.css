@@ -10,6 +10,10 @@
   padding: 20px;
 }
 
+#blogBackground, #blogPostsDiv {
+  padding-top: 120px;
+}
+
 #blogPostsDiv h1 {
   text-align: center;
 }
@@ -43,8 +47,34 @@
 
 #blogPostsDiv .articleBackground {
   position: absolute;
+  min-height: 100%;
+  min-width: 100%;
+  background: rgba(255, 255, 255, .6);
+  z-index: -1;
+}
+
+#blogNav {
+  height: 100px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+#blogNavGif {
+  height: 200%;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
+#blogNav table {
   height: 100%;
   width: 100%;
-  background: rgba(255, 255, 255, .3);
-  z-index: -1;
+  box-shadow: 0px 2px 4px black;
+}
+
+#blogNav td {
+  width: 50%;
 }

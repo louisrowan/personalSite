@@ -4,7 +4,7 @@ const { Link } = require('react-router')
 const Nav = React.createClass({
   render(){
     return (
-      <nav>
+      <nav id='siteNav'>
         <table>
           <tbody>
             <tr>
