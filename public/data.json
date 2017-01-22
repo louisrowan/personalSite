@@ -75,7 +75,8 @@
     "github": "/public/images/github.png",
     "heroku": "/public/images/heroku.png",
     "me": "/public/images/me.jpg",
-    "background": "/public/images/background.jpg"
+    "background": "/public/images/background.jpg",
+    "blogNav": "/public/images/blogNav.gif"
   },
   "skills": [
     {

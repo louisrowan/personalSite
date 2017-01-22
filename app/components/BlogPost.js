@@ -27,6 +27,7 @@ const BlogPost = React.createClass({
       <article>
         <div className='articleBackground'></div>
         <h1>{this.props.data.title}</h1>
+        <h3>{this.props.data.date}</h3>
         <section>{content}</section>
       </article>
     )

@@ -6,6 +6,7 @@
     {
       "id": "p1",
       "title": "Scope and Hoisting",
+      "date": "Jan 19, 2016",
       "content": [
         ["p", "Hoisting is a concept to help us humans understand how JavaScript runs code. However, it is NOT actually how the JavaScript engine works. The idea of hoisting is that variable and function declarations are ‘moved’ to the beginning of code at runtime. That would explain how JavaScript is able to run and evaluate the following code, even though the printStuff function is called before it is declared:"],
         ["img", "/public/blog/scope/example1.JPG"],
@@ -27,6 +28,7 @@
     {
       "id": "p2",
       "title": "IIFEs and Modules",
+      "date": "Jan 21, 2016",
       "content": [
         ["p", "IIFE stands for an immediately invoked function expression. It has a few benefits:"],
         ["ol", ["Creates a new scope for variables, which prevents poling the global scope.", "Is great for creating modules as it can contain both public and private methods", "Leads to cleaner code because it is executed immediately and does not have to be both defined and then later called."]],
