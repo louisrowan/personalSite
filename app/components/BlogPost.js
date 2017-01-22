@@ -8,8 +8,8 @@ const BlogPost = React.createClass({
       if (d[0] === 'p') {
         return <p key={i}>{d[1]}</p>
       }
-      else if (d[0] === 'h2') {
-        return <div key={i}><h2>{d[1]}</h2></div>
+      else if (d[0] === 'h3') {
+        return <div key={i}><h3>{d[1]}</h3></div>
       }
       else if (d[0] === 'img') {
         return <img src={d[1]} key={i} />
