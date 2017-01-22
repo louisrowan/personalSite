@@ -2,6 +2,7 @@ const React = require('react')
 const posts = require('json!../../public/blog/blog.json').posts
 const BlogPost = require('../components/BlogPost')
 const BlogNav = require('../components/BlogNav')
+const BlogHeader = require('../components/BlogHeader')
 const background = require('json!../../public/data.json').images.background
 
 const BlogContainer = React.createClass({
@@ -16,7 +17,7 @@ const BlogContainer = React.createClass({
         <BlogNav posts={posts} />
         <div id='blogBackground' style={{"background": `url(${background})`}}></div>
         <div id='blogPostsDiv'>
-          <h1>My JS Blog</h1>
+          <BlogHeader />
           {blogPosts}
         </div>
           

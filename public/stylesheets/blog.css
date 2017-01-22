@@ -14,8 +14,16 @@
   padding-top: 120px;
 }
 
-#blogPostsDiv h1 {
+#blogPostsDiv h1, h2, h3 {
   text-align: center;
+}
+
+#blogPostsDiv h1 {
+  padding: 10px;
+}
+
+#blogPostsDiv h2{
+  font-family: 'Krona One', sans-serif;
 }
 
 #blogPostsDiv p {
@@ -28,7 +36,16 @@
   font-size: 1.2em;
 }
 
-#blogPostsDiv article {
+#blogPostsDiv a {
+  font-family: 'Krona One', sans-serif;
+  transition: color 400ms linear;
+}
+
+#blogPostsDiv a:hover {
+  color: black;
+}
+
+#blogPostsDiv article, #blogPostsDiv header {
   position: relative;
   box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, .3);
   border-radius: 5px;
@@ -36,8 +53,19 @@
   max-width: 1200px;
 }
 
+#blogPostsDiv header {
+  display: flex;
+}
+
+#blogHeaderLeft, #blogHeaderRight {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
 #blogPostsDiv section {
-  padding: 20px;
+  padding: 0px 20px 10px;
 }
 
 #blogPostsDiv img {
