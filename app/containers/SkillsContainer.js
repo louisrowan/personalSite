@@ -7,6 +7,7 @@ const SkillsContainer = React.createClass({
       <div className='skillsContainer'>
         <h1>Skills</h1>
         <SkillsD3 />
+        <h2>egwe</h2>
       </div>
     )
   }
