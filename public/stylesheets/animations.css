@@ -148,13 +148,13 @@
   0% {
     transform: rotateY(0deg);
   }
-  25% {
+  40% {
     transform: rotateY(0deg);
   }
   50% {
     transform: rotateY(90deg);
   }
-  75% {
+  60% {
     transform: rotateY(0deg);
   }
   100% {

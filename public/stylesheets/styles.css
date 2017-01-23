@@ -171,7 +171,7 @@ nav td, nav a, nav a:visited {
   color: white;
 }*/
 
-nav td:hover {
+nav td a:hover {
   font-size: 1.6em;
   text-shadow: 1px 1px 2px black;
   cursor: pointer;

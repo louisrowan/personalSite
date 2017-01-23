@@ -8,10 +8,10 @@ const Nav = React.createClass({
         <table>
           <tbody>
             <tr>
-                <td onClick={() => this.props.handleClick('main') }><Link>Main</Link></td>
-                <td onClick={() => this.props.handleClick('skills') }><Link>Skills</Link></td>
-                <td onClick={() => this.props.handleClick('project') }><Link>Projects</Link></td>
-                <td onClick={() => this.props.handleClick('contact')}><Link>Contact</Link></td>
+                <td><Link onClick={() => this.props.handleClick('main')} >Main</Link></td>
+                <td><Link onClick={() => this.props.handleClick('skills') }>Skills</Link></td>
+                <td><Link onClick={() => this.props.handleClick('project') }>Projects</Link></td>
+                <td><Link onClick={() => this.props.handleClick('contact')}>Contact</Link></td>
                 <td><Link to='/blog'>Blog</Link></td>
             </tr>
           </tbody>

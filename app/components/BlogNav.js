@@ -12,10 +12,10 @@ const BlogNav = React.createClass({
           <tbody>
             <tr>
               <td>
-                <Link to='/'>Main Site</Link>
+                <Link to='/'>Portfolio Site</Link>
               </td>
               <td>
-                <Link>Posts</Link>
+                
               </td>
             </tr>
           </tbody>
