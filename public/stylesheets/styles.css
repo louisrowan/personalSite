@@ -516,6 +516,43 @@ nav td a:hover {
   animation: stroke 1000ms linear alternate infinite;
 }
 
+/*skillsTable*/
+#skillsList {
+  margin: 10px;
+  background: rgba(243, 220, 244, 1);
+}
+
+#skillsList h2 {
+  text-align: left;
+  clear: both;
+    background: linear-gradient(to right,
+    rgba(254, 244, 255, 1),
+    rgba(243, 220, 244, 1)
+    
+  );
+}
+
+#skillsList ul {
+  list-style-type: none;
+  display: table;
+}
+#skillsList li {
+  font-family: 'Krona One', sans-serif;
+  float: left;
+  padding: 20px;
+  min-width: 200px;
+  max-width: 200px;
+  font-size: 1.1em;
+  height: 100px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#skillsList p {
+  clear: both;
+}
+
 
 
 .inactiveCircle {
