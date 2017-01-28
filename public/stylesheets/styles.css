@@ -79,6 +79,14 @@ p {
   font-size: 1.2em;
 }
 
+.mainParagraph a {
+  transition: color 300ms linear;
+}
+
+.mainParagraph a:hover {
+  color: darkblue;
+}
+
 .mainImg {
   height: 300px;
   width: 300px;
@@ -194,7 +202,7 @@ nav td a:hover {
   width: 100%;
   margin: auto;
   position: relative;
-  box-shadow: 0px 0px 10px 5px purple;
+  box-shadow: 0px 0px 10px 5px black;
   position: absolute;
 }
 
