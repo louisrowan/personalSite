@@ -1,0 +1,135 @@
+.contactInput {
+  width: 245px;
+  padding: 10px;
+  margin: 5px;
+  background: #fbefff;
+  border: 1px solid black;
+  box-shadow: 0px 0px 5px .5px black inset;
+  font-size: 1.2em;
+}
+
+.contactTextarea {
+  width: 500px;
+  height: 200px;
+  padding: 10px;
+  background: #fbefff;
+  border: 1px solid black;
+  box-shadow: 0px 0px 5px .5px black inset;
+  font-size: 1.1em;
+}
+
+.contactSubmit {
+  width: 200px;
+  padding: 10px;
+  font-size: 1.2em;
+}
+
+.contactSubmit:hover {
+  box-shadow: 2px 2px 1px 1px black;
+  font-weight: bold;
+}
+
+.formSubmit {
+  animation: formFlip 1s forwards;
+}
+
+.contactContainer {
+  position: relative;
+}
+
+.formSuccess {
+  color: green;
+  position: absolute;
+  top: 250px;
+  width: 100%;
+  text-align: center;
+  animation: formSuccess 2s forwards;
+}
+
+
+
+.contactTable {
+  margin: auto;
+  font-size: 1.5em;
+}
+
+.contactTable tr {
+  background: #fcfcfc;
+}
+
+.contactTable tr:hover {
+  background: white;
+}
+
+.contactTable tr:hover td:first-child {
+  animation: contact-hover 500ms linear forwards;
+}
+
+.contactTable a:hover {
+  text-decoration: none;
+  color: darkblue;
+}
+
+.contactTable td {
+  padding: 5px;
+  text-align: left;
+}
+
+.contactIMG {
+  height: 40px;
+  width: 50px;
+  overflow: hidden;
+}
+
+.contactIMG img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.contactPhone {
+  display: flex;
+  align-items: center;
+}
+
+.contactPhone:before {
+  content: "\260E";
+  font-size: 2em;
+  color: black;
+}
+
+.contactEmail {
+  display: flex;
+  align-items: center;
+}
+
+.contactEmail:before {
+  content: "\2709";
+  font-size: 2em;
+  color: black;
+
+}
+
+.iconLink:hover img, .iconLink:hover div:before {
+  transform: scale(1.2);
+}
+
+#h2ClickContact {
+  padding: 10px;
+  color: purple;
+  font-family: 'Khula', Serif;
+}
+
+#h2ClickContact:before, #h2ClickContact:after {
+  content: "\26E4";
+  font-size: 1.2em;
+  color: black;
+}
+
+#h2ClickContact:hover::before, #h2ClickContact:hover::after {
+  display: inline-block;
+  animation: contact-hover 2s linear forwards infinite;
+}
+
+#h2ClickContact:hover {
+  cursor: pointer;
+}

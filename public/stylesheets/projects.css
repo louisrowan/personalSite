@@ -1,0 +1,170 @@
+.projectDiv {
+  width: 50%;
+  height: 400px;
+  margin: auto;
+  position: relative;
+}
+
+.arrowDiv {
+  box-sizing: none;
+  height: 0;
+  width: 0;
+  border: 30px solid transparent;
+  position: absolute;
+  top: 45%;
+  bottom: 45%;
+}
+
+.arrowDiv:hover {
+  cursor: pointer;
+}
+
+.leftArrowDiv {
+  border-right: 40px solid rgba(45, 6, 56, 1);
+  left: 10px;
+}
+
+.leftArrowDiv:hover {
+  border-right: 40px solid rgba(131, 11, 168, 1);
+}
+
+.rightArrowDiv {
+  border-left: 40px solid rgba(45, 6, 56, 1);
+  right: 10px;
+}
+
+.rightArrowDiv:hover {
+  border-left: 40px solid rgba(131, 11, 168, 1);
+}
+
+#projectsBackButton {
+  top: 30px;
+}
+
+.projectsThumb {
+  border: 5px solid black;
+  overflow: hidden;
+  height: 400px;
+  width: 100%;
+  margin: auto;
+  position: absolute;
+  box-shadow: 0px 0px 10px 5px black;
+}
+
+.hoverProjectsThumb {
+  border: 5px solid black;
+  overflow: hidden;
+  height: 400px;
+  width: 100%;
+  margin: auto;
+  position: relative;
+  box-shadow: 0px 0px 10px 5px black;
+  position: absolute;
+}
+
+.thumbImgDiv {
+  width: 100%;
+  max-height: 300px;
+  border-top: 2px solid black;
+  overflow: hidden;
+}
+
+.thumbImgDiv img {
+  width: 100%;
+  height: 100%;
+}
+
+.projectsThumbHeader {
+  padding: 10px;
+}
+
+.hiddenThumbDiv {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  cursor: pointer;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, .5);
+  display: flex;
+  align-items: center;
+}
+
+.hiddenThumbDiv h2 {
+  background: white;
+  margin: auto;
+  width: 100%;
+  padding: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.projectFullscreenDiv {
+  padding: 10px;
+}
+
+.projectFullscreenImgDiv {
+  max-height: 300px;
+  overflow: hidden;
+}
+
+.projectFullscreenImgDiv img {
+  height: 100%;
+  width: 100%;
+}
+
+.projectSkillsList {
+  list-style-type: none;
+}
+
+.projectSkillsList li {
+  float: left;
+  padding: 40px;
+  font-size: 1.5em;
+  width: 33.3%;
+  font-family: 'Pacifico', Serif;
+}
+
+.projectSkillsList li:hover {
+  background: #f9f9f7;
+}
+
+.fullscreenHalf {
+  float: left;
+  width: 50%;
+  overflow: hidden;
+}
+
+.fullscreenHalf h2 {
+
+}
+
+.fullscreenHalf p {
+  font-size: 1.2;
+  padding: 10px;
+}
+
+.inactiveCircle {
+  background: lightgray;
+  transition: background 200ms ease-in;
+}
+
+.activeCircle {
+  background: purple;
+  transition: background 200ms ease-in;
+}
+
+.listCircle {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: inline-block;
+  margin: 10px;
+}
+
+.projectsCirclesList {
+  width: 100%;
+  padding: 20px;
+}

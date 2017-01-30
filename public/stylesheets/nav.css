@@ -1,0 +1,24 @@
+#siteNav table {
+  width: 100%;
+  color: white;
+}
+
+nav td, nav a, nav a:visited {
+  color: white;
+  font-weight: none;
+  text-align: center;
+  font-size: 1.2em;
+  font-family: 'Merriweather Sans';
+  transition: font-size 100ms ease-in, text-shadow 200ms ease-in;
+}
+
+#siteNav td, #siteNav a {
+  width: 20%;
+  height: 100px;
+}
+
+nav td a:hover {
+  font-size: 1.6em;
+  text-shadow: 1px 1px 2px black;
+  cursor: pointer;
+}

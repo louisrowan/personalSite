@@ -1,0 +1,31 @@
+.emp {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.mainParagraph {
+  font-size: 1.2em;
+}
+
+.mainParagraph a {
+  transition: color 300ms linear;
+}
+
+.mainParagraph a:hover {
+  color: darkblue;
+}
+
+.mainImg {
+  height: 300px;
+  width: 300px;
+  box-shadow: 0px 0px 5px 2px black;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: auto;
+  animation: picture-rotate 5s linear infinite;
+}
+
+.mainImg img {
+  height: 100%;
+  width: 100%;
+}

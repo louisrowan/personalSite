@@ -1,0 +1,100 @@
+/*skills chart*/
+
+.skillsContainer {
+  width: 100%;
+  min-height: 800px;
+}
+
+#d3SkillsContainer {
+  height: 600px;
+  width: 90%;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.tooltipDiv {
+  width: 150px;
+  text-align: center;
+  padding: 10px;
+}
+
+.tooltipDiv:after {
+  content: '';
+  width: 0px;
+  height: 0px;
+  border: 10px solid transparent;
+  border-top: 10px solid black;
+  position: relative;
+  top: 38px;
+  right: 80px;
+
+}
+
+#d3ButtonDiv {
+  position: absolute;
+  width: 100%;
+}
+
+.skillsButton {
+  padding: 20px;
+  margin: 10px;
+  background: rgba(244, 245, 247, .5);
+  border: none;
+  min-width: 120px;
+}
+
+.skillsButton:focus {
+  outline: 0;
+}
+
+.skillsButton:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.d3Active {
+  background: lightblue;
+}
+
+.d3Circle {
+  animation: stroke 1000ms linear alternate infinite;
+}
+
+
+/*skillsTable*/
+#skillsList {
+  margin: 10px;
+  background: rgba(243, 220, 244, 1);
+}
+
+#skillsList h2 {
+  text-align: left;
+  clear: both;
+    background: linear-gradient(to right,
+    rgba(254, 244, 255, 1),
+    rgba(243, 220, 244, 1)
+    
+  );
+}
+
+#skillsList ul {
+  list-style-type: none;
+  display: table;
+}
+#skillsList li {
+  font-family: 'Krona One', sans-serif;
+  float: left;
+  padding: 20px;
+  min-width: 200px;
+  max-width: 200px;
+  font-size: 1.1em;
+  height: 100px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#skillsList p {
+  clear: both;
+}
