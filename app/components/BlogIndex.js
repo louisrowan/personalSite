@@ -5,9 +5,13 @@ const BlogIndex = React.createClass({
   render(){
     const posts = this.props.posts.map((p, i) => {
       var url = `/blog/${p.url}`
-      return  <div key={i}>
-                <Link to={url}>{p.title}</Link>
-                <p>{p.url}</p>
+      return  <div className='blogIndexDivs' key={p.url}>
+                <Link to={url}>
+                <div>
+                  <h2>{p.title}</h2>
+                  <p>{p.teaser}</p>
+                </div>
+                </Link>
               </div>
     })
     return (

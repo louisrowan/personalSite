@@ -5,6 +5,7 @@
       "id": "p3",
       "title": "ReactCSSTransitionGroup",
       "url": "reactcsstransitiongroup",
+      "teaser": "How to utilize the ReactCSSTransitionGroup to transition between components in React",
       "date": "Jan 22, 2016",
       "content": [
         ["h3", "Transitions using CSS"],
@@ -52,8 +53,9 @@
 
     {
       "id": "p2",
-      "title": "Scope and Hoisting",
-      "url": "scope",
+      "title": "Hoisting",
+      "url": "hoisting",
+      "teaser": "What 'hoisting' really means in JS",
       "date": "Jan 20, 2016",
       "content": [
         ["p", "Hoisting is a concept to help us humans understand how JavaScript runs code. However, it is NOT actually how the JavaScript engine works. The idea of hoisting is that variable and function declarations are ‘moved’ to the beginning of code at runtime. That would explain how JavaScript is able to run and evaluate the following code, even though the printStuff function is called before it is declared:"],
@@ -77,6 +79,7 @@
       "id": "p1",
       "title": "IIFEs and Modules",
       "url": "iife",
+      "teaser": "What an IIFE is and how it can be useful",
       "date": "Jan 18, 2016",
       "content": [
         ["p", "IIFE stands for an immediately invoked function expression. It has a few benefits:"],
