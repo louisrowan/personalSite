@@ -47,7 +47,7 @@ const ProjectsFullscreen = React.createClass({
       }
 
     return (
-      <div className='projectFullscreenDiv'>
+      <div className='projectFullscreenDiv projectsComponent'>
         <div id='projectsBackButton' className='leftArrowDiv arrowDiv' onClick={()=> this.props.hide()}>
         </div>
         <h1>{data.name}</h1>

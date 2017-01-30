@@ -106,23 +106,61 @@
 }
 
 /*Zooming in on fullscreen project on ProjectsContainer*/
-.projectShow-appear {
-  transform: scale(.1);
+.projectsFullscreenTransition-enter {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  transform: scale(.3);
 }
 
-.projectShow-appear-active {
+.projectsFullscreenTransition-enter-active {
+  z-index: 10;
+  position: absolute;
+  top: 0;
   transform: scale(1);
-  transition: transform 300ms ease-in;
+  transition: transform 600ms ease-in 0ms;
 }
 
-.projectShow-leave {
-  transform: scale(1);
+.projectsFullscreenTransition-leave {
+  position: absolute;
+  top: 0;
+  opacity: 1;
 }
 
-.projectShow-leave-active {
-  transform: scale(.1);
-  transition: transform 2s ease-in;
+.projectsFullscreenTransition-leave-active {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  transition: opacity 300ms ease-in;
 }
+
+
+.projectsCarouselTransition-enter {
+  opacity: 0;
+}
+
+.projectsCarouselTransition-enter-active {
+  opacity: 1;
+  transition: opacity 600ms ease-in 100ms;
+}
+
+.projectsCarouselTransition-leave {
+  position: absolute;
+  top: 0;
+  transform: translate(0,0) scale(1);
+  opacity: 1;
+}
+
+.projectsCarouselTransition-leave-active {
+  position: absolute;
+  top: 0;
+  transform: translate(-100%,-100%) scale(.3);
+  opacity: 0;
+  transition: transform 300ms ease-in,
+              opacity 300ms ease-in;
+}
+
+
 
 /*Zoom in and out on contact form from ContactContainer*/
 .showForm-enter {
