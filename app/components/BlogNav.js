@@ -15,7 +15,7 @@ const BlogNav = React.createClass({
                 <Link to='/'>Portfolio Site</Link>
               </td>
               <td>
-                
+                <Link to='/blog'>Posts Index</Link>
               </td>
             </tr>
           </tbody>

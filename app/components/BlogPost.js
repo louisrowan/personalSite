@@ -1,9 +1,13 @@
 const React = require('react')
 
 const BlogPost = React.createClass({
-  render(){
 
-    const content = this.props.data.content.map((d, i) => {
+  render(){
+    const post = this.props.posts.filter((p) => {
+      return p.url === this.props.router.params.id
+    })[0]
+
+    const content = post.content.map((d, i) => {
 
       if (d[0] === 'p') {
         return <p key={i}>{d[1]}</p>
@@ -26,8 +30,8 @@ const BlogPost = React.createClass({
     return (
       <article>
         <div className='articleBackground'></div>
-        <h1>{this.props.data.title}</h1>
-        <h3>{this.props.data.date}</h3>
+        <h1>{post.title}</h1>
+        <h3>{post.date}</h3>
         <section>{content}</section>
       </article>
     )

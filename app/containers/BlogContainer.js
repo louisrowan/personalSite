@@ -18,7 +18,7 @@ const BlogContainer = React.createClass({
         <div id='blogBackground' style={{"background": `url(${background})`}}></div>
         <div id='blogPostsDiv'>
           <BlogHeader />
-          {this.props.children}
+          {React.cloneElement(this.props.children, { posts: posts })}
         </div>
           
       </div>
