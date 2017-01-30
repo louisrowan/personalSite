@@ -166,7 +166,6 @@
 
 /*dropdown*/
 #dropdownTD:hover #blogDropdownList {
-  animation: blog-dropdown 300ms ease-out forwards;
   display: inline-block;
 }
 
@@ -179,10 +178,6 @@
   }
 }
 
-.hiddenabc {
-  display: none;
-}
-
 #blogDropdownList {
   display: none;
   list-style-type: none;
@@ -193,6 +188,7 @@
   background: whitesmoke;
   border-left: 1px solid gray;
   border-bottom: 1px solid gray;
+  animation: blog-dropdown 300ms ease-out alternate forwards;
 }
 
 #blogDropdownList li {

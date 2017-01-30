@@ -8,6 +8,9 @@ const BlogNav = React.createClass({
   handleClick(){
     var list = document.getElementById('blogDropdownList')
     list.style.display='none';
+    setTimeout(function(){
+      list.style.display='';
+    }, 0)
   },
   render(){
     let listItems = posts.map((p) => {
@@ -25,7 +28,8 @@ const BlogNav = React.createClass({
               </td>
               <td id='dropdownTD'>
                 <Link>Posts</Link>
-                <ul id='blogDropdownList' onClick={()=> this.handleClick()}>
+                <ul id='blogDropdownList'
+                onClick={()=> this.handleClick()}>
                   <li>
                     <Link to='/blog'>Posts Index</Link>
                   </li>
