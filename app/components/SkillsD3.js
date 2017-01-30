@@ -52,25 +52,30 @@ const SkillsD3 = React.createClass({
     const circles = nodes.append('circle')
       .attr('r', radius)
       .style('fill', (d) => `url(#${d.name})`)
-      .style('stroke', 'black')
-      .style('stroke-width', '2px')
+      .classed('d3Circle', true)
 
     circles.on('mouseover', function(){
       d3.select(this)
-        .classed('d3Circle', true)
+        .classed('d3BubbleHover', true)
       tooltip
         .style('visibility', 'visible')
-
-    }).on('mousemove', function(){
       const left = d3.select(this).attr('cx')
       const top = d3.select(this).attr('cy')
       const name = d3.select(this)[0][0].__data__.name
-      tooltip.style('top', top - radius - 20 + 'px')
-        .style('left',  left +"px")
+      tooltip.style('top', top - radius - 50 + 'px')
+        .style('left',  left - 20 + "px")
         .text(name)
+
+    }).on('mousemove', function(){
+      // const left = d3.select(this).attr('cx')
+      // const top = d3.select(this).attr('cy')
+      // const name = d3.select(this)[0][0].__data__.name
+      // tooltip.style('top', top - radius - 20 + 'px')
+      //   .style('left',  left +"px")
+      //   .text(name)
     }).on('mouseout', function() {
       d3.select(this)
-        .classed('d3Circle', false)
+        .classed('d3BubbleHover', false)
       tooltip
         .style('visibility', 'hidden')
     })

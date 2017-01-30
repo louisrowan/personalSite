@@ -243,13 +243,25 @@
   }
 }
 
-/*Toggle stroke for D3 bubbles in SkillsD3*/
-@keyframes stroke {
+/*Toggle stroke color for D3 bubbles in SkillsD3*/
+@keyframes colorstroke {
   0% {
-    stroke-opacity: 1;
+    stroke: red;
+  }
+  20% {
+    stroke: yellow;
+  }
+  40% {
+    stroke: green;
+  }
+  60% {
+    stroke: blue;
+  }
+  80% {
+    stroke: purple;
   }
   100% {
-    stroke-opacity: .3;
+    stroke: red;
   }
 }
 

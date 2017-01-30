@@ -12,21 +12,34 @@
 }
 
 .tooltipDiv {
-  width: 150px;
   text-align: center;
-  padding: 10px;
+  padding: 5px 20px;
+  position: relative;
+  border-radius: 10px;
+  border: 2px solid gray;
 }
+
+
 
 .tooltipDiv:after {
   content: '';
   width: 0px;
   height: 0px;
-  border: 10px solid transparent;
-  border-top: 10px solid black;
-  position: relative;
-  top: 38px;
-  right: 80px;
+  border: 15px solid transparent;
+  animation: tooltip-animation 1s linear alternate infinite;
+  position: absolute;
+  top: 36px;
+  left: 5px;
+  z-index: -1;
+}
 
+@keyframes tooltip-animation {
+  0% {
+    border-top: 15px solid #595857;
+  }
+  100% {
+    border-top: 15px solid black;
+  }
 }
 
 #d3ButtonDiv {
@@ -56,9 +69,9 @@
 }
 
 .d3Circle {
-  animation: stroke 1000ms linear alternate infinite;
+  stroke-width: 1px;
+  animation: colorstroke 12000ms linear infinite;
 }
-
 
 /*skillsTable*/
 #skillsList {
