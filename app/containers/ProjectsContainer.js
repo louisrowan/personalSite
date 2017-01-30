@@ -38,8 +38,8 @@ const ProjectsContainer = React.createClass({
       <div id='projectsContainerDiv'>
         <ReactCSSTransitionGroup
         transitionName={currentTransition}
-        transitionEnterTimeout={600}
-        transitionLeaveTimeout={300}>
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={250}>
         {content}
         </ReactCSSTransitionGroup>
       </div>

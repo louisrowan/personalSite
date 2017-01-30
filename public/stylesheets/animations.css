@@ -118,7 +118,7 @@
   position: absolute;
   top: 0;
   transform: scale(1);
-  transition: transform 600ms ease-in 0ms;
+  transition: transform 500ms ease-in 0ms;
 }
 
 .projectsFullscreenTransition-leave {
@@ -131,7 +131,7 @@
   position: absolute;
   top: 0;
   opacity: 0;
-  transition: opacity 300ms ease-in;
+  transition: opacity 250ms ease-in;
 }
 
 
@@ -141,7 +141,7 @@
 
 .projectsCarouselTransition-enter-active {
   opacity: 1;
-  transition: opacity 600ms ease-in 100ms;
+  transition: opacity 500ms ease-in 100ms;
 }
 
 .projectsCarouselTransition-leave {
@@ -156,8 +156,8 @@
   top: 0;
   transform: translate(-100%,-100%) scale(.3);
   opacity: 0;
-  transition: transform 300ms ease-in,
-              opacity 300ms ease-in;
+  transition: transform 250ms ease-in,
+              opacity 250ms ease-in;
 }
 
 
