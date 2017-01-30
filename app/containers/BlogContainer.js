@@ -29,8 +29,8 @@ const BlogContainer = React.createClass({
           <div id='blogContentRelativeDiv'>
             <ReactCSSTransitionGroup
             transitionName='blogContentTransition'
-            transitionEnterTimeout={4000}
-            transitionLeaveTimeout={2000}>
+            transitionEnterTimeout={1000}
+            transitionLeaveTimeout={500}>
             {this.cloneChildren()}
             </ReactCSSTransitionGroup>
           </div>

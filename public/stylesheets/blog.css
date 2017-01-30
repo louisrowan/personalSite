@@ -1,5 +1,7 @@
 #blogContentRelativeDiv {
   position: relative;
+  margin: 0px auto 20px;
+  max-width: 1200px;
 }
 
 #blogContentRelativeDiv > article {
@@ -58,15 +60,22 @@
 }
 
 #blogPostsDiv article, #blogPostsDiv header {
-/*  position: relative;*/
   box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, .3);
   border-radius: 5px;
   margin: 0px auto 20px;
   max-width: 1200px;
+  overflow: hidden;
+}
+
+#blogPostsDiv article {
+  position: absolute;
+  width: 100%;
+
 }
 
 #blogPostsDiv header {
   display: flex;
+  position: relative;
 }
 
 #blogHeaderLeft, #blogHeaderRight {

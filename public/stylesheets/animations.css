@@ -295,31 +295,25 @@
 
 /*blog content transitions*/
 .blogContentTransition-enter {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  transform: rotateY(-90deg);
+  max-height: 0vh;
+  opacity: .8;
 }
 
 .blogContentTransition-enter-active {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  transform: rotateY(0deg);
-  transition: transform 4s linear 2s;
+  max-height: 100vh;
+  opacity: 1;
+  transition: max-height 1000ms ease-in 500ms,
+              opacity 1000ms ease-in 500ms;
 }
 
 .blogContentTransition-leave {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  transform: rotateY(0deg);
+  max-height: 100vh;
+  opacity: 1;
 }
 
 .blogContentTransition-leave-active {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  transform: rotateY(90deg);
-  transition: transform 2s linear;
+  max-height: 0vh;
+  opacity: .8;
+  transition: max-height 500ms ease-out,
+              opacity 500ms ease-out;
 }
