@@ -151,14 +151,54 @@
    display: flex;
    justify-content: center;
    flex-direction: column;
+   background: #fdefff;
 }
 
 .blogIndexDivs div:hover {
   box-shadow: 0px 0px 10px black inset;
-  background: whitesmoke;
+  background: transparent;
 }
 
 .blogIndexDivs div h2 {
-  font-size: 1em;
+  font-size: 1.1em;
   color: #69527B;
+}
+
+/*dropdown*/
+#dropdownTD:hover #blogDropdownList {
+  animation: blog-dropdown 300ms ease-out forwards;
+  display: inline-block;
+}
+
+@keyframes blog-dropdown {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.hiddenabc {
+  display: none;
+}
+
+#blogDropdownList {
+  display: none;
+  list-style-type: none;
+  position: fixed;
+  top: 100px;
+  width: 50%;
+  right: 0;
+  background: whitesmoke;
+  border-left: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+
+#blogDropdownList li {
+  padding: 5px;
+}
+
+#blogDropdownList a, #blogDropdownList a:visited {
+  color: black;
 }
