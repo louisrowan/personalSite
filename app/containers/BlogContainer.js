@@ -18,7 +18,7 @@ const BlogContainer = React.createClass({
         <div id='blogBackground' style={{"background": `url(${background})`}}></div>
         <div id='blogPostsDiv'>
           <BlogHeader />
-          {blogPosts}
+          {this.props.children}
         </div>
           
       </div>

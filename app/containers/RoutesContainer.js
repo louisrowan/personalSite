@@ -3,7 +3,7 @@ const ReactCSSTransitionGroup = require('react-addons-css-transition-group')
 
 const RoutesContainer = React.createClass({
   cloneChildren: function() {
-    var key = this.props.location.pathname
+    var key = this.props.routes
     if (this.props.children) {
       return React.cloneElement(this.props.children, { key: key})
     }
