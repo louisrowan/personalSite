@@ -4,8 +4,16 @@ const BlogPost = require('../components/BlogPost')
 const BlogNav = require('../components/BlogNav')
 const BlogHeader = require('../components/BlogHeader')
 const background = require('json!../../public/data.json').images.background
+const ReactCSSTransitionGroup = require('react-addons-css-transition-group')
+
 
 const BlogContainer = React.createClass({
+  cloneChildren: function() {
+    var key = this.props.location.pathname
+    if (this.props.children) {
+      return React.cloneElement(this.props.children, { posts: posts, key: key})
+    }
+  },
   render(){
 
     const blogPosts = posts.map((p, i) => {
@@ -18,7 +26,14 @@ const BlogContainer = React.createClass({
         <div id='blogBackground' style={{"background": `url(${background})`}}></div>
         <div id='blogPostsDiv'>
           <BlogHeader />
-          {React.cloneElement(this.props.children, { posts: posts })}
+          <div id='blogContentRelativeDiv'>
+            <ReactCSSTransitionGroup
+            transitionName='blogContentTransition'
+            transitionEnterTimeout={4000}
+            transitionLeaveTimeout={2000}>
+            {this.cloneChildren()}
+            </ReactCSSTransitionGroup>
+          </div>
         </div>
           
       </div>

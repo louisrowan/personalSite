@@ -292,3 +292,34 @@
   opacity: 0;
   transition: opacity 1s linear;
 }
+
+/*blog content transitions*/
+.blogContentTransition-enter {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  transform: rotateY(-90deg);
+}
+
+.blogContentTransition-enter-active {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  transform: rotateY(0deg);
+  transition: transform 4s linear 2s;
+}
+
+.blogContentTransition-leave {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  transform: rotateY(0deg);
+}
+
+.blogContentTransition-leave-active {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  transform: rotateY(90deg);
+  transition: transform 2s linear;
+}

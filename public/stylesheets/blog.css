@@ -1,3 +1,11 @@
+#blogContentRelativeDiv {
+  position: relative;
+}
+
+#blogContentRelativeDiv > article {
+
+}
+
 #blogBackground {
   position: fixed;
   height: 100%;
@@ -50,7 +58,7 @@
 }
 
 #blogPostsDiv article, #blogPostsDiv header {
-  position: relative;
+/*  position: relative;*/
   box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, .3);
   border-radius: 5px;
   margin: 0px auto 20px;
