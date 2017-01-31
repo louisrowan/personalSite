@@ -5,12 +5,16 @@ const posts = require('json!../../public/blog/blog.json').posts
 
 
 const BlogNav = React.createClass({
-  handleClick(){
-    var list = document.getElementById('blogDropdownList')
-    list.style.display='none';
-    setTimeout(function(){
-      list.style.display='';
-    }, 0)
+  getInitialState(){
+    return {
+      dropdown: 'hideDropdown'
+    }
+  },
+  showNav(){
+    this.setState({ dropdown: 'showDropdown'})
+  },
+  hideNav(){
+    this.setState({ dropdown: 'hideDropdown'})
   },
   render(){
     let listItems = posts.map((p) => {
@@ -18,7 +22,7 @@ const BlogNav = React.createClass({
       return <li key={p.id}><Link to={url}>{p.title}</Link></li>
     })
     return (
-      <nav id='blogNav'>
+      <nav id='blogNav' onMouseLeave={() => this.hideNav()}>
         <img id='blogNavGif' src={background} />
         <table>
           <tbody>
@@ -27,9 +31,9 @@ const BlogNav = React.createClass({
                 <Link to='/'>Portfolio Site</Link>
               </td>
               <td id='dropdownTD'>
-                <Link>Posts</Link>
-                <ul id='blogDropdownList'
-                onClick={()=> this.handleClick()}>
+                <Link onClick={()=> this.showNav()}>Posts</Link>
+                <ul id='blogDropdownList' className={this.state.dropdown}
+                onClick={()=> this.hideNav()}>
                   <li>
                     <Link to='/blog'>Posts Index</Link>
                   </li>
