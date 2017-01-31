@@ -14,7 +14,10 @@ const HomeContainer = React.createClass({
   },
   render(){
     return (
-        <div id='layoutDiv' className='pageContainer' style={{"background": `url(${background})`}}>
+        <div id='layoutDiv' className='pageContainer'>
+          <div id='layoutBackground'>
+              <img src={background} />
+            </div>
           <Nav handleClick={this.handleClick} />
           <Home content={this.state.content} />
         </div>

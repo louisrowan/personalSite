@@ -23,7 +23,9 @@ const BlogContainer = React.createClass({
     return (
       <div className='pageContainer'>
         <BlogNav posts={posts} />
-        <div id='blogBackground' style={{"background": `url(${background})`}}></div>
+        <div id='blogBackground'>
+          <img src={background} />
+        </div>
         <div id='blogPostsDiv'>
           <BlogHeader />
           <div id='blogContentRelativeDiv'>
