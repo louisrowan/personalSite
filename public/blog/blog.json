@@ -49,10 +49,9 @@
         ["p", "Then on mouseout, change the opacity back to 0 and the z-index to -1. What this code does is move the tooltip div to be placed directly above whichever bubble we are hovering over. The reason I put the z-index to -1 on mouseout, is that if we did not change the z-index the tooltip would be on ‘top’ of the svg elements, and while invisible, it would not allow for the mouseover event to work on any covered bubbles. Changing the z-index to anything less than 0 fixes this problem. Just for fun I also added a small triangle onto the tooltip using CSS:"],
         ["img", "/public/blog/d3bubble/d39.JPG"],
         ["p", "The updated behavior is shown below."],
-        ["img", "/public/blog/d3bubble/d3gif1.gif"],
-
+        ["img", "/public/blog/d3bubble/d3gif1.gif"]
       ]
-    }
+    },
 
     {
       "id": "p3",

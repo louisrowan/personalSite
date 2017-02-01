@@ -52,6 +52,7 @@
 #blogPostsDiv ol {
   padding: 10px 40px;
   font-size: 1.2em;
+  list-style-type: square
 }
 
 #blogPostsDiv a {
