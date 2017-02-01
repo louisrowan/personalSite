@@ -2,6 +2,15 @@
   "posts": [
 
     {
+      "id": "p4",
+      "title": "Creating a D3 Bubble Chart",
+      "url": "d3bubblechart",
+      "teaser": "Use D3 and D3Force to create a dynamic bubble chart",
+      "date": "Jan 30, 2016",
+      "content"
+    }
+
+    {
       "id": "p3",
       "title": "ReactCSSTransitionGroup",
       "url": "reactcsstransitiongroup",
