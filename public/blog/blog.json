@@ -49,7 +49,16 @@
         ["p", "Then on mouseout, change the opacity back to 0 and the z-index to -1. What this code does is move the tooltip div to be placed directly above whichever bubble we are hovering over. The reason I put the z-index to -1 on mouseout, is that if we did not change the z-index the tooltip would be on ‘top’ of the svg elements, and while invisible, it would not allow for the mouseover event to work on any covered bubbles. Changing the z-index to anything less than 0 fixes this problem. Just for fun I also added a small triangle onto the tooltip using CSS:"],
         ["img", "/public/blog/d3bubble/d39.JPG"],
         ["p", "The updated behavior is shown below."],
-        ["img", "/public/blog/d3bubble/d3gif1.gif"]
+        ["img", "/public/blog/d3bubble/d3gif1.gif"],
+        ["h3", "Adding a background"],
+        ["p", "The next step in our chart is to add a background. This can be done using the HTML ‘pattern’ element. The first step is to find images for each data point, I found some online and added them to the data objects as seen below under the image attribute."],
+        ["img", "/public/blog/d3bubble/d310.JPG"],
+        ["p", "Next comes creating the patterns. To do these, I selected the nodes and appended a pattern. Each pattern is given a unique id, for simplicity I chose the image attribute. The id cannot have spaces in it, which is why I did not choose the state name. Ideally the data would come with an id property, which is a lot more intuitive to use than an image url. The rest of the code here is all needed to format the image to fit into the bubble properly. At the end, I set the image link to be the image attribute for each piece of data."],
+        ["img", "/public/blog/d3bubble/d311.JPG"],
+        ["p", "Next, I changed the fill attribute of the circles from blue to the patterns that we just created. I specified the image by referencing the unique IDs I just created in the last section, which will bind those patterns to these circles. I also added a stroke and stroke-width (which are like border for svg based elements) for styling purposes. The result is shown below:"],
+        ["img", "/public/blog/d3bubble/d312.JPG"],
+        ["p", "And here is the result of these changes:"],
+        ["img", "/public/blog/d3bubble/d313.JPG"]
       ]
     },
 
