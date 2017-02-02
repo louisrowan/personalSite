@@ -20,7 +20,7 @@ const MainContainer = React.createClass({
           I graduated from the <span className='emp'>University of Connecticut</span> in 2013 with a <span className='emp'>BA in Economics</span>, but more recently found a passion in the world of development. I am currently searching for the right opportunity, one where I can be a valued member of a team and be put into a position to continue learning and improving every day.
         </p>
         <p className='mainParagraph'>
-          I have started a <span className='emp'><Link to='/blog'>Blog </Link></span>as a place to journal some of the new ideas and concepts that I'm learning. My last entry was about using CSS animations and transitions in React, check it out!
+          I have started a <span className='emp'><Link to='/blog'>Blog </Link></span>as a place to journal some of the new ideas and concepts that I'm learning. My last entry was about creating an interactive bubble chart in D3, <Link to='/blog/d3bubblechart'>check it out!</Link>
         </p>
       </div>
     )
