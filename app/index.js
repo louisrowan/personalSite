@@ -15,6 +15,7 @@ require('../public/stylesheets/contact.css')
 require('../public/stylesheets/responsive.css')
 require('../public/stylesheets/animations.css')
 require('../public/stylesheets/blog.css')
+require('../public/stylesheets/blogResponsive.css')
 
 const App = React.createClass({
   render(){
