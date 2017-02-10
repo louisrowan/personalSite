@@ -8,11 +8,10 @@
   }
 
   .projectDiv {
-    width: 65vw;
+    width: 80vw;
     margin: 20px auto;
     overflow: hidden;
     height: 800px;
-    border: 2px solid red;
   }
 
   .projectsThumb {
@@ -30,13 +29,43 @@
   .thumbImgDiv {
     height: 50%;
     max-height: 50%;
-    min-width: 100%;
+    width: 100%;
   }
 
   .thumbImgDiv img {
-    
+    min-height: 100%;
+    min-width: 100%;
   }
 
+  .projectsThumb h2 {
+    font-size: 50px;
+  }
+
+  .projectsThumb p {
+    font-size: 40px;
+  }
+
+/*  projects carousel circles*/
+  .listCircle {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+  }
+
+/*  projects carousel arrows*/
+  .arrowDiv {
+    border: 50px solid transparent;
+  }
+
+  .leftArrowDiv {
+    border-right: 70px solid rgba(45, 6, 56, 1);
+    left: -40px;
+  }
+
+  .rightArrowDiv {
+    border-left: 70px solid rgba(45, 6, 56, 1);
+    right: -40px;
+  }
 
 
 
