@@ -40,11 +40,15 @@
   }
 
   #blogPostsDiv article p {
-    font-size: 30px;
+    font-size: 35px;
   }
 
   #blogPostsDiv article ol {
-    font-size: 25px;
+    font-size: 30px;
+  }
+
+  #blogPostsDiv img {
+    width: 100%;
   }
 
   .blogIndexDivs {
