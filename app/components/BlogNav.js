@@ -10,6 +10,13 @@ const BlogNav = React.createClass({
       dropdown: 'hideDropdown'
     }
   },
+  toggleNav(){
+    if (this.state.dropdown === 'hideDropdown') {
+      this.showNav()
+    } else {
+      this.hideNav()
+    }
+  },
   showNav(){
     this.setState({ dropdown: 'showDropdown'})
   },
@@ -31,7 +38,9 @@ const BlogNav = React.createClass({
                 <Link to='/'>Portfolio Site</Link>
               </td>
               <td id='dropdownTD'>
-                <Link onClick={()=> this.showNav()}>Posts</Link>
+                <Link
+                  onClick={()=> this.toggleNav()}
+                  onTouch={()=> this.toggleNav()}>Posts</Link>
                 <ul id='blogDropdownList' className={this.state.dropdown}
                 onClick={()=> this.hideNav()}>
                   <li>
