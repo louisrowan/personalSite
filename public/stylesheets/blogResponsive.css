@@ -6,4 +6,20 @@
   #blogBackground, #blogPostsDiv {
     margin-top: 200px;
   }
+
+  #blogPostsDiv {
+    padding: 20px 0px;
+  }
+
+  #blogPostsDiv h1 {
+    font-size: 60px;
+  }
+
+  #blogPostsDiv h3 {
+    font-size: 50px;
+  }
+
+  #blogPostsDiv p {
+    font-size: 30px;
+  }
 }
