@@ -11,4 +11,9 @@
     padding: 20px 0px;
   }
 
+  .mainImg {
+    height: 400px;
+    width: 400px;
+  }
+
 }

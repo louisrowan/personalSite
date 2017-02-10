@@ -1,0 +1,17 @@
+@media only screen and (max-width: 1000px) {
+
+  #d3SkillsContainer {
+    min-height: 75vh;
+  }
+
+  .skillsContainer svg {
+    min-height: 75vh;
+  }
+
+
+  .skillsButton {
+    width: 200px;
+    font-size: 30px;
+  }
+
+}
