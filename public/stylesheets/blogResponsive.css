@@ -11,15 +11,31 @@
     padding: 20px 0px;
   }
 
-  #blogPostsDiv h1 {
+  #blogPostsDiv header {
+    display: block;
+  }
+
+  #blogPostsDiv #blogHeaderLeft, #blogPostsDiv #blogHeaderRight {
+    width: 100%;
+    font-size: 30px;
+    padding: 5px;
+  }
+
+  #blogPostsDiv article h1 {
     font-size: 60px;
   }
 
-  #blogPostsDiv h3 {
-    font-size: 50px;
+  #blogPostsDiv article h3 {
+    font-size: 40px;
   }
 
-  #blogPostsDiv p {
+  #blogPostsDiv article p {
     font-size: 30px;
   }
+
+  #blogPostsDiv article ol {
+    font-size: 25px;
+  }
+
+
 }
