@@ -30,7 +30,9 @@ const BlogNav = React.createClass({
     })
     return (
       <nav id='blogNav' onMouseLeave={() => this.hideNav()}>
-        <img id='blogNavGif' src={background} />
+        <div id='blogNavGifDiv'>
+          <img id='blogNavGif' src={background} />
+        </div>
         <table>
           <tbody>
             <tr>

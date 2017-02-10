@@ -118,13 +118,22 @@
   position: fixed;
   top: 0;
   z-index: 1;
-  overflow: hidden;
+  /*overflow: hidden;*/
   box-shadow: 0px 5px 5px #DFD7E4;
 }
 
 #blogNavGif {
   height: 200%;
   width: 100%;
+  position: absolute;
+  z-index: -1;
+  overflow: hidden;
+}
+
+#blogNavGifDiv {
+  height: 100px;
+  width: 100%;
+  overflow: hidden;
   position: absolute;
   z-index: -1;
 }
