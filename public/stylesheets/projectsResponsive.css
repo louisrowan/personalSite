@@ -12,6 +12,8 @@
     margin: 20px auto;
     overflow: hidden;
     height: 800px;
+    z-index: 1;
+    background: white;
   }
 
   .projectsThumb {
@@ -55,6 +57,7 @@
 /*  projects carousel arrows*/
   .arrowDiv {
     border: 50px solid transparent;
+    z-index: 0;
   }
 
   .leftArrowDiv {
@@ -62,10 +65,25 @@
     left: -40px;
   }
 
+  .leftArrowDiv:hover {
+    border-right: 70px solid rgba(131, 11, 168, 1);
+  }
+
   .rightArrowDiv {
     border-left: 70px solid rgba(45, 6, 56, 1);
     right: -40px;
   }
+
+  .rightArrowDiv:hover {
+    border-left: 70px solid rgba(131, 11, 168, 1);
+  }
+
+  .hiddenThumbDiv h2 {
+    font-size: 50px;
+    padding: 30px;
+  }
+
+  /*projects fullscreen*/
 
 
 
