@@ -5,7 +5,7 @@
 
   #blogNav td {
     height: 200px;
-    font-size: 30px;
+    font-size: 40px;
   }
 
   #blogBackground, #blogPostsDiv {
@@ -41,6 +41,20 @@
 
   #blogPostsDiv article ol {
     font-size: 25px;
+  }
+
+  .blogIndexDivs {
+    width: 100%;
+    float: none;
+  }
+
+  .blogIndexDivs div {
+    min-height: 200px;
+    display: block;
+  }
+
+  .blogIndexDivs div h2 {
+    font-size: 30px;
   }
 
 
