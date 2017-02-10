@@ -51,6 +51,10 @@
   .blogIndexDivs div {
     min-height: 200px;
     display: block;
+    box-shadow: none;
+    border: 1px solid black;
+    border-radius: 20px;
+
   }
 
   .blogIndexDivs div h2 {

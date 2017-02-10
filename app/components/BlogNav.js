@@ -39,14 +39,13 @@ const BlogNav = React.createClass({
               </td>
               <td id='dropdownTD'>
                 <Link
-                  onClick={()=> this.toggleNav()}
-                  onTouch={()=> this.toggleNav()}>Posts</Link>
+                  onClick={()=> this.toggleNav()}>Posts</Link>
                 <ul id='blogDropdownList' className={this.state.dropdown}
                 onClick={()=> this.hideNav()}>
+                  {listItems}
                   <li>
                     <Link to='/blog'>Posts Index</Link>
                   </li>
-                  {listItems}
                 </ul>
               </td>
             </tr>
