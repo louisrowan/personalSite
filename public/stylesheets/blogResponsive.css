@@ -3,6 +3,11 @@
     height: 200px;
   }
 
+  #blogNav td {
+    height: 200px;
+    font-size: 30px;
+  }
+
   #blogBackground, #blogPostsDiv {
     margin-top: 200px;
   }
@@ -27,6 +32,7 @@
 
   #blogPostsDiv article h3 {
     font-size: 40px;
+    text-align: center;
   }
 
   #blogPostsDiv article p {
@@ -36,6 +42,8 @@
   #blogPostsDiv article ol {
     font-size: 25px;
   }
+
+
 
 
 }
