@@ -1,11 +1,15 @@
 const React = require('react')
+const { hashHistory } = require('react-router')
 
 const BlogHeader = React.createClass({
+  handleClick(){
+    hashHistory.replace('/blog')
+  },
   render(){
     return (
       <header>
         <div className='articleBackground'></div>
-        <div id='blogHeaderLeft'>
+        <div id='blogHeaderLeft' onClick={()=> this.handleClick()}>
           <h2>My JS Blog</h2>
           <h2>Louis Rowan</h2>
         </div>
