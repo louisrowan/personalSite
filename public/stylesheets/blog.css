@@ -173,11 +173,15 @@
 /*dropdown*/
 
 .showDropdown {
+  -ms-transform: translateX(0%);
+  -webkit-transform: translateX(0%);
   transform: translateX(0%);
   transition: transform 400ms;
 }
 
 .hideDropdown {
+  -ms-transform: translateX(100%);
+  -webkit-transform: translateX(100%);
   transform: translateX(100%);
   transition: transform 400ms;
 }
