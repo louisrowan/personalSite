@@ -20,7 +20,7 @@ const SkillsD3 = React.createClass({
 
     const height = parseInt(svg.style('height'))
     const width = parseInt(svg.style('width'))
-    const radius = width/16
+    const radius = d3.max([height, width])/16
 
     const tooltip = d3.select('#d3SkillsContainer')
       .append('div')
