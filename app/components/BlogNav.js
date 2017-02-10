@@ -29,7 +29,9 @@ const BlogNav = React.createClass({
       return <li key={p.id}><Link to={url}>{p.title}</Link></li>
     })
     return (
-      <nav id='blogNav' onMouseLeave={() => this.hideNav()}>
+      <nav id='blogNav'
+      // onMouseLeave={() => this.hideNav()}
+      >
         <img id='blogNavGif' src={background} />
         <table>
           <tbody>
