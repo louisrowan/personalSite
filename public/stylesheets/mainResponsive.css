@@ -1,0 +1,14 @@
+@media only screen and (max-width: 1000px) {
+
+  #mainHello {
+    font-size: 60px;
+  }
+
+
+  .mainParagraph {
+    font-size: 35px;
+    line-height: 60px;
+    padding: 20px 0px;
+  }
+
+}
