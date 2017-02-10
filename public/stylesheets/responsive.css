@@ -1,10 +1,5 @@
 @media only screen and (max-width: 1000px) {
-  p {
-    font-size: 1.1em;
-  }
-  h1 {
-    font-size: 2em;
-  }
+
   html, body, #app, #app > div {
     height: 100vh;
     width: 100%;
@@ -13,15 +8,20 @@
   #layoutDiv {
     height: 100vh;
   }
+
   .homeContainer {
     width: 100%;
     height: 90vh;
+    padding: 0;
   }
+
   #contentSpace {
     width: 98%;
   }
+
   .contentContainer {
     min-height: 75vh;
+    width: 100%;
   }
 
   .contentContainer > div {
@@ -44,11 +44,14 @@
     justify-content: center;
   }
 
-
-  nav td {
+  #siteNav td {
     height: 10vh;
     color: white;
     font-weight: bold;
+  }
+
+  #siteNav a {
+    font-size: 40px;
   }
 
   .component-enter {
