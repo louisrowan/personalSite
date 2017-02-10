@@ -60,15 +60,24 @@
 	    Router = _require.Router,
 	    Route = _require.Route,
 	    hashHistory = _require.hashHistory,
-	    IndexRoute = _require.IndexRoute;
+	    IndexRoute = _require.IndexRoute,
+	    Link = _require.Link;
 
 	var HomeContainer = __webpack_require__(234);
-	var BlogContainer = __webpack_require__(322);
-	var RoutesContainer = __webpack_require__(326);
-	__webpack_require__(327);
+	var BlogContainer = __webpack_require__(324);
+	var BlogIndex = __webpack_require__(329);
+	var BlogPost = __webpack_require__(326);
+	var RoutesContainer = __webpack_require__(330);
 	__webpack_require__(331);
-	__webpack_require__(333);
 	__webpack_require__(335);
+	__webpack_require__(337);
+	__webpack_require__(339);
+	__webpack_require__(341);
+	__webpack_require__(343);
+	__webpack_require__(345);
+	__webpack_require__(347);
+	__webpack_require__(349);
+	__webpack_require__(351);
 
 	var App = React.createClass({
 	  displayName: 'App',
@@ -80,7 +89,12 @@
 	        Route,
 	        { path: '/', component: RoutesContainer },
 	        React.createElement(IndexRoute, { component: HomeContainer }),
-	        React.createElement(Route, { path: 'blog', component: BlogContainer })
+	        React.createElement(
+	          Route,
+	          { path: '/blog', component: BlogContainer },
+	          React.createElement(IndexRoute, { component: BlogIndex }),
+	          React.createElement(Route, { path: '/blog/:id', component: BlogPost })
+	        )
 	      )
 	    );
 	  }
@@ -26414,7 +26428,7 @@
 
 	var React = __webpack_require__(2);
 	var Home = __webpack_require__(235);
-	var Nav = __webpack_require__(321);
+	var Nav = __webpack_require__(323);
 	var background = __webpack_require__(238).images.background;
 
 	var HomeContainer = React.createClass({
@@ -26430,7 +26444,12 @@
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      { id: 'layoutDiv', className: 'pageContainer', style: { "background": 'url(' + background + ')' } },
+	      { id: 'layoutDiv', className: 'pageContainer' },
+	      React.createElement(
+	        'div',
+	        { id: 'layoutBackground' },
+	        React.createElement('img', { src: background })
+	      ),
 	      React.createElement(Nav, { handleClick: this.handleClick }),
 	      React.createElement(Home, { content: this.state.content })
 	    );
@@ -26449,9 +26468,9 @@
 	var HeaderContainer = __webpack_require__(236);
 	var MainContainer = __webpack_require__(237);
 	var SkillsContainer = __webpack_require__(239);
-	var ProjectsContainer = __webpack_require__(302);
-	var ContactContainer = __webpack_require__(318);
-	var ReactCSSTransitionGroup = __webpack_require__(305);
+	var ProjectsContainer = __webpack_require__(303);
+	var ContactContainer = __webpack_require__(320);
+	var ReactCSSTransitionGroup = __webpack_require__(306);
 
 	var Home = React.createClass({
 	  displayName: 'Home',
@@ -26577,12 +26596,12 @@
 	      ),
 	      React.createElement(
 	        'p',
-	        { id: 'mainParagraph' },
+	        { className: 'mainParagraph' },
 	        'My name is ',
 	        React.createElement(
 	          'span',
 	          { className: 'emp' },
-	          'Louie'
+	          'Louis Rowan'
 	        ),
 	        ' and I\'m a self-taught ',
 	        React.createElement(
@@ -26654,14 +26673,40 @@
 	      ),
 	      React.createElement(
 	        'p',
-	        null,
-	        'I have started a blog ',
+	        { className: 'mainParagraph' },
+	        'I graduated from the ',
+	        React.createElement(
+	          'span',
+	          { className: 'emp' },
+	          'University of Connecticut'
+	        ),
+	        ' in 2013 with a ',
+	        React.createElement(
+	          'span',
+	          { className: 'emp' },
+	          'BA in Economics'
+	        ),
+	        ', but more recently found a passion in the world of development. I am currently searching for the right opportunity, one where I can be a valued member of a team and be put into a position to continue learning and improving every day.'
+	      ),
+	      React.createElement(
+	        'p',
+	        { className: 'mainParagraph' },
+	        'I have started a ',
+	        React.createElement(
+	          'span',
+	          { className: 'emp' },
+	          React.createElement(
+	            Link,
+	            { to: '/blog' },
+	            'Blog '
+	          )
+	        ),
+	        'as a place to journal some of the new ideas and concepts that I\'m learning. My last entry was about creating an interactive bubble chart in D3, ',
 	        React.createElement(
 	          Link,
-	          { to: '/blog' },
-	          'here '
-	        ),
-	        'as a place to journal some of the new ideas and concepts that I\'m learning.'
+	          { to: '/blog/d3bubblechart' },
+	          'check it out!'
+	        )
 	      )
 	    );
 	  }
@@ -26772,28 +26817,14 @@
 			"github": "./images/github.png",
 			"heroku": "./images/heroku.png",
 			"me": "./images/me.jpg",
-			"background": "./images/background.jpg"
+			"background": "./images/background.jpg",
+			"blogNav": "./images/blogNav.gif"
 		},
 		"skills": [
 			{
-				"name": "React",
-				"type": "front",
-				"image": "./images/react.png"
-			},
-			{
-				"name": "Rails",
+				"name": "C/C++",
 				"type": "back",
-				"image": "./images/rails.png"
-			},
-			{
-				"name": "JavaScript",
-				"type": "front",
-				"image": "./images/javascript.jpg"
-			},
-			{
-				"name": "Redux",
-				"type": "front",
-				"image": "./images/redux.png"
+				"image": "./images/c.png"
 			},
 			{
 				"name": "D3",
@@ -26806,19 +26837,19 @@
 				"image": "./images/github.png"
 			},
 			{
+				"name": "HTML5/CSS3",
+				"type": "front",
+				"image": "./images/htmlcss.png"
+			},
+			{
+				"name": "JavaScript",
+				"type": "front",
+				"image": "./images/javascript.png"
+			},
+			{
 				"name": "Node/Webpack",
 				"type": "back",
 				"image": "./images/node.jpg"
-			},
-			{
-				"name": "C/C++",
-				"type": "back",
-				"image": "./images/c.jpg"
-			},
-			{
-				"name": "SQL",
-				"type": "back",
-				"image": "./images/sql.png"
 			},
 			{
 				"name": "Python",
@@ -26826,9 +26857,29 @@
 				"image": "./images/python.png"
 			},
 			{
+				"name": "Rails",
+				"type": "back",
+				"image": "./images/rails.png"
+			},
+			{
+				"name": "React",
+				"type": "front",
+				"image": "./images/react.png"
+			},
+			{
+				"name": "Redux",
+				"type": "front",
+				"image": "./images/redux.png"
+			},
+			{
 				"name": "Ruby",
 				"type": "back",
 				"image": "./images/ruby.png"
+			},
+			{
+				"name": "SQL",
+				"type": "back",
+				"image": "./images/sql.png"
 			}
 		]
 	};
@@ -26841,6 +26892,7 @@
 
 	var React = __webpack_require__(2);
 	var SkillsD3 = __webpack_require__(240);
+	var SkillsTable = __webpack_require__(302);
 
 	var SkillsContainer = React.createClass({
 	  displayName: 'SkillsContainer',
@@ -26853,7 +26905,8 @@
 	        null,
 	        'Skills'
 	      ),
-	      React.createElement(SkillsD3, null)
+	      React.createElement(SkillsD3, null),
+	      React.createElement(SkillsTable, null)
 	    );
 	  }
 	});
@@ -26900,18 +26953,24 @@
 
 	    var circles = nodes.append('circle').attr('r', radius).style('fill', function (d) {
 	      return 'url(#' + d.name + ')';
-	    }).style('stroke', 'black').style('stroke-width', '2px');
+	    }).classed('d3Circle', true);
 
 	    circles.on('mouseover', function () {
-	      d3.select(this).classed('d3Circle', true);
+	      d3.select(this).classed('d3BubbleHover', true);
 	      tooltip.style('visibility', 'visible');
-	    }).on('mousemove', function () {
 	      var left = d3.select(this).attr('cx');
 	      var top = d3.select(this).attr('cy');
 	      var name = d3.select(this)[0][0].__data__.name;
-	      tooltip.style('top', top - radius - 20 + 'px').style('left', left + "px").text(name);
+	      tooltip.style('top', top - radius - 50 + 'px').style('left', left - 20 + "px").text(name);
+	    }).on('mousemove', function () {
+	      // const left = d3.select(this).attr('cx')
+	      // const top = d3.select(this).attr('cy')
+	      // const name = d3.select(this)[0][0].__data__.name
+	      // tooltip.style('top', top - radius - 20 + 'px')
+	      //   .style('left',  left +"px")
+	      //   .text(name)
 	    }).on('mouseout', function () {
-	      d3.select(this).classed('d3Circle', false);
+	      d3.select(this).classed('d3BubbleHover', false);
 	      tooltip.style('visibility', 'hidden');
 	    });
 
@@ -41984,18 +42043,158 @@
 	'use strict';
 
 	var React = __webpack_require__(2);
+	var data = __webpack_require__(238).skills;
+
+	var SkillsTable = React.createClass({
+	  displayName: 'SkillsTable',
+	  render: function render() {
+	    var front = [];
+	    var back = [];
+	    var other = [];
+	    data.forEach(function (d) {
+	      if (d.type === 'front') {
+	        front.push(d);
+	      } else if (d.type === 'back') {
+	        back.push(d);
+	      } else {
+	        other.push(d);
+	      }
+	    });
+	    var frontLIs = front.map(function (d, i) {
+	      return React.createElement(
+	        'li',
+	        { key: i },
+	        d.name
+	      );
+	    });
+	    var backLIs = back.map(function (d, i) {
+	      return React.createElement(
+	        'li',
+	        { key: i },
+	        d.name
+	      );
+	    });
+	    var otherLIs = other.map(function (d, i) {
+	      return React.createElement(
+	        'li',
+	        { key: i },
+	        d.name
+	      );
+	    });
+	    return React.createElement(
+	      'section',
+	      { id: 'skillsList' },
+	      React.createElement(
+	        'h2',
+	        null,
+	        'Front-End'
+	      ),
+	      React.createElement(
+	        'ul',
+	        null,
+	        frontLIs
+	      ),
+	      React.createElement(
+	        'h2',
+	        null,
+	        'Back-End'
+	      ),
+	      React.createElement(
+	        'ul',
+	        null,
+	        backLIs
+	      ),
+	      React.createElement(
+	        'h2',
+	        null,
+	        'Other'
+	      ),
+	      React.createElement(
+	        'ul',
+	        null,
+	        otherLIs
+	      ),
+	      React.createElement('h2', null)
+	    );
+	  }
+	});
+
+	module.exports = SkillsTable;
+
+/***/ },
+/* 303 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(2);
 	var data = __webpack_require__(238).projects;
-	var ProjectsThumb = __webpack_require__(303);
-	var ProjectsFullscreen = __webpack_require__(304);
-	var ReactCSSTransitionGroup = __webpack_require__(305);
+	var ProjectsCarousel = __webpack_require__(304);
+	var ProjectsFullscreen = __webpack_require__(319);
+	var ReactCSSTransitionGroup = __webpack_require__(306);
 
 	var ProjectsContainer = React.createClass({
 	  displayName: 'ProjectsContainer',
 	  getInitialState: function getInitialState() {
 	    return {
 	      projectIndex: 0,
-	      projects: data,
 	      fullscreen: false
+	    };
+	  },
+	  showFullscreen: function showFullscreen() {
+	    this.setState({ fullscreen: true });
+	  },
+	  hideFullscreen: function hideFullscreen() {
+	    this.setState({ fullscreen: false });
+	  },
+	  handleCurrent: function handleCurrent(i) {
+	    this.setState({ projectIndex: i });
+	  },
+	  render: function render() {
+	    var shownProject = data[this.state.projectIndex];
+
+	    var content = void 0;
+	    var currentTransition = void 0;
+	    if (this.state.fullscreen) {
+	      content = React.createElement(ProjectsFullscreen, { key: shownProject.name, data: shownProject, hide: this.hideFullscreen });
+	      currentTransition = 'projectsFullscreenTransition';
+	    } else {
+	      content = React.createElement(ProjectsCarousel, { index: this.state.projectIndex, data: data, showFullscreen: this.showFullscreen, updateIndex: this.handleCurrent });
+	      currentTransition = 'projectsCarouselTransition';
+	    }
+	    return React.createElement(
+	      'div',
+	      { id: 'projectsContainerDiv' },
+	      React.createElement(
+	        ReactCSSTransitionGroup,
+	        {
+	          transitionName: currentTransition,
+	          transitionEnterTimeout: 500,
+	          transitionLeaveTimeout: 250 },
+	        content
+	      )
+	    );
+	  }
+	});
+
+	module.exports = ProjectsContainer;
+
+/***/ },
+/* 304 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(2);
+	var ProjectsThumb = __webpack_require__(305);
+	var ReactCSSTransitionGroup = __webpack_require__(306);
+
+	var ProjectsCarousel = React.createClass({
+	  displayName: 'ProjectsCarousel',
+	  getInitialState: function getInitialState() {
+	    return {
+	      projectIndex: this.props.index,
+	      projects: this.props.data
 	    };
 	  },
 	  handleScroll: function handleScroll(val) {
@@ -42006,12 +42205,7 @@
 	      index = 0;
 	    }
 	    this.setState({ projectIndex: index });
-	  },
-	  showFullscreen: function showFullscreen() {
-	    this.setState({ fullscreen: true });
-	  },
-	  hideFullscreen: function hideFullscreen() {
-	    this.setState({ fullscreen: false });
+	    this.props.updateIndex(index);
 	  },
 	  render: function render() {
 	    var _this = this;
@@ -42030,54 +42224,41 @@
 	      })
 	    );
 
-	    if (!this.state.fullscreen) {
-	      return React.createElement(
+	    return React.createElement(
+	      'div',
+	      { className: 'projectsComponent' },
+	      React.createElement(
+	        'h1',
+	        null,
+	        'Projects'
+	      ),
+	      React.createElement('div', { className: 'leftArrowDiv arrowDiv', onClick: function onClick() {
+	          return _this.handleScroll(-1);
+	        } }),
+	      React.createElement(
 	        'div',
-	        { id: 'projectsContainerDiv' },
+	        { className: 'projectDiv' },
 	        React.createElement(
-	          'h1',
-	          null,
-	          'Projects'
-	        ),
-	        React.createElement('div', { className: 'leftArrowDiv arrowDiv', onClick: function onClick() {
-	            return _this.handleScroll(-1);
-	          } }),
-	        React.createElement(
-	          'div',
-	          { className: 'projectDiv' },
-	          React.createElement(
-	            ReactCSSTransitionGroup,
-	            {
-	              transitionName: 'projectFlip',
-	              transitionEnterTimeout: 400,
-	              transitionLeaveTimeout: 200 },
-	            React.createElement(ProjectsThumb, { key: shownProject.name, expand: this.showFullscreen, data: shownProject })
-	          )
-	        ),
-	        React.createElement('div', { className: 'rightArrowDiv arrowDiv', onClick: function onClick() {
-	            return _this.handleScroll(1);
-	          } }),
-	        navCircles
-	      );
-	    } else {
-	      return React.createElement(
-	        ReactCSSTransitionGroup,
-	        {
-	          transitionName: 'projectShow',
-	          transitionEnterTimeout: 400,
-	          transitionLeaveTimeout: 2000,
-	          transitionAppear: true,
-	          transitionAppearTimeout: 300 },
-	        React.createElement(ProjectsFullscreen, { key: shownProject.name, data: shownProject, hide: this.hideFullscreen })
-	      );
-	    }
+	          ReactCSSTransitionGroup,
+	          {
+	            transitionName: 'projectFlip',
+	            transitionEnterTimeout: 400,
+	            transitionLeaveTimeout: 200 },
+	          React.createElement(ProjectsThumb, { key: shownProject.name, expand: this.props.showFullscreen, data: shownProject })
+	        )
+	      ),
+	      React.createElement('div', { className: 'rightArrowDiv arrowDiv', onClick: function onClick() {
+	          return _this.handleScroll(1);
+	        } }),
+	      navCircles
+	    );
 	  }
 	});
 
-	module.exports = ProjectsContainer;
+	module.exports = ProjectsCarousel;
 
 /***/ },
-/* 303 */
+/* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42155,165 +42336,13 @@
 	module.exports = ProjectsThumb;
 
 /***/ },
-/* 304 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(2);
-	var logos = __webpack_require__(238).images;
-
-	var ProjectsFullscreen = React.createClass({
-	  displayName: 'ProjectsFullscreen',
-	  render: function render() {
-	    var _this = this;
-
-	    console.log('show');
-	    var data = this.props.data;
-
-	    var githubContent = void 0;
-	    if (data.github) {
-	      githubContent = React.createElement(
-	        'tr',
-	        null,
-	        React.createElement(
-	          'td',
-	          null,
-	          React.createElement(
-	            'a',
-	            { className: 'iconLink', target: '_blank', href: data.github },
-	            React.createElement(
-	              'div',
-	              { className: 'contactIMG' },
-	              React.createElement('img', { src: logos.github })
-	            )
-	          )
-	        ),
-	        React.createElement(
-	          'td',
-	          null,
-	          React.createElement(
-	            'a',
-	            { target: '_blank', href: data.github },
-	            'See the Code'
-	          )
-	        )
-	      );
-	    } else {
-	      githubContent = '';
-	    }
-
-	    var herokuContent = void 0;
-	    if (data.heroku) {
-	      herokuContent = React.createElement(
-	        'tr',
-	        null,
-	        React.createElement(
-	          'td',
-	          null,
-	          React.createElement(
-	            'a',
-	            { className: 'iconLink', target: '_blank', href: data.heroku },
-	            React.createElement(
-	              'div',
-	              { className: 'contactIMG' },
-	              React.createElement('img', { src: logos.heroku })
-	            )
-	          )
-	        ),
-	        React.createElement(
-	          'td',
-	          null,
-	          React.createElement(
-	            'a',
-	            { target: '_blank', href: data.heroku },
-	            'Deployed on Heroku'
-	          )
-	        )
-	      );
-	    } else {
-	      herokuContent = '';
-	    }
-
-	    return React.createElement(
-	      'div',
-	      { className: 'projectFullscreenDiv' },
-	      React.createElement('div', { id: 'projectsBackButton', className: 'leftArrowDiv arrowDiv', onClick: function onClick() {
-	          return _this.props.hide();
-	        } }),
-	      React.createElement(
-	        'h1',
-	        null,
-	        data.name
-	      ),
-	      React.createElement(
-	        'table',
-	        { className: 'contactTable' },
-	        React.createElement(
-	          'tbody',
-	          null,
-	          githubContent,
-	          herokuContent
-	        )
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'fullscreenHalf' },
-	        React.createElement(
-	          'div',
-	          { className: 'projectFullscreenImgDiv' },
-	          React.createElement('img', { src: data.image })
-	        ),
-	        React.createElement(
-	          'ul',
-	          { className: 'projectSkillsList' },
-	          data.technologies.map(function (d, i) {
-	            return React.createElement(
-	              'li',
-	              { key: i },
-	              d
-	            );
-	          })
-	        )
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'fullscreenHalf' },
-	        React.createElement(
-	          'h2',
-	          null,
-	          'About'
-	        ),
-	        React.createElement(
-	          'p',
-	          null,
-	          data.description
-	        ),
-	        React.createElement(
-	          'h2',
-	          null,
-	          'What I Learned'
-	        ),
-	        React.createElement(
-	          'p',
-	          null,
-	          data.learned
-	        )
-	      )
-	    );
-	  }
-	});
-
-	module.exports = ProjectsFullscreen;
-
-/***/ },
-/* 305 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(306);
-
-/***/ },
 /* 306 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(307);
+
+/***/ },
+/* 307 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -42338,8 +42367,8 @@
 
 	var React = __webpack_require__(3);
 
-	var ReactTransitionGroup = __webpack_require__(307);
-	var ReactCSSTransitionGroupChild = __webpack_require__(315);
+	var ReactTransitionGroup = __webpack_require__(308);
+	var ReactCSSTransitionGroupChild = __webpack_require__(316);
 
 	function createTransitionTimeoutPropValidator(transitionType) {
 	  var timeoutPropName = 'transition' + transitionType + 'Timeout';
@@ -42422,7 +42451,7 @@
 	module.exports = ReactCSSTransitionGroup;
 
 /***/ },
-/* 307 */
+/* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -42446,8 +42475,8 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var React = __webpack_require__(3);
-	var ReactAddonsDOMDependencies = __webpack_require__(308);
-	var ReactTransitionChildMapping = __webpack_require__(313);
+	var ReactAddonsDOMDependencies = __webpack_require__(309);
+	var ReactTransitionChildMapping = __webpack_require__(314);
 
 	var emptyFunction = __webpack_require__(13);
 
@@ -42677,7 +42706,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 308 */
+/* 309 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -42704,8 +42733,8 @@
 	};
 
 	if (process.env.NODE_ENV !== 'production') {
-	  var ReactPerf = __webpack_require__(309);
-	  var ReactTestUtils = __webpack_require__(310);
+	  var ReactPerf = __webpack_require__(310);
+	  var ReactTestUtils = __webpack_require__(311);
 
 	  exports.getReactPerf = function () {
 	    return ReactPerf;
@@ -42718,7 +42747,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 309 */
+/* 310 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -43224,7 +43253,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 310 */
+/* 311 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -43242,7 +43271,7 @@
 	var _prodInvariant = __webpack_require__(36),
 	    _assign = __webpack_require__(5);
 
-	var EventConstants = __webpack_require__(311);
+	var EventConstants = __webpack_require__(312);
 	var EventPluginHub = __webpack_require__(43);
 	var EventPluginRegistry = __webpack_require__(44);
 	var EventPropagators = __webpack_require__(42);
@@ -43253,7 +43282,7 @@
 	var ReactInstanceMap = __webpack_require__(117);
 	var ReactUpdates = __webpack_require__(57);
 	var SyntheticEvent = __webpack_require__(54);
-	var ReactShallowRenderer = __webpack_require__(312);
+	var ReactShallowRenderer = __webpack_require__(313);
 
 	var findDOMNode = __webpack_require__(173);
 	var invariant = __webpack_require__(9);
@@ -43641,7 +43670,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 311 */
+/* 312 */
 /***/ function(module, exports) {
 
 	/**
@@ -43737,7 +43766,7 @@
 	module.exports = EventConstants;
 
 /***/ },
-/* 312 */
+/* 313 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -43877,7 +43906,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 313 */
+/* 314 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -43892,7 +43921,7 @@
 
 	'use strict';
 
-	var flattenChildren = __webpack_require__(314);
+	var flattenChildren = __webpack_require__(315);
 
 	var ReactTransitionChildMapping = {
 	  /**
@@ -43985,7 +44014,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 314 */
+/* 315 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -44066,7 +44095,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 315 */
+/* 316 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -44082,10 +44111,10 @@
 	'use strict';
 
 	var React = __webpack_require__(3);
-	var ReactAddonsDOMDependencies = __webpack_require__(308);
+	var ReactAddonsDOMDependencies = __webpack_require__(309);
 
-	var CSSCore = __webpack_require__(316);
-	var ReactTransitionEvents = __webpack_require__(317);
+	var CSSCore = __webpack_require__(317);
+	var ReactTransitionEvents = __webpack_require__(318);
 
 	var onlyChild = __webpack_require__(32);
 
@@ -44237,7 +44266,7 @@
 	module.exports = ReactCSSTransitionGroupChild;
 
 /***/ },
-/* 316 */
+/* 317 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -44364,7 +44393,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 317 */
+/* 318 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -44441,15 +44470,167 @@
 	module.exports = ReactTransitionEvents;
 
 /***/ },
-/* 318 */
+/* 319 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var ContactForm = __webpack_require__(319);
-	var $ = __webpack_require__(320);
-	var ReactCSSTransitionGroup = __webpack_require__(305);
+	var logos = __webpack_require__(238).images;
+
+	var ProjectsFullscreen = React.createClass({
+	  displayName: 'ProjectsFullscreen',
+	  render: function render() {
+	    var _this = this;
+
+	    console.log('show');
+	    var data = this.props.data;
+
+	    var githubContent = void 0;
+	    if (data.github) {
+	      githubContent = React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          null,
+	          React.createElement(
+	            'a',
+	            { className: 'iconLink', target: '_blank', href: data.github },
+	            React.createElement(
+	              'div',
+	              { className: 'contactIMG' },
+	              React.createElement('img', { src: logos.github })
+	            )
+	          )
+	        ),
+	        React.createElement(
+	          'td',
+	          null,
+	          React.createElement(
+	            'a',
+	            { target: '_blank', href: data.github },
+	            'See the Code'
+	          )
+	        )
+	      );
+	    } else {
+	      githubContent = '';
+	    }
+
+	    var herokuContent = void 0;
+	    if (data.heroku) {
+	      herokuContent = React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          null,
+	          React.createElement(
+	            'a',
+	            { className: 'iconLink', target: '_blank', href: data.heroku },
+	            React.createElement(
+	              'div',
+	              { className: 'contactIMG' },
+	              React.createElement('img', { src: logos.heroku })
+	            )
+	          )
+	        ),
+	        React.createElement(
+	          'td',
+	          null,
+	          React.createElement(
+	            'a',
+	            { target: '_blank', href: data.heroku },
+	            'Deployed on Heroku'
+	          )
+	        )
+	      );
+	    } else {
+	      herokuContent = '';
+	    }
+
+	    return React.createElement(
+	      'div',
+	      { className: 'projectFullscreenDiv projectsComponent' },
+	      React.createElement('div', { id: 'projectsBackButton', className: 'leftArrowDiv arrowDiv', onClick: function onClick() {
+	          return _this.props.hide();
+	        } }),
+	      React.createElement(
+	        'h1',
+	        null,
+	        data.name
+	      ),
+	      React.createElement(
+	        'table',
+	        { className: 'contactTable' },
+	        React.createElement(
+	          'tbody',
+	          null,
+	          githubContent,
+	          herokuContent
+	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'fullscreenHalf' },
+	        React.createElement(
+	          'div',
+	          { className: 'projectFullscreenImgDiv' },
+	          React.createElement('img', { src: data.image })
+	        ),
+	        React.createElement(
+	          'ul',
+	          { className: 'projectSkillsList' },
+	          data.technologies.map(function (d, i) {
+	            return React.createElement(
+	              'li',
+	              { key: i },
+	              d
+	            );
+	          })
+	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'fullscreenHalf' },
+	        React.createElement(
+	          'h2',
+	          null,
+	          'About'
+	        ),
+	        React.createElement(
+	          'p',
+	          null,
+	          data.description
+	        ),
+	        React.createElement(
+	          'h2',
+	          null,
+	          'What I Learned'
+	        ),
+	        React.createElement(
+	          'p',
+	          null,
+	          data.learned
+	        )
+	      )
+	    );
+	  }
+	});
+
+	module.exports = ProjectsFullscreen;
+
+/***/ },
+/* 320 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(2);
+	var ContactForm = __webpack_require__(321);
+	var $ = __webpack_require__(322);
+	var ReactCSSTransitionGroup = __webpack_require__(306);
 	var data = __webpack_require__(238).images;
 
 	var ContactContainer = React.createClass({
@@ -44508,7 +44689,7 @@
 	        React.createElement(
 	          'h1',
 	          null,
-	          'Success!'
+	          'Message sent, Thanks!'
 	        )
 	      );
 	    } else {
@@ -44668,7 +44849,7 @@
 	module.exports = ContactContainer;
 
 /***/ },
-/* 319 */
+/* 321 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44721,7 +44902,7 @@
 	module.exports = ContactForm;
 
 /***/ },
-/* 320 */
+/* 322 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -54947,7 +55128,7 @@
 
 
 /***/ },
-/* 321 */
+/* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54976,45 +55157,45 @@
 	            null,
 	            React.createElement(
 	              'td',
-	              { onClick: function onClick() {
-	                  return _this.props.handleClick('main');
-	                } },
+	              null,
 	              React.createElement(
 	                Link,
-	                null,
+	                { onClick: function onClick() {
+	                    return _this.props.handleClick('main');
+	                  } },
 	                'Main'
 	              )
 	            ),
 	            React.createElement(
 	              'td',
-	              { onClick: function onClick() {
-	                  return _this.props.handleClick('skills');
-	                } },
+	              null,
 	              React.createElement(
 	                Link,
-	                null,
+	                { onClick: function onClick() {
+	                    return _this.props.handleClick('skills');
+	                  } },
 	                'Skills'
 	              )
 	            ),
 	            React.createElement(
 	              'td',
-	              { onClick: function onClick() {
-	                  return _this.props.handleClick('project');
-	                } },
+	              null,
 	              React.createElement(
 	                Link,
-	                null,
+	                { onClick: function onClick() {
+	                    return _this.props.handleClick('project');
+	                  } },
 	                'Projects'
 	              )
 	            ),
 	            React.createElement(
 	              'td',
-	              { onClick: function onClick() {
-	                  return _this.props.handleClick('contact');
-	                } },
+	              null,
 	              React.createElement(
 	                Link,
-	                null,
+	                { onClick: function onClick() {
+	                    return _this.props.handleClick('contact');
+	                  } },
 	                'Contact'
 	              )
 	            ),
@@ -55037,19 +55218,28 @@
 	module.exports = Nav;
 
 /***/ },
-/* 322 */
+/* 324 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var posts = __webpack_require__(323).posts;
-	var BlogPost = __webpack_require__(324);
-	var BlogNav = __webpack_require__(325);
+	var posts = __webpack_require__(325).posts;
+	var BlogPost = __webpack_require__(326);
+	var BlogNav = __webpack_require__(327);
+	var BlogHeader = __webpack_require__(328);
 	var background = __webpack_require__(238).images.background;
+	var ReactCSSTransitionGroup = __webpack_require__(306);
 
 	var BlogContainer = React.createClass({
 	  displayName: 'BlogContainer',
+
+	  cloneChildren: function cloneChildren() {
+	    var key = this.props.location.pathname;
+	    if (this.props.children) {
+	      return React.cloneElement(this.props.children, { posts: posts, key: key });
+	    }
+	  },
 	  render: function render() {
 
 	    var blogPosts = posts.map(function (p, i) {
@@ -55060,16 +55250,27 @@
 	      'div',
 	      { className: 'pageContainer' },
 	      React.createElement(BlogNav, { posts: posts }),
-	      React.createElement('div', { id: 'blogBackground', style: { "background": 'url(' + background + ')' } }),
+	      React.createElement(
+	        'div',
+	        { id: 'blogBackground' },
+	        React.createElement('img', { src: background })
+	      ),
 	      React.createElement(
 	        'div',
 	        { id: 'blogPostsDiv' },
+	        React.createElement(BlogHeader, null),
 	        React.createElement(
-	          'h1',
-	          null,
-	          'My JS Blog'
-	        ),
-	        blogPosts
+	          'div',
+	          { id: 'blogContentRelativeDiv' },
+	          React.createElement(
+	            ReactCSSTransitionGroup,
+	            {
+	              transitionName: 'blogContentTransition',
+	              transitionEnterTimeout: 1000,
+	              transitionLeaveTimeout: 500 },
+	            this.cloneChildren()
+	          )
+	        )
 	      )
 	    );
 	  }
@@ -55078,14 +55279,575 @@
 	module.exports = BlogContainer;
 
 /***/ },
-/* 323 */
+/* 325 */
 /***/ function(module, exports) {
 
 	module.exports = {
 		"posts": [
 			{
-				"id": "p1",
-				"title": "Scope and Hoisting",
+				"id": "p4",
+				"title": "Creating a D3 Bubble Chart",
+				"url": "d3bubblechart",
+				"teaser": "Use D3 and D3Force to create a dynamic bubble chart",
+				"date": "Jan 30, 2016",
+				"content": [
+					[
+						"p",
+						"This tutorial is a walkthrough of creating an interactive d3 bubble chart. The first step is to load both the standard d3 library, as well as the d3-force add-ons. They can both be found easily by searching on google, and should be inserted into the head of the relevant HTML file as shown:"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d31.JPG"
+					],
+					[
+						"p",
+						"The two libraries can be brought in using npm very easily, with the command ‘npm I –save react-d3 d3-force’. On a standard HTML file, the libraries should be loaded in the head, with the main d3 library being brought in first. On this file I have also included a link to the javascript file I will be writing the D3 code in, and am loading that script at the end of the body. The reason for this is because this code will be manipulating the DOM so I need this script to load after the body has been written on the page. Onto the D3 code:"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d32.JPG"
+					],
+					[
+						"p",
+						"There are 3 a few things being done here. The first is declaring variables for height and width, that will be used later."
+					],
+					[
+						"h3",
+						"d3.select and d3.selectAll"
+					],
+					[
+						"p",
+						"Next I use the d3 ‘select’ method. The way select works is that it selects the first item that matches its argument. We can use regular CSS selectors, so the code on line 4 will select the first svg element on the page. We can also select by class or ID, such as (‘#id_here’) or (‘.classname_here’). There is another method d3.selectAll that does the same thing as select, only it returns an array of all matched items, not just the first item found. In this case I used d3.select because I know there will only be one svg element on the page."
+					],
+					[
+						"p",
+						"Once I have selected the svg, I can give it some attributes using ‘.attr’ on likes 5 and 6, as well as apply styles with ‘.style’ on lines 7 and 8. So I have given the svg the height and width I declared earlier, as well as applied a border margin."
+					],
+					[
+						"p",
+						"On line 10 I hardcoded in an array of data. In a real project this data is likely coming from a database, Ajax request, etc. But for the purposes of this example I’m simply going to create the data right here on the page."
+					],
+					[
+						"img",
+						"./blog/d3bubble/d33.JPG"
+					],
+					[
+						"h3",
+						"d3.min and d3.max"
+					],
+					[
+						"p",
+						"On lines 18 and 19 I am using the d3 min and max functions. These take in an array of data, and then a second parameter that the data should be sorted by. For instance with the d3.min function I am calling, I pass in the array of data, as well as a function that implicitly returns the population attribute for each piece of data. The min function then finds the minimum value, and it is saved to the rMin variable in this example."
+					],
+					[
+						"h3",
+						"d3.scaleLinear"
+					],
+					[
+						"p",
+						"The reason for finding the maximum and minimum values is to input them into a linear scale. The scale is helpful because it can normalize an array of data and produce values on a scale that works better. The scale is created using d3.scaleLinear(), although in version 3 of react the code should be d3.scale.linear(). We can supply a domain of the min and max values that we just calculated, and then a range that we wish those values to be distributed along. In this case, the populations that ranged from 13 to 39 will now spread from 20 to 50. This will make sense in just a moment when we are sizing the bubbles in the chart."
+					],
+					[
+						"h3",
+						"Data and Enter methods"
+					],
+					[
+						"p",
+						"The next block of code is selecting the svg (which we saved to the variable svg earlier), and from it, selecting everything with the class of ‘node’. Now, obviously at this point in the code there is nothing with the class of node. The way d3 works is that it can retroactively select items after they have been created, so while these elements with the class named node do not exist now, if we create them later, this selection will work."
+					],
+					[
+						"p",
+						"The next line calls the ‘.data’ method, which allows us to bind our data to these elements with the class node. In this case I saved the data to the variable data, so the code is ‘.data(data)’.  Then we call the ‘enter’ method. The enter method will create elements for each data point that does not have a corresponding element to bind to. In this case, none of the data points have an element to bind to (we selected items with a class name of node, of which there are none), so the enter method will bind all 5 data points to new elements. These elements do not have a tag, so we call ‘.append(‘g’)’ which will add ‘g’ (for group) tags to each data point. The last line of code is to give these g elements the class of node."
+					],
+					[
+						"p",
+						"This was a lot, and fairly confusing, so to summarize each line:"
+					],
+					[
+						"ol",
+						[
+							"24. Select the svg element.",
+							"25. Select all items or future items with the class of node.",
+							"26. Bind our data array to these elements.",
+							"27. Create new elements if there are not enough for each data point.",
+							"28. Append a ‘g’ element to these elements.",
+							"29. Give these elements the class name of node."
+						]
+					],
+					[
+						"p",
+						"Another way to think of this code is that some of it is being run though twice. On the first run-through, there are no elements with the class of node, so the data doesn’t have anything to bind to. On the ‘enter’ method we create new elements for the data, add a ‘g’ element to them, then give them the class name of node. ONLY NOW that they have the class of node, they are selected on line 25, and binded to the data."
+					],
+					[
+						"img",
+						"./blog/d3bubble/d34.JPG"
+					],
+					[
+						"p",
+						"Next we select the node elements and add a ‘circle’ to them. On the circle we can give it an ‘r’ attribute, which is the radius. This is where the linear scale we made is used. Instead of just passing in the population for each node to be its radius, we can pass in the linear scale function (saved as circleScale) with the population as the argument. Since we are using the scale, we are guaranteed that all circles will proportionally have a radius between 20 and 50px."
+					],
+					[
+						"h3",
+						"D3-Force"
+					],
+					[
+						"p",
+						"The next step is to setup the force layout. On like 35 I call the d3.forceSimulation method, which creates the force for our svg. On like 36 I call the ‘.force’ method, which takes 2 parameters, a name and a force. The name can be whatever we want, and I call it ‘x’ here. Then we pass in the force being applied. The first force we need is a horizontal force, that will push our circles where we want on the X axis. D3-force has a function for this, d3.forceX. Here I will pass in (width/2), which is half of the previously defined svg width from line 2. This will push all the circles toward that point in the svg. We also apply a ‘strength’ function to the force, to tell d3 how much power should be behind this force. A higher strength number would overpower other weaker forces. I do the same thing on line 37, only with the d3.forceY function and pass in (height/2). I also made sure to use the same strength as I did with the X force, or else one of the forces would overpower the other."
+					],
+					[
+						"p",
+						"The last force I apply is the forceCollide function. forceCollide is the force that keeps all of the circles from bumping into each other, and we can pass in a function to tell d3 how much room from each circle’s midpoint there should be from the next circle. In this case, we just need to pass in the radius of each circle, which again was the population put through the circleScale function. We also could add some additional padding if we wanted, which would have looked like: ‘d3.forceCollide((d) => circleScale(d.population) + 10)’."
+					],
+					[
+						"img",
+						"./blog/d3bubble/d35.JPG"
+					],
+					[
+						"p",
+						"The final code to get our initial chart is above. On line 40 I bind the data points to the force simulation. I then call the ‘.on’ method on it, which will call a ‘ticked’ method on every tick of the d3 force. The ticked method is defined below, which selects all the circles, and passes in their correct x and y positions. The way the ticked method works isn’t too important, just know that it is called repeatedly. Below are the results of the code written thus far:"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d36.JPG"
+					],
+					[
+						"p",
+						"As you can see, all the circles are pushed together in the middle of both the X and Y axis. They are also different sizes, as each circle’s radius is the result of the circleScale method called on its population value."
+					],
+					[
+						"h3",
+						"Making a tooltip"
+					],
+					[
+						"p",
+						"Next we need a way to label the data. One option would be to put text over each bubble, but that doesn’t always work nicely in a bubble chart if any of the bubbles are small. An option I prefer is to use a tooltip, which moves dynamically around the screen when each bubble is hovered over."
+					],
+					[
+						"img",
+						"./blog/d3bubble/d37.JPG"
+					],
+					[
+						"p",
+						"The code for the tooltip is above. I started by selecting the body (In practice I would select the innermost div to the svg, but in this example I put only an svg in the body for simplicity). I appended a div to the body using the ‘.append’ method, and gave it the class ‘tooltip’ using the ‘.classed’ method. I then gave it some basic styling (which could also have been done in the css file using the ‘.tooltip’ selector). The most important styling is position absolute, and 0 opacity."
+					],
+					[
+						"h3",
+						"Using the ‘.on’ method"
+					],
+					[
+						"p",
+						"The next step is to select all the circles and give them a ‘.on’ method for the mouseover event, passing in the circles data as an argument. On line 63 I printed out what ‘c’ is when I first hovered over a circle, and we can see it gives us access to the data itself, as well as its position on the screen."
+					],
+					[
+						"img",
+						"./blog/d3bubble/d38.JPG"
+					],
+					[
+						"p",
+						"Inside the mouseover method I make a few important stylistic changes to the tooltip:"
+					],
+					[
+						"ol",
+						[
+							"1. Change the opacity to 1.",
+							"2. Give it a high z-index (anything above 0).",
+							"3. Position vertically 50px from the circle’s position (-50 means 50px higher).",
+							"4. Position horizontally at the circle’s position.",
+							"5. Give it a text attribute of the state name."
+						]
+					],
+					[
+						"p",
+						"Then on mouseout, change the opacity back to 0 and the z-index to -1. What this code does is move the tooltip div to be placed directly above whichever bubble we are hovering over. The reason I put the z-index to -1 on mouseout, is that if we did not change the z-index the tooltip would be on ‘top’ of the svg elements, and while invisible, it would not allow for the mouseover event to work on any covered bubbles. Changing the z-index to anything less than 0 fixes this problem. Just for fun I also added a small triangle onto the tooltip using CSS:"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d39.JPG"
+					],
+					[
+						"p",
+						"The updated behavior is shown below."
+					],
+					[
+						"img",
+						"./blog/d3bubble/d3gif1.gif"
+					],
+					[
+						"h3",
+						"Adding a background"
+					],
+					[
+						"p",
+						"The next step in our chart is to add a background. This can be done using the HTML ‘pattern’ element. The first step is to find images for each data point, I found some online and added them to the data objects as seen below under the image attribute."
+					],
+					[
+						"img",
+						"./blog/d3bubble/d310.JPG"
+					],
+					[
+						"p",
+						"Next comes creating the patterns. To do these, I selected the nodes and appended a pattern. Each pattern is given a unique id, for simplicity I chose the image attribute. The id cannot have spaces in it, which is why I did not choose the state name. Ideally the data would come with an id property, which is a lot more intuitive to use than an image url. The rest of the code here is all needed to format the image to fit into the bubble properly. At the end, I set the image link to be the image attribute for each piece of data."
+					],
+					[
+						"img",
+						"./blog/d3bubble/d311.JPG"
+					],
+					[
+						"p",
+						"Next, I changed the fill attribute of the circles from blue to the patterns that we just created. I specified the image by referencing the unique IDs I just created in the last section, which will bind those patterns to these circles. I also added a stroke and stroke-width (which are like border for svg based elements) for styling purposes. The result is shown below:"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d312.JPG"
+					],
+					[
+						"p",
+						"And here is the result of these changes:"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d313.JPG"
+					],
+					[
+						"h3",
+						"Changing forces"
+					],
+					[
+						"p",
+						"Right now, our bubble chart can display our data, we have a working tooltip, and the bubbles have a background image. But the chart itself is a bit boring as nothing moves, so let’s change that! The d3-force layout does not just execute at runtime and then stop, it is continuously operating as long as the chart is showing. This means that we can modify the forces, which will move our bubbles around. Recall that earlier I hard-coded the ‘x’ and ‘y’ forces to push everything towards the middle of the SVG. A better pattern would be to extrapolate those methods and save them as variables, that could be used later. I’ve shown this below:"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d314.JPG"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d315.JPG"
+					],
+					[
+						"p",
+						"One thing to note here is that we must define the forces before they are called, so I made sure to define the forceXNormal and forceYNormal variables on earlier lines than they are first called."
+					],
+					[
+						"p",
+						"The next step is to create a few clickable buttons in the HTML with IDs, that when clicked will change the forces and move the bubbles around. I’ve added 4 buttons below:"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d316.JPG"
+					],
+					[
+						"p",
+						"The first button I will cover is the ‘#split’ button. When someone clicks it, I want the bubbles to spread apart and head to the different corners of the svg. The code to accomplish this is below:"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d317.JPG"
+					],
+					[
+						"p",
+						"With the earlier forceXNormal method, we returned width/2 for all data. Now with the forceXSplit method, the return value depends on the data itself. For datapoints with a population greater than 20 we return width/5, otherwise return 4*width/5. Likewise with the forceYSplit method, for names of states starting after ‘M’ we return height/5, otherwise return 4*height/5. I also kept the strength of these forces the same as before, 0.05."
+					],
+					[
+						"img",
+						"./blog/d3bubble/d318.JPG"
+					],
+					[
+						"p",
+						"Above is the code to handle the actual click of the ‘#split’ button. We can select the button itself using d3, and give it an on-click method. Inside the click handler, we simply select the force layout (we saved it to the variable simulation earlier), and then call the ‘.force’ method on both the ‘x’ and ‘y’ forces (we named them x and y earlier as well). We then apply the forces we just defined, giving ‘x’ the ‘forceXSplit’ method and ‘forceYSplit’ to ‘y’."
+					],
+					[
+						"p",
+						"The next 2 lines of code are needed to ‘jump-start’ the force layout. The way force works is that it slowly dies down over time. Meaning if someone let the page sit for a while and then clicked our button, the bubbles would not move because the force would be dead. Setting the alpha target and calling restart on the force gives it a kick that is needed to ‘wake up’ the force. Let’s check out the new behavior:"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d3gif2.gif"
+					],
+					[
+						"p",
+						"Wow! That only makes our chart about 1000x better. Notice where the bubbles have moved, Texas and California were the 2 states with populations over 20 so they moved to (width/5), while the rest moved to (4*width/5). And for the Y coordinates, Texas and New York are the states with names starting after M, so they both moved to (height/5) while the others moved to (4*height/5). Florida and Illinois both have names starting before M and populations under 20, so they moved to the same spot."
+					],
+					[
+						"p",
+						"Let’s also active the ‘#normal’ button so that our bubbles can return to the starting position. This is only too easy as we already defined the forces that we need, forceXNormal and forceYNormal, and is why I wanted to pull those pieces of code out and save them as variables."
+					],
+					[
+						"img",
+						"./blog/d3bubble/d319.JPG"
+					],
+					[
+						"p",
+						"And the new behavior:"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d3gif3.gif"
+					],
+					[
+						"p",
+						"The next behavior I wanted to implement was a way to sort the bubbles in order. Now there are many ways for this to be done, and I decided to try one that required a few different forces working together. To produce the ‘X’ coordinate I needed to find a way to give each bubble an ascending value, but how? My solution was to create another linear scale, like we did for the radius. Only this time, instead of a range of 20-50, I wanted a range that would produce good X coordinate values, so I made the minimum 100 and the maximum (width – 100):"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d320.JPG"
+					],
+					[
+						"p",
+						"I then created the forceXSort method:"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d321.JPG"
+					],
+					[
+						"p",
+						"This method uses the sortScale method I just created, and returns the corresponding value as the X coordinate. Since the min and max were 100 and width-100, the bubbles will all be given an X coordinate between those 2 values, and in the correct order. Now for the click handler:"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d322.JPG"
+					],
+					[
+						"p",
+						"And the behavior"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d3gif4.gif"
+					],
+					[
+						"p",
+						"Hmm… this code kind of works, but there are a couple bugs. The first obvious one is that the ‘y’ force gets messed up at the end. This is because we modified the Y force with the split click earlier, and never returned the Y force to being height/2. The other bug is that the bubbles are somewhat awkwardly spread out even when they are all on the same X axis. California’s population is so much greater than everyone else’s that its value from the sortScale method pushes it far off to the side. Now, this might be the desired behavior in some cases, but I would rather that the bubbles end up touching."
+					],
+					[
+						"p",
+						"One way to fix this would be to call another group of forces after the bubbles have settled in the correct order, to push them into their final positions. This could be accomplished simply by using a setTimeout function inside the ‘#sort’ click handler, like so:"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d323.JPG"
+					],
+					[
+						"p",
+						"I chose not to add the ‘.alphaTarget’ and ‘restart’ methods inside the setTimeout function because these forces would have just been called 3 seconds ago, and thus would not be needed to kick-start the force. My thought process here would be that we need to call forceYNormal to align all bubbles back to height/2, and calling forceXNormal will squish the bubbles together horizontally so that they touch. Here is the new behavior:"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d3gif5.gif"
+					],
+					[
+						"p",
+						"Wow… that didn’t work at all! Calling forceXNormal inside the setTimeout completely overwrote the forceX sort method, and we ended up with the exact same behavior as when we click the ‘#normal’ button. So the solution? Creating a new forceX that is much weaker than the one we just called. We are calling forceYNormal with the strength of 0.05, so we need a new forceX that will be overpowered by that. It took some trial and error but I ended up with this:"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d324.JPG"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d325.JPG"
+					],
+					[
+						"p",
+						"And the behavior:"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d3gif6.gif"
+					],
+					[
+						"p",
+						"Notice how the two different stages of forces work together. The first brings the bubbles into the correct order on the X axis, then after 3 seconds, the new forces bring them all to the same height on the X axis, and very gently pushes them towards the center of the svg. forceXWeak is just strong enough to move a bubble when it is not touching anything, but too weak to push past another circle on its way towards the center. I also added a reverse method:"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d326.JPG"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d327.JPG"
+					],
+					[
+						"p",
+						"The reverseSort method is the exact same as sort, only it returns (width-position) instead of just position. This means that the larger populations will end up on the left side. And now the behavior of all the buttons:"
+					],
+					[
+						"img",
+						"./blog/d3bubble/d3gif7.gif"
+					]
+				]
+			},
+			{
+				"id": "p3",
+				"title": "ReactCSSTransitionGroup",
+				"url": "reactcsstransitiongroup",
+				"teaser": "How to utilize the ReactCSSTransitionGroup to transition between components in React",
+				"date": "Jan 22, 2016",
+				"content": [
+					[
+						"h3",
+						"Transitions using CSS"
+					],
+					[
+						"p",
+						"Transitions in CSS are easy. Simply add a transition property to the appropriate selector, specify which property is to be changed, the duration of the transition, pace and an optional delay. An example of transitioning the color and size of h1 elements is shown below, where each transition will last a half second. "
+					],
+					[
+						"img",
+						"./blog/reactcsstransition/transition4.JPG"
+					],
+					[
+						"p",
+						"These CSS transitions work just fine in React and can be used all over your code to create a smoother and more dynamic-feeling user experience. One of the benefits of React is the way that pages re-render themselves on state changes, adding and removing the appropriate components. Using transitions for these changes would be much more challenging than a typical CSS transition, and would require some pretty complex code in the React lifecycle methods for each component to properly add and remove the appropriate classes at the correct time. Fortunately, there is an extremely helpful add-on called the ReactCSSTransitionGroup which does all the heavy lifting for us."
+					],
+					[
+						"h3",
+						"ReactCSSTransitionGroup"
+					],
+					[
+						"p",
+						"The way the ReactCSSTransitionGroup works is that is can be attached to any component or array of components, and trigger transitions or animations when these components enter the DOM, leave the DOM, or first appear on a page load. I’ve created a simple app example that features 2 main components, List and ListItem. The code is below for reference:"
+					],
+					[
+						"img",
+						"./blog/reactcsstransition/transition1.JPG"
+					],
+					[
+						"img",
+						"./blog/reactcsstransition/transition2.JPG"
+					],
+					[
+						"img",
+						"./blog/reactcsstransition/transition3.JPG"
+					],
+					[
+						"p",
+						"The functionality works, where clicking an item will remove it from the DOM, while entering new info into the inputs and clicking the submit button will add a new ListItem to the DOM. While the functionality is nice, the sudden changes are a bit too abrupt and would clearly be better with some simple transitions. Below is the current behavior:"
+					],
+					[
+						"img",
+						"./blog/reactcsstransition/transitiongif1.gif"
+					],
+					[
+						"h3",
+						"Installing from NPM"
+					],
+					[
+						"p",
+						"So how could we animate this with the ReactCSSTransitionGroup? Pretty easily, actually. The first step is to install the add-on using npm, with the command ‘npm i –save react-addons-css-transition-group’. Next we will require it in the appropriate component. Now, the component we are looking to animate is ListItem, however we do NOT want to use the ReactCSSTransitionGroup on that element. This is because the ReactCSSTransitionGroup must already be mounted on the DOM for it to trigger the enter animation, and must remain on the DOM after an element is removed to trigger the removal animation. For these reasons, we are going to require it in the List component, even though we are not animating the List."
+					],
+					[
+						"img",
+						"./blog/reactcsstransition/transition5.JPG"
+					],
+					[
+						"p",
+						"Once we have required the group, we treat it just like any other element and place it right inside of the return method in our component. Place the ReactCSSTransitionGroup (or whatever you want to save the name as when you first required it) surrounding the element/s that you wish to transition. Also be sure to have supplied a key to these elements, which are needed for the transitions to work. There are a few properties to specify inside of the element tag:"
+					],
+					[
+						"ol",
+						[
+							"transitionName (this is what the class will be called in the CSS file)",
+							"transitionEnterTimeout (the amount of time the enter transition – including any delay – should take)",
+							"transitionLeaveTimeout (the amount of time the exit transition should last)",
+							"Optional: transitionAppear and transitionAppearTimeout. These are for using a transition on the initial page load. transitionAppear is, by default, set to false, so to trigger an appear animation it must be set to {true} and the appear timeout should also be specified."
+						]
+					],
+					[
+						"p",
+						"Make sure that the ‘key’ given to each element that can be transitioned is not only unique with the current state of like items, but would remain unique if compared to a future or past state of the items. In other words, do NOT use the index, since if an item with index of 2 is removed, on the next render there could still be an item with an index of 2. This would confuse the ReactCSSTransitionGroup addon, so an easy fix is to make the key something completely unique, as I have done here by using the name property of each object. In practice this still is not a perfect key since we could theoretically want multiple people with the same name in our list, but for simplicity it is unique enough for this example."
+					],
+					[
+						"img",
+						"./blog/reactcsstransition/transition6.JPG"
+					],
+					[
+						"h3",
+						"Adding ReactCSSTransitionGroup to React code"
+					],
+					[
+						"p",
+						"I have created the transitionEnterTimeout and transitionLeave timeout, and set them both to 500ms. I also named the transition ‘li-trans’."
+					],
+					[
+						"img",
+						"./blog/reactcsstransition/transition7.JPG"
+					],
+					[
+						"p",
+						"Now let’s look at the CSS:"
+					],
+					[
+						"img",
+						"./blog/reactcsstransition/transition8.JPG"
+					],
+					[
+						"p",
+						"The way this works is that the we are given a few classes based on the name of the transition. I named the transition ‘li-trans’ (you can name the transition whatever you like). For the enter transition, there are 2 classes to write:"
+					],
+					[
+						"ol",
+						[
+							"*name of transition*-enter (this is how the new element will appear when it first enters the DOM)",
+							"*name of transition*-enter-active (this is how the new element will appear at the end of the transition)"
+						]
+					],
+					[
+						"p",
+						"What ReactCSSTransitionGroup does under the hood is add the ‘enter’ class to your new element the instant it enters the DOM, and on the next ‘tick’, the ‘enter-active’ class is added. Therefore we also need to add the transition property in the CSS, as the ReactCSSTransitionGroup is not really doing any transitioning at all, it is merely just adding classes at the appropriate time. The same holds true for leave animations:"
+					],
+					[
+						"ol",
+						[
+							"*name of transition*-leave (How the element should appear as the leave transition begins)",
+							"*name of transition*-leave-active (How the element should appear at the end of the transition)"
+						]
+					],
+					[
+						"p",
+						"Now let’s see how these transitions look:"
+					],
+					[
+						"img",
+						"./blog/reactcsstransition/transitiongif2.gif"
+					],
+					[
+						"p",
+						"As we see here, when a new list item is first added to the DOM it uses the rotateY transition we gave it, which takes 500ms. When we remove an element it first completes the transition from scale(1) to scale(0). Easy!"
+					],
+					[
+						"h3",
+						"Animate on page load with transitionAppear"
+					],
+					[
+						"p",
+						"The transitionEnter animation triggers when a component enters the already-existing DOM, so to animate on page load we can use the transitionAppear property. The first step is to set transitionAppear to true, says by default it does not trigger. And as was with enter and leave, specify a duration for the animation."
+					],
+					[
+						"img",
+						"./blog/reactcsstransition/transition9.JPG"
+					],
+					[
+						"p",
+						"Here is the code for the CSS, along with the resulting affect when the page is refreshed/first loaded. The same rules apply as with the ‘enter’ animations, only the keyword this time is ‘appear’. In this example I also decided to use a CSS animation and not just a transition."
+					],
+					[
+						"img",
+						"./blog/reactcsstransition/transition10.JPG"
+					],
+					[
+						"img",
+						"./blog/reactcsstransition/transitiongif3.gif"
+					]
+				]
+			},
+			{
+				"id": "p2",
+				"title": "Hoisting",
+				"url": "hoisting",
+				"teaser": "What 'hoisting' really means in JS",
+				"date": "Jan 20, 2016",
 				"content": [
 					[
 						"p",
@@ -55142,8 +55904,11 @@
 				]
 			},
 			{
-				"id": "p2",
+				"id": "p1",
 				"title": "IIFEs and Modules",
+				"url": "iife",
+				"teaser": "What an IIFE is and how it can be useful",
+				"date": "Jan 18, 2016",
 				"content": [
 					[
 						"p",
@@ -55191,7 +55956,7 @@
 	};
 
 /***/ },
-/* 324 */
+/* 326 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55200,49 +55965,67 @@
 
 	var BlogPost = React.createClass({
 	  displayName: 'BlogPost',
+	  getInitialState: function getInitialState() {
+	    return {
+	      post: false
+	    };
+	  },
+	  componentDidMount: function componentDidMount() {
+	    var _this = this;
+
+	    var post = this.props.posts.filter(function (p) {
+	      return p.url === _this.props.router.params.id;
+	    })[0];
+	    this.setState({ post: post });
+	  },
 	  render: function render() {
+	    var post = this.state.post;
+	    var postContent = void 0;
+	    if (this.state.post) {
+	      postContent = post.content.map(function (d, i) {
 
-	    var content = this.props.data.content.map(function (d, i) {
-
-	      if (d[0] === 'p') {
-	        return React.createElement(
-	          'p',
-	          { key: i },
-	          d[1]
-	        );
-	      } else if (d[0] === 'h2') {
-	        return React.createElement(
-	          'div',
-	          { key: i },
-	          React.createElement(
-	            'h2',
-	            null,
-	            d[1]
-	          )
-	        );
-	      } else if (d[0] === 'img') {
-	        return React.createElement('img', { src: d[1], key: i });
-	      } else if (d[0] === 'a') {
-	        return React.createElement(
-	          'a',
-	          { href: d[1], key: i },
-	          d[2]
-	        );
-	      } else if (d[0] === 'ol') {
-	        var items = d[1].map(function (li, index) {
+	        if (d[0] === 'p') {
 	          return React.createElement(
-	            'li',
-	            { key: index },
-	            li
+	            'p',
+	            { key: i },
+	            d[1]
 	          );
-	        });
-	        return React.createElement(
-	          'ol',
-	          { key: i },
-	          items
-	        );
-	      }
-	    });
+	        } else if (d[0] === 'h3') {
+	          return React.createElement(
+	            'div',
+	            { key: i },
+	            React.createElement(
+	              'h3',
+	              null,
+	              d[1]
+	            )
+	          );
+	        } else if (d[0] === 'img') {
+	          return React.createElement('img', { src: d[1], key: i });
+	        } else if (d[0] === 'a') {
+	          return React.createElement(
+	            'a',
+	            { href: d[1], key: i },
+	            d[2]
+	          );
+	        } else if (d[0] === 'ol') {
+	          var items = d[1].map(function (li, index) {
+	            return React.createElement(
+	              'li',
+	              { key: index },
+	              li
+	            );
+	          });
+	          return React.createElement(
+	            'ol',
+	            { key: i },
+	            items
+	          );
+	        }
+	      });
+	    } else {
+	      postContent = '';
+	    }
 
 	    return React.createElement(
 	      'article',
@@ -55251,12 +56034,17 @@
 	      React.createElement(
 	        'h1',
 	        null,
-	        this.props.data.title
+	        post.title
+	      ),
+	      React.createElement(
+	        'h3',
+	        null,
+	        post.date
 	      ),
 	      React.createElement(
 	        'section',
 	        null,
-	        content
+	        postContent
 	      )
 	    );
 	  }
@@ -55265,7 +56053,7 @@
 	module.exports = BlogPost;
 
 /***/ },
-/* 325 */
+/* 327 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55275,13 +56063,50 @@
 	var _require = __webpack_require__(179),
 	    Link = _require.Link;
 
+	var background = __webpack_require__(238).images.blogNav;
+	var posts = __webpack_require__(325).posts;
+
 	var BlogNav = React.createClass({
 	  displayName: 'BlogNav',
+	  getInitialState: function getInitialState() {
+	    return {
+	      dropdown: 'hideDropdown'
+	    };
+	  },
+	  toggleNav: function toggleNav() {
+	    if (this.state.dropdown === 'hideDropdown') {
+	      this.showNav();
+	    } else {
+	      this.hideNav();
+	    }
+	  },
+	  showNav: function showNav() {
+	    this.setState({ dropdown: 'showDropdown' });
+	  },
+	  hideNav: function hideNav() {
+	    this.setState({ dropdown: 'hideDropdown' });
+	  },
 	  render: function render() {
+	    var _this = this;
+
+	    var listItems = posts.map(function (p) {
+	      var url = '/blog/' + p.url;
+	      return React.createElement(
+	        'li',
+	        { key: p.id },
+	        React.createElement(
+	          Link,
+	          { to: url },
+	          p.title
+	        )
+	      );
+	    });
 	    return React.createElement(
 	      'nav',
-	      { id: 'blogNav' },
-	      React.createElement('img', { id: 'blogNavGif', src: 'https://media.giphy.com/media/YrAoJDF69XvMI/giphy.gif' }),
+	      { id: 'blogNav', onMouseLeave: function onMouseLeave() {
+	          return _this.hideNav();
+	        } },
+	      React.createElement('img', { id: 'blogNavGif', src: background }),
 	      React.createElement(
 	        'table',
 	        null,
@@ -55297,16 +56122,36 @@
 	              React.createElement(
 	                Link,
 	                { to: '/' },
-	                'Main Site'
+	                'Portfolio Site'
 	              )
 	            ),
 	            React.createElement(
 	              'td',
-	              null,
+	              { id: 'dropdownTD' },
 	              React.createElement(
 	                Link,
-	                null,
+	                {
+	                  onClick: function onClick() {
+	                    return _this.toggleNav();
+	                  } },
 	                'Posts'
+	              ),
+	              React.createElement(
+	                'ul',
+	                { id: 'blogDropdownList', className: this.state.dropdown,
+	                  onClick: function onClick() {
+	                    return _this.hideNav();
+	                  } },
+	                listItems,
+	                React.createElement(
+	                  'li',
+	                  null,
+	                  React.createElement(
+	                    Link,
+	                    { to: '/blog' },
+	                    'Posts Index'
+	                  )
+	                )
 	              )
 	            )
 	          )
@@ -55319,19 +56164,138 @@
 	module.exports = BlogNav;
 
 /***/ },
-/* 326 */
+/* 328 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var ReactCSSTransitionGroup = __webpack_require__(305);
+
+	var BlogHeader = React.createClass({
+	  displayName: 'BlogHeader',
+	  render: function render() {
+	    return React.createElement(
+	      'header',
+	      null,
+	      React.createElement('div', { className: 'articleBackground' }),
+	      React.createElement(
+	        'div',
+	        { id: 'blogHeaderLeft' },
+	        React.createElement(
+	          'h2',
+	          null,
+	          'My JS Blog'
+	        ),
+	        React.createElement(
+	          'h2',
+	          null,
+	          'Louis Rowan'
+	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { id: 'blogHeaderRight' },
+	        React.createElement(
+	          'h3',
+	          null,
+	          React.createElement(
+	            'a',
+	            { className: 'iconLink', target: '_blank',
+	              href: 'https://github.com/louisrowan' },
+	            'Github'
+	          )
+	        ),
+	        React.createElement(
+	          'h3',
+	          null,
+	          React.createElement(
+	            'a',
+	            { target: '_blank',
+	              href: 'https://www.linkedin.com/in/louis-rowan-54869986' },
+	            'LinkedIn'
+	          )
+	        ),
+	        React.createElement(
+	          'h3',
+	          null,
+	          React.createElement(
+	            'a',
+	            { className: 'iconLink',
+	              href: 'mailto:louis.rowan@icloud.com?Subject=Great%20Website!', target: '_top' },
+	            'louis.rowan@icloud.com'
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+
+	module.exports = BlogHeader;
+
+/***/ },
+/* 329 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(2);
+
+	var _require = __webpack_require__(179),
+	    Link = _require.Link;
+
+	var BlogIndex = React.createClass({
+	  displayName: 'BlogIndex',
+	  render: function render() {
+	    var posts = this.props.posts.map(function (p, i) {
+	      var url = '/blog/' + p.url;
+	      return React.createElement(
+	        'div',
+	        { className: 'blogIndexDivs', key: p.url },
+	        React.createElement(
+	          Link,
+	          { to: url },
+	          React.createElement(
+	            'div',
+	            null,
+	            React.createElement(
+	              'h2',
+	              null,
+	              p.title
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              p.teaser
+	            )
+	          )
+	        )
+	      );
+	    });
+	    return React.createElement(
+	      'article',
+	      null,
+	      React.createElement('div', { className: 'articleBackground' }),
+	      posts
+	    );
+	  }
+	});
+
+	module.exports = BlogIndex;
+
+/***/ },
+/* 330 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(2);
+	var ReactCSSTransitionGroup = __webpack_require__(306);
 
 	var RoutesContainer = React.createClass({
 	  displayName: 'RoutesContainer',
 
 	  cloneChildren: function cloneChildren() {
-	    var key = this.props.location.pathname;
+	    var key = this.props.routes;
 	    if (this.props.children) {
 	      return React.cloneElement(this.props.children, { key: key });
 	    }
@@ -55363,16 +56327,16 @@
 	module.exports = RoutesContainer;
 
 /***/ },
-/* 327 */
+/* 331 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(328);
+	var content = __webpack_require__(332);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(330)(content, {});
+	var update = __webpack_require__(334)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -55389,21 +56353,21 @@
 	}
 
 /***/ },
-/* 328 */
+/* 332 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(329)();
+	exports = module.exports = __webpack_require__(333)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "/*@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans:700i');*/\r\n\r\n* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: 'Khula', Serif;\r\n}\r\n\r\na {\r\n  color: blue;\r\n  font-weight: bold;\r\n  text-decoration: none;\r\n}\r\n\r\na:visited {\r\n  color: blue;\r\n}\r\n\r\nh1 {\r\n  padding: 20px;\r\n  color: purple;\r\n  font-family: 'Merriweather Sans';\r\n  font-size: 3em;\r\n  text-shadow: 1px 1px 1px black;\r\n}\r\n\r\nh2 {\r\n  padding: 10px;\r\n  font-family: 'Petit Formal Script';\r\n}\r\n\r\np {\r\n  padding: 10px;\r\n}\r\n\r\n.homeContainer {\r\n  width: 100%;\r\n/*  background: linear-gradient(to bottom right,\r\n    rgba(45, 6, 56, 1),\r\n    rgba(131, 11, 168, 1)\r\n  );*/\r\n\r\n  padding: 20px;\r\n  color: orange;\r\n}\r\n\r\n#layoutDiv {\r\n  background-repeat: no-repeat;\r\n  background-size: cover;\r\n  min-height: 100vh;\r\n  overflow: auto;\r\n}\r\n\r\n.headerContainer {\r\n  width: 100%;\r\n  min-height: 1000px;\r\n  text-align: center;\r\n  border-bottom: 10px solid white;\r\n  color: white;\r\n}\r\n\r\n.contentContainer {\r\n  position: absolute;\r\n  background: white;\r\n  width: 100%;\r\n  min-height: 100%;\r\n  box-shadow: 0px 0px 50px 5px black, 0px 0px 10px 2px rgba(45, 6, 56, 1) inset;\r\n  padding: 10px;\r\n  margin-bottom: 10px;\r\n}\r\n\r\n.emp {\r\n  font-size: 1.3em;\r\n  font-weight: bold;\r\n}\r\n\r\n#mainParagraph {\r\n  font-size: 1.2em;\r\n}\r\n\r\n.mainImg {\r\n  height: 300px;\r\n  width: 300px;\r\n  box-shadow: 0px 0px 5px 2px black;\r\n  border-radius: 50%;\r\n  overflow: hidden;\r\n  margin: auto;\r\n  animation: picture-rotate 5s linear infinite;\r\n}\r\n\r\n.mainImg img {\r\n  height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n.projectDiv {\r\n  width: 50%;\r\n  height: 400px;\r\n  margin: auto;\r\n  position: relative;\r\n}\r\n\r\n.arrowDiv {\r\n  box-sizing: none;\r\n  height: 0;\r\n  width: 0;\r\n  border: 30px solid transparent;\r\n  position: absolute;\r\n  top: 45%;\r\n  bottom: 45%;\r\n}\r\n\r\n.arrowDiv:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n.leftArrowDiv {\r\n  border-right: 40px solid rgba(45, 6, 56, 1);\r\n  left: 10px;\r\n}\r\n\r\n.leftArrowDiv:hover {\r\n  border-right: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n.rightArrowDiv {\r\n  border-left: 40px solid rgba(45, 6, 56, 1);\r\n  right: 10px;\r\n}\r\n\r\n.rightArrowDiv:hover {\r\n  border-left: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n#projectsBackButton {\r\n  top: 30px;\r\n}\r\n\r\n#contentSpace {\r\n  width: 90%;\r\n  max-width: 1200px;\r\n  min-height: 600px;\r\n  overflow: visible;\r\n  text-align: center;\r\n  margin: auto;\r\n  color: black;\r\n  position: relative;\r\n}\r\n\r\n#siteNav table {\r\n  width: 100%;\r\n  color: white;\r\n}\r\n\r\nnav td, nav a, nav a:visited {\r\n  color: white;\r\n  font-weight: none;\r\n  text-align: center;\r\n  font-size: 1.2em;\r\n  font-family: 'Merriweather Sans';\r\n  transition: font-size 100ms ease-in, text-shadow 200ms ease-in;\r\n}\r\n\r\n#siteNav td, #siteNav a {\r\n  width: 20%;\r\n  height: 100px;\r\n}\r\n\r\n/*#siteNav a, #siteNav a:visited {\r\n  color: white;\r\n}*/\r\n\r\nnav td:hover {\r\n  font-size: 1.6em;\r\n  text-shadow: 1px 1px 2px black;\r\n  cursor: pointer;\r\n}\r\n\r\n.projectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: absolute;\r\n  box-shadow: 0px 0px 10px 5px black;\r\n}\r\n\r\n.hoverProjectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: relative;\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  position: absolute;\r\n}\r\n\r\n.thumbImgDiv {\r\n  width: 100%;\r\n  max-height: 300px;\r\n  border-top: 2px solid black;\r\n  overflow: hidden;\r\n}\r\n\r\n.thumbImgDiv img {\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n.projectsThumbHeader {\r\n  padding: 10px;\r\n}\r\n\r\n.hiddenThumbDiv {\r\n  position: absolute;\r\n  height: 100%;\r\n  width: 100%;\r\n  background: transparent;\r\n  cursor: pointer;\r\n  z-index: 2;\r\n  background-color: rgba(0, 0, 0, .5);\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.hiddenThumbDiv h2 {\r\n  background: white;\r\n  margin: auto;\r\n  width: 100%;\r\n  padding: 10px;\r\n}\r\n\r\n.hidden {\r\n  display: none;\r\n}\r\n\r\n/*.nextProjectThumb {\r\n  height: 400px;\r\n  width: 20%;\r\n  background: purple;\r\n  overflow: hidden;\r\n  transform: scale(.5);\r\n  position: absolute;\r\n  left: 50px;\r\n}\r\n*/\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n.projectFullscreenDiv {\r\n  padding: 10px;\r\n}\r\n\r\n.projectFullscreenImgDiv {\r\n  max-height: 300px;\r\n  overflow: hidden;\r\n}\r\n\r\n.projectFullscreenImgDiv img {\r\n  height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n.projectSkillsList {\r\n  list-style-type: none;\r\n}\r\n\r\n.projectSkillsList li {\r\n  float: left;\r\n  padding: 40px;\r\n  font-size: 1.5em;\r\n  width: 33.3%;\r\n  font-family: 'Pacifico', Serif;\r\n}\r\n\r\n.projectSkillsList li:hover {\r\n  background: #f9f9f7;\r\n}\r\n\r\n.fullscreenHalf {\r\n  float: left;\r\n  width: 50%;\r\n  overflow: hidden;\r\n}\r\n\r\n.fullscreenHalf h2 {\r\n\r\n}\r\n\r\n.fullscreenHalf p {\r\n  font-size: 1.2;\r\n  padding: 10px;\r\n}\r\n\r\n\r\n/*contact page*/\r\n\r\n.contactInput {\r\n  width: 245px;\r\n  padding: 10px;\r\n  margin: 5px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactTextarea {\r\n  width: 500px;\r\n  height: 200px;\r\n  padding: 10px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.1em;\r\n}\r\n\r\n.contactSubmit {\r\n  width: 200px;\r\n  padding: 10px;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactSubmit:hover {\r\n  box-shadow: 2px 2px 1px 1px black;\r\n  font-weight: bold;\r\n}\r\n\r\n.formSubmit {\r\n  animation: formFlip 1s forwards;\r\n}\r\n\r\n.contactContainer {\r\n  position: relative;\r\n}\r\n\r\n.formSuccess {\r\n  color: green;\r\n  position: absolute;\r\n  top: 250px;\r\n  width: 100%;\r\n  text-align: center;\r\n  animation: formSuccess 2s forwards;\r\n}\r\n\r\n\r\n\r\n.contactTable {\r\n  margin: auto;\r\n  font-size: 1.5em;\r\n}\r\n\r\n.contactTable tr {\r\n  background: #fcfcfc;\r\n}\r\n\r\n.contactTable tr:hover {\r\n  background: white;\r\n}\r\n\r\n.contactTable tr:hover td:first-child {\r\n  animation: contact-hover 500ms linear forwards;\r\n}\r\n\r\n.contactTable a:hover {\r\n  text-decoration: none;\r\n  color: darkblue;\r\n}\r\n\r\n.contactTable td {\r\n  padding: 5px;\r\n  text-align: left;\r\n}\r\n\r\n.contactIMG {\r\n  height: 40px;\r\n  width: 50px;\r\n  overflow: hidden;\r\n}\r\n\r\n.contactIMG img {\r\n  max-width: 100%;\r\n  max-height: 100%;\r\n}\r\n\r\n.contactPhone {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactPhone:before {\r\n  content: \"\\260E\";\r\n  font-size: 2em;\r\n  color: black;\r\n}\r\n\r\n.contactEmail {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactEmail:before {\r\n  content: \"\\2709\";\r\n  font-size: 2em;\r\n  color: black;\r\n\r\n}\r\n\r\n.iconLink:hover img, .iconLink:hover div:before {\r\n  transform: scale(1.2);\r\n}\r\n\r\n#h2ClickContact {\r\n  padding: 10px;\r\n  color: purple;\r\n  font-family: 'Khula', Serif;\r\n}\r\n\r\n#h2ClickContact:before, #h2ClickContact:after {\r\n  content: \"\\26E4\";\r\n  font-size: 1.2em;\r\n  color: black;\r\n}\r\n\r\n#h2ClickContact:hover::before, #h2ClickContact:hover::after {\r\n  display: inline-block;\r\n  animation: contact-hover 2s linear forwards infinite;\r\n}\r\n\r\n#h2ClickContact:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n/*skills chart*/\r\n\r\n.skillsContainer {\r\n  width: 100%;\r\n  min-height: 800px;\r\n}\r\n\r\n#d3SkillsContainer {\r\n  height: 600px;\r\n  width: 90%;\r\n  margin: auto;\r\n  position: relative;\r\n  overflow: hidden;\r\n}\r\n\r\n.tooltipDiv {\r\n  width: 150px;\r\n  text-align: center;\r\n  padding: 10px;\r\n}\r\n\r\n.tooltipDiv:after {\r\n  content: '';\r\n  width: 0px;\r\n  height: 0px;\r\n  border: 10px solid transparent;\r\n  border-top: 10px solid black;\r\n  position: relative;\r\n  top: 38px;\r\n  right: 80px;\r\n\r\n}\r\n\r\n#d3ButtonDiv {\r\n  position: absolute;\r\n  width: 100%;\r\n}\r\n\r\n.skillsButton {\r\n  padding: 20px;\r\n  margin: 10px;\r\n  background: rgba(244, 245, 247, .5);\r\n  border: none;\r\n  min-width: 120px;\r\n}\r\n\r\n.skillsButton:focus {\r\n  outline: 0;\r\n}\r\n\r\n.skillsButton:hover {\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n}\r\n\r\n.d3Active {\r\n  background: lightblue;\r\n}\r\n\r\n.d3Circle {\r\n  animation: stroke 1000ms linear alternate infinite;\r\n}\r\n\r\n\r\n\r\n.inactiveCircle {\r\n  background: lightgray;\r\n  transition: background 200ms ease-in;\r\n}\r\n\r\n.activeCircle {\r\n  background: purple;\r\n  transition: background 200ms ease-in;\r\n}\r\n\r\n.listCircle {\r\n  width: 20px;\r\n  height: 20px;\r\n  border-radius: 10px;\r\n  display: inline-block;\r\n  margin: 10px;\r\n}\r\n\r\n.projectsCirclesList {\r\n  width: 100%;\r\n  padding: 20px;\r\n}", ""]);
+	exports.push([module.id, "* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: 'Khula', Serif;\r\n}\r\n\r\na {\r\n  color: blue;\r\n  font-weight: bold;\r\n  text-decoration: none;\r\n}\r\n\r\na:visited {\r\n  color: blue;\r\n}\r\n\r\nh1 {\r\n  padding: 20px;\r\n  color: purple;\r\n  font-family: 'Merriweather Sans';\r\n  font-size: 3em;\r\n  text-shadow: 1px 1px 1px black;\r\n}\r\n\r\nh2 {\r\n  padding: 10px;\r\n  font-family: 'Petit Formal Script';\r\n}\r\n\r\np {\r\n  padding: 10px;\r\n}\r\n\r\n.homeContainer {\r\n  width: 100%;\r\n  padding: 20px;\r\n  color: orange;\r\n}\r\n\r\n#layoutDiv {\r\n  min-height: 100vh;\r\n  overflow: auto;\r\n}\r\n\r\n#layoutBackground {\r\n  position: fixed;\r\n  height: 100%;\r\n  width: 100%;\r\n  z-index: -1;\r\n}\r\n\r\n#layoutBackground img {\r\n  min-height: 100%;\r\n  min-width: 100%;\r\n}\r\n\r\n.headerContainer {\r\n  width: 100%;\r\n  min-height: 1000px;\r\n  text-align: center;\r\n  border-bottom: 10px solid white;\r\n  color: white;\r\n}\r\n\r\n.contentContainer {\r\n  position: absolute;\r\n  background: white;\r\n  width: 100%;\r\n  min-height: 100%;\r\n  box-shadow: 0px 0px 50px 5px black, 0px 0px 10px 2px rgba(45, 6, 56, 1) inset;\r\n  padding: 10px;\r\n  margin-bottom: 10px;\r\n}\r\n\r\n#contentSpace {\r\n  width: 90%;\r\n  max-width: 1200px;\r\n  min-height: 600px;\r\n  overflow: visible;\r\n  text-align: center;\r\n  margin: auto;\r\n  color: black;\r\n  position: relative;\r\n}\r\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 329 */
+/* 333 */
 /***/ function(module, exports) {
 
 	/*
@@ -55459,7 +56423,7 @@
 
 
 /***/ },
-/* 330 */
+/* 334 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -55711,16 +56675,216 @@
 
 
 /***/ },
-/* 331 */
+/* 335 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(332);
+	var content = __webpack_require__(336);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(330)(content, {});
+	var update = __webpack_require__(334)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./nav.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./nav.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 336 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(333)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "#siteNav table {\r\n  width: 100%;\r\n  color: white;\r\n}\r\n\r\nnav td, nav a, nav a:visited {\r\n  color: white;\r\n  font-weight: none;\r\n  text-align: center;\r\n  font-size: 1.2em;\r\n  font-family: 'Merriweather Sans';\r\n  transition: font-size 100ms ease-in, text-shadow 200ms ease-in;\r\n}\r\n\r\n#siteNav td, #siteNav a {\r\n  width: 20%;\r\n  height: 100px;\r\n}\r\n\r\nnav td a:hover {\r\n  font-size: 1.6em;\r\n  text-shadow: 1px 1px 2px black;\r\n  cursor: pointer;\r\n}", ""]);
+
+	// exports
+
+
+/***/ },
+/* 337 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(338);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(334)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./main.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./main.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 338 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(333)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".emp {\r\n  font-size: 1.3em;\r\n  font-weight: bold;\r\n}\r\n\r\n.mainParagraph {\r\n  padding: 5px 20px;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.mainParagraph a {\r\n  transition: color 300ms linear;\r\n}\r\n\r\n.mainParagraph a:hover {\r\n  color: darkblue;\r\n}\r\n\r\n.mainImg {\r\n  height: 300px;\r\n  width: 300px;\r\n  box-shadow: 0px 0px 5px 2px black;\r\n  border-radius: 50%;\r\n  overflow: hidden;\r\n  margin: auto;\r\n  animation: picture-rotate 5s linear infinite;\r\n}\r\n\r\n.mainImg img {\r\n  height: 100%;\r\n  width: 100%;\r\n}", ""]);
+
+	// exports
+
+
+/***/ },
+/* 339 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(340);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(334)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./skills.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./skills.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 340 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(333)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".skillsContainer {\r\n  width: 100%;\r\n  min-height: 800px;\r\n}\r\n\r\n#d3SkillsContainer {\r\n  height: 600px;\r\n  width: 90%;\r\n  margin: auto;\r\n  position: relative;\r\n  overflow: hidden;\r\n}\r\n\r\n.tooltipDiv {\r\n  text-align: center;\r\n  padding: 5px 20px;\r\n  position: relative;\r\n  border-radius: 10px;\r\n  border: 2px solid gray;\r\n}\r\n\r\n\r\n\r\n.tooltipDiv:after {\r\n  content: '';\r\n  width: 0px;\r\n  height: 0px;\r\n  border: 15px solid transparent;\r\n  animation: tooltip-animation 1s linear alternate infinite;\r\n  position: absolute;\r\n  top: 36px;\r\n  left: 5px;\r\n  z-index: -1;\r\n}\r\n\r\n@keyframes tooltip-animation {\r\n  0% {\r\n    border-top: 15px solid #595857;\r\n  }\r\n  100% {\r\n    border-top: 15px solid black;\r\n  }\r\n}\r\n\r\n#d3ButtonDiv {\r\n  position: absolute;\r\n  width: 100%;\r\n}\r\n\r\n.skillsButton {\r\n  padding: 20px;\r\n  margin: 10px;\r\n  background: rgba(244, 245, 247, .5);\r\n  border: none;\r\n  min-width: 120px;\r\n}\r\n\r\n.skillsButton:focus {\r\n  outline: 0;\r\n}\r\n\r\n.skillsButton:hover {\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n}\r\n\r\n.d3Active {\r\n  background: lightblue;\r\n}\r\n\r\n.d3Circle {\r\n  stroke-width: 1px;\r\n  animation: colorstroke 12000ms linear infinite;\r\n}\r\n\r\n/*skillsTable*/\r\n#skillsList {\r\n  margin: 10px;\r\n  background: rgba(243, 220, 244, 1);\r\n}\r\n\r\n#skillsList h2 {\r\n  text-align: left;\r\n  clear: both;\r\n    background: linear-gradient(to right,\r\n    rgba(254, 244, 255, 1),\r\n    rgba(243, 220, 244, 1)\r\n    \r\n  );\r\n}\r\n\r\n#skillsList ul {\r\n  list-style-type: none;\r\n  display: table;\r\n}\r\n#skillsList li {\r\n  font-family: 'Krona One', sans-serif;\r\n  float: left;\r\n  padding: 20px;\r\n  min-width: 225px;\r\n  max-width: 225px;\r\n  font-size: 1.1em;\r\n  height: 100px;\r\n  position: relative;\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n#skillsList p {\r\n  clear: both;\r\n}\r\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 341 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(342);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(334)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./projects.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./projects.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 342 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(333)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".projectsComponent {\r\n  min-height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n.projectDiv {\r\n  width: 50%;\r\n  height: 400px;\r\n  margin: auto;\r\n  position: relative;\r\n}\r\n\r\n.arrowDiv {\r\n  box-sizing: none;\r\n  height: 0;\r\n  width: 0;\r\n  border: 30px solid transparent;\r\n  position: absolute;\r\n  top: 45%;\r\n  bottom: 45%;\r\n}\r\n\r\n.arrowDiv:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n.leftArrowDiv {\r\n  border-right: 40px solid rgba(45, 6, 56, 1);\r\n  left: 10px;\r\n}\r\n\r\n.leftArrowDiv:hover {\r\n  border-right: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n.rightArrowDiv {\r\n  border-left: 40px solid rgba(45, 6, 56, 1);\r\n  right: 10px;\r\n}\r\n\r\n.rightArrowDiv:hover {\r\n  border-left: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n#projectsBackButton {\r\n  top: 30px;\r\n}\r\n\r\n.projectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: absolute;\r\n  box-shadow: 0px 0px 10px 5px black;\r\n}\r\n\r\n.hoverProjectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: relative;\r\n  box-shadow: 0px 0px 10px 5px black;\r\n  position: absolute;\r\n}\r\n\r\n.thumbImgDiv {\r\n  width: 100%;\r\n  max-height: 300px;\r\n  border-top: 2px solid black;\r\n  overflow: hidden;\r\n}\r\n\r\n.thumbImgDiv img {\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n.projectsThumbHeader {\r\n  padding: 10px;\r\n}\r\n\r\n.hiddenThumbDiv {\r\n  position: absolute;\r\n  height: 100%;\r\n  width: 100%;\r\n  background: transparent;\r\n  cursor: pointer;\r\n  z-index: 2;\r\n  background-color: rgba(0, 0, 0, .5);\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.hiddenThumbDiv h2 {\r\n  background: white;\r\n  margin: auto;\r\n  width: 100%;\r\n  padding: 10px;\r\n}\r\n\r\n.hidden {\r\n  display: none;\r\n}\r\n\r\n.projectFullscreenDiv {\r\n  padding: 10px;\r\n}\r\n\r\n.projectFullscreenImgDiv {\r\n  max-height: 300px;\r\n  overflow: hidden;\r\n}\r\n\r\n.projectFullscreenImgDiv img {\r\n  height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n.projectSkillsList {\r\n  list-style-type: none;\r\n}\r\n\r\n.projectSkillsList li {\r\n  float: left;\r\n  padding: 40px;\r\n  font-size: 1.5em;\r\n  width: 33.3%;\r\n  font-family: 'Pacifico', Serif;\r\n}\r\n\r\n.projectSkillsList li:hover {\r\n  background: #f9f9f7;\r\n}\r\n\r\n.fullscreenHalf {\r\n  float: left;\r\n  width: 50%;\r\n  overflow: hidden;\r\n}\r\n\r\n.fullscreenHalf h2 {\r\n\r\n}\r\n\r\n.fullscreenHalf p {\r\n  font-size: 1.2;\r\n  padding: 10px;\r\n}\r\n\r\n.inactiveCircle {\r\n  background: lightgray;\r\n  transition: background 200ms ease-in;\r\n}\r\n\r\n.activeCircle {\r\n  background: purple;\r\n  transition: background 200ms ease-in;\r\n}\r\n\r\n.listCircle {\r\n  width: 20px;\r\n  height: 20px;\r\n  border-radius: 10px;\r\n  display: inline-block;\r\n  margin: 10px;\r\n}\r\n\r\n.projectsCirclesList {\r\n  width: 100%;\r\n  padding: 20px;\r\n}", ""]);
+
+	// exports
+
+
+/***/ },
+/* 343 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(344);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(334)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./contact.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./contact.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 344 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(333)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".contactInput {\r\n  width: 245px;\r\n  padding: 10px;\r\n  margin: 5px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactTextarea {\r\n  width: 500px;\r\n  height: 200px;\r\n  padding: 10px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.1em;\r\n}\r\n\r\n.contactSubmit {\r\n  width: 200px;\r\n  padding: 10px;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactSubmit:hover {\r\n  box-shadow: 2px 2px 1px 1px black;\r\n  font-weight: bold;\r\n}\r\n\r\n.formSubmit {\r\n  animation: formFlip 1s forwards;\r\n}\r\n\r\n.contactContainer {\r\n  position: relative;\r\n}\r\n\r\n.formSuccess {\r\n  color: green;\r\n  position: absolute;\r\n  top: 450px;\r\n  width: 100%;\r\n  text-align: center;\r\n  animation: formSuccess 2s forwards;\r\n}\r\n\r\n\r\n\r\n.contactTable {\r\n  margin: auto;\r\n  font-size: 1.5em;\r\n}\r\n\r\n.contactTable tr {\r\n  background: #fcfcfc;\r\n}\r\n\r\n.contactTable tr:hover {\r\n  background: white;\r\n}\r\n\r\n.contactTable tr:hover td:first-child {\r\n  animation: contact-hover 500ms linear forwards;\r\n}\r\n\r\n.contactTable a:hover {\r\n  text-decoration: none;\r\n  color: darkblue;\r\n}\r\n\r\n.contactTable td {\r\n  padding: 5px;\r\n  text-align: left;\r\n}\r\n\r\n.contactIMG {\r\n  height: 40px;\r\n  width: 50px;\r\n  overflow: hidden;\r\n}\r\n\r\n.contactIMG img {\r\n  max-width: 100%;\r\n  max-height: 100%;\r\n}\r\n\r\n.contactPhone {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactPhone:before {\r\n  content: \"\\260E\";\r\n  font-size: 2em;\r\n  color: black;\r\n}\r\n\r\n.contactEmail {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactEmail:before {\r\n  content: \"\\2709\";\r\n  font-size: 2em;\r\n  color: black;\r\n\r\n}\r\n\r\n.iconLink:hover img, .iconLink:hover div:before {\r\n  transform: scale(1.2);\r\n}\r\n\r\n#h2ClickContact {\r\n  padding: 10px;\r\n  color: purple;\r\n  font-family: 'Khula', Serif;\r\n}\r\n\r\n#h2ClickContact:before, #h2ClickContact:after {\r\n  content: \"\\26E4\";\r\n  font-size: 1.2em;\r\n  color: black;\r\n}\r\n\r\n#h2ClickContact:hover::before, #h2ClickContact:hover::after {\r\n  display: inline-block;\r\n  animation: contact-hover 6s linear forwards infinite;\r\n}\r\n\r\n#h2ClickContact:hover {\r\n  cursor: pointer;\r\n}", ""]);
+
+	// exports
+
+
+/***/ },
+/* 345 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(346);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(334)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -55737,10 +56901,10 @@
 	}
 
 /***/ },
-/* 332 */
+/* 346 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(329)();
+	exports = module.exports = __webpack_require__(333)();
 	// imports
 
 
@@ -55751,16 +56915,16 @@
 
 
 /***/ },
-/* 333 */
+/* 347 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(334);
+	var content = __webpack_require__(348);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(330)(content, {});
+	var update = __webpack_require__(334)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -55777,30 +56941,30 @@
 	}
 
 /***/ },
-/* 334 */
+/* 348 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(329)();
+	exports = module.exports = __webpack_require__(333)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "/*Transition between 2 routes on index.js*/\r\n\r\n.routeSlideUp-enter {\r\n  transform: translateY(100%);\r\n  z-index: 10;\r\n  height: 100%;\r\n}\r\n\r\n.routeSlideUp-enter-active {\r\n  transform: translateY(0%);\r\n  z-index: 10;\r\n  height: 100%;\r\n  transition: transform 800ms ease-in-out;\r\n}\r\n\r\n.routeSlideUp-leave {\r\n  height: 100%;\r\n  transform: translateY(0%);\r\n}\r\n\r\n.routeSlideUp-leave-active {\r\n  height: 100%;\r\n  transform: translateY(-100%);\r\n  transition: transform 800ms ease-in-out;\r\n}\r\n\r\n/*slide down*/\r\n.routeSlideDown-enter {\r\n  transform: translateY(-100%);\r\n  z-index: 10;\r\n  height: 100%;\r\n}\r\n\r\n.routeSlideDown-enter-active {\r\n  transform: translateY(0%);\r\n  z-index: 10;\r\n  height: 100%;\r\n  transition: transform 800ms ease-in-out;\r\n}\r\n\r\n.routeSlideDown-leave {\r\n  height: 100%;\r\n  transform: translateY(0%);\r\n}\r\n\r\n.routeSlideDown-leave-active {\r\n  height: 100%;\r\n  transform: translateY(100%);\r\n  transition: transform 800ms ease-in-out;\r\n}\r\n\r\n.pageContainer {\r\n  height: 100%;\r\n  width: 100%;\r\n  position: absolute;\r\n}\r\n\r\n/*Main component flip animation used on Home.js*/\r\n.component-appear {\r\n  transform: scale(0);\r\n}\r\n\r\n.component-appear-active {\r\n  transform: scale(1);\r\n  transition: transform 800ms linear;\r\n}\r\n\r\n.component-enter {\r\n  transform: rotateY(90deg) rotateX(90deg);\r\n}\r\n\r\n.component-enter-active {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n  transition: transform 300ms ease-out 300ms;\r\n}\r\n\r\n.component-leave {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n}\r\n\r\n.component-leave-active {\r\n  transform: rotateY(90deg) rotateX(-90deg);\r\n  transition: transform 300ms ease-in;\r\n}\r\n\r\n/*Rotating active project thumb on ProjectsContainer.js*/\r\n.projectFlip-enter {\r\n  transform: rotateY(-90deg);\r\n}\r\n\r\n.projectFlip-enter-active {\r\n  transform: rotateY(0deg);\r\n  transition: transform 400ms ease-out 200ms;\r\n}\r\n\r\n.projectFlip-leave {\r\n  transform: rotateY(0deg);\r\n}\r\n\r\n.projectFlip-leave-active {\r\n  transform: rotateY(90deg);\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  transition:\r\n    transform 200ms ease-in,\r\n    box-shadow 200ms ease-in;\r\n}\r\n\r\n/*Zooming in on fullscreen project on ProjectsContainer*/\r\n.projectShow-appear {\r\n  transform: scale(.1);\r\n}\r\n\r\n.projectShow-appear-active {\r\n  transform: scale(1);\r\n  transition: transform 300ms ease-in;\r\n}\r\n\r\n.projectShow-leave {\r\n  transform: scale(1);\r\n}\r\n\r\n.projectShow-leave-active {\r\n  transform: scale(.1);\r\n  transition: transform 2s ease-in;\r\n}\r\n\r\n/*Zoom in and out on contact form from ContactContainer*/\r\n.showForm-enter {\r\n  transform: scale(0);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-enter-active {\r\n  transform: scale(1);\r\n}\r\n\r\n.showForm-leave {\r\n  transform: scale(1);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-leave-active {\r\n  transform: scale(0);\r\n}\r\n\r\n/*Rotating picture of me on MainContainer.js*/\r\n@keyframes picture-rotate {\r\n  0% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  25% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  50% {\r\n    transform: rotateY(90deg);\r\n  }\r\n  75% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  100% {\r\n    transform: rotateY(0deg);\r\n  }\r\n}\r\n\r\n/*Form animation upon submission, ContactContainer*/\r\n@keyframes formFlip {\r\n  0% {\r\n    transform: rotateX(0);\r\n  }\r\n\r\n  100% {\r\n    transform: rotateX(90deg);\r\n  }\r\n}\r\n\r\n/*Showing success after form submission, ContactContainer*/\r\n@keyframes formSuccess {\r\n  0% {\r\n    opacity: 0;\r\n  }\r\n  50% {\r\n    opacity: 0;\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n  }\r\n}\r\n\r\n/*Rotating icons on contact table, from ContactContainer and ProjectsFullscreen*/\r\n@keyframes contact-hover {\r\n  0% {\r\n    transform: rotate(0deg);\r\n  }\r\n  25% {\r\n    transform: rotate(-90deg);\r\n  }\r\n  50% {\r\n    transform: rotate(-180deg);\r\n  }\r\n  75% {\r\n    transform: rotate(-270deg);\r\n  }\r\n  100% {\r\n    transform: rotate(-360deg);\r\n  }\r\n}\r\n\r\n/*Toggle stroke for D3 bubbles in SkillsD3*/\r\n@keyframes stroke {\r\n  0% {\r\n    stroke-opacity: 1;\r\n  }\r\n  100% {\r\n    stroke-opacity: .3;\r\n  }\r\n}\r\n\r\n/*Blog posts*/\r\n.blogPostTransition-appear {\r\n  opacity: 0;\r\n}\r\n\r\n.blogPostTransition-appear-active {\r\n  opacity: 1;\r\n  transition: opacity 1s linear;\r\n}\r\n\r\n/*.blogPostTransition-appear {\r\n  transform: translateX(100%);\r\n}\r\n\r\n.blogPostTransition-appear-active {\r\n  transform: translateX(0%);\r\n  transition: transform 1s linear;\r\n}*/\r\n\r\n.blogPostTransition-leave {\r\n  opacity: 1;\r\n}\r\n\r\n.blogPostTransition-leave-active {\r\n  opacity: 0;\r\n  transition: opacity 1s linear;\r\n}", ""]);
+	exports.push([module.id, "/*Transition between 2 routes on index.js*/\r\n\r\n.routeSlideUp-enter {\r\n  transform: translateY(100%);\r\n  z-index: 10;\r\n  height: 100%;\r\n}\r\n\r\n.routeSlideUp-enter-active {\r\n  transform: translateY(0%);\r\n  z-index: 10;\r\n  height: 100%;\r\n  transition: transform 800ms ease-in-out;\r\n}\r\n\r\n.routeSlideUp-leave {\r\n  height: 100%;\r\n  transform: translateY(0%);\r\n}\r\n\r\n.routeSlideUp-leave-active {\r\n  height: 100%;\r\n  transform: translateY(-100%);\r\n  transition: transform 800ms ease-in-out;\r\n}\r\n\r\n/*slide down*/\r\n.routeSlideDown-enter {\r\n  transform: translateY(-100%);\r\n  z-index: 10;\r\n  height: 100%;\r\n}\r\n\r\n.routeSlideDown-enter-active {\r\n  transform: translateY(0%);\r\n  z-index: 10;\r\n  height: 100%;\r\n  transition: transform 800ms ease-in-out;\r\n}\r\n\r\n.routeSlideDown-leave {\r\n  height: 100%;\r\n  transform: translateY(0%);\r\n}\r\n\r\n.routeSlideDown-leave-active {\r\n  height: 100%;\r\n  transform: translateY(100%);\r\n  transition: transform 800ms ease-in-out;\r\n}\r\n\r\n.pageContainer {\r\n  height: 100%;\r\n  width: 100%;\r\n  position: absolute;\r\n}\r\n\r\n/*Main component flip animation used on Home.js*/\r\n.component-appear {\r\n  transform: scale(0);\r\n}\r\n\r\n.component-appear-active {\r\n  transform: scale(1);\r\n  transition: transform 800ms linear;\r\n}\r\n\r\n.component-enter {\r\n  transform: rotateY(90deg) rotateX(90deg);\r\n}\r\n\r\n.component-enter-active {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n  transition: transform 300ms ease-out 300ms;\r\n}\r\n\r\n.component-leave {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n}\r\n\r\n.component-leave-active {\r\n  transform: rotateY(90deg) rotateX(-90deg);\r\n  transition: transform 300ms ease-in;\r\n}\r\n\r\n/*Rotating active project thumb on ProjectsContainer.js*/\r\n.projectFlip-enter {\r\n  transform: rotateY(-90deg);\r\n}\r\n\r\n.projectFlip-enter-active {\r\n  transform: rotateY(0deg);\r\n  transition: transform 400ms ease-out 200ms;\r\n}\r\n\r\n.projectFlip-leave {\r\n  transform: rotateY(0deg);\r\n}\r\n\r\n.projectFlip-leave-active {\r\n  transform: rotateY(90deg);\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  transition:\r\n    transform 200ms ease-in,\r\n    box-shadow 200ms ease-in;\r\n}\r\n\r\n/*Zooming in on fullscreen project on ProjectsContainer*/\r\n.projectsFullscreenTransition-enter {\r\n  z-index: 10;\r\n  position: absolute;\r\n  top: 0;\r\n  transform: scale(.3);\r\n}\r\n\r\n.projectsFullscreenTransition-enter-active {\r\n  z-index: 10;\r\n  position: absolute;\r\n  top: 0;\r\n  transform: scale(1);\r\n  transition: transform 500ms ease-in 0ms;\r\n}\r\n\r\n.projectsFullscreenTransition-leave {\r\n  position: absolute;\r\n  top: 0;\r\n  opacity: 1;\r\n}\r\n\r\n.projectsFullscreenTransition-leave-active {\r\n  position: absolute;\r\n  top: 0;\r\n  opacity: 0;\r\n  transition: opacity 250ms ease-in;\r\n}\r\n\r\n\r\n.projectsCarouselTransition-enter {\r\n  opacity: 0;\r\n}\r\n\r\n.projectsCarouselTransition-enter-active {\r\n  opacity: 1;\r\n  transition: opacity 500ms ease-in 100ms;\r\n}\r\n\r\n.projectsCarouselTransition-leave {\r\n  position: absolute;\r\n  top: 0;\r\n  transform: translate(0,0) scale(1);\r\n  opacity: 1;\r\n}\r\n\r\n.projectsCarouselTransition-leave-active {\r\n  position: absolute;\r\n  top: 0;\r\n  transform: translate(-100%,-100%) scale(.3);\r\n  opacity: 0;\r\n  transition: transform 250ms ease-in,\r\n              opacity 250ms ease-in;\r\n}\r\n\r\n\r\n\r\n/*Zoom in and out on contact form from ContactContainer*/\r\n.showForm-enter {\r\n  transform: scale(0);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-enter-active {\r\n  transform: scale(1);\r\n}\r\n\r\n.showForm-leave {\r\n  transform: scale(1);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-leave-active {\r\n  transform: scale(0);\r\n}\r\n\r\n/*Rotating picture of me on MainContainer.js*/\r\n@keyframes picture-rotate {\r\n  0% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  40% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  50% {\r\n    transform: rotateY(90deg);\r\n  }\r\n  60% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  100% {\r\n    transform: rotateY(0deg);\r\n  }\r\n}\r\n\r\n/*Form animation upon submission, ContactContainer*/\r\n@keyframes formFlip {\r\n  0% {\r\n    transform: rotateX(0);\r\n  }\r\n\r\n  100% {\r\n    transform: rotateX(90deg);\r\n  }\r\n}\r\n\r\n/*Showing success after form submission, ContactContainer*/\r\n@keyframes formSuccess {\r\n  0% {\r\n    opacity: 0;\r\n  }\r\n  50% {\r\n    opacity: 0;\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n  }\r\n}\r\n\r\n/*Rotating icons on contact table, from ContactContainer and ProjectsFullscreen*/\r\n@keyframes contact-hover {\r\n  0% {\r\n    transform: rotate(0deg);\r\n  }\r\n  25% {\r\n    transform: rotate(-90deg);\r\n  }\r\n  50% {\r\n    transform: rotate(-180deg);\r\n  }\r\n  75% {\r\n    transform: rotate(-270deg);\r\n  }\r\n  100% {\r\n    transform: rotate(-360deg);\r\n  }\r\n}\r\n\r\n/*Toggle stroke color for D3 bubbles in SkillsD3*/\r\n@keyframes colorstroke {\r\n  0% {\r\n    stroke: red;\r\n  }\r\n  20% {\r\n    stroke: yellow;\r\n  }\r\n  40% {\r\n    stroke: green;\r\n  }\r\n  60% {\r\n    stroke: blue;\r\n  }\r\n  80% {\r\n    stroke: purple;\r\n  }\r\n  100% {\r\n    stroke: red;\r\n  }\r\n}\r\n\r\n/*Blog posts*/\r\n.blogPostTransition-appear {\r\n  opacity: 0;\r\n}\r\n\r\n.blogPostTransition-appear-active {\r\n  opacity: 1;\r\n  transition: opacity 1s linear;\r\n}\r\n\r\n/*.blogPostTransition-appear {\r\n  transform: translateX(100%);\r\n}\r\n\r\n.blogPostTransition-appear-active {\r\n  transform: translateX(0%);\r\n  transition: transform 1s linear;\r\n}*/\r\n\r\n.blogPostTransition-leave {\r\n  opacity: 1;\r\n}\r\n\r\n.blogPostTransition-leave-active {\r\n  opacity: 0;\r\n  transition: opacity 1s linear;\r\n}\r\n\r\n/*blog content transitions*/\r\n.blogContentTransition-enter {\r\n  max-height: 0vh;\r\n  opacity: .8;\r\n}\r\n\r\n.blogContentTransition-enter-active {\r\n  max-height: 100vh;\r\n  opacity: 1;\r\n  transition: max-height 1000ms ease-in 500ms,\r\n              opacity 1000ms ease-in 500ms;\r\n}\r\n\r\n.blogContentTransition-leave {\r\n  max-height: 100vh;\r\n  opacity: 1;\r\n}\r\n\r\n.blogContentTransition-leave-active {\r\n  max-height: 0vh;\r\n  opacity: .8;\r\n  transition: max-height 500ms ease-out,\r\n              opacity 500ms ease-out;\r\n}", ""]);
 
 	// exports
 
 
 /***/ },
-/* 335 */
+/* 349 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(336);
+	var content = __webpack_require__(350);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(330)(content, {});
+	var update = __webpack_require__(334)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -55817,15 +56981,55 @@
 	}
 
 /***/ },
-/* 336 */
+/* 350 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(329)();
+	exports = module.exports = __webpack_require__(333)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "#blogBackground {\r\n  position: fixed;\r\n  height: 100%;\r\n  width: 100%;\r\n  opacity: .2;\r\n  z-index: -2;\r\n}\r\n\r\n#blogPostsDiv {\r\n  padding: 20px;\r\n}\r\n\r\n#blogBackground, #blogPostsDiv {\r\n  padding-top: 120px;\r\n}\r\n\r\n#blogPostsDiv h1 {\r\n  text-align: center;\r\n}\r\n\r\n#blogPostsDiv p {\r\n  font-size: 1.1em;\r\n  text-indent: 30px;\r\n}\r\n\r\n#blogPostsDiv ol {\r\n  padding: 10px 40px;\r\n  font-size: 1.2em;\r\n}\r\n\r\n#blogPostsDiv article {\r\n  position: relative;\r\n  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, .3);\r\n  border-radius: 5px;\r\n  margin: 0px auto 20px;\r\n  max-width: 1200px;\r\n}\r\n\r\n#blogPostsDiv section {\r\n  padding: 20px;\r\n}\r\n\r\n#blogPostsDiv img {\r\n  max-height: 100%;\r\n  max-width: 100%;\r\n}\r\n\r\n#blogPostsDiv .articleBackground {\r\n  position: absolute;\r\n  min-height: 100%;\r\n  min-width: 100%;\r\n  background: rgba(255, 255, 255, .6);\r\n  z-index: -1;\r\n}\r\n\r\n#blogNav {\r\n  height: 100px;\r\n  width: 100%;\r\n  position: fixed;\r\n  top: 0;\r\n  z-index: 1;\r\n  overflow: hidden;\r\n}\r\n\r\n#blogNavGif {\r\n  height: 200%;\r\n  width: 100%;\r\n  position: absolute;\r\n  z-index: -1;\r\n}\r\n\r\n#blogNav table {\r\n  height: 100%;\r\n  width: 100%;\r\n  box-shadow: 0px 2px 4px black;\r\n}\r\n\r\n#blogNav td {\r\n  width: 50%;\r\n}\r\n", ""]);
+	exports.push([module.id, "#blogContentRelativeDiv {\r\n  position: relative;\r\n  margin: 0px auto 20px;\r\n  max-width: 1200px;\r\n}\r\n\r\n#blogContentRelativeDiv > article {\r\n\r\n}\r\n\r\n#blogBackground {\r\n  position: fixed;\r\n  height: 100%;\r\n  width: 100%;\r\n  opacity: .2;\r\n  z-index: -2;\r\n}\r\n\r\n#blogBackground img {\r\n  min-height: 100%;\r\n  min-width: 100%;\r\n}\r\n\r\n#blogPostsDiv {\r\n  padding: 20px;\r\n  position: fixed;\r\n  width: 100%;\r\n  height: 90%;\r\n  overflow: auto;\r\n}\r\n\r\n#blogBackground, #blogPostsDiv {\r\n  margin-top: 100px;\r\n}\r\n\r\n#blogPostsDiv h1, h2, h3 {\r\n  text-align: center;\r\n}\r\n\r\n#blogPostsDiv h1 {\r\n  padding: 10px;\r\n}\r\n\r\n#blogPostsDiv h2{\r\n  font-family: 'Krona One', sans-serif;\r\n}\r\n\r\n#blogPostsDiv p {\r\n  font-size: 1.1em;\r\n}\r\n\r\n#blogPostsDiv ol {\r\n  padding: 10px 40px;\r\n  font-size: 1.2em;\r\n  list-style-type: square\r\n}\r\n\r\n#blogPostsDiv a {\r\n  font-family: 'Krona One', sans-serif;\r\n  transition: color 400ms linear;\r\n}\r\n\r\n#blogPostsDiv a:hover {\r\n  color: black;\r\n}\r\n\r\n#blogPostsDiv article, #blogPostsDiv header {\r\n  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, .3);\r\n  border-radius: 5px;\r\n  margin: 0px auto 20px;\r\n  max-width: 1200px;\r\n  overflow: hidden;\r\n}\r\n\r\n#blogPostsDiv article {\r\n  position: absolute;\r\n  width: 100%;\r\n\r\n}\r\n\r\n#blogPostsDiv header {\r\n  display: flex;\r\n  position: relative;\r\n}\r\n\r\n#blogHeaderLeft, #blogHeaderRight {\r\n  width: 50%;\r\n  display: flex;\r\n  justify-content: center;\r\n  flex-direction: column;\r\n}\r\n\r\n#blogPostsDiv section {\r\n  padding: 0px 20px 10px;\r\n}\r\n\r\n#blogPostsDiv section h3 {\r\n  text-align: left;\r\n  padding-top: 20px;\r\n}\r\n\r\n#blogPostsDiv img {\r\n  max-height: 100%;\r\n  max-width: 100%;\r\n}\r\n\r\n#blogPostsDiv .articleBackground {\r\n  position: absolute;\r\n  min-height: 100%;\r\n  min-width: 100%;\r\n  background: rgba(255, 255, 255, .6);\r\n  z-index: -1;\r\n}\r\n\r\n#blogNav {\r\n  height: 100px;\r\n  width: 100%;\r\n  position: fixed;\r\n  top: 0;\r\n  z-index: 1;\r\n  overflow: hidden;\r\n  box-shadow: 0px 5px 5px #DFD7E4;\r\n}\r\n\r\n#blogNavGif {\r\n  height: 200%;\r\n  width: 100%;\r\n  position: absolute;\r\n  z-index: -1;\r\n}\r\n\r\n#blogNav table {\r\n  height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n#blogNav td {\r\n  width: 50%;\r\n  height: 100px;\r\n}\r\n\r\n.blogIndexDivs {\r\n  text-align: center;\r\n  width: 50%;\r\n  float: left;\r\n  padding: 20px;\r\n}\r\n\r\n.blogIndexDivs a, .blogIndexDivs a:visited {\r\n  color: black;\r\n}\r\n\r\n.blogIndexDivs div {\r\n   box-shadow: 0px 0px 5px black;\r\n   padding: 10px;\r\n   height: 150px;\r\n   display: flex;\r\n   justify-content: center;\r\n   flex-direction: column;\r\n   background: #fdefff;\r\n}\r\n\r\n.blogIndexDivs div:hover {\r\n  box-shadow: 0px 0px 10px black inset;\r\n  background: transparent;\r\n}\r\n\r\n.blogIndexDivs div h2 {\r\n  font-size: 1.1em;\r\n  color: #69527B;\r\n}\r\n\r\n/*dropdown*/\r\n\r\n.showDropdown {\r\n  -ms-transform: translateX(0%);\r\n  -webkit-transform: translateX(0%);\r\n  transform: translateX(0%);\r\n  transition: transform 400ms;\r\n}\r\n\r\n.hideDropdown {\r\n  -ms-transform: translateX(100%);\r\n  -webkit-transform: translateX(100%);\r\n  transform: translateX(100%);\r\n  transition: transform 400ms;\r\n}\r\n\r\n#blogDropdownList {\r\n/*  display: none;*/\r\n  list-style-type: none;\r\n  position: fixed;\r\n  top: 100px;\r\n  width: 50%;\r\n  right: 0;\r\n  background: whitesmoke;\r\n  border-left: 1px solid gray;\r\n  border-bottom: 1px solid gray;\r\n}\r\n\r\n#blogDropdownList li {\r\n  padding: 20px;\r\n}\r\n\r\n#blogDropdownList a, #blogDropdownList a:visited {\r\n  padding: 20px;\r\n  color: black;\r\n}", ""]);
+
+	// exports
+
+
+/***/ },
+/* 351 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(352);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(334)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./blogResponsive.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./blogResponsive.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 352 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(333)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "@media only screen and (max-width: 1000px) {\r\n  #blogNav {\r\n    height: 200px;\r\n  }\r\n\r\n  #blogNav td {\r\n    height: 200px;\r\n    font-size: 40px;\r\n  }\r\n\r\n  #blogBackground, #blogPostsDiv {\r\n    margin-top: 200px;\r\n  }\r\n\r\n  #blogPostsDiv {\r\n    padding: 20px 0px;\r\n  }\r\n\r\n  #blogPostsDiv header {\r\n    display: block;\r\n  }\r\n\r\n  #blogPostsDiv #blogHeaderLeft, #blogPostsDiv #blogHeaderRight {\r\n    width: 100%;\r\n    font-size: 30px;\r\n    padding: 5px;\r\n  }\r\n\r\n  #blogPostsDiv article h1 {\r\n    font-size: 60px;\r\n  }\r\n\r\n  #blogPostsDiv article h3 {\r\n    font-size: 40px;\r\n    text-align: center;\r\n  }\r\n\r\n  #blogPostsDiv article p {\r\n    font-size: 30px;\r\n  }\r\n\r\n  #blogPostsDiv article ol {\r\n    font-size: 25px;\r\n  }\r\n\r\n  .blogIndexDivs {\r\n    width: 100%;\r\n    float: none;\r\n  }\r\n\r\n  .blogIndexDivs div {\r\n    min-height: 200px;\r\n    display: block;\r\n    box-shadow: none;\r\n    border: 1px solid black;\r\n    border-radius: 20px;\r\n\r\n  }\r\n\r\n  .blogIndexDivs div h2 {\r\n    font-size: 30px;\r\n  }\r\n\r\n  #blogDropdownList {\r\n    top: 200px;\r\n    width: 100%;\r\n  }\r\n\r\n  .showDropdown {\r\n    -webkit-transform: translate3d(0,0,0);\r\n    transform: translate3d(0,0,0);\r\n    transition: transform 400ms;\r\n  }\r\n\r\n  .hideDropdown {\r\n    -webkit-transform: translate3d(100vw,0,0);\r\n    transform: translate3d(100vw,0,0);\r\n    transition: transform 400ms;\r\n  }\r\n\r\n\r\n\r\n\r\n}", ""]);
 
 	// exports
 
