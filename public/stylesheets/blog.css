@@ -173,21 +173,13 @@
 /*dropdown*/
 
 .showDropdown {
-  display: inline-block;
+  transform: translateX(0%);
+  transition: transform 400ms;
 }
 
 .hideDropdown {
-  display: none;
-}
-
-
-@keyframes blog-dropdown {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
+  transform: translateX(100%);
+  transition: transform 400ms;
 }
 
 #blogDropdownList {
@@ -200,7 +192,6 @@
   background: whitesmoke;
   border-left: 1px solid gray;
   border-bottom: 1px solid gray;
-  animation: blog-dropdown 300ms ease-out alternate forwards;
 }
 
 #blogDropdownList li {
@@ -208,5 +199,6 @@
 }
 
 #blogDropdownList a, #blogDropdownList a:visited {
+  padding: 20px;
   color: black;
 }
