@@ -52,7 +52,9 @@
   margin: 10px;
   background: rgba(244, 245, 247, .5);
   border: none;
-  min-width: 120px;
+  min-width: 200px;
+  font-size: 20px;
+  border-radius: 5px;
 }
 
 .skillsButton:focus {
