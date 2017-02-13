@@ -83,6 +83,7 @@
 
 .projectsThumbHeader {
   padding: 10px;
+  font-size: 20px;
 }
 
 .hiddenThumbDiv {
@@ -131,7 +132,7 @@
   padding: 40px;
   font-size: 1.5em;
   width: 33.3%;
-  font-family: 'Pacifico', Serif;
+  font-family: 'Marcellus', Serif;
 }
 
 .projectSkillsList li:hover {
@@ -149,7 +150,8 @@
 }
 
 .fullscreenHalf p {
-  font-size: 1.2;
+  font-size: 20px;
+  line-height: 35px;
   padding: 10px;
 }
 
