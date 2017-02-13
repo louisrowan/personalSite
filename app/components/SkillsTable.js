@@ -27,19 +27,24 @@ const SkillsTable = React.createClass({
     })
     return (
       <section id='skillsList'>
+        <div className='skillsTableDiv'>
         <h2>Front-End</h2>
         <ul>
           {frontLIs}
         </ul>
+        </div>
+        <div className='skillsTableDiv'>
         <h2>Back-End</h2>
         <ul>
           {backLIs}
         </ul>
+        </div>
+        <div className='skillsTableDiv'>
         <h2>Other</h2>
         <ul>
           {otherLIs}
         </ul>
-        <h2></h2>
+        </div>
       </section>
     )
   }

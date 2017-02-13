@@ -74,7 +74,7 @@
 }
 
 /*skillsTable*/
-#skillsList {
+/*#skillsList {
   margin: 10px;
   background: rgba(243, 220, 244, 1);
 }
@@ -108,4 +108,20 @@
 
 #skillsList p {
   clear: both;
+}
+*/
+
+.skillsTableDiv {
+  width: 33.3%;
+  float: left;
+  min-width: 250px;
+}
+
+.skillsTableDiv ul {
+  list-style-type: none;
+}
+
+.skillsTableDiv li {
+  font-size: 25px;
+  padding: 10px;
 }
