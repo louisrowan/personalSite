@@ -4,8 +4,8 @@
 }
 
 .projectDiv {
-  width: 50%;
-  height: 400px;
+  width: 70%;
+  height: 500px;
   margin: auto;
   position: relative;
 }
@@ -49,7 +49,7 @@
 .projectsThumb {
   border: 5px solid black;
   overflow: hidden;
-  height: 400px;
+  height: 500px;
   width: 100%;
   margin: auto;
   position: absolute;
@@ -59,7 +59,7 @@
 .hoverProjectsThumb {
   border: 5px solid black;
   overflow: hidden;
-  height: 400px;
+  height: 500px;
   width: 100%;
   margin: auto;
   position: relative;
@@ -69,9 +69,11 @@
 
 .thumbImgDiv {
   width: 100%;
-  max-height: 300px;
+  min-height: 300px;
   border-top: 2px solid black;
   overflow: hidden;
+  bottom: 0;
+  position: relative;
 }
 
 .thumbImgDiv img {
@@ -99,7 +101,7 @@
   background: white;
   margin: auto;
   width: 100%;
-  padding: 10px;
+  padding: 20px;
 }
 
 .hidden {
