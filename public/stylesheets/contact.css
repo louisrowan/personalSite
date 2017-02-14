@@ -35,7 +35,7 @@
 }
 
 .contactContainer {
-  position: relative;
+  margin: auto;
 }
 
 .contactHalfscreen {
@@ -46,9 +46,9 @@
 }
 
 .formSuccess {
-  color: green;
-  position: absolute;
-  top: 450px;
+  color: black;
+  position: relative;
+  top: 100px;
   width: 100%;
   text-align: center;
   animation: formSuccess 2s forwards;

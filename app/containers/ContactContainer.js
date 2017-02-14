@@ -51,7 +51,7 @@ const ContactContainer = React.createClass({
  
     let success;
     if (this.state.submitted) {
-      success = <div className='formSuccess'><h1>Message sent, Thanks!</h1></div>
+      success = <div className='formSuccess'><h2>Message sent, Thanks!</h2></div>
     } else {
       success = ''
     }
