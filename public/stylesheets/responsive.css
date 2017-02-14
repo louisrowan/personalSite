@@ -14,6 +14,11 @@
     width: 100%;
   }
 
+  h1 {
+    font-size: 70px;
+    padding: 20px;
+  }
+
   #layoutDiv {
     height: 100vh;
   }
@@ -65,39 +70,5 @@
     transform: rotateX(90deg);
     transition: transform 300ms ease-in;
   }
-
-
-
- 
-
-  .contactContainer {
- 
-  }
-
-  .contactTextarea {
-    width: 700px;
-    height: 400px;
-  }
-  .contactInput {
-    width: 345px;
-    margin-top: 50px;
-  }
-
-  .contactPhone:before {
-    content: "\260E";
-    font-size: .9em;
-    color: black;
-  }
-
-  .contactEmail:before {
-    content: "\2709";
-    font-size: .9em;
-    color: black;
-  }
-
-  .contactIMG {
-    overflow: visible;
-  }
-
 
 }

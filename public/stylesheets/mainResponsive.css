@@ -9,11 +9,6 @@
 
 @media only screen and (max-device-width: 1000px) {
 
-  #mainHello {
-    font-size: 60px;
-  }
-
-
   .mainParagraph {
     font-size: 35px;
     line-height: 60px;

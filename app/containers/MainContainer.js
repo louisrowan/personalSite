@@ -7,7 +7,7 @@ const MainContainer = React.createClass({
   render(){
     return (
       <div>
-        <h1 id='mainHello'>Hello,</h1>
+        <h1>Hello,</h1>
 
         <div className='mainImg'>
           <img src={image} />

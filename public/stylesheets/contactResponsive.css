@@ -1,4 +1,49 @@
 @media only screen and (max-device-width: 1000px) {
 
+  .contactContainer h2 {
+    font-size: 40px;
+  }
+
+  .contactHalfscreen {
+    width: 100%;
+  }
+
+  .contactTable a {
+    font-size: 40px;
+  }
+
+  .contactTextarea {
+    width: 80%;
+    height: 400px;
+  }
+  .contactInput {
+    width: 80%;
+  }
+
+  .contactTextarea, .contactInput {
+    font-size: 30px;
+    padding: 10px;
+    box-shadow: none;
+    border: 1px solid black;
+    margin-top: 15px;
+  }
+
+  .contactSubmit {
+    width: 40%;
+    font-size: 30px;
+    border: 1px solid black;
+  }
+
+  .contactPhone:before {
+    content: "\260E";
+    font-size: 1em;
+    color: black;
+  }
+
+  .contactEmail:before {
+    content: "\2709";
+    font-size: 1em;
+    color: black;
+  }
 
 }
