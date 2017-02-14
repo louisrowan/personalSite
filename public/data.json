@@ -84,14 +84,14 @@
       "type": "back",
       "image": "/public/images/c.png",
       "posX": "left",
-      "posY": 150
+      "posY": "height/4"
     },
     {
       "name": "D3",
       "type": "front",
       "image": "/public/images/d3.png",
       "posX": "left",
-      "posY": 150
+      "posY": "height/4"
 
     },
     {
@@ -104,63 +104,63 @@
       "type": "front",
       "image": "/public/images/htmlcss.png",
       "posX": "left",
-      "posY": 250
+      "posY": "2*height/4"
     },
     {
       "name": "JavaScript",
       "type": "front",
       "image": "/public/images/javascript.png",
       "posX": "left",
-      "posY": 350
+      "posY": "3*height/4"
     },
     {
       "name": "Node/Webpack",
       "type": "back",
       "image": "/public/images/node.jpg",
       "posX": "left",
-      "posY": 250
+      "posY": "2*height/4"
     },
     {
       "name": "Python",
       "type": "back",
       "image": "/public/images/python.png",
       "posX": "left",
-      "posY": 350
+      "posY": "3*height/4"
     },
     {
       "name": "Rails",
       "type": "back",
       "image": "/public/images/rails.png",
-      "posX": "left",
-      "posY": 450
+      "posX": "rails",
+      "posY": "height/4"
     },
     {
       "name": "React",
       "type": "front",
       "image": "/public/images/react.png",
       "posX": "right",
-      "posY": 150
+      "posY": "height/4"
     },
     {
       "name": "Redux",
       "type": "front",
       "image": "/public/images/redux.png",
       "posX": "right",
-      "posY": 250
+      "posY": "2*height/4"
     },
     {
       "name": "Ruby",
       "type": "back",
       "image": "/public/images/ruby.png",
       "posX": "right",
-      "posY": 150
+      "posY": "2*height/4"
     },
     {
       "name": "SQL",
       "type": "back",
       "image": "/public/images/sql.png",
       "posX": "right",
-      "posY": 250
+      "posY": "3*height/4"
     }
 
   ]
