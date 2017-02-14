@@ -82,12 +82,17 @@
     {
       "name": "C/C++",
       "type": "back",
-      "image": "/public/images/c.png"
+      "image": "/public/images/c.png",
+      "posX": "left",
+      "posY": 150
     },
     {
       "name": "D3",
       "type": "front",
-      "image": "/public/images/d3.png"
+      "image": "/public/images/d3.png",
+      "posX": "left",
+      "posY": 150
+
     },
     {
       "name": "Git/Github",
@@ -97,47 +102,65 @@
     {
       "name": "HTML5/CSS3",
       "type": "front",
-      "image": "/public/images/htmlcss.png"
+      "image": "/public/images/htmlcss.png",
+      "posX": "left",
+      "posY": 250
     },
     {
       "name": "JavaScript",
       "type": "front",
-      "image": "/public/images/javascript.png"
+      "image": "/public/images/javascript.png",
+      "posX": "left",
+      "posY": 350
     },
     {
       "name": "Node/Webpack",
       "type": "back",
-      "image": "/public/images/node.jpg"
+      "image": "/public/images/node.jpg",
+      "posX": "left",
+      "posY": 250
     },
     {
       "name": "Python",
       "type": "back",
-      "image": "/public/images/python.png"
+      "image": "/public/images/python.png",
+      "posX": "left",
+      "posY": 350
     },
     {
       "name": "Rails",
       "type": "back",
-      "image": "/public/images/rails.png"
+      "image": "/public/images/rails.png",
+      "posX": "left",
+      "posY": 450
     },
     {
       "name": "React",
       "type": "front",
-      "image": "/public/images/react.png"
+      "image": "/public/images/react.png",
+      "posX": "right",
+      "posY": 150
     },
     {
       "name": "Redux",
       "type": "front",
-      "image": "/public/images/redux.png"
+      "image": "/public/images/redux.png",
+      "posX": "right",
+      "posY": 250
     },
     {
       "name": "Ruby",
       "type": "back",
-      "image": "/public/images/ruby.png"
+      "image": "/public/images/ruby.png",
+      "posX": "right",
+      "posY": 150
     },
     {
       "name": "SQL",
       "type": "back",
-      "image": "/public/images/sql.png"
+      "image": "/public/images/sql.png",
+      "posX": "right",
+      "posY": 250
     }
 
   ]

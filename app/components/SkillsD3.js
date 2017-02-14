@@ -55,6 +55,15 @@ const SkillsD3 = React.createClass({
       .style('fill', (d) => `url(#${d.name})`)
       .classed('d3Circle', true)
 
+    const circleDivs = nodes.append('text')
+      .attr('dx', (d) => {
+        return d.posX === 'left' ? width/4 + 100: 3*width/4 + 100
+      })
+      .attr('dy', (d) => d.posY)
+      .text((d) => d.name)
+      .classed('hiddenD3Text', true)
+      .classed('shownD3Text', false)
+
     circles.on('mouseover', function(){
       d3.select(this)
         .classed('d3BubbleHover', true)
@@ -91,56 +100,33 @@ const SkillsD3 = React.createClass({
 
     const forceYFront = d3Force.forceY((d) => {
       if (d.type === 'front') {
-        // return height/2
-        if (d.name === 'D3') {
-          return 150
-        } else if (d.name === 'HTML5/CSS3') {
-          return 250
-        } else if (d.name === 'JavaScript') {
-          return 350
-        } else if (d.name === 'React') {
-          return 150
-        } else if (d.name === 'Redux') {
-          return 250
-        }
+        return d.posY
       } else {
         return 2*height
       }
     }).strength(0.05)
 
     const forceXFront = d3Force.forceX((d) => {
-      if (d.name === 'React' || d.name === 'Redux') {
+      if (d.posX === 'left') {
+        return width/4
+      } else {
         return 3*width/4
       }
-      return width/5
     })
 
     const forceYBack = d3Force.forceY((d) => {
       if (d.type === 'back') {
-        // return height/2
-        if (d.name === 'C/C++') {
-          return 150
-        } else if (d.name === 'Node/Webpack') {
-          return 250
-        } else if (d.name === 'Python') {
-          return 350
-        } else if (d.name === 'Rails') {
-          return 450
-        } else if (d.name === 'Ruby') {
-          return 150
-        } else if (d.name === 'SQL') {
-          return 250
-        }
+        return d.posY
       } else {
         return 2*height
       }
     }).strength(0.05)
 
     const forceXBack = d3Force.forceX((d) => {
-      if (d.name === 'Ruby' || d.name === 'SQL'){
-        return 3*width/4
+       if (d.posX === 'left') {
+        return width/4
       } else {
-        return width/4        
+        return 3*width/4
       }
     })
 
@@ -167,6 +153,14 @@ const SkillsD3 = React.createClass({
         .force('y', forceYFront)
         .alphaTarget(0.5)
         .restart()
+
+      circleDivs
+        .classed('hiddenD3Text', (d) => {
+          return d.type === 'front' ? false : true
+        })
+        .classed('shownD3Text', (d) => {
+          return d.type === 'back' ? false : true
+        })
     })
 
     d3.select('#skillsBack').on('click', function() {
@@ -175,6 +169,14 @@ const SkillsD3 = React.createClass({
         .force('y', forceYBack)
         .alphaTarget(0.5)
         .restart()
+
+      circleDivs
+        .classed('hiddenD3Text', (d) => {
+          return d.type === 'back' ? false : true
+        })
+        .classed('shownD3Text', (d) => {
+          return d.type === 'front' ? false : true
+        })
     })
 
     d3.select('#skillsAll').on('click', function() {
@@ -183,6 +185,10 @@ const SkillsD3 = React.createClass({
         .force('y', forceYNormal)
         .alphaTarget(0.5)
         .restart()
+
+      circleDivs
+        .classed('hiddenD3Text', true)
+        .classed('shownD3Text', false)
     })
   },
   frontClick() {
