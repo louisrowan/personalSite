@@ -5,7 +5,30 @@
   }
 
 /*  fullscreen view*/
+  .projectFullscreenDiv h1 {
+    margin: 0px 50px;
+  }
 
+  .fullscreenHalf {
+    width: 100%;
+  }
+
+  .projectFullscreenImgDiv {
+    width: 80%;
+    height: 300px;
+    max-height: 300px;
+    margin: auto;
+  }
+
+  .projectSkillsList li {
+    width: 25%;
+    font-size: 20px;
+  }
+
+  .fullscreenHalf p {
+    font-size: 16px;
+    line-height: 40px;
+  }
 
 
 }
@@ -96,6 +119,11 @@
   }
 
   /*projects fullscreen*/
+
+  .projectFullscreenDiv h1 {
+    margin: 0px 50px;
+  }
+  
   .fullscreenHalf, .projectFullscreenImgDiv {
     width: 100%;
   }
@@ -112,7 +140,7 @@
 
   .fullscreenHalf p {
     font-size: 30px;
-    line-height: 50px;
+    line-height: 80px;
   }
 
 
