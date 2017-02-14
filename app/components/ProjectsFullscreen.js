@@ -4,7 +4,6 @@ const logos = require('json!../../public/data.json').images
 
 const ProjectsFullscreen = React.createClass({
   render(){
-    console.log('show')
     let data = this.props.data
 
     let githubContent;

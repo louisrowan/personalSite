@@ -39,12 +39,10 @@ const ContactContainer = React.createClass({
       data: { email: email, message: message, phone: phone }
     })
     .then((res) => {
-      console.log(res)
       that.setState({ submitted: true })
     })
     .catch((err) => {
       console.log(err)
-      console.log('error')
     })
   },
   render(){
