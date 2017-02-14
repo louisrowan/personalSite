@@ -9,7 +9,6 @@ const ContactContainer = React.createClass({
   getInitialState () {
     return {
       submitted: false,
-      showForm: false,
       email: '',
       message: '',
       phone: ''
@@ -26,9 +25,6 @@ const ContactContainer = React.createClass({
   handlePhoneChange (phone) {
     phone = phone.target.value
     this.setState({ phone })
-  },
-  handleShowForm () {
-    this.setState({ showForm: !this.state.showForm })
   },
   handleSubmit (e) {
     e.preventDefault()
@@ -55,14 +51,12 @@ const ContactContainer = React.createClass({
  
     let success;
     if (this.state.submitted) {
-      success = <div className='formSuccess'><h1>Message sent, Thanks!</h1></div>
+      success = <div className='formSuccess'><h2>Message sent, Thanks!</h2></div>
     } else {
       success = ''
     }
 
-    let form;
-    if (this.state.showForm) {
-      form = 
+    let form = 
         <ContactForm
           handleEmailChange = {this.handleEmailChange}
           handlePhoneChange = {this.handlePhoneChange}
@@ -71,75 +65,77 @@ const ContactContainer = React.createClass({
           handleShowForm = {this.handleShowForm}
           submitted = {this.state.submitted}
           />
-    } else {
-      form = ''
-    }
+
 
     return (
       <div className='contactContainer'>
         <h1>Contact Me</h1>
+          <div className='contactHalfscreen'>
+          <h2>Quick Links</h2>
 
-        <div>
-          <table className='contactTable'>
-           <tbody>
-             <tr>
-                <td>
-                  <a className='iconLink' href='tel:6173653595'>
-                    <div className='contactPhone contactIMG'>
+          <div>
+            <table className='contactTable'>
+             <tbody>
+               <tr>
+                  <td>
+                    <a className='iconLink' href='tel:6173653595'>
+                      <div className='contactPhone contactIMG'>
+                      </div>
+                    </a>
+                  </td><td><a href='tel:6173653595'>617-365-3595</a></td>
+                </tr>
+                <tr>
+                  <td>
+                    <a className='iconLink' target="_blank" href="https://www.linkedin.com/in/louis-rowan-54869986">
+                      <div className='contactIMG'>
+                        <img src={data.linkedin} />
+                      </div>
+                    </a>
+                  </td>
+                  <td>
+                    <a target="_blank" href="https://www.linkedin.com/in/louis-rowan-54869986">LinkedIn</a>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                    <a className='iconLink' target="_blank" href="https://github.com/louisrowan">
+                      <div className='contactIMG'>
+                        <img src={data.github} />
+                      </div>
+                    </a>
+                  </td>
+                  <td>
+                    <a target="_blank" href="https://github.com/louisrowan">Github</a>
+                  </td>
+                </tr>
+               <tr>
+                  <td>
+                  <a className='iconLink' href='mailto:louis.rowan@icloud.com?Subject=Great%20Website!' target='_top'>
+                    <div className='contactEmail contactIMG'>
                     </div>
                   </a>
-                </td><td><a href='tel:6173653595'>617-365-3595</a></td>
-              </tr>
-              <tr>
-                <td>
-                  <a className='iconLink' target="_blank" href="https://www.linkedin.com/in/louis-rowan-54869986">
-                    <div className='contactIMG'>
-                      <img src={data.linkedin} />
-                    </div>
-                  </a>
-                </td>
-                <td>
-                  <a target="_blank" href="https://www.linkedin.com/in/louis-rowan-54869986">LinkedIn</a>
-                </td>
-             </tr>
-             <tr>
-                <td>
-                  <a className='iconLink' target="_blank" href="https://github.com/louisrowan">
-                    <div className='contactIMG'>
-                      <img src={data.github} />
-                    </div>
-                  </a>
-                </td>
-                <td>
-                  <a target="_blank" href="https://github.com/louisrowan">Github</a>
-                </td>
-              </tr>
-             <tr>
-                <td>
-                <a className='iconLink' href='mailto:louis.rowan@icloud.com?Subject=Great%20Website!' target='_top'>
-                  <div className='contactEmail contactIMG'>
-                  </div>
-                </a>
-                </td>
-                <td>
-                  <a href='mailto:louis.rowan@icloud.com?Subject=Great%20Website!' target='_top'>louis.rowan@icloud.com</a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <h2 id='h2ClickContact' onClick={()=> this.handleShowForm()}>
-          Or Click to Message me Directly</h2>
+                  </td>
+                  <td>
+                    <a href='mailto:louis.rowan@icloud.com?Subject=Great%20Website!' target='_top'>louis.rowan@icloud.com</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+        <div className='contactHalfscreen'>
+          <h2>Or Message me Directly</h2>
 
-        {success}
-        
-        <ReactCSSTransitionGroup
-          transitionName='showForm'
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={500}>
-        {form}
-        </ReactCSSTransitionGroup>
-
+          {success}
+          
+          <ReactCSSTransitionGroup
+            transitionName='showForm'
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={500}>
+          {form}
+          </ReactCSSTransitionGroup>
+        </div>
+        <p style={{clear: 'both'}}></p>
       </div>
     )
   }

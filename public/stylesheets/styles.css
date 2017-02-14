@@ -17,19 +17,20 @@ a:visited {
 
 h1 {
   padding: 20px;
-  color: purple;
-  font-family: 'Merriweather Sans';
+  color: black;
+  font-family: 'Marcellus';
   font-size: 3em;
   text-shadow: 1px 1px 1px black;
 }
 
 h2 {
   padding: 10px;
-  font-family: 'Petit Formal Script';
+  font-family: 'Cousine';
 }
 
 p {
   padding: 10px;
+  font-family: 'Lustria';
 }
 
 .homeContainer {

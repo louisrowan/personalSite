@@ -4,8 +4,8 @@
 }
 
 .projectDiv {
-  width: 50%;
-  height: 400px;
+  width: 70%;
+  height: 500px;
   margin: auto;
   position: relative;
 }
@@ -47,31 +47,33 @@
 }
 
 .projectsThumb {
-  border: 5px solid black;
+  border: 2px solid black;
   overflow: hidden;
-  height: 400px;
+  height: 500px;
   width: 100%;
   margin: auto;
   position: absolute;
-  box-shadow: 0px 0px 10px 5px black;
+  box-shadow: 0px 0px 2px 1px black;
 }
 
 .hoverProjectsThumb {
-  border: 5px solid black;
+  border: 2px solid black;
   overflow: hidden;
-  height: 400px;
+  height: 500px;
   width: 100%;
   margin: auto;
   position: relative;
-  box-shadow: 0px 0px 10px 5px black;
+  box-shadow: 0px 0px 2px 1px black;
   position: absolute;
 }
 
 .thumbImgDiv {
   width: 100%;
-  max-height: 300px;
+  min-height: 300px;
   border-top: 2px solid black;
   overflow: hidden;
+  bottom: 0;
+  position: relative;
 }
 
 .thumbImgDiv img {
@@ -81,6 +83,7 @@
 
 .projectsThumbHeader {
   padding: 10px;
+  font-size: 20px;
 }
 
 .hiddenThumbDiv {
@@ -99,7 +102,7 @@
   background: white;
   margin: auto;
   width: 100%;
-  padding: 10px;
+  padding: 20px;
 }
 
 .hidden {
@@ -113,6 +116,7 @@
 .projectFullscreenImgDiv {
   max-height: 300px;
   overflow: hidden;
+  border: 2px solid black;
 }
 
 .projectFullscreenImgDiv img {
@@ -129,11 +133,7 @@
   padding: 40px;
   font-size: 1.5em;
   width: 33.3%;
-  font-family: 'Pacifico', Serif;
-}
-
-.projectSkillsList li:hover {
-  background: #f9f9f7;
+  font-family: 'Marcellus', Serif;
 }
 
 .fullscreenHalf {
@@ -147,7 +147,8 @@
 }
 
 .fullscreenHalf p {
-  font-size: 1.2;
+  font-size: 20px;
+  line-height: 35px;
   padding: 10px;
 }
 

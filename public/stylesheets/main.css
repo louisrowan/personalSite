@@ -6,6 +6,9 @@
 .mainParagraph {
   padding: 5px 20px;
   font-size: 1.2em;
+  text-align: left;
+  text-indent: 80px;
+  line-height: 45px;
 }
 
 .mainParagraph a {

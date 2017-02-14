@@ -52,7 +52,9 @@
   margin: 10px;
   background: rgba(244, 245, 247, .5);
   border: none;
-  min-width: 120px;
+  min-width: 200px;
+  font-size: 20px;
+  border-radius: 5px;
 }
 
 .skillsButton:focus {
@@ -74,7 +76,7 @@
 }
 
 /*skillsTable*/
-#skillsList {
+/*#skillsList {
   margin: 10px;
   background: rgba(243, 220, 244, 1);
 }
@@ -108,4 +110,24 @@
 
 #skillsList p {
   clear: both;
+}
+*/
+
+.skillsTableDiv {
+  width: 33.3%;
+  float: left;
+  min-width: 250px;
+}
+
+.skillsTableDiv h3 {
+  font-size: 30px;
+}
+
+.skillsTableDiv ul {
+  list-style-type: none;
+}
+
+.skillsTableDiv li {
+  font-size: 20px;
+  padding: 5px;
 }
