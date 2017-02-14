@@ -8,7 +8,6 @@ const SkillsContainer = React.createClass({
       <div className='skillsContainer'>
         <h1>Skills</h1>
         <SkillsD3 />
-        <SkillsTable />
       </div>
     )
   }

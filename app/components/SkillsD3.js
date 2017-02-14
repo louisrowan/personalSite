@@ -57,7 +57,7 @@ const SkillsD3 = React.createClass({
 
     const circleDivs = nodes.append('text')
       .attr('dx', (d) => {
-        return d.posX === 'left' ? width/4 + 100: 3*width/4 + 100
+        return d.posX === 'left' ? width/5 + 100: 3*width/5 + 100
       })
       .attr('dy', (d) => d.posY)
       .text((d) => d.name)
@@ -108,9 +108,9 @@ const SkillsD3 = React.createClass({
 
     const forceXFront = d3Force.forceX((d) => {
       if (d.posX === 'left') {
-        return width/4
+        return width/5
       } else {
-        return 3*width/4
+        return 3*width/5
       }
     })
 
@@ -124,9 +124,9 @@ const SkillsD3 = React.createClass({
 
     const forceXBack = d3Force.forceX((d) => {
        if (d.posX === 'left') {
-        return width/4
+        return width/5
       } else {
-        return 3*width/4
+        return 3*width/5
       }
     })
 
