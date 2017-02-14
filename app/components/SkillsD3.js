@@ -18,12 +18,16 @@ const SkillsD3 = React.createClass({
     svg
       .attr('height', '100%')
       .attr('width', '100%')
-      .style('border', '1px solid red')
 
     const height = parseInt(svg.style('height'))
     const width = parseInt(svg.style('width'))
     // const radius = d3.max([height, width])/16
-    const radius = height/10
+    var radius;
+    if (width > height) {
+      radius = height/10
+    } else {
+      radius = height/15
+    }
 
 
     const tooltip = d3.select('#skillsSVGDiv')
@@ -60,7 +64,7 @@ const SkillsD3 = React.createClass({
 
     const circleDivs = nodes.append('text')
       .attr('dx', (d) => {
-        return d.posX === 'left' ? width/5 + 100: 3*width/5 + 100
+        return d.posX === 'left' ? width/5 + 100: 3.5*width/5 + 100
       })
       .attr('dy', (d) => eval(d.posY))
       .text((d) => d.name)
@@ -113,7 +117,7 @@ const SkillsD3 = React.createClass({
       if (d.posX === 'left') {
         return width/5
       } else {
-        return 3*width/5
+        return 3.5*width/5
       }
     })
 
@@ -129,7 +133,7 @@ const SkillsD3 = React.createClass({
        if (d.posX === 'left') {
         return width/5
       } else {
-        return 3*width/5
+        return 3.5*width/5
       }
     })
 

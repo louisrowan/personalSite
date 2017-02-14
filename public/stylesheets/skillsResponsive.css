@@ -4,6 +4,10 @@
     min-height: 75vh;
   }
 
+  #skillsSVGDiv {
+    height: 60%;
+  }
+
   .skillsContainer svg {
     min-height: 75vh;
   }
@@ -11,6 +15,14 @@
 
   .skillsButton {
     width: 200px;
+    font-size: 30px;
+  }
+
+  .hiddenD3Text {
+    font-size: 30px;
+  }
+
+  .shownD3Text {
     font-size: 30px;
   }
 
