@@ -135,6 +135,7 @@ const ContactContainer = React.createClass({
           {form}
           </ReactCSSTransitionGroup>
         </div>
+        <p style={{clear: 'both'}}></p>
       </div>
     )
   }

@@ -40,9 +40,10 @@
 
 .contactHalfscreen {
   width: 50%;
-  float: left;
-  min-width: 500px;
+  display: inline-block;
+  min-width: 550px;
   padding: 10px;
+  vertical-align: top;
 }
 
 .formSuccess {
