@@ -7,6 +7,7 @@ const data = require('json!../../public/data.json').skills
 const SkillsD3 = React.createClass({
   getInitialState() {
     return {
+      simulation: '',
       skillFront: '',
       skillBack: '',
       skillAll: 'd3Active'
@@ -20,9 +21,16 @@ const SkillsD3 = React.createClass({
 
     const height = parseInt(svg.style('height'))
     const width = parseInt(svg.style('width'))
-    const radius = d3.max([height, width])/16
+    // const radius = d3.max([height, width])/16
+    var radius;
+    if (width > height) {
+      radius = height/10
+    } else {
+      radius = height/15
+    }
 
-    const tooltip = d3.select('#d3SkillsContainer')
+
+    const tooltip = d3.select('#skillsSVGDiv')
       .append('div')
       .style('position', 'absolute')
       .style('z-index', '10')
@@ -53,6 +61,15 @@ const SkillsD3 = React.createClass({
       .attr('r', radius)
       .style('fill', (d) => `url(#${d.name})`)
       .classed('d3Circle', true)
+
+    const circleDivs = nodes.append('text')
+      .attr('dx', (d) => {
+        return d.posX === 'left' ? width/5 + 100: 3.5*width/5 + 100
+      })
+      .attr('dy', (d) => eval(d.posY))
+      .text((d) => d.name)
+      .classed('hiddenD3Text', true)
+      .classed('shownD3Text', false)
 
     circles.on('mouseover', function(){
       d3.select(this)
@@ -90,24 +107,43 @@ const SkillsD3 = React.createClass({
 
     const forceYFront = d3Force.forceY((d) => {
       if (d.type === 'front') {
-        return height/2
+        return eval(d.posY)
       } else {
         return 2*height
       }
     }).strength(0.05)
 
+    const forceXFront = d3Force.forceX((d) => {
+      if (d.posX === 'left') {
+        return width/5
+      } else {
+        return 3.5*width/5
+      }
+    })
+
     const forceYBack = d3Force.forceY((d) => {
       if (d.type === 'back') {
-        return height/2
+        return eval(d.posY)
       } else {
         return 2*height
       }
     }).strength(0.05)
+
+    const forceXBack = d3Force.forceX((d) => {
+       if (d.posX === 'left') {
+        return width/5
+      } else {
+        return 3.5*width/5
+      }
+    })
+
 
     const simulation = d3Force.forceSimulation()
       .force('x', forceXNormal)
       .force('y', forceYNormal)
       .force('collide', d3Force.forceCollide((d) => radius + 2 ))
+
+    this.setState({ simulation })
 
     simulation.nodes(data)
       .on('tick', ticked)
@@ -120,25 +156,50 @@ const SkillsD3 = React.createClass({
 
     d3.select('#skillsFront').on('click', function() {
       simulation
+        .force('x', forceXFront)
         .force('y', forceYFront)
         .alphaTarget(0.5)
         .restart()
+
+      circleDivs
+        .classed('hiddenD3Text', (d) => {
+          return d.type === 'front' ? false : true
+        })
+        .classed('shownD3Text', (d) => {
+          return d.type === 'back' ? false : true
+        })
     })
 
     d3.select('#skillsBack').on('click', function() {
       simulation
+        .force('x', forceXBack)
         .force('y', forceYBack)
         .alphaTarget(0.5)
         .restart()
+
+      circleDivs
+        .classed('hiddenD3Text', (d) => {
+          return d.type === 'back' ? false : true
+        })
+        .classed('shownD3Text', (d) => {
+          return d.type === 'front' ? false : true
+        })
     })
 
     d3.select('#skillsAll').on('click', function() {
       simulation
+        .force('x', forceXNormal)
         .force('y', forceYNormal)
         .alphaTarget(0.5)
         .restart()
+
+      circleDivs
+        .classed('hiddenD3Text', true)
+        .classed('shownD3Text', false)
     })
 
+    console.log('height = ', height)
+    console.log('width = ', width)
   },
   frontClick() {
     this.setState({ skillFront: 'd3Active', skillBack: '', skillAll: ''})
@@ -149,25 +210,32 @@ const SkillsD3 = React.createClass({
   allClick() {
     this.setState({ skillAll: 'd3Active', skillFront: '', skillBack: ''})
   },
+  componentWillUnmount(){
+    var simulation = this.state.simulation
+    simulation.stop()
+
+  },
   render() {
     return (
       <div id='d3SkillsContainer'>
-      <div id='d3ButtonDiv'>
-      <button id='skillsFront'
-        className={'skillsButton ' + this.state.skillFront}
-        onClick={() => this.frontClick() }>
-        Front-End</button>
-      <button id='skillsAll'
-      className={'skillsButton ' + this.state.skillAll}
-      onClick={() => this.allClick() }>
-      All</button>
-      <button id='skillsBack'
-      className={'skillsButton ' + this.state.skillBack}
-      onClick={() => this.backClick() }>
-      Back-End</button>
-      </div>
+        <div id='d3ButtonDiv'>
+        <button id='skillsFront'
+          className={'skillsButton ' + this.state.skillFront}
+          onClick={() => this.frontClick() }>
+          Front-End</button>
+        <button id='skillsAll'
+        className={'skillsButton ' + this.state.skillAll}
+        onClick={() => this.allClick() }>
+        All</button>
+        <button id='skillsBack'
+        className={'skillsButton ' + this.state.skillBack}
+        onClick={() => this.backClick() }>
+        Back-End</button>
+        </div>
+        <div id='skillsSVGDiv'>
         <svg>
         </svg>
+        </div>
       </div>
     )
   }

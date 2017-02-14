@@ -82,12 +82,16 @@
     {
       "name": "C/C++",
       "type": "back",
-      "image": "./images/c.png"
+      "image": "./images/c.png",
+      "posX": "left",
+      "posY": "height/4"
     },
     {
       "name": "D3",
       "type": "front",
-      "image": "./images/d3.png"
+      "image": "./images/d3.png",
+      "posX": "left",
+      "posY": "height/4"
     },
     {
       "name": "Git/Github",
@@ -97,47 +101,65 @@
     {
       "name": "HTML5/CSS3",
       "type": "front",
-      "image": "./images/htmlcss.png"
+      "image": "./images/htmlcss.png",
+      "posX": "left",
+      "posY": "2*height/4"
     },
     {
       "name": "JavaScript",
       "type": "front",
-      "image": "./images/javascript.png"
+      "image": "./images/javascript.png",
+      "posX": "left",
+      "posY": "3*height/4"
     },
     {
       "name": "Node/Webpack",
       "type": "back",
-      "image": "./images/node.jpg"
+      "image": "./images/node.jpg",
+      "posX": "left",
+      "posY": "2*height/4"
     },
     {
       "name": "Python",
       "type": "back",
-      "image": "./images/python.png"
+      "image": "./images/python.png",
+      "posX": "left",
+      "posY": "3*height/4"
     },
     {
       "name": "Rails",
       "type": "back",
-      "image": "./images/rails.png"
+      "image": "./images/rails.png",
+      "posX": "rails",
+      "posY": "height/4"
     },
     {
       "name": "React",
       "type": "front",
-      "image": "./images/react.png"
+      "image": "./images/react.png",
+      "posX": "right",
+      "posY": "height/4"
     },
     {
       "name": "Redux",
       "type": "front",
-      "image": "./images/redux.png"
+      "image": "./images/redux.png",
+      "posX": "right",
+      "posY": "2*height/4"
     },
     {
       "name": "Ruby",
       "type": "back",
-      "image": "./images/ruby.png"
+      "image": "./images/ruby.png",
+      "posX": "right",
+      "posY": "2*height/4"
     },
     {
       "name": "SQL",
       "type": "back",
-      "image": "./images/sql.png"
+      "image": "./images/sql.png",
+      "posX": "right",
+      "posY": "3*height/4"
     }
 
   ]
