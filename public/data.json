@@ -4,7 +4,7 @@
       "name": "Event Tracker",
       "teaser": "Find and buy tickets for upcoming events from your favorite performers.",
       "description": "This site allowed a user to search upcoming events for any sports team or musical artist. Users were shown the performer’s next 10 upcoming events, time and location, number of available tickets to buy, lowest available price, and a direct link to buy tickets.",
-      "image": "./images/eventThumb.jpg",
+      "image": "/public/images/eventThumb.jpg",
       "github": "https://github.com/louisrowan/event-tracker",
       "learned": "This was my first exposure to using both an API and JSON, as well as using JQuery on the front-end to create a dynamic website. This was also my introduction to design and making a site look nice.",
       "technologies": [
@@ -14,7 +14,7 @@
     {
       "name": "Mathio Party",
       "teaser": "Multiplayer math games that track your data.",
-      "image": "./images/mathioThumb.jpg",
+      "image": "/public/images/mathioThumb.jpg",
       "description": "This week-long group project at Dev Bootcamp was a game suite with 4 math games that tracked data and used data visualization to show a user’s strengths and weaknesses. The games are all multi-player and data tracking is specific enough to pinpoint which areas need improvement.",
       "heroku": "http://mathio-party.herokuapp.com/",
       "github": "https://github.com/kaydenwilliams7/mathio-party",
@@ -27,7 +27,7 @@
       "name": "Rainy Day Science",
       "teaser": "Conduct Science experiments from common household items.",
       "description": "Award winning project at the 2016 San Francisco Science Hack Day, this was a decoupled Rails/React app that supplied a list of household items for a user to check. Users were then given a list of Science Experiments that could be conducted with the items they have, and given directions and an instructional video to conduct the experiment.",
-      "image": "./images/scienceThumb.jpg",
+      "image": "/public/images/scienceThumb.jpg",
       "github": "https://github.com/louisrowan/science-hack-react",
       "heroku": "http://rainy-day-science.herokuapp.com/#/",
       "learned": "This was my first experience working on a decoupled app, as well as my first time attempting to manipulate the DOM in React without using JQuery. Since the target user of the site is a child we also made sure to make the UI very user-friendly and easy to use, which was another new concept.",
@@ -41,7 +41,7 @@
       "description": "This project won first place at the 2016 SF Hack Against Violence, and featured an easy-to-use email form that dynamically edited the recipients based on a user’s needs. Users were given a list of possible community issues they were experiencing, such as excessive force or reckless driving by police. The idea was to create an easy way to hold police accountable and a venue for people to easily contact the appropriate party.",
       "github": "https://github.com/samuelparker/warrnt",
       "learned": "This group project was completed a week after first being exposed to Sinatra and web development, so it introduced an array of foreign concepts such as design, using JQuery, creating and email form as well as simply integrating a database into a project. ",
-      "image": "./images/warnntThumb.jpg",
+      "image": "/public/images/warnntThumb.jpg",
       "technologies": [
         "Sinatra", "Ruby", "JQuery", "Git"
       ]
@@ -53,7 +53,7 @@
       "github": "https://github.com/louisrowan/collegeFootball",
       "heroku": "http://collegefootballrecruiting.herokuapp.com/",
       "learned": "This was a deep dive into data visualization for me, and learning how to create responsive displays that could accommodate a changing dataset. I also used this as a chance to use Nokogiri and feel more comfortable parsing the web and navigating the DOM to find the correct information.",
-      "image": "./images/collegeThumb.jpg",
+      "image": "/public/images/collegeThumb.jpg",
       "technologies": [
         "Ruby", "Rails", "Highcharts", "SQL", "Nokogiri"
       ]
@@ -64,100 +64,100 @@
       "description": "This app is still a work in progress, uses D3 to showcase the world's tallest skyscrapers and to compare their heights both with each other and with other tall things.",
       "learned": "This app was my attempt to teach myself the basics of D3 such as bubble charts, donut charts, force layouts, working with SVGs and dealing with changing datasets.",
       "heroku": "http://skyscraper-d3.herokuapp.com/",
-      "image": "./images/skyscraperThumb.jpg",
+      "image": "/public/images/skyscraperThumb.jpg",
       "technologies": [
         "D3", "React", "Rails"
       ]
     }
   ],
   "images": {
-    "linkedin": "./images/linkedin.png",
-    "github": "./images/github.png",
-    "heroku": "./images/heroku.png",
-    "me": "./images/me.jpg",
-    "background": "./images/background.jpg",
-    "blogNav": "./images/blogNav.gif"
+    "linkedin": "/public/images/linkedin.png",
+    "github": "/public/images/github.png",
+    "heroku": "/public/images/heroku.png",
+    "me": "/public/images/me.jpg",
+    "background": "/public/images/background.jpg",
+    "blogNav": "/public/images/blogNav.gif"
   },
   "skills": [
     {
       "name": "C/C++",
       "type": "back",
-      "image": "./images/c.png",
+      "image": "/public/images/c.png",
       "posX": "left",
       "posY": "height/4"
     },
     {
       "name": "D3",
       "type": "front",
-      "image": "./images/d3.png",
+      "image": "/public/images/d3.png",
       "posX": "left",
       "posY": "height/4"
     },
     {
       "name": "Git/Github",
       "type": "other",
-      "image": "./images/github.png"
+      "image": "/public/images/github.png"
     },
     {
       "name": "HTML5/CSS3",
       "type": "front",
-      "image": "./images/htmlcss.png",
+      "image": "/public/images/htmlcss.png",
       "posX": "left",
       "posY": "2*height/4"
     },
     {
       "name": "JavaScript",
       "type": "front",
-      "image": "./images/javascript.png",
+      "image": "/public/images/javascript.png",
       "posX": "left",
       "posY": "3*height/4"
     },
     {
       "name": "Node/Webpack",
       "type": "back",
-      "image": "./images/node.jpg",
+      "image": "/public/images/node.jpg",
       "posX": "left",
       "posY": "2*height/4"
     },
     {
       "name": "Python",
       "type": "back",
-      "image": "./images/python.png",
+      "image": "/public/images/python.png",
       "posX": "left",
       "posY": "3*height/4"
     },
     {
       "name": "Rails",
       "type": "back",
-      "image": "./images/rails.png",
+      "image": "/public/images/rails.png",
       "posX": "rails",
       "posY": "height/4"
     },
     {
       "name": "React",
       "type": "front",
-      "image": "./images/react.png",
+      "image": "/public/images/react.png",
       "posX": "right",
       "posY": "height/4"
     },
     {
       "name": "Redux",
       "type": "front",
-      "image": "./images/redux.png",
+      "image": "/public/images/redux.png",
       "posX": "right",
       "posY": "2*height/4"
     },
     {
       "name": "Ruby",
       "type": "back",
-      "image": "./images/ruby.png",
+      "image": "/public/images/ruby.png",
       "posX": "right",
       "posY": "2*height/4"
     },
     {
       "name": "SQL",
       "type": "back",
-      "image": "./images/sql.png",
+      "image": "/public/images/sql.png",
       "posX": "right",
       "posY": "3*height/4"
     }

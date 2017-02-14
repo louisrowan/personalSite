@@ -197,9 +197,6 @@ const SkillsD3 = React.createClass({
         .classed('hiddenD3Text', true)
         .classed('shownD3Text', false)
     })
-
-    console.log('height = ', height)
-    console.log('width = ', width)
   },
   frontClick() {
     this.setState({ skillFront: 'd3Active', skillBack: '', skillAll: ''})
