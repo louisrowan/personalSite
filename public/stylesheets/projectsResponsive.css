@@ -4,6 +4,8 @@
     min-height: 100%;
   }
 
+/*  fullscreen view*/
+
 
 
 }
@@ -94,6 +96,24 @@
   }
 
   /*projects fullscreen*/
+  .fullscreenHalf, .projectFullscreenImgDiv {
+    width: 100%;
+  }
+
+  .projectFullscreenImgDiv {
+    height: 500px;
+    max-height: 500px;
+  }
+
+  .projectSkillsList li {
+    width: 25%;
+    font-size: 40px;
+  }
+
+  .fullscreenHalf p {
+    font-size: 30px;
+    line-height: 50px;
+  }
 
 
 
