@@ -47,6 +47,7 @@
 
 #blogPostsDiv p {
   font-size: 1.1em;
+  padding: 10px 0px;
 }
 
 #blogPostsDiv ol {
@@ -169,7 +170,7 @@
    display: flex;
    justify-content: center;
    flex-direction: column;
-   background: #fdefff;
+   background: whitesmoke;
 }
 
 .blogIndexDivs div:hover {
@@ -179,7 +180,6 @@
 
 .blogIndexDivs div h2 {
   font-size: 1.1em;
-  color: #69527B;
 }
 
 /*dropdown*/

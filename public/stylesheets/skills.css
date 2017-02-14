@@ -76,8 +76,8 @@
 }
 
 .d3Circle {
-  stroke-width: 1px;
-  animation: colorstroke 12000ms linear infinite;
+  stroke-width: 2px;
+  animation: colorstroke 8000ms linear infinite;
 }
 
 /*skillsTable*/

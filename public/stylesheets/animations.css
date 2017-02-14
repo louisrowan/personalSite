@@ -249,16 +249,16 @@
     stroke: red;
   }
   20% {
-    stroke: yellow;
+    stroke: #f442bf;
   }
   40% {
-    stroke: green;
+    stroke: purple;
   }
   60% {
     stroke: blue;
   }
   80% {
-    stroke: purple;
+    stroke: green;
   }
   100% {
     stroke: red;
