@@ -7,6 +7,7 @@ const data = require('json!../../public/data.json').skills
 const SkillsD3 = React.createClass({
   getInitialState() {
     return {
+      simulation: '',
       skillFront: '',
       skillBack: '',
       skillAll: 'd3Active'
@@ -90,24 +91,66 @@ const SkillsD3 = React.createClass({
 
     const forceYFront = d3Force.forceY((d) => {
       if (d.type === 'front') {
-        return height/2
+        // return height/2
+        if (d.name === 'D3') {
+          return 150
+        } else if (d.name === 'HTML5/CSS3') {
+          return 250
+        } else if (d.name === 'JavaScript') {
+          return 350
+        } else if (d.name === 'React') {
+          return 150
+        } else if (d.name === 'Redux') {
+          return 250
+        }
       } else {
         return 2*height
       }
     }).strength(0.05)
 
+    const forceXFront = d3Force.forceX((d) => {
+      if (d.name === 'React' || d.name === 'Redux') {
+        return 3*width/4
+      }
+      return width/5
+    })
+
     const forceYBack = d3Force.forceY((d) => {
       if (d.type === 'back') {
-        return height/2
+        // return height/2
+        if (d.name === 'C/C++') {
+          return 150
+        } else if (d.name === 'Node/Webpack') {
+          return 250
+        } else if (d.name === 'Python') {
+          return 350
+        } else if (d.name === 'Rails') {
+          return 450
+        } else if (d.name === 'Ruby') {
+          return 150
+        } else if (d.name === 'SQL') {
+          return 250
+        }
       } else {
         return 2*height
       }
     }).strength(0.05)
+
+    const forceXBack = d3Force.forceX((d) => {
+      if (d.name === 'Ruby' || d.name === 'SQL'){
+        return 3*width/4
+      } else {
+        return width/4        
+      }
+    })
+
 
     const simulation = d3Force.forceSimulation()
       .force('x', forceXNormal)
       .force('y', forceYNormal)
       .force('collide', d3Force.forceCollide((d) => radius + 2 ))
+
+    this.setState({ simulation })
 
     simulation.nodes(data)
       .on('tick', ticked)
@@ -120,6 +163,7 @@ const SkillsD3 = React.createClass({
 
     d3.select('#skillsFront').on('click', function() {
       simulation
+        .force('x', forceXFront)
         .force('y', forceYFront)
         .alphaTarget(0.5)
         .restart()
@@ -127,6 +171,7 @@ const SkillsD3 = React.createClass({
 
     d3.select('#skillsBack').on('click', function() {
       simulation
+        .force('x', forceXBack)
         .force('y', forceYBack)
         .alphaTarget(0.5)
         .restart()
@@ -134,11 +179,11 @@ const SkillsD3 = React.createClass({
 
     d3.select('#skillsAll').on('click', function() {
       simulation
+        .force('x', forceXNormal)
         .force('y', forceYNormal)
         .alphaTarget(0.5)
         .restart()
     })
-
   },
   frontClick() {
     this.setState({ skillFront: 'd3Active', skillBack: '', skillAll: ''})
@@ -148,6 +193,11 @@ const SkillsD3 = React.createClass({
   },
   allClick() {
     this.setState({ skillAll: 'd3Active', skillFront: '', skillBack: ''})
+  },
+  componentWillUnmount(){
+    var simulation = this.state.simulation
+    simulation.stop()
+
   },
   render() {
     return (
