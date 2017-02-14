@@ -18,12 +18,14 @@ const SkillsD3 = React.createClass({
     svg
       .attr('height', '100%')
       .attr('width', '100%')
+      .style('border', '1px solid red')
 
     const height = parseInt(svg.style('height'))
     const width = parseInt(svg.style('width'))
     const radius = d3.max([height, width])/16
 
-    const tooltip = d3.select('#d3SkillsContainer')
+
+    const tooltip = d3.select('#skillsSVGDiv')
       .append('div')
       .style('position', 'absolute')
       .style('z-index', '10')
@@ -190,6 +192,9 @@ const SkillsD3 = React.createClass({
         .classed('hiddenD3Text', true)
         .classed('shownD3Text', false)
     })
+
+    console.log('height = ', height)
+    console.log('width = ', width)
   },
   frontClick() {
     this.setState({ skillFront: 'd3Active', skillBack: '', skillAll: ''})
@@ -208,22 +213,24 @@ const SkillsD3 = React.createClass({
   render() {
     return (
       <div id='d3SkillsContainer'>
-      <div id='d3ButtonDiv'>
-      <button id='skillsFront'
-        className={'skillsButton ' + this.state.skillFront}
-        onClick={() => this.frontClick() }>
-        Front-End</button>
-      <button id='skillsAll'
-      className={'skillsButton ' + this.state.skillAll}
-      onClick={() => this.allClick() }>
-      All</button>
-      <button id='skillsBack'
-      className={'skillsButton ' + this.state.skillBack}
-      onClick={() => this.backClick() }>
-      Back-End</button>
-      </div>
+        <div id='d3ButtonDiv'>
+        <button id='skillsFront'
+          className={'skillsButton ' + this.state.skillFront}
+          onClick={() => this.frontClick() }>
+          Front-End</button>
+        <button id='skillsAll'
+        className={'skillsButton ' + this.state.skillAll}
+        onClick={() => this.allClick() }>
+        All</button>
+        <button id='skillsBack'
+        className={'skillsButton ' + this.state.skillBack}
+        onClick={() => this.backClick() }>
+        Back-End</button>
+        </div>
+        <div id='skillsSVGDiv'>
         <svg>
         </svg>
+        </div>
       </div>
     )
   }

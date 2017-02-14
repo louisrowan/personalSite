@@ -4,11 +4,16 @@
 }
 
 #d3SkillsContainer {
-  height: 600px;
   width: 90%;
   margin: auto;
   position: relative;
+}
+
+#skillsSVGDiv {
   overflow: hidden;
+  height: 600px;
+  width: 100%;
+  position: relative;
 }
 
 .tooltipDiv {
@@ -43,7 +48,7 @@
 }
 
 #d3ButtonDiv {
-  position: absolute;
+  /*position: absolute;*/
   width: 100%;
 }
 
