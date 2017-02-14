@@ -12,7 +12,7 @@
   position: fixed;
   height: 100%;
   width: 100%;
-  opacity: .2;
+  opacity: .3;
   z-index: -2;
 }
 
@@ -123,7 +123,7 @@
   position: fixed;
   top: 0;
   z-index: 1;
-  box-shadow: 0px 5px 5px #DFD7E4;
+  box-shadow: 0px 5px 5px #DFECF3;
 }
 
 #blogNavGif {
@@ -170,7 +170,7 @@
    display: flex;
    justify-content: center;
    flex-direction: column;
-   background: whitesmoke;
+   background: white;
 }
 
 .blogIndexDivs div:hover {
@@ -205,7 +205,7 @@
   top: 100px;
   width: 50%;
   right: 0;
-  background: whitesmoke;
+  background: white;
   border-left: 1px solid gray;
   border-bottom: 1px solid gray;
 }

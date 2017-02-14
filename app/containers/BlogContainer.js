@@ -3,7 +3,7 @@ const posts = require('json!../../public/blog/blog.json').posts
 const BlogPost = require('../components/BlogPost')
 const BlogNav = require('../components/BlogNav')
 const BlogHeader = require('../components/BlogHeader')
-const background = require('json!../../public/data.json').images.background
+const background = require('json!../../public/data.json').images.cloud_background
 const ReactCSSTransitionGroup = require('react-addons-css-transition-group')
 
 

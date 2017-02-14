@@ -39,6 +39,10 @@
     font-size: 14px;
   }
 
+  #blogDropdownList {
+    min-width: 400px;
+  }
+
 
 }
 
