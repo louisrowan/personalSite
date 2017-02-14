@@ -23,7 +23,7 @@ const ProjectsFullscreen = React.createClass({
               </tr>
       )
     } else {
-      githubContent = ''
+      githubContent = <tr></tr>
     }
 
     let herokuContent;
@@ -42,7 +42,7 @@ const ProjectsFullscreen = React.createClass({
                 </td>
               </tr>
               )} else {
-        herokuContent = ''
+        herokuContent = <tr></tr>
       }
 
     return (
