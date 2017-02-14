@@ -67,7 +67,11 @@
 }
 
 .contactTable tr:hover td:first-child {
-  animation: contact-hover 400ms linear forwards;
+  animation: contact-hover 200ms linear forwards;
+}
+
+.contactTable td, .contactTable a {
+  overflow: visible;
 }
 
 .contactTable a:hover {
@@ -98,7 +102,7 @@
 
 .contactPhone:before {
   content: "\260E";
-  font-size: 2em;
+  font-size: 1.8em;
   color: black;
 }
 
