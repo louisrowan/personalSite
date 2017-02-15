@@ -1,14 +1,11 @@
 const React = require('react')
 const image = require('json!../../public/data.json').images.me
 const { Link } = require('react-router')
-const LinkPopup = require('../components/LinkPopup')
-
 
 const MainContainer = React.createClass({
   render(){
     return (
       <div>
-      <LinkPopup />
         <h1>Hello,</h1>
 
         <div className='mainImg'>
