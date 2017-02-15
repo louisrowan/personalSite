@@ -56,6 +56,14 @@ p {
   min-width: 100%;
 }
 
+#layoutBackground > div {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  background: rgba(0, 0, 0, .5);
+}
+
 .headerContainer {
   width: 100%;
   min-height: 1000px;

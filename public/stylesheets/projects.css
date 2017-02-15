@@ -159,6 +159,10 @@
   transition: background 200ms ease-in;
 }
 
+.inactiveCircle:hover {
+  cursor: pointer;
+}
+
 .activeCircle {
   background: purple;
   transition: background 200ms ease-in;

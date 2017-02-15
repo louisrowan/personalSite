@@ -84,25 +84,68 @@
 }
 
 /*Rotating active project thumb on ProjectsContainer.js*/
-.projectFlip-enter {
-  transform: rotateY(-90deg);
+.projectFlip-right-enter {
+  transform: translateX(-50%) scale(.2);
 }
 
-.projectFlip-enter-active {
-  transform: rotateY(0deg);
-  transition: transform 400ms ease-out 200ms;
+.projectFlip-right-enter-active {
+  transform: translateX(0%) scale(1);
+  transition: transform 500ms ease-out;
 }
 
-.projectFlip-leave {
-  transform: rotateY(0deg);
+.projectFlip-right-leave {
+  transform: translateX(0%) scale(1);
 }
 
-.projectFlip-leave-active {
-  transform: rotateY(90deg);
+.projectFlip-right-leave-active {
+  transform: translateX(50%) scale(.2);
   box-shadow: 0px 0px 10px 5px purple;
   transition:
-    transform 200ms ease-in,
-    box-shadow 200ms ease-in;
+    transform 400ms ease-in,
+    box-shadow 400ms ease-in;
+}
+
+.projectFlip-left-enter {
+  transform: translateX(50%) scale(.2);
+}
+
+.projectFlip-left-enter-active {
+  transform: translateX(0%) scale(1);
+  transition: transform 500ms ease-out;
+}
+
+.projectFlip-left-leave {
+  transform: translateX(0%) scale(1);
+}
+
+.projectFlip-left-leave-active {
+  transform: translateX(-50%) scale(.2);
+  box-shadow: 0px 0px 10px 5px purple;
+  transition:
+    transform 400ms ease-in,
+    box-shadow 400ms ease-in;
+}
+
+.projectFlip-fade-enter {
+/*  transform: scale(.2);*/
+  opacity: .3;
+}
+
+.projectFlip-fade-enter-active {
+/*  transform: scale(1);*/
+  opacity: 1;
+  transition: opacity 400ms ease-out 200ms;
+}
+
+.projectFlip-fade-leave {
+/*  transform: translateX(0%) scale(1);*/
+  opacity: 1;
+}
+
+.projectFlip-fade-leave-active {
+/*  transform: translateX(-50%) scale(.2);*/
+  opacity: 0;
+  transition: opacity 200ms;
 }
 
 /*Zooming in on fullscreen project on ProjectsContainer*/

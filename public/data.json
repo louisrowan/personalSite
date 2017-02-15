@@ -78,6 +78,7 @@
     "background": "/public/images/background.jpg",
     "code_background": "/public/images/code_background.jpg",
     "cloud_background": "/public/images/cloud_background.jpg",
+    "background_city": "/public/images/background_city.jpg",
     "blogNav": "/public/images/blogNav.gif"
   },
   "skills": [
