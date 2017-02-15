@@ -26,7 +26,6 @@
   border-radius: 50%;
   overflow: hidden;
   margin: auto;
-  animation: picture-rotate 5s linear infinite;
 }
 
 .mainImg img {
