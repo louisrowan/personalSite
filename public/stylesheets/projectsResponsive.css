@@ -74,11 +74,11 @@
     min-width: 100%;
   }
 
-  .projectsThumb h2 {
+  .projectsThumb h2, .hoverProjectsThumb h2 {
     font-size: 50px;
   }
 
-  .projectsThumb p {
+  .projectsThumb p, .hoverProjectsThumb p {
     font-size: 35px;
   }
 
