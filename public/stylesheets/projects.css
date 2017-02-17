@@ -83,8 +83,12 @@
 
 .projectsThumbHeader {
   padding: 10px;
-  font-size: 20px;
 }
+
+.projectsThumbHeader p {
+  text-align: center;
+}
+
 
 .hiddenThumbDiv {
   position: absolute;
@@ -133,7 +137,7 @@
   padding: 40px;
   font-size: 1.5em;
   width: 33.3%;
-  font-family: 'Marcellus', Serif;
+  font-family: 'Cousine', Serif;
 }
 
 .fullscreenHalf {
@@ -147,11 +151,7 @@
 }
 
 .fullscreenHalf p {
-  font-size: 20px;
-  line-height: 35px;
-  padding: 20px;
-  text-align: left;
-  text-indent: 80px;
+
 }
 
 .inactiveCircle {

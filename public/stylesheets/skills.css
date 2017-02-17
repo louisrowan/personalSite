@@ -33,7 +33,7 @@
   border: 15px solid transparent;
   animation: tooltip-animation 1s linear alternate infinite;
   position: absolute;
-  top: 36px;
+  top: 30px;
   left: 5px;
   z-index: -1;
 }
@@ -58,8 +58,9 @@
   background: rgba(244, 245, 247, .5);
   border: none;
   width: 200px;
-  font-size: 20px;
+  font-size: 16px;
   border-radius: 5px;
+  box-shadow: 0px 0px 1px black;
 }
 
 .skillsButton:focus {
@@ -72,7 +73,7 @@
 }
 
 .d3Active {
-  background: lightblue;
+  background: #cccdce;
 }
 
 .d3Circle {
@@ -80,71 +81,16 @@
   animation: colorstroke 8000ms linear infinite;
 }
 
-/*skillsTable*/
-/*#skillsList {
-  margin: 10px;
-  background: rgba(243, 220, 244, 1);
-}
 
-#skillsList h2 {
-  text-align: left;
-  clear: both;
-    background: linear-gradient(to right,
-    rgba(254, 244, 255, 1),
-    rgba(243, 220, 244, 1)
-    
-  );
-}
-
-#skillsList ul {
-  list-style-type: none;
-  display: table;
-}
-#skillsList li {
-  font-family: 'Krona One', sans-serif;
-  float: left;
-  padding: 20px;
-  min-width: 225px;
-  max-width: 225px;
-  font-size: 1.1em;
-  height: 100px;
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-#skillsList p {
-  clear: both;
-}
-*/
-
-.skillsTableDiv {
-  width: 33.3%;
-  float: left;
-  min-width: 250px;
-}
-
-.skillsTableDiv h3 {
-  font-size: 30px;
-}
-
-.skillsTableDiv ul {
-  list-style-type: none;
-}
-
-.skillsTableDiv li {
-  font-size: 20px;
-  padding: 5px;
-}
 
 .hiddenD3Text {
-  font-size: 1.5em;
+  font-size: 18px;
   opacity: 0;
   transition: opacity 1000ms linear;
 }
 
 .shownD3Text {
-  font-size: 1.5em;
+  font-size: 18px;
   opacity: 1;
   transition: opacity 2000ms linear 1000ms;
 }

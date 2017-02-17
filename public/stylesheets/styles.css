@@ -80,7 +80,8 @@ p {
   background: white;
   width: 100%;
   min-height: 100%;
-  box-shadow: 0px 0px 50px 5px black, 0px 0px 10px 2px black inset;
+  border-radius: 2px;
+  box-shadow: 0px 0px 10px black;
   padding: 10px;
   margin-bottom: 10px;
 }
