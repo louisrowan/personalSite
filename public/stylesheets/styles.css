@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Khula', Serif;
+  font-family: 'Lustria', Sans-Serif;
 }
 
 a {
@@ -18,19 +18,22 @@ a:visited {
 h1 {
   padding: 20px;
   color: black;
-  font-family: 'Marcellus';
+  font-family: 'Marcellus', Serif;
   font-size: 3em;
   text-shadow: 1px 1px 1px black;
 }
 
 h2 {
   padding: 10px;
-  font-family: 'Cousine';
+  font-family: 'Cousine', Sans-Serif;
 }
 
 p {
-  padding: 10px;
-  font-family: 'Lustria';
+  font-family: 'Lustria', Sans-Serif;
+  font-size: 16px;
+  padding: 15px 20px;
+  text-align: left;
+  line-height: 40px;
 }
 
 .homeContainer {
