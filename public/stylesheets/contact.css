@@ -3,7 +3,8 @@
   padding: 10px;
   margin: 5px;
   background: white;
-  box-shadow: 0px 0px 2px 1px black inset;
+  box-shadow: .5px .5px .5px black inset;
+  font-size: 18px;
 }
 
 .contactTextarea {
@@ -11,11 +12,12 @@
   height: 200px;
   padding: 10px;
   background: white;
-  box-shadow: 0px 0px 2px 1px black inset;
+  box-shadow: .5px .5px 1px black inset;
+  font-size: 18px;
 }
 
 .contactSubmit {
-  font-family: 'Cousine';
+  font-family: 'marcellus', serif;
   width: 200px;
   padding: 10px;
   font-size: 1.2em;
@@ -42,6 +44,10 @@
   min-width: 550px;
   padding: 10px;
   vertical-align: top;
+}
+
+.contactHalfscreen h2 {
+  font-family: 'marcellus', serif;
 }
 
 .formSuccess {

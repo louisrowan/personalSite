@@ -135,7 +135,7 @@
 .projectSkillsList li {
   float: left;
   padding: 40px;
-  font-size: 1.5em;
+  font-size: 20px;
   width: 33.3%;
   font-family: 'Cousine', Serif;
 }
@@ -147,7 +147,7 @@
 }
 
 .fullscreenHalf h2 {
-
+  padding: 0px;
 }
 
 .fullscreenHalf p {
