@@ -60,6 +60,10 @@
     font-size: 40px;
   }
 
+  #blogNav td a {
+    font-size: 45px;
+  }
+
   #blogBackground, #blogPostsDiv {
     margin-top: 200px;
   }
@@ -89,10 +93,11 @@
 
   #blogPostsDiv article p {
     font-size: 35px;
+    line-height: 70px;
   }
 
   #blogPostsDiv article ol {
-    font-size: 30px;
+    font-size: 35px;
   }
 
   #blogPostsDiv img {

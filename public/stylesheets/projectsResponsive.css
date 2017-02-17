@@ -79,7 +79,7 @@
   }
 
   .projectsThumb p {
-    font-size: 40px;
+    font-size: 35px;
   }
 
 /*  projects carousel circles*/
@@ -134,12 +134,12 @@
   }
 
   .projectSkillsList li {
-    width: 25%;
-    font-size: 40px;
+    width: 33.3%;
+    font-size: 30px;
   }
 
   .fullscreenHalf p {
-    font-size: 30px;
+    font-size: 15px;
     line-height: 80px;
   }
 

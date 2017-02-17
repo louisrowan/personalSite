@@ -19,6 +19,10 @@
     padding: 20px;
   }
 
+  p {
+    line-height: 75px;
+  }
+
   #layoutDiv {
     height: 100vh;
   }
