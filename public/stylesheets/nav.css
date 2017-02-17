@@ -7,8 +7,8 @@ nav td, nav a, nav a:visited {
   color: white;
   font-weight: none;
   text-align: center;
-  font-size: 1.3em;
-  font-family: 'Merriweather Sans';
+  font-size: 24px;
+  font-family: 'marcellus', Serif;
   transition: font-size 100ms ease-in, text-shadow 200ms ease-in;
 }
 
