@@ -78,6 +78,10 @@
 	__webpack_require__(347);
 	__webpack_require__(349);
 	__webpack_require__(351);
+	__webpack_require__(353);
+	__webpack_require__(355);
+	__webpack_require__(357);
+	__webpack_require__(359);
 
 	var App = React.createClass({
 	  displayName: 'App',
@@ -26429,7 +26433,7 @@
 	var React = __webpack_require__(2);
 	var Home = __webpack_require__(235);
 	var Nav = __webpack_require__(323);
-	var background = __webpack_require__(238).images.background;
+	var background = __webpack_require__(238).images.background_city;
 
 	var HomeContainer = React.createClass({
 	  displayName: 'HomeContainer',
@@ -26448,7 +26452,8 @@
 	      React.createElement(
 	        'div',
 	        { id: 'layoutBackground' },
-	        React.createElement('img', { src: background })
+	        React.createElement('img', { src: background }),
+	        React.createElement('div', null)
 	      ),
 	      React.createElement(Nav, { handleClick: this.handleClick }),
 	      React.createElement(Home, { content: this.state.content })
@@ -26686,12 +26691,7 @@
 	          { className: 'emp' },
 	          'BA in Economics'
 	        ),
-	        ', but more recently found a passion in the world of development. I am currently searching for the right opportunity, one where I can be a valued member of a team and be put into a position to continue learning and improving every day.'
-	      ),
-	      React.createElement(
-	        'p',
-	        { className: 'mainParagraph' },
-	        'I have started a ',
+	        ', but more recently found a passion in the world of development. I have started a ',
 	        React.createElement(
 	          'span',
 	          { className: 'emp' },
@@ -26703,9 +26703,13 @@
 	        ),
 	        'as a place to journal some of the new ideas and concepts that I\'m learning. My last entry was about creating an interactive bubble chart in D3, ',
 	        React.createElement(
-	          Link,
-	          { to: '/blog/d3bubblechart' },
-	          'check it out!'
+	          'span',
+	          { className: 'emp' },
+	          React.createElement(
+	            Link,
+	            { to: '/blog/d3bubblechart' },
+	            'check it out!'
+	          )
 	        )
 	      )
 	    );
@@ -26818,18 +26822,25 @@
 			"heroku": "./images/heroku.png",
 			"me": "./images/me.jpg",
 			"background": "./images/background.jpg",
+			"code_background": "./images/code_background.jpg",
+			"cloud_background": "./images/cloud_background.jpg",
+			"background_city": "./images/background_city.jpg",
 			"blogNav": "./images/blogNav.gif"
 		},
 		"skills": [
 			{
 				"name": "C/C++",
 				"type": "back",
-				"image": "./images/c.png"
+				"image": "./images/c.png",
+				"posX": "left",
+				"posY": "height/4"
 			},
 			{
 				"name": "D3",
 				"type": "front",
-				"image": "./images/d3.png"
+				"image": "./images/d3.png",
+				"posX": "left",
+				"posY": "height/4"
 			},
 			{
 				"name": "Git/Github",
@@ -26839,47 +26850,65 @@
 			{
 				"name": "HTML5/CSS3",
 				"type": "front",
-				"image": "./images/htmlcss.png"
+				"image": "./images/htmlcss.png",
+				"posX": "left",
+				"posY": "2*height/4"
 			},
 			{
 				"name": "JavaScript",
 				"type": "front",
-				"image": "./images/javascript.png"
+				"image": "./images/javascript.png",
+				"posX": "left",
+				"posY": "3*height/4"
 			},
 			{
 				"name": "Node/Webpack",
 				"type": "back",
-				"image": "./images/node.jpg"
+				"image": "./images/node.jpg",
+				"posX": "left",
+				"posY": "2*height/4"
 			},
 			{
 				"name": "Python",
 				"type": "back",
-				"image": "./images/python.png"
+				"image": "./images/python.png",
+				"posX": "left",
+				"posY": "3*height/4"
 			},
 			{
 				"name": "Rails",
 				"type": "back",
-				"image": "./images/rails.png"
+				"image": "./images/rails.png",
+				"posX": "rails",
+				"posY": "height/4"
 			},
 			{
 				"name": "React",
 				"type": "front",
-				"image": "./images/react.png"
+				"image": "./images/react.png",
+				"posX": "right",
+				"posY": "height/4"
 			},
 			{
 				"name": "Redux",
 				"type": "front",
-				"image": "./images/redux.png"
+				"image": "./images/redux.png",
+				"posX": "right",
+				"posY": "2*height/4"
 			},
 			{
 				"name": "Ruby",
 				"type": "back",
-				"image": "./images/ruby.png"
+				"image": "./images/ruby.png",
+				"posX": "right",
+				"posY": "2*height/4"
 			},
 			{
 				"name": "SQL",
 				"type": "back",
-				"image": "./images/sql.png"
+				"image": "./images/sql.png",
+				"posX": "right",
+				"posY": "3*height/4"
 			}
 		]
 	};
@@ -26905,8 +26934,7 @@
 	        null,
 	        'Skills'
 	      ),
-	      React.createElement(SkillsD3, null),
-	      React.createElement(SkillsTable, null)
+	      React.createElement(SkillsD3, null)
 	    );
 	  }
 	});
@@ -26928,6 +26956,7 @@
 	  displayName: 'SkillsD3',
 	  getInitialState: function getInitialState() {
 	    return {
+	      simulation: '',
 	      skillFront: '',
 	      skillBack: '',
 	      skillAll: 'd3Active'
@@ -26939,9 +26968,15 @@
 
 	    var height = parseInt(svg.style('height'));
 	    var width = parseInt(svg.style('width'));
-	    var radius = width / 16;
+	    // const radius = d3.max([height, width])/16
+	    var radius;
+	    if (width > height) {
+	      radius = height / 10;
+	    } else {
+	      radius = height / 15;
+	    }
 
-	    var tooltip = d3.select('#d3SkillsContainer').append('div').style('position', 'absolute').style('z-index', '10').style('visibility', 'hidden').classed('tooltipDiv', 'true').text('JavaScript').style('background', 'black').style('color', 'white');
+	    var tooltip = d3.select('#skillsSVGDiv').append('div').style('position', 'absolute').style('z-index', '10').style('visibility', 'hidden').classed('tooltipDiv', 'true').text('JavaScript').style('background', 'black').style('color', 'white');
 
 	    var nodes = svg.selectAll('circle').data(data).enter().append('g');
 
@@ -26954,6 +26989,14 @@
 	    var circles = nodes.append('circle').attr('r', radius).style('fill', function (d) {
 	      return 'url(#' + d.name + ')';
 	    }).classed('d3Circle', true);
+
+	    var circleDivs = nodes.append('text').attr('dx', function (d) {
+	      return d.posX === 'left' ? width / 5 + 100 : 3.5 * width / 5 + 100;
+	    }).attr('dy', function (d) {
+	      return eval(d.posY);
+	    }).text(function (d) {
+	      return d.name;
+	    }).classed('hiddenD3Text', true).classed('shownD3Text', false);
 
 	    circles.on('mouseover', function () {
 	      d3.select(this).classed('d3BubbleHover', true);
@@ -26984,23 +27027,41 @@
 
 	    var forceYFront = d3Force.forceY(function (d) {
 	      if (d.type === 'front') {
-	        return height / 2;
+	        return eval(d.posY);
 	      } else {
 	        return 2 * height;
 	      }
 	    }).strength(0.05);
 
+	    var forceXFront = d3Force.forceX(function (d) {
+	      if (d.posX === 'left') {
+	        return width / 5;
+	      } else {
+	        return 3.5 * width / 5;
+	      }
+	    });
+
 	    var forceYBack = d3Force.forceY(function (d) {
 	      if (d.type === 'back') {
-	        return height / 2;
+	        return eval(d.posY);
 	      } else {
 	        return 2 * height;
 	      }
 	    }).strength(0.05);
+
+	    var forceXBack = d3Force.forceX(function (d) {
+	      if (d.posX === 'left') {
+	        return width / 5;
+	      } else {
+	        return 3.5 * width / 5;
+	      }
+	    });
 
 	    var simulation = d3Force.forceSimulation().force('x', forceXNormal).force('y', forceYNormal).force('collide', d3Force.forceCollide(function (d) {
 	      return radius + 2;
 	    }));
+
+	    this.setState({ simulation: simulation });
 
 	    simulation.nodes(data).on('tick', ticked);
 
@@ -27013,15 +27074,29 @@
 	    }
 
 	    d3.select('#skillsFront').on('click', function () {
-	      simulation.force('y', forceYFront).alphaTarget(0.5).restart();
+	      simulation.force('x', forceXFront).force('y', forceYFront).alphaTarget(0.5).restart();
+
+	      circleDivs.classed('hiddenD3Text', function (d) {
+	        return d.type === 'front' ? false : true;
+	      }).classed('shownD3Text', function (d) {
+	        return d.type === 'back' ? false : true;
+	      });
 	    });
 
 	    d3.select('#skillsBack').on('click', function () {
-	      simulation.force('y', forceYBack).alphaTarget(0.5).restart();
+	      simulation.force('x', forceXBack).force('y', forceYBack).alphaTarget(0.5).restart();
+
+	      circleDivs.classed('hiddenD3Text', function (d) {
+	        return d.type === 'back' ? false : true;
+	      }).classed('shownD3Text', function (d) {
+	        return d.type === 'front' ? false : true;
+	      });
 	    });
 
 	    d3.select('#skillsAll').on('click', function () {
-	      simulation.force('y', forceYNormal).alphaTarget(0.5).restart();
+	      simulation.force('x', forceXNormal).force('y', forceYNormal).alphaTarget(0.5).restart();
+
+	      circleDivs.classed('hiddenD3Text', true).classed('shownD3Text', false);
 	    });
 	  },
 	  frontClick: function frontClick() {
@@ -27032,6 +27107,10 @@
 	  },
 	  allClick: function allClick() {
 	    this.setState({ skillAll: 'd3Active', skillFront: '', skillBack: '' });
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    var simulation = this.state.simulation;
+	    simulation.stop();
 	  },
 	  render: function render() {
 	    var _this = this;
@@ -27070,7 +27149,11 @@
 	          'Back-End'
 	        )
 	      ),
-	      React.createElement('svg', null)
+	      React.createElement(
+	        'div',
+	        { id: 'skillsSVGDiv' },
+	        React.createElement('svg', null)
+	      )
 	    );
 	  }
 	});
@@ -42085,36 +42168,47 @@
 	      'section',
 	      { id: 'skillsList' },
 	      React.createElement(
-	        'h2',
-	        null,
-	        'Front-End'
+	        'div',
+	        { className: 'skillsTableDiv' },
+	        React.createElement(
+	          'h3',
+	          null,
+	          'Front-End'
+	        ),
+	        React.createElement(
+	          'ul',
+	          null,
+	          frontLIs
+	        )
 	      ),
 	      React.createElement(
-	        'ul',
-	        null,
-	        frontLIs
+	        'div',
+	        { className: 'skillsTableDiv' },
+	        React.createElement(
+	          'h3',
+	          null,
+	          'Back-End'
+	        ),
+	        React.createElement(
+	          'ul',
+	          null,
+	          backLIs
+	        )
 	      ),
 	      React.createElement(
-	        'h2',
-	        null,
-	        'Back-End'
-	      ),
-	      React.createElement(
-	        'ul',
-	        null,
-	        backLIs
-	      ),
-	      React.createElement(
-	        'h2',
-	        null,
-	        'Other'
-	      ),
-	      React.createElement(
-	        'ul',
-	        null,
-	        otherLIs
-	      ),
-	      React.createElement('h2', null)
+	        'div',
+	        { className: 'skillsTableDiv' },
+	        React.createElement(
+	          'h3',
+	          null,
+	          'Other'
+	        ),
+	        React.createElement(
+	          'ul',
+	          null,
+	          otherLIs
+	        )
+	      )
 	    );
 	  }
 	});
@@ -42194,7 +42288,8 @@
 	  getInitialState: function getInitialState() {
 	    return {
 	      projectIndex: this.props.index,
-	      projects: this.props.data
+	      projects: this.props.data,
+	      transition: ''
 	    };
 	  },
 	  handleScroll: function handleScroll(val) {
@@ -42204,8 +42299,18 @@
 	    } else if (index >= this.state.projects.length) {
 	      index = 0;
 	    }
+	    if (val > 0) {
+	      this.setState({ transition: 'projectFlip-right' });
+	    } else {
+	      this.setState({ transition: 'projectFlip-left' });
+	    }
 	    this.setState({ projectIndex: index });
 	    this.props.updateIndex(index);
+	  },
+	  handleCircleClick: function handleCircleClick(e, i) {
+	    this.setState({ transition: 'projectFlip-fade' });
+	    this.setState({ projectIndex: i });
+	    this.props.updateIndex(i);
 	  },
 	  render: function render() {
 	    var _this = this;
@@ -42219,7 +42324,9 @@
 	        if (i === _this.state.projectIndex) {
 	          return React.createElement('div', { key: i, className: 'activeCircle listCircle' });
 	        } else {
-	          return React.createElement('div', { key: i, className: 'inactiveCircle listCircle' });
+	          return React.createElement('div', { onClick: function onClick(e) {
+	              return _this.handleCircleClick(e, i);
+	            }, key: i, className: 'inactiveCircle listCircle' });
 	        }
 	      })
 	    );
@@ -42232,21 +42339,21 @@
 	        null,
 	        'Projects'
 	      ),
-	      React.createElement('div', { className: 'leftArrowDiv arrowDiv', onClick: function onClick() {
-	          return _this.handleScroll(-1);
-	        } }),
 	      React.createElement(
 	        'div',
 	        { className: 'projectDiv' },
 	        React.createElement(
 	          ReactCSSTransitionGroup,
 	          {
-	            transitionName: 'projectFlip',
+	            transitionName: this.state.transition,
 	            transitionEnterTimeout: 400,
 	            transitionLeaveTimeout: 200 },
 	          React.createElement(ProjectsThumb, { key: shownProject.name, expand: this.props.showFullscreen, data: shownProject })
 	        )
 	      ),
+	      React.createElement('div', { className: 'leftArrowDiv arrowDiv', onClick: function onClick() {
+	          return _this.handleScroll(-1);
+	        } }),
 	      React.createElement('div', { className: 'rightArrowDiv arrowDiv', onClick: function onClick() {
 	          return _this.handleScroll(1);
 	        } }),
@@ -44483,7 +44590,6 @@
 	  render: function render() {
 	    var _this = this;
 
-	    console.log('show');
 	    var data = this.props.data;
 
 	    var githubContent = void 0;
@@ -44515,7 +44621,7 @@
 	        )
 	      );
 	    } else {
-	      githubContent = '';
+	      githubContent = React.createElement('tr', null);
 	    }
 
 	    var herokuContent = void 0;
@@ -44547,7 +44653,7 @@
 	        )
 	      );
 	    } else {
-	      herokuContent = '';
+	      herokuContent = React.createElement('tr', null);
 	    }
 
 	    return React.createElement(
@@ -44638,7 +44744,6 @@
 	  getInitialState: function getInitialState() {
 	    return {
 	      submitted: false,
-	      showForm: false,
 	      email: '',
 	      message: '',
 	      phone: ''
@@ -44656,9 +44761,6 @@
 	    phone = phone.target.value;
 	    this.setState({ phone: phone });
 	  },
-	  handleShowForm: function handleShowForm() {
-	    this.setState({ showForm: !this.state.showForm });
-	  },
 	  handleSubmit: function handleSubmit(e) {
 	    e.preventDefault();
 	    var email = this.state.email;
@@ -44671,15 +44773,12 @@
 	      url: "http://formspree.io/louis.rowan@icloud.com",
 	      data: { email: email, message: message, phone: phone }
 	    }).then(function (res) {
-	      console.log(res);
 	      that.setState({ submitted: true });
 	    }).catch(function (err) {
 	      console.log(err);
-	      console.log('error');
 	    });
 	  },
 	  render: function render() {
-	    var _this = this;
 
 	    var success = void 0;
 	    if (this.state.submitted) {
@@ -44687,7 +44786,7 @@
 	        'div',
 	        { className: 'formSuccess' },
 	        React.createElement(
-	          'h1',
+	          'h2',
 	          null,
 	          'Message sent, Thanks!'
 	        )
@@ -44696,19 +44795,14 @@
 	      success = '';
 	    }
 
-	    var form = void 0;
-	    if (this.state.showForm) {
-	      form = React.createElement(ContactForm, {
-	        handleEmailChange: this.handleEmailChange,
-	        handlePhoneChange: this.handlePhoneChange,
-	        handleMessageChange: this.handleMessageChange,
-	        handleSubmit: this.handleSubmit,
-	        handleShowForm: this.handleShowForm,
-	        submitted: this.state.submitted
-	      });
-	    } else {
-	      form = '';
-	    }
+	    var form = React.createElement(ContactForm, {
+	      handleEmailChange: this.handleEmailChange,
+	      handlePhoneChange: this.handlePhoneChange,
+	      handleMessageChange: this.handleMessageChange,
+	      handleSubmit: this.handleSubmit,
+	      handleShowForm: this.handleShowForm,
+	      submitted: this.state.submitted
+	    });
 
 	    return React.createElement(
 	      'div',
@@ -44720,128 +44814,140 @@
 	      ),
 	      React.createElement(
 	        'div',
-	        null,
+	        { className: 'contactHalfscreen' },
 	        React.createElement(
-	          'table',
-	          { className: 'contactTable' },
+	          'h2',
+	          null,
+	          'Quick Links'
+	        ),
+	        React.createElement(
+	          'div',
+	          null,
 	          React.createElement(
-	            'tbody',
-	            null,
+	            'table',
+	            { className: 'contactTable' },
 	            React.createElement(
-	              'tr',
+	              'tbody',
 	              null,
 	              React.createElement(
-	                'td',
+	                'tr',
 	                null,
 	                React.createElement(
-	                  'a',
-	                  { className: 'iconLink', href: 'tel:6173653595' },
-	                  React.createElement('div', { className: 'contactPhone contactIMG' })
-	                )
-	              ),
-	              React.createElement(
-	                'td',
-	                null,
-	                React.createElement(
-	                  'a',
-	                  { href: 'tel:6173653595' },
-	                  '617-365-3595'
-	                )
-	              )
-	            ),
-	            React.createElement(
-	              'tr',
-	              null,
-	              React.createElement(
-	                'td',
-	                null,
-	                React.createElement(
-	                  'a',
-	                  { className: 'iconLink', target: '_blank', href: 'https://www.linkedin.com/in/louis-rowan-54869986' },
+	                  'td',
+	                  null,
 	                  React.createElement(
-	                    'div',
-	                    { className: 'contactIMG' },
-	                    React.createElement('img', { src: data.linkedin })
+	                    'a',
+	                    { className: 'iconLink', href: 'tel:6173653595' },
+	                    React.createElement('div', { className: 'contactPhone contactIMG' })
+	                  )
+	                ),
+	                React.createElement(
+	                  'td',
+	                  null,
+	                  React.createElement(
+	                    'a',
+	                    { href: 'tel:6173653595' },
+	                    '617-365-3595'
 	                  )
 	                )
 	              ),
 	              React.createElement(
-	                'td',
+	                'tr',
 	                null,
 	                React.createElement(
-	                  'a',
-	                  { target: '_blank', href: 'https://www.linkedin.com/in/louis-rowan-54869986' },
-	                  'LinkedIn'
-	                )
-	              )
-	            ),
-	            React.createElement(
-	              'tr',
-	              null,
-	              React.createElement(
-	                'td',
-	                null,
-	                React.createElement(
-	                  'a',
-	                  { className: 'iconLink', target: '_blank', href: 'https://github.com/louisrowan' },
+	                  'td',
+	                  null,
 	                  React.createElement(
-	                    'div',
-	                    { className: 'contactIMG' },
-	                    React.createElement('img', { src: data.github })
+	                    'a',
+	                    { className: 'iconLink', target: '_blank', href: 'https://www.linkedin.com/in/louis-rowan-54869986' },
+	                    React.createElement(
+	                      'div',
+	                      { className: 'contactIMG' },
+	                      React.createElement('img', { src: data.linkedin })
+	                    )
+	                  )
+	                ),
+	                React.createElement(
+	                  'td',
+	                  null,
+	                  React.createElement(
+	                    'a',
+	                    { target: '_blank', href: 'https://www.linkedin.com/in/louis-rowan-54869986' },
+	                    'LinkedIn'
 	                  )
 	                )
 	              ),
 	              React.createElement(
-	                'td',
+	                'tr',
 	                null,
 	                React.createElement(
-	                  'a',
-	                  { target: '_blank', href: 'https://github.com/louisrowan' },
-	                  'Github'
-	                )
-	              )
-	            ),
-	            React.createElement(
-	              'tr',
-	              null,
-	              React.createElement(
-	                'td',
-	                null,
+	                  'td',
+	                  null,
+	                  React.createElement(
+	                    'a',
+	                    { className: 'iconLink', target: '_blank', href: 'https://github.com/louisrowan' },
+	                    React.createElement(
+	                      'div',
+	                      { className: 'contactIMG' },
+	                      React.createElement('img', { src: data.github })
+	                    )
+	                  )
+	                ),
 	                React.createElement(
-	                  'a',
-	                  { className: 'iconLink', href: 'mailto:louis.rowan@icloud.com?Subject=Great%20Website!', target: '_top' },
-	                  React.createElement('div', { className: 'contactEmail contactIMG' })
+	                  'td',
+	                  null,
+	                  React.createElement(
+	                    'a',
+	                    { target: '_blank', href: 'https://github.com/louisrowan' },
+	                    'Github'
+	                  )
 	                )
 	              ),
 	              React.createElement(
-	                'td',
+	                'tr',
 	                null,
 	                React.createElement(
-	                  'a',
-	                  { href: 'mailto:louis.rowan@icloud.com?Subject=Great%20Website!', target: '_top' },
-	                  'louis.rowan@icloud.com'
+	                  'td',
+	                  null,
+	                  React.createElement(
+	                    'a',
+	                    { className: 'iconLink', href: 'mailto:louis.rowan@icloud.com?Subject=Great%20Website!', target: '_top' },
+	                    React.createElement('div', { className: 'contactEmail contactIMG' })
+	                  )
+	                ),
+	                React.createElement(
+	                  'td',
+	                  null,
+	                  React.createElement(
+	                    'a',
+	                    { href: 'mailto:louis.rowan@icloud.com?Subject=Great%20Website!', target: '_top' },
+	                    'louis.rowan@icloud.com'
+	                  )
 	                )
 	              )
 	            )
 	          )
-	        ),
-	        React.createElement(
-	          'h2',
-	          { id: 'h2ClickContact', onClick: function onClick() {
-	              return _this.handleShowForm();
-	            } },
-	          'Or Click to Message me Directly'
 	        )
 	      ),
-	      success,
 	      React.createElement(
-	        ReactCSSTransitionGroup,
-	        {
-	          transitionName: 'showForm',
-	          transitionEnterTimeout: 500,
-	          transitionLeaveTimeout: 500 },
-	        form
-	      )
+	        'div',
+	        { className: 'contactHalfscreen' },
+	        React.createElement(
+	          'h2',
+	          null,
+	          'Or Message me Directly'
+	        ),
+	        success,
+	        React.createElement(
+	          ReactCSSTransitionGroup,
+	          {
+	            transitionName: 'showForm',
+	            transitionEnterTimeout: 500,
+	            transitionLeaveTimeout: 500 },
+	          form
+	        )
+	      ),
+	      React.createElement('p', { style: { clear: 'both' } })
 	    );
 	  }
 	});
@@ -55228,7 +55334,7 @@
 	var BlogPost = __webpack_require__(326);
 	var BlogNav = __webpack_require__(327);
 	var BlogHeader = __webpack_require__(328);
-	var background = __webpack_require__(238).images.background;
+	var background = __webpack_require__(238).images.cloud_background;
 	var ReactCSSTransitionGroup = __webpack_require__(306);
 
 	var BlogContainer = React.createClass({
@@ -56106,7 +56212,11 @@
 	      { id: 'blogNav', onMouseLeave: function onMouseLeave() {
 	          return _this.hideNav();
 	        } },
-	      React.createElement('img', { id: 'blogNavGif', src: background }),
+	      React.createElement(
+	        'div',
+	        { id: 'blogNavGifDiv' },
+	        React.createElement('img', { id: 'blogNavGif', src: background })
+	      ),
 	      React.createElement(
 	        'table',
 	        null,
@@ -56171,16 +56281,26 @@
 
 	var React = __webpack_require__(2);
 
+	var _require = __webpack_require__(179),
+	    hashHistory = _require.hashHistory;
+
 	var BlogHeader = React.createClass({
 	  displayName: 'BlogHeader',
+	  handleClick: function handleClick() {
+	    hashHistory.replace('/blog');
+	  },
 	  render: function render() {
+	    var _this = this;
+
 	    return React.createElement(
 	      'header',
 	      null,
 	      React.createElement('div', { className: 'articleBackground' }),
 	      React.createElement(
 	        'div',
-	        { id: 'blogHeaderLeft' },
+	        { id: 'blogHeaderLeft', onClick: function onClick() {
+	            return _this.handleClick();
+	          } },
 	        React.createElement(
 	          'h2',
 	          null,
@@ -56361,7 +56481,7 @@
 
 
 	// module
-	exports.push([module.id, "* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: 'Khula', Serif;\r\n}\r\n\r\na {\r\n  color: blue;\r\n  font-weight: bold;\r\n  text-decoration: none;\r\n}\r\n\r\na:visited {\r\n  color: blue;\r\n}\r\n\r\nh1 {\r\n  padding: 20px;\r\n  color: purple;\r\n  font-family: 'Merriweather Sans';\r\n  font-size: 3em;\r\n  text-shadow: 1px 1px 1px black;\r\n}\r\n\r\nh2 {\r\n  padding: 10px;\r\n  font-family: 'Petit Formal Script';\r\n}\r\n\r\np {\r\n  padding: 10px;\r\n}\r\n\r\n.homeContainer {\r\n  width: 100%;\r\n  padding: 20px;\r\n  color: orange;\r\n}\r\n\r\n#layoutDiv {\r\n  min-height: 100vh;\r\n  overflow: auto;\r\n}\r\n\r\n#layoutBackground {\r\n  position: fixed;\r\n  height: 100%;\r\n  width: 100%;\r\n  z-index: -1;\r\n}\r\n\r\n#layoutBackground img {\r\n  min-height: 100%;\r\n  min-width: 100%;\r\n}\r\n\r\n.headerContainer {\r\n  width: 100%;\r\n  min-height: 1000px;\r\n  text-align: center;\r\n  border-bottom: 10px solid white;\r\n  color: white;\r\n}\r\n\r\n.contentContainer {\r\n  position: absolute;\r\n  background: white;\r\n  width: 100%;\r\n  min-height: 100%;\r\n  box-shadow: 0px 0px 50px 5px black, 0px 0px 10px 2px rgba(45, 6, 56, 1) inset;\r\n  padding: 10px;\r\n  margin-bottom: 10px;\r\n}\r\n\r\n#contentSpace {\r\n  width: 90%;\r\n  max-width: 1200px;\r\n  min-height: 600px;\r\n  overflow: visible;\r\n  text-align: center;\r\n  margin: auto;\r\n  color: black;\r\n  position: relative;\r\n}\r\n", ""]);
+	exports.push([module.id, "* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: 'Lustria', Sans-Serif;\r\n}\r\n\r\na {\r\n  color: blue;\r\n  font-weight: bold;\r\n  text-decoration: none;\r\n}\r\n\r\na:visited {\r\n  color: blue;\r\n}\r\n\r\nh1 {\r\n  padding: 20px;\r\n  color: black;\r\n  font-family: 'Marcellus', Serif;\r\n  font-size: 3em;\r\n  text-shadow: 1px 1px 1px black;\r\n}\r\n\r\nh2 {\r\n  padding: 10px;\r\n  font-family: 'Krona One', Sans-Serif;\r\n}\r\n\r\np {\r\n  font-family: 'Lustria', Sans-Serif;\r\n  font-size: 16px;\r\n  padding: 15px 20px;\r\n  text-align: left;\r\n  line-height: 40px;\r\n}\r\n\r\n.homeContainer {\r\n  width: 100%;\r\n  padding: 20px;\r\n  color: orange;\r\n}\r\n\r\n#layoutDiv {\r\n  min-height: 100vh;\r\n  overflow: auto;\r\n}\r\n\r\n#layoutBackground {\r\n  position: fixed;\r\n  height: 100%;\r\n  width: 100%;\r\n  z-index: -1;\r\n}\r\n\r\n#layoutBackground img {\r\n  min-height: 100%;\r\n  min-width: 100%;\r\n}\r\n\r\n#layoutBackground > div {\r\n  position: absolute;\r\n  height: 100%;\r\n  width: 100%;\r\n  top: 0;\r\n  background: rgba(0, 0, 0, .5);\r\n}\r\n\r\n.headerContainer {\r\n  width: 100%;\r\n  min-height: 1000px;\r\n  text-align: center;\r\n  border-bottom: 10px solid white;\r\n  color: white;\r\n}\r\n\r\n.contentContainer {\r\n  position: absolute;\r\n  background: white;\r\n  width: 100%;\r\n  min-height: 100%;\r\n  border-radius: 2px;\r\n  box-shadow: 0px 0px 10px black;\r\n  padding: 10px;\r\n  margin-bottom: 10px;\r\n}\r\n\r\n#contentSpace {\r\n  width: 90%;\r\n  max-width: 1200px;\r\n  min-height: 600px;\r\n  overflow: visible;\r\n  text-align: center;\r\n  margin: auto;\r\n  color: black;\r\n  position: relative;\r\n}\r\n\r\n\r\n::-webkit-scrollbar {\r\n    width: 10px;\r\n}\r\n \r\n::-webkit-scrollbar-track {\r\n    -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0); \r\n    border-radius: 5px;\r\n}\r\n \r\n::-webkit-scrollbar-thumb {\r\n    border-radius: 5px;\r\n    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .9); \r\n}", ""]);
 
 	// exports
 
@@ -56709,7 +56829,7 @@
 
 
 	// module
-	exports.push([module.id, "#siteNav table {\r\n  width: 100%;\r\n  color: white;\r\n}\r\n\r\nnav td, nav a, nav a:visited {\r\n  color: white;\r\n  font-weight: none;\r\n  text-align: center;\r\n  font-size: 1.2em;\r\n  font-family: 'Merriweather Sans';\r\n  transition: font-size 100ms ease-in, text-shadow 200ms ease-in;\r\n}\r\n\r\n#siteNav td, #siteNav a {\r\n  width: 20%;\r\n  height: 100px;\r\n}\r\n\r\nnav td a:hover {\r\n  font-size: 1.6em;\r\n  text-shadow: 1px 1px 2px black;\r\n  cursor: pointer;\r\n}", ""]);
+	exports.push([module.id, "#siteNav table {\r\n  width: 100%;\r\n  color: white;\r\n}\r\n\r\nnav td, nav a, nav a:visited {\r\n  color: white;\r\n  font-weight: none;\r\n  text-align: center;\r\n  font-size: 24px;\r\n  font-family: 'marcellus', Serif;\r\n  transition: font-size 100ms ease-in, text-shadow 200ms ease-in;\r\n}\r\n\r\n#siteNav td, #siteNav a {\r\n  width: 20%;\r\n  height: 100px;\r\n}\r\n\r\nnav td a:hover {\r\n  font-size: 1.6em;\r\n  text-shadow: 1px 1px 2px black;\r\n  cursor: pointer;\r\n}", ""]);
 
 	// exports
 
@@ -56749,7 +56869,7 @@
 
 
 	// module
-	exports.push([module.id, ".emp {\r\n  font-size: 1.3em;\r\n  font-weight: bold;\r\n}\r\n\r\n.mainParagraph {\r\n  padding: 5px 20px;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.mainParagraph a {\r\n  transition: color 300ms linear;\r\n}\r\n\r\n.mainParagraph a:hover {\r\n  color: darkblue;\r\n}\r\n\r\n.mainImg {\r\n  height: 300px;\r\n  width: 300px;\r\n  box-shadow: 0px 0px 5px 2px black;\r\n  border-radius: 50%;\r\n  overflow: hidden;\r\n  margin: auto;\r\n  animation: picture-rotate 5s linear infinite;\r\n}\r\n\r\n.mainImg img {\r\n  height: 100%;\r\n  width: 100%;\r\n}", ""]);
+	exports.push([module.id, ".emp {\r\n  font-size: 1.3em;\r\n  font-weight: bold;\r\n}\r\n\r\n.mainParagraph {\r\n\r\n}\r\n\r\n.mainParagraph a {\r\n  transition: color 300ms linear;\r\n}\r\n\r\n.mainParagraph a:hover {\r\n  color: darkblue;\r\n}\r\n\r\n.mainImg {\r\n  height: 300px;\r\n  width: 300px;\r\n  box-shadow: 0px 0px 5px 2px black;\r\n  border-radius: 50%;\r\n  overflow: hidden;\r\n  margin: auto;\r\n}\r\n\r\n.mainImg img {\r\n  height: 100%;\r\n  width: 100%;\r\n}", ""]);
 
 	// exports
 
@@ -56770,8 +56890,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./skills.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./skills.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./mainResponsive.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./mainResponsive.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -56789,7 +56909,7 @@
 
 
 	// module
-	exports.push([module.id, ".skillsContainer {\r\n  width: 100%;\r\n  min-height: 800px;\r\n}\r\n\r\n#d3SkillsContainer {\r\n  height: 600px;\r\n  width: 90%;\r\n  margin: auto;\r\n  position: relative;\r\n  overflow: hidden;\r\n}\r\n\r\n.tooltipDiv {\r\n  text-align: center;\r\n  padding: 5px 20px;\r\n  position: relative;\r\n  border-radius: 10px;\r\n  border: 2px solid gray;\r\n}\r\n\r\n\r\n\r\n.tooltipDiv:after {\r\n  content: '';\r\n  width: 0px;\r\n  height: 0px;\r\n  border: 15px solid transparent;\r\n  animation: tooltip-animation 1s linear alternate infinite;\r\n  position: absolute;\r\n  top: 36px;\r\n  left: 5px;\r\n  z-index: -1;\r\n}\r\n\r\n@keyframes tooltip-animation {\r\n  0% {\r\n    border-top: 15px solid #595857;\r\n  }\r\n  100% {\r\n    border-top: 15px solid black;\r\n  }\r\n}\r\n\r\n#d3ButtonDiv {\r\n  position: absolute;\r\n  width: 100%;\r\n}\r\n\r\n.skillsButton {\r\n  padding: 20px;\r\n  margin: 10px;\r\n  background: rgba(244, 245, 247, .5);\r\n  border: none;\r\n  min-width: 120px;\r\n}\r\n\r\n.skillsButton:focus {\r\n  outline: 0;\r\n}\r\n\r\n.skillsButton:hover {\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n}\r\n\r\n.d3Active {\r\n  background: lightblue;\r\n}\r\n\r\n.d3Circle {\r\n  stroke-width: 1px;\r\n  animation: colorstroke 12000ms linear infinite;\r\n}\r\n\r\n/*skillsTable*/\r\n#skillsList {\r\n  margin: 10px;\r\n  background: rgba(243, 220, 244, 1);\r\n}\r\n\r\n#skillsList h2 {\r\n  text-align: left;\r\n  clear: both;\r\n    background: linear-gradient(to right,\r\n    rgba(254, 244, 255, 1),\r\n    rgba(243, 220, 244, 1)\r\n    \r\n  );\r\n}\r\n\r\n#skillsList ul {\r\n  list-style-type: none;\r\n  display: table;\r\n}\r\n#skillsList li {\r\n  font-family: 'Krona One', sans-serif;\r\n  float: left;\r\n  padding: 20px;\r\n  min-width: 225px;\r\n  max-width: 225px;\r\n  font-size: 1.1em;\r\n  height: 100px;\r\n  position: relative;\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n#skillsList p {\r\n  clear: both;\r\n}\r\n", ""]);
+	exports.push([module.id, "@media only screen and (min-device-width: 1500px) and (max-width: 1000px) {\r\n  .mainParagraph {\r\n\r\n  }\r\n\r\n}\r\n\r\n\r\n@media only screen and (max-device-width: 1000px) {\r\n\r\n  .mainParagraph {\r\n    font-size: 35px;\r\n    line-height: 75px;\r\n    padding: 20px 10px;\r\n  }\r\n\r\n  .mainImg {\r\n    height: 400px;\r\n    width: 400px;\r\n  }\r\n\r\n}", ""]);
 
 	// exports
 
@@ -56810,8 +56930,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./projects.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./projects.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./skills.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./skills.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -56829,7 +56949,7 @@
 
 
 	// module
-	exports.push([module.id, ".projectsComponent {\r\n  min-height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n.projectDiv {\r\n  width: 50%;\r\n  height: 400px;\r\n  margin: auto;\r\n  position: relative;\r\n}\r\n\r\n.arrowDiv {\r\n  box-sizing: none;\r\n  height: 0;\r\n  width: 0;\r\n  border: 30px solid transparent;\r\n  position: absolute;\r\n  top: 45%;\r\n  bottom: 45%;\r\n}\r\n\r\n.arrowDiv:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n.leftArrowDiv {\r\n  border-right: 40px solid rgba(45, 6, 56, 1);\r\n  left: 10px;\r\n}\r\n\r\n.leftArrowDiv:hover {\r\n  border-right: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n.rightArrowDiv {\r\n  border-left: 40px solid rgba(45, 6, 56, 1);\r\n  right: 10px;\r\n}\r\n\r\n.rightArrowDiv:hover {\r\n  border-left: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n#projectsBackButton {\r\n  top: 30px;\r\n}\r\n\r\n.projectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: absolute;\r\n  box-shadow: 0px 0px 10px 5px black;\r\n}\r\n\r\n.hoverProjectsThumb {\r\n  border: 5px solid black;\r\n  overflow: hidden;\r\n  height: 400px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: relative;\r\n  box-shadow: 0px 0px 10px 5px black;\r\n  position: absolute;\r\n}\r\n\r\n.thumbImgDiv {\r\n  width: 100%;\r\n  max-height: 300px;\r\n  border-top: 2px solid black;\r\n  overflow: hidden;\r\n}\r\n\r\n.thumbImgDiv img {\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n.projectsThumbHeader {\r\n  padding: 10px;\r\n}\r\n\r\n.hiddenThumbDiv {\r\n  position: absolute;\r\n  height: 100%;\r\n  width: 100%;\r\n  background: transparent;\r\n  cursor: pointer;\r\n  z-index: 2;\r\n  background-color: rgba(0, 0, 0, .5);\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.hiddenThumbDiv h2 {\r\n  background: white;\r\n  margin: auto;\r\n  width: 100%;\r\n  padding: 10px;\r\n}\r\n\r\n.hidden {\r\n  display: none;\r\n}\r\n\r\n.projectFullscreenDiv {\r\n  padding: 10px;\r\n}\r\n\r\n.projectFullscreenImgDiv {\r\n  max-height: 300px;\r\n  overflow: hidden;\r\n}\r\n\r\n.projectFullscreenImgDiv img {\r\n  height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n.projectSkillsList {\r\n  list-style-type: none;\r\n}\r\n\r\n.projectSkillsList li {\r\n  float: left;\r\n  padding: 40px;\r\n  font-size: 1.5em;\r\n  width: 33.3%;\r\n  font-family: 'Pacifico', Serif;\r\n}\r\n\r\n.projectSkillsList li:hover {\r\n  background: #f9f9f7;\r\n}\r\n\r\n.fullscreenHalf {\r\n  float: left;\r\n  width: 50%;\r\n  overflow: hidden;\r\n}\r\n\r\n.fullscreenHalf h2 {\r\n\r\n}\r\n\r\n.fullscreenHalf p {\r\n  font-size: 1.2;\r\n  padding: 10px;\r\n}\r\n\r\n.inactiveCircle {\r\n  background: lightgray;\r\n  transition: background 200ms ease-in;\r\n}\r\n\r\n.activeCircle {\r\n  background: purple;\r\n  transition: background 200ms ease-in;\r\n}\r\n\r\n.listCircle {\r\n  width: 20px;\r\n  height: 20px;\r\n  border-radius: 10px;\r\n  display: inline-block;\r\n  margin: 10px;\r\n}\r\n\r\n.projectsCirclesList {\r\n  width: 100%;\r\n  padding: 20px;\r\n}", ""]);
+	exports.push([module.id, ".skillsContainer {\r\n  width: 100%;\r\n  min-height: 800px;\r\n}\r\n\r\n#d3SkillsContainer {\r\n  width: 90%;\r\n  margin: auto;\r\n  position: relative;\r\n}\r\n\r\n#skillsSVGDiv {\r\n \r\n  height: 600px;\r\n  width: 100%;\r\n  position: relative;\r\n}\r\n\r\n.tooltipDiv {\r\n  text-align: center;\r\n  padding: 5px 20px;\r\n  position: relative;\r\n  border-radius: 10px;\r\n  border: 2px solid gray;\r\n}\r\n\r\n\r\n\r\n.tooltipDiv:after {\r\n  content: '';\r\n  width: 0px;\r\n  height: 0px;\r\n  border: 15px solid transparent;\r\n  animation: tooltip-animation 1s linear alternate infinite;\r\n  position: absolute;\r\n  top: 30px;\r\n  left: 5px;\r\n  z-index: -1;\r\n}\r\n\r\n@keyframes tooltip-animation {\r\n  0% {\r\n    border-top: 15px solid #595857;\r\n  }\r\n  100% {\r\n    border-top: 15px solid black;\r\n  }\r\n}\r\n\r\n#d3ButtonDiv {\r\n  /*position: absolute;*/\r\n  width: 100%;\r\n}\r\n\r\n.skillsButton {\r\n  padding: 20px;\r\n  margin: 10px;\r\n  background: rgba(244, 245, 247, .5);\r\n  border: none;\r\n  width: 200px;\r\n  font-size: 16px;\r\n  border-radius: 5px;\r\n  box-shadow: 0px 0px 1px black;\r\n}\r\n\r\n.skillsButton:focus {\r\n  outline: 0;\r\n}\r\n\r\n.skillsButton:hover {\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n}\r\n\r\n.d3Active {\r\n  background: #cccdce;\r\n}\r\n\r\n.d3Circle {\r\n  stroke-width: 2px;\r\n  animation: colorstroke 8000ms linear infinite;\r\n}\r\n\r\n\r\n\r\n.hiddenD3Text {\r\n  font-size: 14px;\r\n  opacity: 0;\r\n  transition: opacity 1000ms linear;\r\n  font-family: 'Krona One', Serif;\r\n}\r\n\r\n.shownD3Text {\r\n  font-size: 14px;\r\n  opacity: 1;\r\n  transition: opacity 2000ms linear 1000ms;\r\n  font-family: 'Krona One', Serif;\r\n}", ""]);
 
 	// exports
 
@@ -56850,8 +56970,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./contact.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./contact.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./skillsResponsive.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./skillsResponsive.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -56869,7 +56989,7 @@
 
 
 	// module
-	exports.push([module.id, ".contactInput {\r\n  width: 245px;\r\n  padding: 10px;\r\n  margin: 5px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactTextarea {\r\n  width: 500px;\r\n  height: 200px;\r\n  padding: 10px;\r\n  background: #fbefff;\r\n  border: 1px solid black;\r\n  box-shadow: 0px 0px 5px .5px black inset;\r\n  font-size: 1.1em;\r\n}\r\n\r\n.contactSubmit {\r\n  width: 200px;\r\n  padding: 10px;\r\n  font-size: 1.2em;\r\n}\r\n\r\n.contactSubmit:hover {\r\n  box-shadow: 2px 2px 1px 1px black;\r\n  font-weight: bold;\r\n}\r\n\r\n.formSubmit {\r\n  animation: formFlip 1s forwards;\r\n}\r\n\r\n.contactContainer {\r\n  position: relative;\r\n}\r\n\r\n.formSuccess {\r\n  color: green;\r\n  position: absolute;\r\n  top: 450px;\r\n  width: 100%;\r\n  text-align: center;\r\n  animation: formSuccess 2s forwards;\r\n}\r\n\r\n\r\n\r\n.contactTable {\r\n  margin: auto;\r\n  font-size: 1.5em;\r\n}\r\n\r\n.contactTable tr {\r\n  background: #fcfcfc;\r\n}\r\n\r\n.contactTable tr:hover {\r\n  background: white;\r\n}\r\n\r\n.contactTable tr:hover td:first-child {\r\n  animation: contact-hover 500ms linear forwards;\r\n}\r\n\r\n.contactTable a:hover {\r\n  text-decoration: none;\r\n  color: darkblue;\r\n}\r\n\r\n.contactTable td {\r\n  padding: 5px;\r\n  text-align: left;\r\n}\r\n\r\n.contactIMG {\r\n  height: 40px;\r\n  width: 50px;\r\n  overflow: hidden;\r\n}\r\n\r\n.contactIMG img {\r\n  max-width: 100%;\r\n  max-height: 100%;\r\n}\r\n\r\n.contactPhone {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactPhone:before {\r\n  content: \"\\260E\";\r\n  font-size: 2em;\r\n  color: black;\r\n}\r\n\r\n.contactEmail {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactEmail:before {\r\n  content: \"\\2709\";\r\n  font-size: 2em;\r\n  color: black;\r\n\r\n}\r\n\r\n.iconLink:hover img, .iconLink:hover div:before {\r\n  transform: scale(1.2);\r\n}\r\n\r\n#h2ClickContact {\r\n  padding: 10px;\r\n  color: purple;\r\n  font-family: 'Khula', Serif;\r\n}\r\n\r\n#h2ClickContact:before, #h2ClickContact:after {\r\n  content: \"\\26E4\";\r\n  font-size: 1.2em;\r\n  color: black;\r\n}\r\n\r\n#h2ClickContact:hover::before, #h2ClickContact:hover::after {\r\n  display: inline-block;\r\n  animation: contact-hover 6s linear forwards infinite;\r\n}\r\n\r\n#h2ClickContact:hover {\r\n  cursor: pointer;\r\n}", ""]);
+	exports.push([module.id, "@media only screen and (min-device-width: 1500px) and (max-width: 1000px) {\r\n  .skillsButton {\r\n    width: 120px;\r\n    font-size: 14px;\r\n  }\r\n\r\n  .hiddenD3Text, .shownD3Text {\r\n    font-size: 14px;\r\n  }\r\n\r\n}\r\n\r\n\r\n@media only screen and (max-device-width: 1000px) {\r\n\r\n  #d3SkillsContainer {\r\n    min-height: 75vh;\r\n  }\r\n\r\n  #skillsSVGDiv {\r\n    height: 60%;\r\n  }\r\n\r\n  .skillsContainer svg {\r\n    min-height: 75vh;\r\n  }\r\n\r\n\r\n  .skillsButton {\r\n    width: 250px;\r\n    font-size: 30px;\r\n  }\r\n\r\n  .hiddenD3Text {\r\n    font-size: 20px;\r\n  }\r\n\r\n  .shownD3Text {\r\n    font-size: 20px;\r\n  }\r\n\r\n}", ""]);
 
 	// exports
 
@@ -56890,8 +57010,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./responsive.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./responsive.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./projects.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./projects.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -56909,7 +57029,7 @@
 
 
 	// module
-	exports.push([module.id, "@media only screen and (max-width: 1000px) {\r\n  p {\r\n    font-size: 1.1em;\r\n  }\r\n  h1 {\r\n    font-size: 2em;\r\n  }\r\n  html, body, #app, #app > div {\r\n    height: 100vh;\r\n    width: 100%;\r\n  }\r\n\r\n  #layoutDiv {\r\n    height: 100vh;\r\n  }\r\n  .homeContainer {\r\n    width: 100%;\r\n    height: 90vh;\r\n  }\r\n  #contentSpace {\r\n    width: 98%;\r\n  }\r\n  .contentContainer {\r\n    min-height: 75vh;\r\n  }\r\n\r\n  .contentContainer > div {\r\n    min-height: 75vh;\r\n    width: 100%;\r\n  }\r\n\r\n  .skillsContainer svg {\r\n    min-height: 75vh;\r\n  }\r\n\r\n  #d3SkillsContainer {\r\n    min-height: 75vh;\r\n  }\r\n\r\n  #projectsContainerDiv {\r\n    min-height: 75vh;\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n  }\r\n\r\n\r\n  nav td {\r\n    height: 10vh;\r\n    color: white;\r\n    font-weight: bold;\r\n  }\r\n\r\n  .component-enter {\r\n    transform: rotateX(90deg);\r\n  }\r\n\r\n  .component-enter-active {\r\n    transform: rotateX(0deg);\r\n    transition: transform 300ms ease-out 300ms;\r\n  }\r\n\r\n  .component-leave {\r\n    transform: rotateX(0deg);\r\n  }\r\n\r\n  .component-leave-active {\r\n    transform: rotateX(90deg);\r\n    transition: transform 300ms ease-in;\r\n  }\r\n\r\n\r\n\r\n  .projectDiv {\r\n    width: 65vw;\r\n    margin: 20px auto;\r\n    overflow: hidden;\r\n    height: 500px;\r\n  }\r\n\r\n  .projectsThumb {\r\n    height: 500px;\r\n  }\r\n\r\n  .hoverProjectsThumb {\r\n    height: 500px;\r\n  }\r\n  .thumbImgDiv, .thumbImgDiv img {\r\n    min-height: 100%;\r\n    min-width: 100%;\r\n  }\r\n\r\n  .contactContainer {\r\n \r\n  }\r\n\r\n  .contactTextarea {\r\n    width: 700px;\r\n    height: 400px;\r\n  }\r\n  .contactInput {\r\n    width: 345px;\r\n    margin-top: 50px;\r\n  }\r\n\r\n  .contactPhone:before {\r\n    content: \"\\260E\";\r\n    font-size: .9em;\r\n    color: black;\r\n  }\r\n\r\n  .contactEmail:before {\r\n    content: \"\\2709\";\r\n    font-size: .9em;\r\n    color: black;\r\n  }\r\n\r\n  .contactIMG {\r\n    overflow: visible;\r\n  }\r\n\r\n\r\n}", ""]);
+	exports.push([module.id, ".projectsComponent {\r\n  min-height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n.projectDiv {\r\n  width: 70%;\r\n  height: 500px;\r\n  margin: auto;\r\n  position: relative;\r\n}\r\n\r\n.arrowDiv {\r\n  box-sizing: none;\r\n  height: 0;\r\n  width: 0;\r\n  border: 30px solid transparent;\r\n  position: absolute;\r\n  top: 45%;\r\n  bottom: 45%;\r\n}\r\n\r\n.arrowDiv:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n.leftArrowDiv {\r\n  border-right: 40px solid rgba(45, 6, 56, 1);\r\n  left: 10px;\r\n}\r\n\r\n.leftArrowDiv:hover {\r\n  border-right: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n.rightArrowDiv {\r\n  border-left: 40px solid rgba(45, 6, 56, 1);\r\n  right: 10px;\r\n}\r\n\r\n.rightArrowDiv:hover {\r\n  border-left: 40px solid rgba(131, 11, 168, 1);\r\n}\r\n\r\n#projectsBackButton {\r\n  top: 30px;\r\n}\r\n\r\n.projectsThumb {\r\n  border: 2px solid black;\r\n  overflow: hidden;\r\n  height: 500px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: absolute;\r\n  box-shadow: 0px 0px 2px 1px black;\r\n}\r\n\r\n.hoverProjectsThumb {\r\n  border: 2px solid black;\r\n  overflow: hidden;\r\n  height: 500px;\r\n  width: 100%;\r\n  margin: auto;\r\n  position: relative;\r\n  box-shadow: 0px 0px 2px 1px black;\r\n  position: absolute;\r\n}\r\n\r\n.thumbImgDiv {\r\n  width: 100%;\r\n  min-height: 400px;\r\n  border-top: 2px solid black;\r\n  overflow: hidden;\r\n  bottom: 0;\r\n  position: relative;\r\n}\r\n\r\n.thumbImgDiv img {\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n.projectsThumbHeader {\r\n  padding: 10px;\r\n}\r\n\r\n.projectsThumbHeader p {\r\n  text-align: center;\r\n}\r\n\r\n\r\n.hiddenThumbDiv {\r\n  position: absolute;\r\n  height: 100%;\r\n  width: 100%;\r\n  background: transparent;\r\n  cursor: pointer;\r\n  z-index: 2;\r\n  background-color: rgba(0, 0, 0, .5);\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.hiddenThumbDiv h2 {\r\n  background: white;\r\n  margin: auto;\r\n  width: 100%;\r\n  padding: 20px;\r\n}\r\n\r\n.hidden {\r\n  display: none;\r\n}\r\n\r\n.projectFullscreenDiv {\r\n  padding: 10px;\r\n}\r\n\r\n.projectFullscreenImgDiv {\r\n  max-height: 300px;\r\n  overflow: hidden;\r\n  border: 2px solid black;\r\n}\r\n\r\n.projectFullscreenImgDiv img {\r\n  height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n.projectSkillsList {\r\n  list-style-type: none;\r\n}\r\n\r\n.projectSkillsList li {\r\n  float: left;\r\n  padding: 40px;\r\n  font-size: 20px;\r\n  width: 33.3%;\r\n  font-family: 'Krona One', Serif;\r\n}\r\n\r\n.fullscreenHalf {\r\n  float: left;\r\n  width: 50%;\r\n  overflow: hidden;\r\n}\r\n\r\n.fullscreenHalf h2 {\r\n  padding: 0px;\r\n}\r\n\r\n.fullscreenHalf p {\r\n\r\n}\r\n\r\n.inactiveCircle {\r\n  background: lightgray;\r\n  transition: background 200ms ease-in;\r\n}\r\n\r\n.inactiveCircle:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n.activeCircle {\r\n  background: purple;\r\n  transition: background 200ms ease-in;\r\n}\r\n\r\n.listCircle {\r\n  width: 20px;\r\n  height: 20px;\r\n  border-radius: 10px;\r\n  display: inline-block;\r\n  margin: 10px;\r\n}\r\n\r\n.projectsCirclesList {\r\n  width: 100%;\r\n  padding: 20px;\r\n}", ""]);
 
 	// exports
 
@@ -56930,8 +57050,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./animations.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./animations.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./projectsResponsive.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./projectsResponsive.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -56949,7 +57069,7 @@
 
 
 	// module
-	exports.push([module.id, "/*Transition between 2 routes on index.js*/\r\n\r\n.routeSlideUp-enter {\r\n  transform: translateY(100%);\r\n  z-index: 10;\r\n  height: 100%;\r\n}\r\n\r\n.routeSlideUp-enter-active {\r\n  transform: translateY(0%);\r\n  z-index: 10;\r\n  height: 100%;\r\n  transition: transform 800ms ease-in-out;\r\n}\r\n\r\n.routeSlideUp-leave {\r\n  height: 100%;\r\n  transform: translateY(0%);\r\n}\r\n\r\n.routeSlideUp-leave-active {\r\n  height: 100%;\r\n  transform: translateY(-100%);\r\n  transition: transform 800ms ease-in-out;\r\n}\r\n\r\n/*slide down*/\r\n.routeSlideDown-enter {\r\n  transform: translateY(-100%);\r\n  z-index: 10;\r\n  height: 100%;\r\n}\r\n\r\n.routeSlideDown-enter-active {\r\n  transform: translateY(0%);\r\n  z-index: 10;\r\n  height: 100%;\r\n  transition: transform 800ms ease-in-out;\r\n}\r\n\r\n.routeSlideDown-leave {\r\n  height: 100%;\r\n  transform: translateY(0%);\r\n}\r\n\r\n.routeSlideDown-leave-active {\r\n  height: 100%;\r\n  transform: translateY(100%);\r\n  transition: transform 800ms ease-in-out;\r\n}\r\n\r\n.pageContainer {\r\n  height: 100%;\r\n  width: 100%;\r\n  position: absolute;\r\n}\r\n\r\n/*Main component flip animation used on Home.js*/\r\n.component-appear {\r\n  transform: scale(0);\r\n}\r\n\r\n.component-appear-active {\r\n  transform: scale(1);\r\n  transition: transform 800ms linear;\r\n}\r\n\r\n.component-enter {\r\n  transform: rotateY(90deg) rotateX(90deg);\r\n}\r\n\r\n.component-enter-active {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n  transition: transform 300ms ease-out 300ms;\r\n}\r\n\r\n.component-leave {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n}\r\n\r\n.component-leave-active {\r\n  transform: rotateY(90deg) rotateX(-90deg);\r\n  transition: transform 300ms ease-in;\r\n}\r\n\r\n/*Rotating active project thumb on ProjectsContainer.js*/\r\n.projectFlip-enter {\r\n  transform: rotateY(-90deg);\r\n}\r\n\r\n.projectFlip-enter-active {\r\n  transform: rotateY(0deg);\r\n  transition: transform 400ms ease-out 200ms;\r\n}\r\n\r\n.projectFlip-leave {\r\n  transform: rotateY(0deg);\r\n}\r\n\r\n.projectFlip-leave-active {\r\n  transform: rotateY(90deg);\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  transition:\r\n    transform 200ms ease-in,\r\n    box-shadow 200ms ease-in;\r\n}\r\n\r\n/*Zooming in on fullscreen project on ProjectsContainer*/\r\n.projectsFullscreenTransition-enter {\r\n  z-index: 10;\r\n  position: absolute;\r\n  top: 0;\r\n  transform: scale(.3);\r\n}\r\n\r\n.projectsFullscreenTransition-enter-active {\r\n  z-index: 10;\r\n  position: absolute;\r\n  top: 0;\r\n  transform: scale(1);\r\n  transition: transform 500ms ease-in 0ms;\r\n}\r\n\r\n.projectsFullscreenTransition-leave {\r\n  position: absolute;\r\n  top: 0;\r\n  opacity: 1;\r\n}\r\n\r\n.projectsFullscreenTransition-leave-active {\r\n  position: absolute;\r\n  top: 0;\r\n  opacity: 0;\r\n  transition: opacity 250ms ease-in;\r\n}\r\n\r\n\r\n.projectsCarouselTransition-enter {\r\n  opacity: 0;\r\n}\r\n\r\n.projectsCarouselTransition-enter-active {\r\n  opacity: 1;\r\n  transition: opacity 500ms ease-in 100ms;\r\n}\r\n\r\n.projectsCarouselTransition-leave {\r\n  position: absolute;\r\n  top: 0;\r\n  transform: translate(0,0) scale(1);\r\n  opacity: 1;\r\n}\r\n\r\n.projectsCarouselTransition-leave-active {\r\n  position: absolute;\r\n  top: 0;\r\n  transform: translate(-100%,-100%) scale(.3);\r\n  opacity: 0;\r\n  transition: transform 250ms ease-in,\r\n              opacity 250ms ease-in;\r\n}\r\n\r\n\r\n\r\n/*Zoom in and out on contact form from ContactContainer*/\r\n.showForm-enter {\r\n  transform: scale(0);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-enter-active {\r\n  transform: scale(1);\r\n}\r\n\r\n.showForm-leave {\r\n  transform: scale(1);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-leave-active {\r\n  transform: scale(0);\r\n}\r\n\r\n/*Rotating picture of me on MainContainer.js*/\r\n@keyframes picture-rotate {\r\n  0% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  40% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  50% {\r\n    transform: rotateY(90deg);\r\n  }\r\n  60% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  100% {\r\n    transform: rotateY(0deg);\r\n  }\r\n}\r\n\r\n/*Form animation upon submission, ContactContainer*/\r\n@keyframes formFlip {\r\n  0% {\r\n    transform: rotateX(0);\r\n  }\r\n\r\n  100% {\r\n    transform: rotateX(90deg);\r\n  }\r\n}\r\n\r\n/*Showing success after form submission, ContactContainer*/\r\n@keyframes formSuccess {\r\n  0% {\r\n    opacity: 0;\r\n  }\r\n  50% {\r\n    opacity: 0;\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n  }\r\n}\r\n\r\n/*Rotating icons on contact table, from ContactContainer and ProjectsFullscreen*/\r\n@keyframes contact-hover {\r\n  0% {\r\n    transform: rotate(0deg);\r\n  }\r\n  25% {\r\n    transform: rotate(-90deg);\r\n  }\r\n  50% {\r\n    transform: rotate(-180deg);\r\n  }\r\n  75% {\r\n    transform: rotate(-270deg);\r\n  }\r\n  100% {\r\n    transform: rotate(-360deg);\r\n  }\r\n}\r\n\r\n/*Toggle stroke color for D3 bubbles in SkillsD3*/\r\n@keyframes colorstroke {\r\n  0% {\r\n    stroke: red;\r\n  }\r\n  20% {\r\n    stroke: yellow;\r\n  }\r\n  40% {\r\n    stroke: green;\r\n  }\r\n  60% {\r\n    stroke: blue;\r\n  }\r\n  80% {\r\n    stroke: purple;\r\n  }\r\n  100% {\r\n    stroke: red;\r\n  }\r\n}\r\n\r\n/*Blog posts*/\r\n.blogPostTransition-appear {\r\n  opacity: 0;\r\n}\r\n\r\n.blogPostTransition-appear-active {\r\n  opacity: 1;\r\n  transition: opacity 1s linear;\r\n}\r\n\r\n/*.blogPostTransition-appear {\r\n  transform: translateX(100%);\r\n}\r\n\r\n.blogPostTransition-appear-active {\r\n  transform: translateX(0%);\r\n  transition: transform 1s linear;\r\n}*/\r\n\r\n.blogPostTransition-leave {\r\n  opacity: 1;\r\n}\r\n\r\n.blogPostTransition-leave-active {\r\n  opacity: 0;\r\n  transition: opacity 1s linear;\r\n}\r\n\r\n/*blog content transitions*/\r\n.blogContentTransition-enter {\r\n  max-height: 0vh;\r\n  opacity: .8;\r\n}\r\n\r\n.blogContentTransition-enter-active {\r\n  max-height: 100vh;\r\n  opacity: 1;\r\n  transition: max-height 1000ms ease-in 500ms,\r\n              opacity 1000ms ease-in 500ms;\r\n}\r\n\r\n.blogContentTransition-leave {\r\n  max-height: 100vh;\r\n  opacity: 1;\r\n}\r\n\r\n.blogContentTransition-leave-active {\r\n  max-height: 0vh;\r\n  opacity: .8;\r\n  transition: max-height 500ms ease-out,\r\n              opacity 500ms ease-out;\r\n}", ""]);
+	exports.push([module.id, "@media only screen and (min-device-width: 1500px) and (max-width: 1000px) {\r\n  .thumbImgDiv img {\r\n    min-width: 150%;\r\n    min-height: 100%;\r\n  }\r\n\r\n/*  fullscreen view*/\r\n  .projectFullscreenDiv h1 {\r\n    margin: 0px 50px;\r\n  }\r\n\r\n  .fullscreenHalf {\r\n    width: 100%;\r\n  }\r\n\r\n  .projectFullscreenImgDiv {\r\n    width: 80%;\r\n    height: 300px;\r\n    max-height: 300px;\r\n    margin: auto;\r\n  }\r\n\r\n  .projectSkillsList li {\r\n    width: 25%;\r\n    font-size: 20px;\r\n  }\r\n\r\n  .fullscreenHalf p {\r\n    font-size: 16px;\r\n    line-height: 40px;\r\n  }\r\n\r\n\r\n}\r\n\r\n@media only screen and (max-device-width: 1000px) {\r\n\r\n  #projectsContainerDiv {\r\n    min-height: 75vh;\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n  }\r\n\r\n  .projectDiv {\r\n    width: 80vw;\r\n    margin: 20px auto;\r\n    overflow: hidden;\r\n    height: 800px;\r\n    z-index: 1;\r\n    background: white;\r\n  }\r\n\r\n  .projectsThumb {\r\n    height: 100%;\r\n  }\r\n\r\n  .hoverProjectsThumb {\r\n    height: 100%;\r\n  }\r\n\r\n  .projectsThumbHeader {\r\n    height: 50%;\r\n  }\r\n\r\n  .thumbImgDiv {\r\n    height: 50%;\r\n    max-height: 50%;\r\n    width: 100%;\r\n  }\r\n\r\n  .thumbImgDiv img {\r\n    min-height: 100%;\r\n    min-width: 100%;\r\n  }\r\n\r\n  .projectsThumb h2, .hoverProjectsThumb h2 {\r\n    font-size: 50px;\r\n  }\r\n\r\n  .projectsThumb p, .hoverProjectsThumb p {\r\n    font-size: 35px;\r\n  }\r\n\r\n/*  projects carousel circles*/\r\n  .listCircle {\r\n    width: 40px;\r\n    height: 40px;\r\n    border-radius: 20px;\r\n  }\r\n\r\n/*  projects carousel arrows*/\r\n  .arrowDiv {\r\n    border: 50px solid transparent;\r\n    z-index: 0;\r\n  }\r\n\r\n  .leftArrowDiv {\r\n    border-right: 70px solid rgba(45, 6, 56, 1);\r\n    left: -40px;\r\n  }\r\n\r\n  .leftArrowDiv:hover {\r\n    border-right: 70px solid rgba(131, 11, 168, 1);\r\n  }\r\n\r\n  .rightArrowDiv {\r\n    border-left: 70px solid rgba(45, 6, 56, 1);\r\n    right: -40px;\r\n  }\r\n\r\n  .rightArrowDiv:hover {\r\n    border-left: 70px solid rgba(131, 11, 168, 1);\r\n  }\r\n\r\n  .hiddenThumbDiv h2 {\r\n    font-size: 50px;\r\n    padding: 30px;\r\n  }\r\n\r\n  /*projects fullscreen*/\r\n\r\n  .projectFullscreenDiv h1 {\r\n    margin: 0px 50px;\r\n  }\r\n  \r\n  .fullscreenHalf, .projectFullscreenImgDiv {\r\n    width: 100%;\r\n  }\r\n\r\n  .projectFullscreenImgDiv {\r\n    height: 500px;\r\n    max-height: 500px;\r\n  }\r\n\r\n  .projectSkillsList li {\r\n    width: 33.3%;\r\n    font-size: 30px;\r\n  }\r\n\r\n  .fullscreenHalf p {\r\n    font-size: 35px;\r\n    line-height: 75px;\r\n  }\r\n\r\n\r\n\r\n}", ""]);
 
 	// exports
 
@@ -56970,8 +57090,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./blog.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./blog.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./contact.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./contact.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -56989,7 +57109,7 @@
 
 
 	// module
-	exports.push([module.id, "#blogContentRelativeDiv {\r\n  position: relative;\r\n  margin: 0px auto 20px;\r\n  max-width: 1200px;\r\n}\r\n\r\n#blogContentRelativeDiv > article {\r\n\r\n}\r\n\r\n#blogBackground {\r\n  position: fixed;\r\n  height: 100%;\r\n  width: 100%;\r\n  opacity: .2;\r\n  z-index: -2;\r\n}\r\n\r\n#blogBackground img {\r\n  min-height: 100%;\r\n  min-width: 100%;\r\n}\r\n\r\n#blogPostsDiv {\r\n  padding: 20px;\r\n  position: fixed;\r\n  width: 100%;\r\n  height: 90%;\r\n  overflow: auto;\r\n}\r\n\r\n#blogBackground, #blogPostsDiv {\r\n  margin-top: 100px;\r\n}\r\n\r\n#blogPostsDiv h1, h2, h3 {\r\n  text-align: center;\r\n}\r\n\r\n#blogPostsDiv h1 {\r\n  padding: 10px;\r\n}\r\n\r\n#blogPostsDiv h2{\r\n  font-family: 'Krona One', sans-serif;\r\n}\r\n\r\n#blogPostsDiv p {\r\n  font-size: 1.1em;\r\n}\r\n\r\n#blogPostsDiv ol {\r\n  padding: 10px 40px;\r\n  font-size: 1.2em;\r\n  list-style-type: square\r\n}\r\n\r\n#blogPostsDiv a {\r\n  font-family: 'Krona One', sans-serif;\r\n  transition: color 400ms linear;\r\n}\r\n\r\n#blogPostsDiv a:hover {\r\n  color: black;\r\n}\r\n\r\n#blogPostsDiv article, #blogPostsDiv header {\r\n  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, .3);\r\n  border-radius: 5px;\r\n  margin: 0px auto 20px;\r\n  max-width: 1200px;\r\n  overflow: hidden;\r\n}\r\n\r\n#blogPostsDiv article {\r\n  position: absolute;\r\n  width: 100%;\r\n\r\n}\r\n\r\n#blogPostsDiv header {\r\n  display: flex;\r\n  position: relative;\r\n}\r\n\r\n#blogHeaderLeft, #blogHeaderRight {\r\n  width: 50%;\r\n  display: flex;\r\n  justify-content: center;\r\n  flex-direction: column;\r\n}\r\n\r\n#blogPostsDiv section {\r\n  padding: 0px 20px 10px;\r\n}\r\n\r\n#blogPostsDiv section h3 {\r\n  text-align: left;\r\n  padding-top: 20px;\r\n}\r\n\r\n#blogPostsDiv img {\r\n  max-height: 100%;\r\n  max-width: 100%;\r\n}\r\n\r\n#blogPostsDiv .articleBackground {\r\n  position: absolute;\r\n  min-height: 100%;\r\n  min-width: 100%;\r\n  background: rgba(255, 255, 255, .6);\r\n  z-index: -1;\r\n}\r\n\r\n#blogNav {\r\n  height: 100px;\r\n  width: 100%;\r\n  position: fixed;\r\n  top: 0;\r\n  z-index: 1;\r\n  overflow: hidden;\r\n  box-shadow: 0px 5px 5px #DFD7E4;\r\n}\r\n\r\n#blogNavGif {\r\n  height: 200%;\r\n  width: 100%;\r\n  position: absolute;\r\n  z-index: -1;\r\n}\r\n\r\n#blogNav table {\r\n  height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n#blogNav td {\r\n  width: 50%;\r\n  height: 100px;\r\n}\r\n\r\n.blogIndexDivs {\r\n  text-align: center;\r\n  width: 50%;\r\n  float: left;\r\n  padding: 20px;\r\n}\r\n\r\n.blogIndexDivs a, .blogIndexDivs a:visited {\r\n  color: black;\r\n}\r\n\r\n.blogIndexDivs div {\r\n   box-shadow: 0px 0px 5px black;\r\n   padding: 10px;\r\n   height: 150px;\r\n   display: flex;\r\n   justify-content: center;\r\n   flex-direction: column;\r\n   background: #fdefff;\r\n}\r\n\r\n.blogIndexDivs div:hover {\r\n  box-shadow: 0px 0px 10px black inset;\r\n  background: transparent;\r\n}\r\n\r\n.blogIndexDivs div h2 {\r\n  font-size: 1.1em;\r\n  color: #69527B;\r\n}\r\n\r\n/*dropdown*/\r\n\r\n.showDropdown {\r\n  -ms-transform: translateX(0%);\r\n  -webkit-transform: translateX(0%);\r\n  transform: translateX(0%);\r\n  transition: transform 400ms;\r\n}\r\n\r\n.hideDropdown {\r\n  -ms-transform: translateX(100%);\r\n  -webkit-transform: translateX(100%);\r\n  transform: translateX(100%);\r\n  transition: transform 400ms;\r\n}\r\n\r\n#blogDropdownList {\r\n/*  display: none;*/\r\n  list-style-type: none;\r\n  position: fixed;\r\n  top: 100px;\r\n  width: 50%;\r\n  right: 0;\r\n  background: whitesmoke;\r\n  border-left: 1px solid gray;\r\n  border-bottom: 1px solid gray;\r\n}\r\n\r\n#blogDropdownList li {\r\n  padding: 20px;\r\n}\r\n\r\n#blogDropdownList a, #blogDropdownList a:visited {\r\n  padding: 20px;\r\n  color: black;\r\n}", ""]);
+	exports.push([module.id, ".contactInput {\r\n  width: 245px;\r\n  padding: 10px;\r\n  margin: 5px;\r\n  background: white;\r\n  box-shadow: .5px .5px .5px black inset;\r\n  font-size: 18px;\r\n}\r\n\r\n.contactTextarea {\r\n  width: 500px;\r\n  height: 200px;\r\n  padding: 10px;\r\n  background: white;\r\n  box-shadow: .5px .5px 1px black inset;\r\n  font-size: 18px;\r\n}\r\n\r\n.contactSubmit {\r\n  font-family: 'marcellus', serif;\r\n  width: 200px;\r\n  padding: 10px;\r\n  font-size: 1.2em;\r\n  background: white;\r\n  border-radius: 5px;\r\n}\r\n\r\n.contactSubmit:hover {\r\n  box-shadow: .5px .5px .5px .5px black;\r\n  font-weight: bold;\r\n}\r\n\r\n.formSubmit {\r\n  animation: formFlip 1s forwards;\r\n}\r\n\r\n.contactContainer {\r\n  margin: auto;\r\n}\r\n\r\n.contactHalfscreen {\r\n  width: 50%;\r\n  display: inline-block;\r\n  min-width: 550px;\r\n  padding: 10px;\r\n  vertical-align: top;\r\n}\r\n\r\n.contactHalfscreen h2 {\r\n  font-family: 'marcellus', serif;\r\n}\r\n\r\n.formSuccess {\r\n  color: black;\r\n  position: relative;\r\n  top: 100px;\r\n  width: 100%;\r\n  text-align: center;\r\n  animation: formSuccess 2s forwards;\r\n}\r\n\r\n\r\n\r\n.contactTable {\r\n  margin: auto;\r\n  font-size: 1.5em;\r\n}\r\n\r\n.contactTable tr:hover {\r\n  background: white;\r\n}\r\n\r\n.contactTable tr:hover td:first-child {\r\n  animation: contact-hover 200ms linear forwards;\r\n}\r\n\r\n.contactTable td, .contactTable a {\r\n  overflow: visible;\r\n}\r\n\r\n.contactTable a:hover {\r\n  text-decoration: none;\r\n  color: darkblue;\r\n}\r\n\r\n.contactTable td {\r\n  padding: 10px;\r\n  text-align: left;\r\n}\r\n\r\n.contactIMG {\r\n  height: 40px;\r\n  width: 50px;\r\n  overflow: hidden;\r\n}\r\n\r\n.contactIMG img {\r\n  max-width: 100%;\r\n  max-height: 100%;\r\n}\r\n\r\n.contactPhone {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactPhone:before {\r\n  content: \"\\260E\";\r\n  font-size: 1.8em;\r\n  color: black;\r\n}\r\n\r\n.contactEmail {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.contactEmail:before {\r\n  content: \"\\2709\";\r\n  font-size: 2em;\r\n  color: black;\r\n\r\n}\r\n\r\n.iconLink:hover img, .iconLink:hover div:before {\r\n  transform: scale(1.2);\r\n}", ""]);
 
 	// exports
 
@@ -57010,8 +57130,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./blogResponsive.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./blogResponsive.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./contactResponsive.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./contactResponsive.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -57029,7 +57149,167 @@
 
 
 	// module
-	exports.push([module.id, "@media only screen and (max-width: 1000px) {\r\n  #blogNav {\r\n    height: 200px;\r\n  }\r\n\r\n  #blogNav td {\r\n    height: 200px;\r\n    font-size: 40px;\r\n  }\r\n\r\n  #blogBackground, #blogPostsDiv {\r\n    margin-top: 200px;\r\n  }\r\n\r\n  #blogPostsDiv {\r\n    padding: 20px 0px;\r\n  }\r\n\r\n  #blogPostsDiv header {\r\n    display: block;\r\n  }\r\n\r\n  #blogPostsDiv #blogHeaderLeft, #blogPostsDiv #blogHeaderRight {\r\n    width: 100%;\r\n    font-size: 30px;\r\n    padding: 5px;\r\n  }\r\n\r\n  #blogPostsDiv article h1 {\r\n    font-size: 60px;\r\n  }\r\n\r\n  #blogPostsDiv article h3 {\r\n    font-size: 40px;\r\n    text-align: center;\r\n  }\r\n\r\n  #blogPostsDiv article p {\r\n    font-size: 30px;\r\n  }\r\n\r\n  #blogPostsDiv article ol {\r\n    font-size: 25px;\r\n  }\r\n\r\n  .blogIndexDivs {\r\n    width: 100%;\r\n    float: none;\r\n  }\r\n\r\n  .blogIndexDivs div {\r\n    min-height: 200px;\r\n    display: block;\r\n    box-shadow: none;\r\n    border: 1px solid black;\r\n    border-radius: 20px;\r\n\r\n  }\r\n\r\n  .blogIndexDivs div h2 {\r\n    font-size: 30px;\r\n  }\r\n\r\n  #blogDropdownList {\r\n    top: 200px;\r\n    width: 100%;\r\n  }\r\n\r\n  .showDropdown {\r\n    -webkit-transform: translate3d(0,0,0);\r\n    transform: translate3d(0,0,0);\r\n    transition: transform 400ms;\r\n  }\r\n\r\n  .hideDropdown {\r\n    -webkit-transform: translate3d(100vw,0,0);\r\n    transform: translate3d(100vw,0,0);\r\n    transition: transform 400ms;\r\n  }\r\n\r\n\r\n\r\n\r\n}", ""]);
+	exports.push([module.id, "@media only screen and (max-device-width: 1000px) {\r\n\r\n  .contactContainer h2 {\r\n    font-size: 40px;\r\n  }\r\n\r\n  .contactHalfscreen {\r\n    width: 100%;\r\n  }\r\n\r\n  .contactTable a {\r\n    font-size: 40px;\r\n  }\r\n\r\n  .contactTextarea {\r\n    width: 80%;\r\n    height: 400px;\r\n  }\r\n  .contactInput {\r\n    width: 80%;\r\n  }\r\n\r\n  .contactTextarea, .contactInput {\r\n    font-size: 30px;\r\n    padding: 15px 10px;\r\n    box-shadow: none;\r\n    border: 1px solid black;\r\n    margin-top: 10px;\r\n  }\r\n\r\n  .contactSubmit {\r\n    width: 50%;\r\n    font-size: 35px;\r\n    border: 1px solid black;\r\n    margin-top: 10px;\r\n    padding: 20px;\r\n  }\r\n\r\n  .contactPhone:before {\r\n    content: \"\\260E\";\r\n    font-size: 1em;\r\n    color: black;\r\n  }\r\n\r\n  .contactEmail:before {\r\n    content: \"\\2709\";\r\n    font-size: 1em;\r\n    color: black;\r\n  }\r\n\r\n}", ""]);
+
+	// exports
+
+
+/***/ },
+/* 353 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(354);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(334)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./animations.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./animations.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 354 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(333)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "/*Transition between 2 routes on index.js*/\r\n\r\n.routeSlideUp-enter {\r\n  transform: translateY(100%);\r\n  z-index: 10;\r\n  height: 100%;\r\n}\r\n\r\n.routeSlideUp-enter-active {\r\n  transform: translateY(0%);\r\n  z-index: 10;\r\n  height: 100%;\r\n  transition: transform 800ms ease-in-out;\r\n}\r\n\r\n.routeSlideUp-leave {\r\n  height: 100%;\r\n  transform: translateY(0%);\r\n}\r\n\r\n.routeSlideUp-leave-active {\r\n  height: 100%;\r\n  transform: translateY(-100%);\r\n  transition: transform 800ms ease-in-out;\r\n}\r\n\r\n/*slide down*/\r\n.routeSlideDown-enter {\r\n  transform: translateY(-100%);\r\n  z-index: 10;\r\n  height: 100%;\r\n}\r\n\r\n.routeSlideDown-enter-active {\r\n  transform: translateY(0%);\r\n  z-index: 10;\r\n  height: 100%;\r\n  transition: transform 800ms ease-in-out;\r\n}\r\n\r\n.routeSlideDown-leave {\r\n  height: 100%;\r\n  transform: translateY(0%);\r\n}\r\n\r\n.routeSlideDown-leave-active {\r\n  height: 100%;\r\n  transform: translateY(100%);\r\n  transition: transform 800ms ease-in-out;\r\n}\r\n\r\n.pageContainer {\r\n  height: 100%;\r\n  width: 100%;\r\n  position: absolute;\r\n}\r\n\r\n/*Main component flip animation used on Home.js*/\r\n.component-appear {\r\n  transform: scale(0);\r\n}\r\n\r\n.component-appear-active {\r\n  transform: scale(1);\r\n  transition: transform 800ms linear;\r\n}\r\n\r\n.component-enter {\r\n  transform: rotateY(90deg) rotateX(90deg);\r\n}\r\n\r\n.component-enter-active {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n  transition: transform 300ms ease-out 300ms;\r\n}\r\n\r\n.component-leave {\r\n  transform: rotateY(0deg) rotateX(0deg);\r\n}\r\n\r\n.component-leave-active {\r\n  transform: rotateY(90deg) rotateX(-90deg);\r\n  transition: transform 300ms ease-in;\r\n}\r\n\r\n/*Rotating active project thumb on ProjectsContainer.js*/\r\n.projectFlip-right-enter {\r\n  transform: translateX(-50%) scale(.2);\r\n}\r\n\r\n.projectFlip-right-enter-active {\r\n  transform: translateX(0%) scale(1);\r\n  transition: transform 500ms ease-out;\r\n}\r\n\r\n.projectFlip-right-leave {\r\n  transform: translateX(0%) scale(1);\r\n}\r\n\r\n.projectFlip-right-leave-active {\r\n  transform: translateX(50%) scale(.2);\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  transition:\r\n    transform 400ms ease-in,\r\n    box-shadow 400ms ease-in;\r\n}\r\n\r\n.projectFlip-left-enter {\r\n  transform: translateX(50%) scale(.2);\r\n}\r\n\r\n.projectFlip-left-enter-active {\r\n  transform: translateX(0%) scale(1);\r\n  transition: transform 500ms ease-out;\r\n}\r\n\r\n.projectFlip-left-leave {\r\n  transform: translateX(0%) scale(1);\r\n}\r\n\r\n.projectFlip-left-leave-active {\r\n  transform: translateX(-50%) scale(.2);\r\n  box-shadow: 0px 0px 10px 5px purple;\r\n  transition:\r\n    transform 400ms ease-in,\r\n    box-shadow 400ms ease-in;\r\n}\r\n\r\n.projectFlip-fade-enter {\r\n/*  transform: scale(.2);*/\r\n  opacity: .3;\r\n}\r\n\r\n.projectFlip-fade-enter-active {\r\n/*  transform: scale(1);*/\r\n  opacity: 1;\r\n  transition: opacity 400ms ease-out 200ms;\r\n}\r\n\r\n.projectFlip-fade-leave {\r\n/*  transform: translateX(0%) scale(1);*/\r\n  opacity: 1;\r\n}\r\n\r\n.projectFlip-fade-leave-active {\r\n/*  transform: translateX(-50%) scale(.2);*/\r\n  opacity: 0;\r\n  transition: opacity 200ms;\r\n}\r\n\r\n/*Zooming in on fullscreen project on ProjectsContainer*/\r\n.projectsFullscreenTransition-enter {\r\n  z-index: 10;\r\n  position: absolute;\r\n  top: 0;\r\n  transform: scale(.3);\r\n}\r\n\r\n.projectsFullscreenTransition-enter-active {\r\n  z-index: 10;\r\n  position: absolute;\r\n  top: 0;\r\n  transform: scale(1);\r\n  transition: transform 500ms ease-in 0ms;\r\n}\r\n\r\n.projectsFullscreenTransition-leave {\r\n  position: absolute;\r\n  top: 0;\r\n  opacity: 1;\r\n}\r\n\r\n.projectsFullscreenTransition-leave-active {\r\n  position: absolute;\r\n  top: 0;\r\n  opacity: 0;\r\n  transition: opacity 250ms ease-in;\r\n}\r\n\r\n\r\n.projectsCarouselTransition-enter {\r\n  opacity: 0;\r\n}\r\n\r\n.projectsCarouselTransition-enter-active {\r\n  opacity: 1;\r\n  transition: opacity 500ms ease-in 100ms;\r\n}\r\n\r\n.projectsCarouselTransition-leave {\r\n  position: absolute;\r\n  top: 0;\r\n  transform: translate(0,0) scale(1);\r\n  opacity: 1;\r\n}\r\n\r\n.projectsCarouselTransition-leave-active {\r\n  position: absolute;\r\n  top: 0;\r\n  transform: translate(-100%,-100%) scale(.3);\r\n  opacity: 0;\r\n  transition: transform 250ms ease-in,\r\n              opacity 250ms ease-in;\r\n}\r\n\r\n\r\n\r\n/*Zoom in and out on contact form from ContactContainer*/\r\n.showForm-enter {\r\n  transform: scale(0);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-enter-active {\r\n  transform: scale(1);\r\n}\r\n\r\n.showForm-leave {\r\n  transform: scale(1);\r\n  transition: transform 500ms ease-in;\r\n}\r\n\r\n.showForm-leave-active {\r\n  transform: scale(0);\r\n}\r\n\r\n/*Rotating picture of me on MainContainer.js*/\r\n@keyframes picture-rotate {\r\n  0% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  40% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  50% {\r\n    transform: rotateY(90deg);\r\n  }\r\n  60% {\r\n    transform: rotateY(0deg);\r\n  }\r\n  100% {\r\n    transform: rotateY(0deg);\r\n  }\r\n}\r\n\r\n/*Form animation upon submission, ContactContainer*/\r\n@keyframes formFlip {\r\n  0% {\r\n    transform: rotateX(0);\r\n  }\r\n\r\n  100% {\r\n    transform: rotateX(90deg);\r\n  }\r\n}\r\n\r\n/*Showing success after form submission, ContactContainer*/\r\n@keyframes formSuccess {\r\n  0% {\r\n    opacity: 0;\r\n  }\r\n  50% {\r\n    opacity: 0;\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n  }\r\n}\r\n\r\n/*Scale increase icons on contact table, from ContactContainer and ProjectsFullscreen*/\r\n@keyframes contact-hover {\r\n  0% {\r\n    transform: scale(1);\r\n  }\r\n  100% {\r\n    transform: scale(1.1);\r\n  }\r\n\r\n}\r\n\r\n/*Toggle stroke color for D3 bubbles in SkillsD3*/\r\n@keyframes colorstroke {\r\n  0% {\r\n    stroke: red;\r\n  }\r\n  20% {\r\n    stroke: #f442bf;\r\n  }\r\n  40% {\r\n    stroke: purple;\r\n  }\r\n  60% {\r\n    stroke: blue;\r\n  }\r\n  80% {\r\n    stroke: green;\r\n  }\r\n  100% {\r\n    stroke: red;\r\n  }\r\n}\r\n\r\n/*Blog posts*/\r\n.blogPostTransition-appear {\r\n  opacity: 0;\r\n}\r\n\r\n.blogPostTransition-appear-active {\r\n  opacity: 1;\r\n  transition: opacity 1s linear;\r\n}\r\n\r\n/*.blogPostTransition-appear {\r\n  transform: translateX(100%);\r\n}\r\n\r\n.blogPostTransition-appear-active {\r\n  transform: translateX(0%);\r\n  transition: transform 1s linear;\r\n}*/\r\n\r\n.blogPostTransition-leave {\r\n  opacity: 1;\r\n}\r\n\r\n.blogPostTransition-leave-active {\r\n  opacity: 0;\r\n  transition: opacity 1s linear;\r\n}\r\n\r\n/*blog content transitions*/\r\n.blogContentTransition-enter {\r\n  max-height: 0vh;\r\n  opacity: .8;\r\n}\r\n\r\n.blogContentTransition-enter-active {\r\n  max-height: 100vh;\r\n  opacity: 1;\r\n  transition: max-height 1000ms ease-in 500ms,\r\n              opacity 1000ms ease-in 500ms;\r\n}\r\n\r\n.blogContentTransition-leave {\r\n  max-height: 100vh;\r\n  opacity: 1;\r\n}\r\n\r\n.blogContentTransition-leave-active {\r\n  max-height: 0vh;\r\n  opacity: .8;\r\n  transition: max-height 500ms ease-out,\r\n              opacity 500ms ease-out;\r\n}\r\n\r\n/*popup link*/\r\n.popupLink {\r\n  position: fixed;\r\n  bottom: 60px;\r\n  right: 60px;\r\n}\r\n\r\n.popupLink .popupBox {\r\n  border-radius: 20px;\r\n  background: black;\r\n  color: white;\r\n  padding: 10px 0px;\r\n  box-shadow: 0px 0px 2px 2px black;\r\n}\r\n\r\n.popupBox:hover {\r\n  box-shadow: 0px 0px 4px 4px black;\r\n}\r\n\r\n.popupX {\r\n  position: absolute;\r\n  left: -10px;\r\n  top: -10px;\r\n  background: yellow;\r\n  font-size: 40px;\r\n  border-radius: 50%;\r\n  line-height: 0px;\r\n  padding: 20px 5px 10px;\r\n  color: black;\r\n  box-shadow: 0px 0px 2px 2px black;\r\n}\r\n\r\n.popupX:before {\r\n  content: '\\D7';\r\n}\r\n\r\n.popupX:hover {\r\n  cursor: pointer;\r\n  box-shadow: 0px 0px 4px 4px black;\r\n  animation: rotate-X 1s forwards;\r\n}\r\n\r\n@keyframes rotate-X {\r\n  0% {\r\n    transform: rotate(0deg);\r\n  }\r\n  100% {\r\n    transform: rotate(180deg);\r\n  }\r\n}\r\n\r\n.popupTransition-appear {\r\n  transform: translateY(500px);\r\n  opacity: 0;\r\n}\r\n\r\n.popupTransition-appear-active {\r\n  transform: translateY(0px);\r\n  opacity: 1;\r\n  transition: transform 3s linear 0s,\r\n              opacity 3s linear 2s;\r\n}\r\n\r\n.hidePopup {\r\n  transform: translateY(500px);\r\n  transition: transform 1s;\r\n}", ""]);
+
+	// exports
+
+
+/***/ },
+/* 355 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(356);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(334)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./responsive.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./responsive.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 356 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(333)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "@media only screen and (min-device-width: 1500px) and (max-width: 1000px) {\r\n  #layoutDiv {\r\n    min-width: 700px;\r\n  }  \r\n\r\n\r\n}\r\n\r\n\r\n@media only screen and (max-device-width: 1000px) {\r\n\r\n  html, body, #app, #app > div {\r\n    height: 100vh;\r\n    width: 100%;\r\n  }\r\n\r\n  h1 {\r\n    font-size: 75px;\r\n    padding: 20px;\r\n  }\r\n\r\n  p {\r\n    line-height: 75px;\r\n  }\r\n\r\n  #layoutDiv {\r\n    height: 100vh;\r\n  }\r\n\r\n  .homeContainer {\r\n    width: 100%;\r\n    height: 90vh;\r\n    padding: 0;\r\n  }\r\n\r\n  #contentSpace {\r\n    width: 98%;\r\n  }\r\n\r\n  .contentContainer {\r\n    min-height: 75vh;\r\n    width: 100%;\r\n  }\r\n\r\n  .contentContainer > div {\r\n    min-height: 75vh;\r\n    width: 100%;\r\n  }\r\n\r\n  #siteNav td {\r\n    height: 10vh;\r\n    color: white;\r\n    font-weight: bold;\r\n  }\r\n\r\n  #siteNav a {\r\n    font-size: 40px;\r\n  }\r\n\r\n  .component-enter {\r\n    transform: rotateX(90deg);\r\n  }\r\n\r\n  .component-enter-active {\r\n    transform: rotateX(0deg);\r\n    transition: transform 300ms ease-out 300ms;\r\n  }\r\n\r\n  .component-leave {\r\n    transform: rotateX(0deg);\r\n  }\r\n\r\n  .component-leave-active {\r\n    transform: rotateX(90deg);\r\n    transition: transform 300ms ease-in;\r\n  }\r\n\r\n}", ""]);
+
+	// exports
+
+
+/***/ },
+/* 357 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(358);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(334)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./blog.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./blog.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 358 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(333)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "#blogContentRelativeDiv {\r\n  position: relative;\r\n  margin: 0px auto 20px;\r\n  max-width: 1200px;\r\n}\r\n\r\n#blogContentRelativeDiv > article {\r\n\r\n}\r\n\r\n#blogBackground {\r\n  position: fixed;\r\n  height: 100%;\r\n  width: 100%;\r\n  opacity: .3;\r\n  z-index: -2;\r\n}\r\n\r\n#blogBackground img {\r\n  min-height: 100%;\r\n  min-width: 100%;\r\n}\r\n\r\n#blogPostsDiv {\r\n  padding: 20px;\r\n  position: fixed;\r\n  width: 100%;\r\n  height: 90%;\r\n  overflow: auto;\r\n}\r\n\r\n#blogBackground, #blogPostsDiv {\r\n  margin-top: 100px;\r\n}\r\n\r\n#blogPostsDiv h1, h2, h3 {\r\n  text-align: center;\r\n}\r\n\r\n#blogPostsDiv h1 {\r\n  padding: 10px;\r\n}\r\n\r\n#blogPostsDiv h2{\r\n  font-family: 'Krona One', sans-serif;\r\n}\r\n\r\n#blogPostsDiv p {\r\n  font-size: 14px;\r\n  line-height: 35px;\r\n  padding: 10px 0px;\r\n}\r\n\r\n#blogPostsDiv ol {\r\n  padding: 10px 40px;\r\n  font-size: 1.2em;\r\n  list-style-type: square\r\n}\r\n\r\n#blogPostsDiv a {\r\n  font-family: 'Krona One', sans-serif;\r\n  transition: color 400ms linear;\r\n}\r\n\r\n#blogPostsDiv a:hover {\r\n  color: black;\r\n}\r\n\r\n#blogPostsDiv article, #blogPostsDiv header {\r\n  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, .3);\r\n  border-radius: 5px;\r\n  margin: 0px auto 20px;\r\n  max-width: 1200px;\r\n  overflow: hidden;\r\n}\r\n\r\n#blogPostsDiv article {\r\n  position: absolute;\r\n  width: 100%;\r\n\r\n}\r\n\r\n#blogPostsDiv header {\r\n  display: flex;\r\n  position: relative;\r\n}\r\n\r\n#blogHeaderLeft, #blogHeaderRight {\r\n  width: 50%;\r\n  display: flex;\r\n  justify-content: center;\r\n  flex-direction: column;\r\n}\r\n\r\n#blogHeaderLeft:hover {\r\n  cursor: pointer;\r\n}\r\n\r\n#blogPostsDiv section {\r\n  padding: 0px 20px 10px;\r\n}\r\n\r\n#blogPostsDiv section h3 {\r\n  text-align: left;\r\n  padding-top: 20px;\r\n}\r\n\r\n#blogPostsDiv img {\r\n  max-height: 100%;\r\n  max-width: 100%;\r\n}\r\n\r\n#blogPostsDiv .articleBackground {\r\n  position: absolute;\r\n  min-height: 100%;\r\n  min-width: 100%;\r\n  background: rgba(255, 255, 255, .6);\r\n  z-index: -1;\r\n}\r\n\r\n#blogNav {\r\n  height: 100px;\r\n  width: 100%;\r\n  position: fixed;\r\n  top: 0;\r\n  z-index: 1;\r\n  box-shadow: 0px 5px 5px #DFECF3;\r\n}\r\n\r\n#blogNavGif {\r\n  height: 200%;\r\n  width: 100%;\r\n  position: absolute;\r\n  z-index: -1;\r\n  overflow: hidden;\r\n}\r\n\r\n#blogNavGifDiv {\r\n  height: 100px;\r\n  width: 100%;\r\n  overflow: hidden;\r\n  position: absolute;\r\n  z-index: -1;\r\n}\r\n\r\n#blogNav table {\r\n  height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n#blogNav td {\r\n  width: 50%;\r\n  height: 100px;\r\n}\r\n\r\n.blogIndexDivs {\r\n  text-align: center;\r\n  width: 50%;\r\n  float: left;\r\n  padding: 20px;\r\n}\r\n\r\n.blogIndexDivs a, .blogIndexDivs a:visited {\r\n  color: black;\r\n}\r\n\r\n.blogIndexDivs div {\r\n   box-shadow: 0px 0px 5px black;\r\n   padding: 10px;\r\n   min-height: 150px;\r\n   display: flex;\r\n   justify-content: center;\r\n   flex-direction: column;\r\n   background: white;\r\n}\r\n\r\n.blogIndexDivs div p {\r\n  text-align: center;\r\n}\r\n\r\n.blogIndexDivs div:hover {\r\n  box-shadow: 0px 0px 10px black inset;\r\n  background: transparent;\r\n}\r\n\r\n.blogIndexDivs div h2 {\r\n  font-size: 1.1em;\r\n}\r\n\r\n/*dropdown*/\r\n\r\n.showDropdown {\r\n  -ms-transform: translateX(0%);\r\n  -webkit-transform: translateX(0%);\r\n  transform: translateX(0%);\r\n  transition: transform 400ms;\r\n}\r\n\r\n.hideDropdown {\r\n  -ms-transform: translateX(100%);\r\n  -webkit-transform: translateX(100%);\r\n  transform: translateX(100%);\r\n  transition: transform 400ms;\r\n}\r\n\r\n#blogDropdownList {\r\n/*  display: none;*/\r\n  list-style-type: none;\r\n  position: fixed;\r\n  top: 100px;\r\n  width: 50%;\r\n  right: 0;\r\n  background: white;\r\n  border-left: 1px solid gray;\r\n  border-bottom: 1px solid gray;\r\n}\r\n\r\n#blogDropdownList li {\r\n  padding: 20px;\r\n}\r\n\r\n#blogDropdownList a, #blogDropdownList a:visited {\r\n  padding: 20px;\r\n  color: black;\r\n}", ""]);
+
+	// exports
+
+
+/***/ },
+/* 359 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(360);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(334)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./blogResponsive.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./blogResponsive.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 360 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(333)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "@media only screen and (min-device-width: 1500px) and (max-width: 1000px) {\r\n\r\n  .pageContainer {\r\n    min-width: 700px;\r\n  }\r\n\r\n  #blogPostsDiv #blogHeaderLeft, #blogPostsDiv #blogHeaderRight {\r\n    font-size: 14px;\r\n    padding: 5px;\r\n  }\r\n\r\n  header, article {\r\n    min-width: 600px;\r\n  }\r\n\r\n  .blogIndexDivs {\r\n    width: 75%;\r\n    float: none;\r\n    margin: auto;\r\n  }\r\n\r\n  .blogIndexDivs div {\r\n    min-height: 120px;\r\n    display: block;\r\n    box-shadow: none;\r\n /*   border: 1px solid black;*/\r\n    box-shadow: 0px 0px 5px black;\r\n    border-radius: 10px;\r\n    min-width: 400px;\r\n\r\n  }\r\n\r\n  .blogIndexDivs div h2 {\r\n    font-size: 16px;\r\n  }\r\n\r\n  .blogIndexDivs div p {\r\n    font-size: 14px;\r\n  }\r\n\r\n  #blogDropdownList {\r\n    min-width: 400px;\r\n  }\r\n\r\n\r\n}\r\n\r\n\r\n@media only screen and (max-device-width: 1000px) {\r\n  #blogNav {\r\n    height: 200px;\r\n  }\r\n\r\n  #blogNavGifDiv {\r\n    height: 200px;\r\n  }\r\n\r\n  #blogNav td {\r\n    height: 200px;\r\n    font-size: 40px;\r\n  }\r\n\r\n  #blogNav td a {\r\n    font-size: 45px;\r\n  }\r\n\r\n  #blogBackground, #blogPostsDiv {\r\n    margin-top: 200px;\r\n  }\r\n\r\n  #blogPostsDiv {\r\n    padding: 20px 0px;\r\n  }\r\n\r\n  #blogPostsDiv header {\r\n    display: block;\r\n  }\r\n\r\n  #blogPostsDiv #blogHeaderLeft, #blogPostsDiv #blogHeaderRight {\r\n    width: 100%;\r\n    font-size: 30px;\r\n    padding: 5px;\r\n  }\r\n\r\n  #blogPostsDiv article h1 {\r\n    font-size: 60px;\r\n  }\r\n\r\n  #blogPostsDiv article h3 {\r\n    font-size: 40px;\r\n    text-align: center;\r\n  }\r\n\r\n  #blogPostsDiv article p {\r\n    font-size: 35px;\r\n    line-height: 70px;\r\n  }\r\n\r\n  #blogPostsDiv article ol {\r\n    font-size: 35px;\r\n  }\r\n\r\n  #blogPostsDiv img {\r\n    width: 100%;\r\n  }\r\n\r\n  .blogIndexDivs {\r\n    width: 100%;\r\n    float: none;\r\n  }\r\n\r\n  .blogIndexDivs div {\r\n    min-height: 200px;\r\n    display: block;\r\n    box-shadow: none;\r\n    border: 1px solid black;\r\n    border-radius: 20px;\r\n  }\r\n\r\n  .blogIndex div p {\r\n    font-size: 30px;\r\n  }\r\n\r\n  .blogIndexDivs div h2 {\r\n    font-size: 30px;\r\n  }\r\n\r\n  #blogDropdownList {\r\n    top: 200px;\r\n    width: 100%;\r\n    z-index: 10;\r\n  }\r\n\r\n\r\n\r\n\r\n}", ""]);
 
 	// exports
 

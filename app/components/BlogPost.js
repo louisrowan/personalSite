@@ -28,7 +28,7 @@ const BlogPost = React.createClass({
           return <img src={d[1]} key={i} />
         }
         else if (d[0] === 'a') {
-          return <a href={d[1]} key={i}>{d[2]}</a>
+          return <p key={i}><a href={d[1]} target='_blank'>{d[2]}</a></p>
         }
         else if (d[0] === 'ol') {
           let items = d[1].map((li, index) => <li key={index}>{li}</li>)
